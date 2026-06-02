@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..500,0..100,0..1;1,9..144,300..500,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=9" />
+<link rel="stylesheet" href="css/styles.css?v=10" />
 </head>
 <body>
 
@@ -177,17 +177,20 @@
   <div class="wrap">
     <p class="eyebrow reveal" style="justify-content:center;display:flex;margin:0">You choose how to start</p>
     <div class="funnels">
-      <a class="lane lane--panel panel--ink reveal" href="shop.html" style="--i:0">
+      <a class="lane lane--panel panel--ink reveal reveal--slide" href="shop.html" style="--i:0;--dir:-1">
         <span class="lane__num">01</span>
         <h2 class="h3 lane__title">Shop the range</h2>
         <p class="lane__desc">Ready-made X-Board displays, stands and counters. Pick, customise, ship flat.</p>
         <span class="link-arrow">Browse the shop <span class="arrow">&rarr;</span></span>
       </a>
-      <a class="lane lane--panel panel--pond reveal" href="#contact" style="--i:1">
+      <a class="lane lane--panel panel--pond reveal reveal--slide" href="#contact" style="--i:1;--dir:1">
         <span class="lane__num">02</span>
         <h2 class="h3 lane__title">Tell us about your project</h2>
         <p class="lane__desc">Bespoke builds for events, retail and launches — from sketch to show floor.</p>
         <span class="link-arrow">Start a project <span class="arrow">&rarr;</span></span>
+        <span class="bubbles bubbles--lane" aria-hidden="true">
+          <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+        </span>
       </a>
     </div>
   </div>
@@ -230,7 +233,7 @@
 
     <div class="grid-products">
       <!-- tile 1 -->
-      <article class="tile reveal">
+      <article class="tile reveal reveal--slide" style="--i:0;--dir:-1">
         <div class="tile__media">
           <span class="tile__badge tile__badge--eco">100% recycled</span>
           <div class="tile__media-art" aria-hidden="true">
@@ -257,7 +260,7 @@
         </div>
       </article>
       <!-- tile 2 -->
-      <article class="tile reveal d1">
+      <article class="tile reveal reveal--slide" style="--i:1;--dir:0">
         <div class="tile__media">
           <span class="tile__badge">Ships flat</span>
           <div class="tile__media-art" aria-hidden="true">
@@ -284,7 +287,7 @@
         </div>
       </article>
       <!-- tile 3 -->
-      <article class="tile reveal d2">
+      <article class="tile reveal reveal--slide" style="--i:2;--dir:1">
         <div class="tile__media">
           <span class="tile__badge tile__badge--eco">Reusable</span>
           <div class="tile__media-art" aria-hidden="true">
@@ -327,8 +330,8 @@
       <h2 class="h2">The material does the talking.</h2>
     </div>
     <div class="specs reveal">
-      <div class="spec"><div class="spec__num">60<span class="unit">t</span></div><div class="spec__label">Press force — rigid, board-true edges</div></div>
-      <div class="spec"><div class="spec__num">100<span class="unit">%</span></div><div class="spec__label">Recycled corrugated content</div></div>
+      <div class="spec"><div class="spec__num"><span data-countup="60">0</span><span class="unit">t</span></div><div class="spec__label">Press force — rigid, board-true edges</div></div>
+      <div class="spec"><div class="spec__num"><span data-countup="100">0</span><span class="unit">%</span></div><div class="spec__label">Recycled corrugated content</div></div>
       <div class="spec"><div class="spec__num">FR</div><div class="spec__label">Flame-retardant treated</div></div>
       <div class="spec"><div class="spec__num">H<span class="unit">₂O</span></div><div class="spec__label">Water-resistant — won't disintegrate</div></div>
       <div class="spec"><div class="spec__num">∞</div><div class="spec__label">Reusable, then fully recyclable</div></div>
@@ -344,17 +347,17 @@
       <h2 class="h2" style="max-width:18ch">Trusted on the world's biggest show floors.</h2>
     </div>
     <div class="grid-projects grid-projects--feature">
-      <a class="project reveal" href="project-detail.html">
+      <a class="project reveal reveal--slide" href="project-detail.html" style="--i:0;--dir:0">
         <img class="project__img" src="assets/projects/microsoft.jpg" alt="Microsoft new-office launch environment built from X-Board" loading="lazy" />
         <div class="project__scrim"></div><span class="project__tag">Event</span>
         <div class="project__body"><span class="project__client">Microsoft · New-office launch</span><h3 class="h3 project__title">A welcome built to be struck and re-staged</h3></div>
       </a>
-      <a class="project reveal" href="project-detail.html">
+      <a class="project reveal reveal--slide" href="project-detail.html" style="--i:1;--dir:1">
         <img class="project__img" src="assets/projects/google-cloud.jpg" alt="Google Cloud spring party build" loading="lazy" />
         <div class="project__scrim"></div><span class="project__tag">Event</span>
         <div class="project__body"><span class="project__client">Google Cloud · Spring party</span><h3 class="h4 project__title">Free-standing welcome build</h3></div>
       </a>
-      <a class="project reveal" href="project-detail.html">
+      <a class="project reveal reveal--slide" href="project-detail.html" style="--i:2;--dir:1">
         <img class="project__img" src="assets/projects/landa.jpg" alt="Landa Digital Printing branded environment" loading="lazy" />
         <div class="project__scrim"></div><span class="project__tag">Exhibition</span>
         <div class="project__body"><span class="project__client">Landa · Digital Printing</span><h3 class="h4 project__title">Illuminated letters &amp; wall graphics</h3></div>
@@ -384,7 +387,7 @@
         <p class="meta" style="margin-top:1rem">Eco claims drawn from Picpong's X-Board spec; certification documents to be attached before publication.</p>
       </div>
       <div class="split__media reveal d1">
-        <img src="assets/projects/redefine-meat.jpg" alt="Redefine Meat rebranding environment built from recycled board" loading="lazy" />
+        <img src="assets/projects/redefine-meat.jpg" alt="Redefine Meat rebranding environment built from recycled board" loading="lazy" data-parallax="0.06" data-parallax-scale="1.12" />
       </div>
     </div>
   </div>
@@ -406,7 +409,7 @@
 <section class="band" id="contact">
   <div class="wrap">
     <div class="split" style="align-items:start">
-      <div class="reveal">
+      <div class="reveal reveal--slide" style="--dir:-1">
         <p class="eyebrow">Start a project</p>
         <h2 class="h2" style="max-width:16ch">Tell us about your project.</h2>
         <p class="lead">Event, exhibition or launch — give us the brief and we'll come back within a working day with ideas, a timeline and a quote. Same recycled board, same in-house workshop.</p>
@@ -417,7 +420,7 @@
         <p class="meta" style="margin-top:1.4rem">40 Ha&nbsp;Hagana St, Rishon&nbsp;LeZion · <a href="tel:1700501508" style="color:var(--ink)">1-700-501-508</a> · <a href="mailto:info@picpong.biz" style="color:var(--ink)">info@picpong.biz</a></p>
       </div>
 
-      <form class="quote-form reveal d1" data-quote aria-label="Project enquiry">
+      <form class="quote-form reveal reveal--slide" data-quote aria-label="Project enquiry" style="--i:1;--dir:1">
         <div class="qf qf--full">
           <span class="optgroup__label" style="margin:0">Project type</span>
           <div class="qf-chiprow">
@@ -461,14 +464,14 @@
 <footer class="footer">
   <div class="wrap">
     <div class="footer__grid">
-      <div class="footer__brand">
+      <div class="footer__brand reveal reveal--slide" style="--i:0;--dir:-1">
         <h2 class="display">pic<b>pong</b></h2>
         <p class="footer__story">A family workshop turning recycled corrugated board into displays worth keeping — since 2004.</p>
         <a class="btn btn--onDark" href="#contact">Start a project <span class="arrow">&rarr;</span></a>
       </div>
-      <div class="footer__col"><h4>Shop</h4><ul><li><a href="shop.html">Counters</a></li><li><a href="shop.html">Stands &amp; totems</a></li><li><a href="shop.html">Shelving</a></li><li><a href="shop.html">Photocall walls</a></li><li><a href="shop.html">Custom builds</a></li></ul></div>
-      <div class="footer__col"><h4>Studio</h4><ul><li><a href="#about">Our story</a></li><li><a href="projects.html">Projects</a></li><li><a href="#sustainability">Sustainability</a></li><li><a href="#contact">Contact</a></li></ul></div>
-      <div class="footer__col"><h4>Trusted by</h4><ul><li><a href="projects.html">Microsoft · Intel</a></li><li><a href="projects.html">Google · IBM</a></li><li><a href="projects.html">Landa · Amdocs</a></li><li><a href="projects.html">Wix · Maccabi</a></li></ul></div>
+      <div class="footer__col reveal reveal--slide" style="--i:1"><h4>Shop</h4><ul><li><a href="shop.html">Counters</a></li><li><a href="shop.html">Stands &amp; totems</a></li><li><a href="shop.html">Shelving</a></li><li><a href="shop.html">Photocall walls</a></li><li><a href="shop.html">Custom builds</a></li></ul></div>
+      <div class="footer__col reveal reveal--slide" style="--i:2"><h4>Studio</h4><ul><li><a href="#about">Our story</a></li><li><a href="projects.html">Projects</a></li><li><a href="#sustainability">Sustainability</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div class="footer__col reveal reveal--slide" style="--i:3"><h4>Trusted by</h4><ul><li><a href="projects.html">Microsoft · Intel</a></li><li><a href="projects.html">Google · IBM</a></li><li><a href="projects.html">Landa · Amdocs</a></li><li><a href="projects.html">Wix · Maccabi</a></li></ul></div>
     </div>
     <div class="footer__bottom">
       <span>© 2026 Picpong · Sustainable display systems</span>
@@ -500,6 +503,6 @@
   <img src="assets/brand/puffer.svg" alt="" />
 </button>
 
-<script src="js/app.js?v=9"></script>
+<script src="js/app.js?v=10"></script>
 </body>
 </html>

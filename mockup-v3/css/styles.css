@@ -127,7 +127,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .on-dark .eyebrow, .eyebrow--dark { color: var(--orange-bright); }
 
 /* ---------- section scaffolding ---------- */
-.band { padding: clamp(3.5rem, 8vw, 7rem) 0; position: relative; }
+.band { padding: clamp(3.5rem, 8vw, 7rem) 0; position: relative; overflow-x: clip; }
 .band--tight { padding: clamp(2.5rem, 5vw, 4rem) 0; }
 .band--dark { background: var(--gallery); color: var(--cream); }
 .band--dark .lead { color: rgba(247,247,241,0.74); }
@@ -409,6 +409,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 /* numbers as personality — louder than cartonlab's quiet spec tabs (spec §2.4/§4) */
 .spec__num { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(2.8rem,6vw,4.5rem);
   letter-spacing: -0.04em; line-height: 0.95; color: var(--cream);
+  font-variant-numeric: tabular-nums; font-feature-settings: "tnum";
   font-variation-settings: "opsz" 144, "SOFT" 10, "WONK" 1; }
 .spec__num .unit { color: var(--orange-bright); }
 .spec__label { margin-top: 0.6rem; font-size: var(--t-ui); color: rgba(247,247,241,0.66); }
@@ -457,6 +458,10 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 @media (min-width: 900px) { .split { grid-template-columns: 1.05fr 1fr; } .split--rev > *:first-child { order: 2; } }
 .split__media { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/3; background: var(--kraft); }
 .split__media img { width: 100%; height: 100%; object-fit: cover; }
+/* parallaxed media: JS drives transform (translate + base scale from
+   data-parallax-scale). reduced-motion leaves the untransformed img filling the
+   frame, which is correct. */
+.split__media img[data-parallax] { will-change: transform; }
 .checklist { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: 0.85rem; }
 .checklist li { display: flex; gap: 0.75rem; align-items: flex-start; font-size: var(--t-lead); }
 .checklist svg { flex-shrink: 0; margin-top: 3px; color: var(--orange); }
@@ -498,7 +503,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 /* ============================================================
    FOOTER
    ============================================================ */
-.footer { background: var(--ink); color: var(--cream); padding: clamp(3rem,7vw,5rem) 0 2.5rem; }
+.footer { background: var(--ink); color: var(--cream); padding: clamp(3rem,7vw,5rem) 0 2.5rem; overflow-x: clip; }
 .footer__grid { display: grid; grid-template-columns: 1fr; gap: 2.25rem; }
 @media (min-width: 760px) { .footer__grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; } }
 .footer__brand .display { font-size: clamp(2rem,5vw,2.75rem); color: var(--cream); }
@@ -654,6 +659,9 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
+  .reveal--slide { transform: none; }
+  .trust__logos span { opacity: 1; transform: none; }
+  .specs .spec { opacity: 1; transform: none; }
   .marquee__track { animation: none; transform: none; }
 }
 
@@ -804,6 +812,46 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 .collage .reveal.in { transform: none; }
 
+/* reusable body variant of the collage's directional reveal — gentler 40px
+   travel (vs 90px) so the sideways pre-position can't trip a horizontal
+   scrollbar inside full-width bands. Stagger via --i, side via --dir. */
+.reveal--slide {
+  transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+  transition-delay: calc(var(--i, 0) * 0.09s);
+  transform: translate(calc(var(--dir, 0) * 40px), 24px) scale(0.985);
+}
+.reveal--slide.in { transform: none; }
+
+/* trust logos cascade in once the strip reveals */
+.trust__logos span { opacity: 0; transform: translateY(8px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+.trust.in .trust__logos span { opacity: 1; transform: none; }
+.trust.in .trust__logos span:nth-child(1) { transition-delay: 0.05s; }
+.trust.in .trust__logos span:nth-child(2) { transition-delay: 0.10s; }
+.trust.in .trust__logos span:nth-child(3) { transition-delay: 0.15s; }
+.trust.in .trust__logos span:nth-child(4) { transition-delay: 0.20s; }
+.trust.in .trust__logos span:nth-child(5) { transition-delay: 0.25s; }
+.trust.in .trust__logos span:nth-child(6) { transition-delay: 0.30s; }
+.trust.in .trust__logos span:nth-child(7) { transition-delay: 0.35s; }
+.trust.in .trust__logos span:nth-child(8) { transition-delay: 0.40s; }
+
+/* spec tiles settle in sequence as the dark strip reveals */
+.specs .spec { opacity: 0; transform: translateY(16px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.specs.in .spec { opacity: 1; transform: none; }
+.specs.in .spec:nth-child(2) { transition-delay: 0.08s; }
+.specs.in .spec:nth-child(3) { transition-delay: 0.16s; }
+.specs.in .spec:nth-child(4) { transition-delay: 0.24s; }
+.specs.in .spec:nth-child(5) { transition-delay: 0.32s; }
+
+/* one slow warm shimmer across the dark spec strip (only ambient loop here) */
+#material { position: relative; isolation: isolate; }
+#material::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  mix-blend-mode: screen;
+  background: linear-gradient(115deg, transparent 42%, rgba(245,135,41,0.10) 50%, transparent 58%);
+  background-size: 280% 100%; animation: sheen 9s linear infinite; }
+#material > .wrap { position: relative; z-index: 1; }
+
 /* MOBILE (default ≤759): headline full; slide box full; slogan + Landa share a
    half/half row; "on the show floor" full-width band LAST. Visual order via
    `order` (DOM order stays headline, media, video, slogan, sticker). */
@@ -844,6 +892,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 /* reduced-motion: freeze the kinetic bits, keep everything legible */
 @media (prefers-reduced-motion: reduce) {
   .cinemagraph, .sticker svg, .ctile--video::after, .ctile__live::before { animation: none !important; }
+  #material::after { animation: none !important; }
   .draw [pathLength] { stroke-dashoffset: 0 !important; }
   .collage .reveal { transform: none; }
 }
@@ -862,7 +911,11 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .lane--panel .lane__num { color: inherit; opacity: 0.72; font-size: 1.4rem; }
 .lane--panel .lane__title { color: inherit; }
 .lane--panel .lane__desc { color: inherit; opacity: 0.9; max-width: 38ch; }
-.lane--panel .link-arrow { color: inherit; border-color: currentColor; }
+.lane--panel .link-arrow { color: inherit; border-color: currentColor; position: relative; z-index: 2; }
+/* contain the echoed bubbles inside the pond lane (rhymes with the hero panel) */
+.lane--panel { position: relative; overflow: hidden; }
+.lane--panel > :not(.bubbles) { position: relative; z-index: 2; }
+.bubbles--lane { right: 4%; bottom: 0; width: 34%; height: 90%; opacity: 0.7; z-index: 1; }
 
 /* ---- slideshow tile: cinematic diagonal-wipe reel ----
    No crossfade, no blur (the old blur-filter transition janked on advance).
@@ -876,17 +929,22 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    resets at a cut. The drift is a slow ease-in-out that ping-pongs forever. */
 .slideshow__stage { position: absolute; inset: 0; z-index: 0;
   animation: stage-drift 17s ease-in-out infinite alternate; will-change: transform; }
-.slideshow .slide { position: absolute; inset: 0; opacity: 1; z-index: 0;
-  clip-path: inset(0 0 0 100%); }            /* hidden: collapsed to the right edge */
+/* Resting visibility is driven by OPACITY, not clip-path. Mobile WebKit/iOS
+   Safari intermittently drops an `animation-fill-mode` HELD clip-path value
+   once the keyframes end (especially under a transformed ancestor + a
+   mix-blend pseudo) — which made the just-revealed slide vanish ~1s after the
+   wipe. With opacity owning show/hide, the active frame stays painted even if
+   the clip value is dropped; clip-path is now a decorative entrance only. */
+.slideshow .slide { position: absolute; inset: 0; opacity: 0; z-index: 0; }
 .slideshow .slide img {
   width: 100%; height: 100%; object-fit: cover; display: block;
   backface-visibility: hidden;
 }
-/* the frame leaving stays fully painted one layer down, so the wipe reveals
-   over real imagery instead of the tile background */
-.slideshow .slide.is-prev { z-index: 1; clip-path: inset(0 0 0 0); }
+/* the frame leaving stays fully painted one layer down (full, no clip), so the
+   incoming wipe reveals over real imagery instead of the tile background */
+.slideshow .slide.is-prev { opacity: 1; z-index: 1; }
 .slideshow .slide.is-active {
-  z-index: 2; clip-path: inset(0 0 0 0);
+  opacity: 1; z-index: 2;
   animation: wipe-reveal 0.92s cubic-bezier(0.76, 0, 0.18, 1) both;
 }
 /* light-streak that rides the slanted wipe edge as it crosses the frame */
