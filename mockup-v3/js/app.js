@@ -235,18 +235,37 @@
 
     var i = 0;
     setInterval(function () {
-      slides[i].classList.remove("is-active");
+      var prev = i;
       i = (i + 1) % slides.length;
+      // the outgoing frame sits one layer down so the incoming wipe reveals
+      // over the *previous* image (not the tile background) — no edge flash
+      slides.forEach(function (s) { s.classList.remove("is-prev"); });
+      slides[prev].classList.remove("is-active");
+      slides[prev].classList.add("is-prev");
       slides[i].classList.add("is-active");
       runBar(i);
       var s = slides[i];
       if (card && s.dataset.k) {
-        card.classList.add("is-swapping");
-        setTimeout(function () {
-          if (cardK) cardK.textContent = s.dataset.k;
-          if (cardM) cardM.textContent = s.dataset.m || "";
-          card.classList.remove("is-swapping");
-        }, 300);
+        // defer the caption swap to the NEXT frame so its forced layout reads
+        // (offsetWidth) don't pile onto the same tick as the slide cut — keeps
+        // the wipe frame from dropping. The cut itself is pure class toggles.
+        requestAnimationFrame(function () {
+          var oldW = card.offsetWidth;          // lock the current box width
+          card.style.width = oldW + "px";
+          card.classList.add("is-swapping");    // text lifts + fades out
+          setTimeout(function () {
+            if (cardK) cardK.textContent = s.dataset.k;
+            if (cardM) cardM.textContent = s.dataset.m || "";
+            // measure the new natural width, then ease the box from old → new.
+            // (all synchronous, so the browser never paints the auto-width frame)
+            card.style.width = "auto";
+            var newW = card.offsetWidth;
+            card.style.width = oldW + "px";
+            void card.offsetWidth;              // reflow so the transition catches
+            card.style.width = newW + "px";
+            card.classList.remove("is-swapping"); // text settles back in
+          }, 300);
+        });
       }
     }, SLIDE_MS);
   });

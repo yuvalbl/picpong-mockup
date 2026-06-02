@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..500,0..100,0..1;1,9..144,300..500,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=6" />
+<link rel="stylesheet" href="css/styles.css?v=9" />
 </head>
 <body>
 
@@ -80,7 +80,7 @@
     <div class="collage">
 
       <!-- A · headline text panel — vibrant "ocean" blue + real puffer + bubbles -->
-      <div class="ctile ctile--headline panel--bayside reveal" style="--i:0">
+      <div class="ctile ctile--headline panel--bayside reveal" style="--i:0;--dir:-1">
         <p class="eyebrow">Exclusive X-Board importer · since 2004</p>
         <h1 class="display">Displays that show up, <em>stand out</em>, and leave <span class="accent">no&nbsp;trace.</span></h1>
         <p class="lead">100% recycled corrugated board, pressed at 60&nbsp;tons and built to be reused — then folded flat and recycled again.</p>
@@ -96,20 +96,33 @@
       </div>
 
       <!-- B-top · auto-changing slideshow, reel-player feel + overlapping info card -->
-      <div class="ctile ctile--media slideshow reveal" data-slideshow data-parallax="0.05" style="--i:1">
+      <div class="ctile ctile--media slideshow reveal" data-slideshow data-parallax="0.05" style="--i:1;--dir:-1">
         <div class="slideshow__bars" aria-hidden="true">
           <span class="bar"><i></i></span>
           <span class="bar"><i></i></span>
           <span class="bar"><i></i></span>
+          <span class="bar"><i></i></span>
+          <span class="bar"><i></i></span>
         </div>
-        <div class="slide is-active" data-k="King Solomon Expo" data-m="X-Board booths · from the archive">
-          <img src="assets/projects/king-solomon.jpg" alt="Colourful X-Board exhibition booths built for the King Solomon expo" loading="eager" />
-        </div>
-        <div class="slide" data-k="Microsoft · Launch" data-m="A welcome built to be re-staged">
-          <img src="assets/projects/microsoft.jpg" alt="Microsoft new-office launch environment built from X-Board" loading="lazy" />
-        </div>
-        <div class="slide" data-k="Google Cloud · Spring" data-m="Free-standing welcome build">
-          <img src="assets/projects/google-cloud.jpg" alt="Google Cloud spring party build" loading="lazy" />
+        <!-- shared zoom stage: ONE continuous drift on this wrapper, so the scale
+             never resets per-slide (the old per-image zoom snapped back at each cut).
+             Slides cross-wipe inside it; bars + card live outside so they stay sharp. -->
+        <div class="slideshow__stage">
+          <div class="slide is-active" data-k="King Solomon Expo" data-m="X-Board booths · from the archive">
+            <img src="assets/projects/king-solomon.jpg" alt="Colourful X-Board exhibition booths built for the King Solomon expo" loading="eager" />
+          </div>
+          <div class="slide" data-k="Microsoft · Launch" data-m="Welcome build · re-stageable">
+            <img src="assets/projects/microsoft.jpg" alt="Microsoft new-office launch environment built from X-Board" loading="lazy" />
+          </div>
+          <div class="slide" data-k="Google Cloud · Spring" data-m="Free-standing welcome build">
+            <img src="assets/projects/google-cloud.jpg" alt="Google Cloud spring party build" loading="lazy" />
+          </div>
+          <div class="slide" data-k="Redefine Meat" data-m="Brand launch stand · X-Board">
+            <img src="assets/projects/redefine-meat.jpg" alt="Redefine Meat brand launch stand built from X-Board" loading="lazy" />
+          </div>
+          <div class="slide" data-k="Synamedia" data-m="Conference booth · re-stageable">
+            <img src="assets/projects/synamedia.jpg" alt="Synamedia conference booth built from X-Board" loading="lazy" />
+          </div>
         </div>
         <div class="ctile__card">
           <span class="ctile__card-k" data-card-k>King Solomon Expo</span>
@@ -118,13 +131,13 @@
       </div>
 
       <!-- C-top · cinemagraph "video" tile -->
-      <div class="ctile ctile--video reveal" data-parallax="0.09" style="--i:2">
+      <div class="ctile ctile--video reveal" data-parallax="0.09" style="--i:2;--dir:1">
         <img class="cinemagraph" src="assets/projects/microsoft.jpg" alt="Microsoft launch environment built from X-Board, on the show floor" loading="eager" />
         <span class="ctile__live">On the show floor</span>
       </div>
 
       <!-- B-bottom · dynamic Fraunces slogan panel (rotating phrases + marker sweep) -->
-      <div class="ctile ctile--slogan panel--kraft reveal" data-parallax="0.04" style="--i:3">
+      <div class="ctile ctile--slogan panel--kraft reveal" data-parallax="0.04" style="--i:3;--dir:-1">
         <span class="sr-only">Remarkable events, made to impact, gone without a trace. Picpong builds bold displays that leave nothing behind.</span>
         <p class="slogan" data-slogan-cycle aria-hidden="true">
           <span class="line" style="--l:0"><span class="mark mark--orange">Remarkable</span></span>
@@ -135,13 +148,13 @@
       </div>
 
       <!-- C-bottom · sticker photo + printer doodle -->
-      <div class="ctile ctile--sticker reveal draw" data-parallax="0.07" style="--i:4">
+      <div class="ctile ctile--sticker reveal draw" data-parallax="0.07" style="--i:4;--dir:1">
         <img src="assets/projects/landa.jpg" alt="Landa Digital Printing branded environment" loading="lazy" />
         <span class="sticker" aria-hidden="true">
           <svg viewBox="0 0 120 120">
             <defs><path id="stickPath" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/></defs>
             <circle class="sticker__dot" cx="60" cy="60" r="9"/>
-            <text><textPath href="#stickPath" startOffset="0">picpong&#160;·&#160;selected&#160;projects&#160;·&#160;picpong&#160;·&#160;</textPath></text>
+            <text><textPath href="#stickPath" startOffset="0">events&#160;·&#160;stands&#160;·&#160;exhibitions&#160;·&#160;conferences&#160;·&#160;</textPath></text>
           </svg>
         </span>
         <svg viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--pin-bl" style="color:#fff;width:clamp(80px,11vw,130px)" aria-hidden="true">
@@ -487,6 +500,6 @@
   <img src="assets/brand/puffer.svg" alt="" />
 </button>
 
-<script src="js/app.js?v=6"></script>
+<script src="js/app.js?v=9"></script>
 </body>
 </html>
