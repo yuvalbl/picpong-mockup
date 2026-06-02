@@ -245,7 +245,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   display: flex; align-items: center; gap: 1.5rem; justify-content: space-between;
 }
 .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-.brand__mark { width: 34px; height: 34px; }
+.brand__mark { height: 38px; width: auto; display: block; }
 .brand__word { font-family: "Fraunces", serif; font-weight: 400; font-size: 1.45rem; letter-spacing: -0.02em; }
 .brand__word b { color: var(--orange); font-weight: 500; }
 .nav--dark .brand__word { color: var(--cream); }
