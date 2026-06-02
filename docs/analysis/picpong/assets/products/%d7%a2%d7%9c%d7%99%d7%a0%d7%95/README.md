@@ -5,11 +5,11 @@
 - **Scope:** ✅ in-scope
 - **Source generation:** gen1-rest
 - **Source page:** https://www.picpong.biz/%d7%a2%d7%9c%d7%99%d7%a0%d7%95/
-- **Images:** 50/54 downloaded
+- **Images:** 54/54 downloaded
 
 | file | dims | size | represents (title / alt / caption) |
 |---|---|---|---|
-| `קוקי.jpg` | 258×258 | — | קוקי |
+| `קוקי.jpg` | 258×258 | 66 KB | קוקי |
 | `Artboard-9.png` | 151×151 | 3 KB | Artboard 9 |
 | `Artboard-17.png` | 151×151 | 3 KB | Artboard 17 |
 | `Artboard-15.png` | 151×151 | 3 KB | Artboard 15 |
@@ -33,7 +33,7 @@
 | `Lusix_Logo_FINAL.png` | 120×90 | 1 KB | Lusix_Logo_FINAL |
 | `Israeli_Air_Force_-_Coat_of_arms-1.png` | 120×90 | 4 KB | Israeli_Air_Force_-_Coat_of_arms |
 | `brandNew.png` | 120×90 | 3 KB | brandNew |
-| `לוגו_עמינח.png` | 120×90 | — | לוגו_עמינח |
+| `לוגו_עמינח.png` | 120×90 | 1 KB | לוגו_עמינח |
 | `aboutus.jpg` | 851×315 | 64 KB | aboutus |
 | `facebook.png` | 120×90 | 1 KB | facebook |
 | `about-us.jpg` | 1920×800 | 977 KB | about-us |
@@ -54,9 +54,9 @@
 | `dave-12.png` | 733×568 | 37 KB | dave-12 |
 | `amir-15.png` | 733×568 | 34 KB | amir-15 |
 | `Michel-16.png` | 733×568 | 44 KB | Michel-16 |
-| `סשה.jpg` | 732×567 | — | סשה |
+| `סשה.jpg` | 732×567 | 61 KB | סשה |
 | `Micro_Focus.png` | 120×90 | 1 KB | Micro_Focus |
-| `שגיא-פרג.png` | 732×567 | — | שגיא-פרג |
+| `שגיא-פרג.png` | 732×567 | 32 KB | שגיא-פרג |
 | `nina.jpg` | 733×568 | 39 KB | Picpong_WorkersIllustrations |
 | `RONNY.jpg` | 733×568 | 42 KB | Picpong_WorkersIllustrations |
 | `Itzik-Janach.jpeg` | 734×568 | 11 KB | Itzik-Janach |

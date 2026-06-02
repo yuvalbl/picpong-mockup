@@ -2,7 +2,7 @@
 
 Every image extracted from **https://www.picpong.biz** and where it lives in this repo. Downloads sit under `docs/analysis/picpong/assets/<group>/`; each folder also has a `README.md` describing it.
 
-- **Total catalogued:** 1303 images (352 downloaded) across 248 groups
+- **Total catalogued:** 1303 images (1303 downloaded) across 248 groups
 - **By bucket:** products 202, projects 721, brand 3, unattached 375, logos 2
 - **By scope:** ✅in-scope 370, 🔎review 892, 🚫out-of-scope 36, 📎reference 5
 
@@ -19,117 +19,117 @@ The priority set — recognizable clients. Hero + banner each.
 
 | event / group | imgs | scope | type | folder | source page |
 |---|---|---|---|---|---|
-| **Electra salon** | 0/2 | ✅ | conference | `assets/projects/electra-salon/` | [link](https://www.picpong.biz/en/portfolio/electra-salon/) |
-| **Activity complexes at Azrieli Malls** | 0/2 | ✅ | activity-compound | `assets/projects/activity-complexes-at-azrieli-malls/` | [link](https://www.picpong.biz/en/portfolio/activity-complexes-at-azrieli-malls/) |
-| **The 2018 Annual Conference for Government Funded Religious Schools** | 0/2 | ✅ | conference | `assets/projects/the-2018-annual-conference-for-government-funded-religious-schools/` | [link](https://www.picpong.biz/en/portfolio/the-2018-annual-conference-for-government-funded-religious-schools/) |
-| **Instagram event** | 0/2 | ✅ | conference | `assets/projects/instagram-event/` | [link](https://www.picpong.biz/en/portfolio/instagram-event/) |
-| **Family day – Israeli Air Force** | 0/2 | ✅ | conference | `assets/projects/family-day-israeli-air-force/` | [link](https://www.picpong.biz/en/portfolio/family-day-israeli-air-force/) |
-| **"Our IDF" Exhibition** | 0/2 | ✅ | booth-exhibition | `assets/projects/our-idf-exhibition/` | [link](https://www.picpong.biz/en/portfolio/our-idf-exhibition/) |
-| **Service with a mission** | 0/2 | ✅ | booth-exhibition | `assets/projects/service-with-a-mission/` | [link](https://www.picpong.biz/en/portfolio/service-with-a-mission/) |
-| **Israeli Air Force event in Hatzerim** | 0/2 | ✅ | conference | `assets/projects/israeli-air-force-event-in-hatzerim/` | [link](https://www.picpong.biz/en/portfolio/israeli-air-force-event-in-hatzerim/) |
-| **SHIKUN VE BINUI** | 0/2 | ✅ | conference | `assets/projects/shikun-ve-binui/` | [link](https://www.picpong.biz/en/portfolio/shikun-ve-binui/) |
-| **Joint event sponsored by the Absorption Ministry and the Municipality of Rehovot** | 0/2 | ✅ | conference | `assets/projects/joint-event-sponsored-by-the-absorption-ministry-and-the-municipality-of-rehovot/` | [link](https://www.picpong.biz/en/portfolio/joint-event-sponsored-by-the-absorption-ministry-and-the-municipality-of-rehovot/) |
-| **At a PICPONG exhibition** | 0/2 | ✅ | booth-exhibition | `assets/projects/at-a-picpong-exhibition/` | [link](https://www.picpong.biz/en/portfolio/at-a-picpong-exhibition/) |
-| **IBM conference** | 0/2 | ✅ | conference | `assets/projects/ibm-conference/` | [link](https://www.picpong.biz/en/portfolio/ibm-conference/) |
-| **Microsoft - Winter Event** | 0/2 | ✅ | event-activation | `assets/projects/microsoft-winter-event/` | [link](https://www.picpong.biz/en/portfolio/microsoft-winter-event/) |
-| **Halloween** | 0/2 | ✅ | xboard-product | `assets/projects/halloween/` | [link](https://www.picpong.biz/en/portfolio/halloween/) |
-| **Pillow Fight** | 0/2 | ✅ | conference | `assets/projects/pillow-fight/` | [link](https://www.picpong.biz/en/portfolio/pillow-fight/) |
-| **Home Design** | 0/2 | ✅ | xboard-product | `assets/projects/home-design/` | [link](https://www.picpong.biz/en/portfolio/home-design/) |
-| **TAT** | 0/2 | ✅ | booth-exhibition | `assets/projects/tat/` | [link](https://www.picpong.biz/en/portfolio/tat/) |
-| **Amdocs stand in Milan** | 0/2 | ✅ | booth-exhibition | `assets/projects/amdocs-stand-in-milan/` | [link](https://www.picpong.biz/en/portfolio/amdocs-stand-in-milan/) |
-| **NeuroDerm** | 0/2 | ✅ | conference | `assets/projects/neuroderm/` | [link](https://www.picpong.biz/en/portfolio/neuroderm/) |
-| **Toyga** | 0/2 | ✅ | conference | `assets/projects/toyga/` | [link](https://www.picpong.biz/en/portfolio/toyga/) |
-| **A costume for a branch of susu and sons** | 0/2 | ✅ | xboard-product | `assets/projects/a-costume-for-a-branch-of-susu-and-sons/` | [link](https://www.picpong.biz/en/portfolio/a-costume-for-a-branch-of-susu-and-sons/) |
-| **Microsoft-queen-event** | 0/2 | ✅ | conference | `assets/projects/microsoft-queen-event/` | [link](https://www.picpong.biz/en/portfolio/microsoft-queen-event/) |
-| **Bar Mitzvah** | 0/2 | ✅ | conference | `assets/projects/bar-mitzvah/` | [link](https://www.picpong.biz/en/portfolio/bar-mitzvah/) |
-| **The reactor** | 0/2 | ✅ | conference | `assets/projects/the-reactor/` | [link](https://www.picpong.biz/en/portfolio/the-reactor/) |
-| **Event for the Ministry of Education** | 0/2 | ✅ | booth-exhibition | `assets/projects/event-for-the-ministry-of-education/` | [link](https://www.picpong.biz/en/portfolio/event-for-the-ministry-of-education/) |
-| **Hasidism Fair** | 0/2 | ✅ | booth-exhibition | `assets/projects/hasidism-fair/` | [link](https://www.picpong.biz/en/portfolio/hasidism-fair/) |
-| **Super Heroes** | 0/2 | ✅ | conference | `assets/projects/super-heroes/` | [link](https://www.picpong.biz/en/portfolio/super-heroes/) |
-| **Google cloud spring party** | 0/2 | ✅ | conference | `assets/projects/google-cloud/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%92%d7%99%d7%92%d7%aa-%d7%94%d7%90%d7%91%d7%99%d7%91-%d7%a9%d7%9c-google-cloud/) |
-| **Gilat summer camp** | 0/2 | ✅ | conference | `assets/projects/gilat-summer-camp/` | [link](https://www.picpong.biz/en/portfolio/gilat-summer-camp/) |
-| **Intel Family Event** | 0/2 | ✅ | conference | `assets/projects/intel-family-event/` | [link](https://www.picpong.biz/en/portfolio/intel-family-event/) |
-| **100 years for the rabbinate** | 0/2 | ✅ | booth-exhibition | `assets/projects/100-years-for-the-rabbinate/` | [link](https://www.picpong.biz/en/portfolio/100-years-for-the-rabbinate/) |
-| **Learning spaces in schools** | 0/2 | ✅ | activity-compound | `assets/projects/learning-spaces-in-schools/` | [link](https://www.picpong.biz/en/portfolio/learning-spaces-in-schools/) |
-| **Carmel Winery** | 0/2 | ✅ | conference | `assets/projects/carmel-winery/` | [link](https://www.picpong.biz/en/portfolio/carmel-winery/) |
-| **A decade for Assuta** | 0/2 | ✅ | conference | `assets/projects/a-decade-for-assuta/` | [link](https://www.picpong.biz/en/portfolio/a-decade-for-assuta/) |
-| **Purim event for DSP** | 0/2 | ✅ | conference | `assets/projects/purim-event-for-dsp/` | [link](https://www.picpong.biz/en/portfolio/purim-event-for-dsp/) |
-| **Bat Mitzvah for Omar** | 0/2 | ✅ | conference | `assets/projects/bat-mitzvah-for-omar/` | [link](https://www.picpong.biz/en/portfolio/bat-mitzvah-for-omar/) |
-| **Leonardo Cosmetics Offices** | 0/2 | ✅ | office-branding | `assets/projects/leonardo-cosmetics-offices/` | [link](https://www.picpong.biz/en/portfolio/%d7%9e%d7%a9%d7%a8%d7%93%d7%99-%d7%9c%d7%90%d7%95%d7%a0%d7%a8%d7%93%d7%95-%d7%a7%d7%95%d7%a1%d7%9e%d7%98%d7%99%d7%a7%d7%94/) |
-| **Pavilion at a satellite exhibition of the Orbit company** | 0/2 | ✅ | booth-exhibition | `assets/projects/pavilion-at-a-satellite-exhibition-of-the-orbit-company/` | [link](https://www.picpong.biz/en/portfolio/%d7%91%d7%99%d7%aa%d7%9f-%d7%91%d7%aa%d7%a2%d7%a8%d7%95%d7%9b%d7%aa-%d7%9c%d7%95%d7%95%d7%99%d7%a0%d7%99%d7%9d-%d7%a9%d7%9c-%d7%97%d7%91%d7%a8%d7%aa-%d7%90%d7%95%d7%a8%d7%91%d7%99%d7%98/) |
-| **Hass Belgian waffle stand and French crepe** | 0/2 | ✅ | booth-exhibition | `assets/projects/hass/` | [link](https://www.picpong.biz/en/portfolio/hass-%d7%93%d7%95%d7%9b%d7%9f-%d7%95%d7%a4%d7%9c-%d7%91%d7%9c%d7%92%d7%99-%d7%95%d7%a7%d7%a8%d7%a4-%d7%a6%d7%a8%d7%a4%d7%aa%d7%99/) |
-| **Moden case stands** | 0/2 | ✅ | booth-exhibition | `assets/projects/moden-case-stands/` | [link](https://www.picpong.biz/en/portfolio/%d7%9e%d7%a2%d7%9e%d7%93%d7%99%d7%9d-%d7%9c%d7%aa%d7%99%d7%a7%d7%99-%d7%9e%d7%95%d7%93%d7%9f/) |
-| **Synamedia Event** | 0/2 | ✅ | conference | `assets/projects/synamedia/` | [link](https://www.picpong.biz/en/portfolio/%d7%90%d7%a8%d7%95%d7%a2-synamedia/) |
-| **Landa Digital Printing** | 0/2 | ✅ | booth-exhibition | `assets/projects/landa-digital-printing/` | [link](https://www.picpong.biz/en/portfolio/landa-digital-printing/) |
-| **Meet&Mind** | 0/2 | ✅ | conference | `assets/projects/meetmind/` | [link](https://www.picpong.biz/en/portfolio/meetmind/) |
-| **The army is marching on its stomach** | 0/2 | ✅ | office-branding | `assets/projects/the-army-is-marching-on-its-stomach/` | [link](https://www.picpong.biz/en/portfolio/%d7%94%d7%a6%d7%91%d7%90-%d7%a6%d7%95%d7%a2%d7%93-%d7%a2%d7%9c-%d7%a7%d7%99%d7%91%d7%aa%d7%95/) |
-| **Moriah - Jerusalem Development Company** | 0/2 | ✅ | conference | `assets/projects/moriah-jerusalem-development-company/` | [link](https://www.picpong.biz/en/portfolio/%d7%9e%d7%95%d7%a8%d7%99%d7%94-%d7%97%d7%91%d7%a8%d7%94-%d7%9c%d7%a4%d7%99%d7%aa%d7%95%d7%97-%d7%99%d7%a8%d7%95%d7%a9%d7%9c%d7%99%d7%9d/) |
-| **Amit Network Renewal Conference** | 0/2 | ✅ | booth-exhibition | `assets/projects/amit-network-renewal-conference/` | [link](https://www.picpong.biz/en/portfolio/%d7%9b%d7%a0%d7%a1-%d7%94%d7%94%d7%aa%d7%97%d7%93%d7%a9%d7%95%d7%aa-%d7%a9%d7%9c-%d7%a8%d7%a9%d7%aa-%d7%90%d7%9e%d7%99%d7%aa/) |
-| **Design for shields in Otef Aza - Gaza envelope** | 0/2 | ✅ | activity-compound | `assets/projects/design-for-shields-in-otef-aza-gaza-envelope/` | [link](https://www.picpong.biz/en/portfolio/%d7%a2%d7%99%d7%a6%d7%95%d7%91-%d7%9c%d7%9e%d7%99%d7%92%d7%95%d7%a0%d7%99%d7%95%d7%aa-%d7%91%d7%a2%d7%95%d7%98%d7%a3-%d7%a2%d7%96%d7%94/) |
-| **Ofer Mall Ramat Aviv - GO UNDER uniform** | 0/2 | ✅ | booth-exhibition | `assets/projects/go-under/` | [link](https://www.picpong.biz/en/portfolio/%d7%a7%d7%a0%d7%99%d7%95%d7%9f-%d7%a2%d7%95%d7%a4%d7%a8-%d7%a8%d7%9e%d7%aa-%d7%90%d7%91%d7%99%d7%91-%d7%aa%d7%9c%d7%91%d7%95%d7%a9%d7%aa-%d7%90%d7%97%d7%99%d7%93%d7%94-go-under/) |
-| **Memorial Wall - Air Force** | 0/2 | ✅ | xboard-product | `assets/projects/memorial-wall-air-force/` | [link](https://www.picpong.biz/en/portfolio/%d7%a7%d7%99%d7%a8-%d7%96%d7%99%d7%9b%d7%a8%d7%95%d7%9f-%d7%97%d7%99%d7%9c-%d7%94%d7%90%d7%95%d7%99%d7%a8/) |
-| **Space Acton - Microsoft** | 0/2 | ✅ | conference | `assets/projects/space-acton-microsoft/` | [link](https://www.picpong.biz/en/portfolio/%d7%94%d7%90%d7%a7%d7%aa%d7%95%d7%9f-%d7%97%d7%9c%d7%9c-%d7%9e%d7%99%d7%a7%d7%a8%d7%95%d7%a1%d7%95%d7%a4%d7%98/) |
-| **SciPlay Company - "Desert Queen Event"** | 0/2 | ✅ | conference | `assets/projects/sciplay/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%91%d7%a8%d7%aa-sciplay-%d7%90%d7%99%d7%a8%d7%95%d7%a2-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/) |
-| **Hanukkah - Weizmann Institute** | 0/2 | ✅ | conference | `assets/projects/hanukkah-weizmann-institute/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%a0%d7%95%d7%9b%d7%94-%d7%9e%d7%9b%d7%95%d7%9f-%d7%95%d7%99%d7%99%d7%a6%d7%9e%d7%9f/) |
-| **Inauguration of offices by Deep Instinct** | 0/2 | ✅ | office-branding | `assets/projects/deep-instinct/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%a0%d7%95%d7%9b%d7%aa-%d7%9e%d7%a9%d7%a8%d7%93%d7%99%d7%9d-%d7%97%d7%91%d7%a8%d7%aa-deep-instinct/) |
-| **Priority V.I.P room for Maccabi Tel Aviv Basketball games** | 0/2 | ✅ | conference | `assets/projects/priority-vip-room-for-maccabi-tel-aviv-basketball-games/` | [link](https://www.picpong.biz/en/portfolio/%d7%a4%d7%a8%d7%99%d7%95%d7%a8%d7%99%d7%98%d7%99-%d7%97%d7%93%d7%a8-%d7%90%d7%97%d7%9e%d7%99%d7%9d-%d7%9c%d7%9e%d7%a9%d7%97%d7%a7%d7%99-%d7%94%d7%9b%d7%93%d7%95%d7%a8%d7%a1%d7%9c-%d7%a9%d7%9c-%d7%9e/) |
-| **Microsoft new office** | 0/2 | ✅ | conference | `assets/projects/microsoft-new-office/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%a0%d7%95%d7%9b%d7%aa-%d7%91%d7%99%d7%aa-%d7%9c%d7%9e%d7%a9%d7%a8%d7%93%d7%99-%d7%9e%d7%99%d7%a7%d7%a8%d7%95%d7%a1%d7%95%d7%a4%d7%98/) |
-| **BlueVine branding event** | 0/2 | ✅ | conference | `assets/projects/bluevine/` | [link](https://www.picpong.biz/en/portfolio/bluevine-%d7%90%d7%a8%d7%95%d7%a2-%d7%9e%d7%99%d7%aa%d7%95%d7%92/) |
-| **Valentine&#039;s Day in the Sharonim compound** | 0/2 | ✅ | conference | `assets/projects/valentine039s-day-in-the-sharonim-compound/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%92-%d7%94%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%9e%d7%aa%d7%97%d7%9d-%d7%a9%d7%a8%d7%95%d7%a0%d7%99%d7%9d/) |
-| **King Solomon Expo!** | 0/2 | ✅ | booth-exhibition | `assets/projects/king-solomon-expo/` | [link](https://www.picpong.biz/en/portfolio/king-solomon-expo/) |
-| **Hackathon 2019, Microsoft** | 0/1 | ✅ | conference | `assets/projects/hackathon-2019-microsoft/` | [link](https://www.picpong.biz/en/portfolio/hackathon-2019-microsoft/) |
-| **CLALIT Health Services Clinics** | 0/2 | 🔎 | other | `assets/projects/clalit-health-services-clinics/` | [link](https://www.picpong.biz/en/portfolio/clalit-health-services-clinics/) |
-| **Microsoft** | 0/2 | 🔎 | other | `assets/projects/microsoft/` | [link](https://www.picpong.biz/en/portfolio/microsoft/) |
-| **CLALIT Health Services Clinic - Hadera** | 0/2 | 🔎 | other | `assets/projects/clalit-health-services-clinic-hadera/` | [link](https://www.picpong.biz/en/portfolio/clalit-health-services-clinic-hadera/) |
-| **King Solomon School** | 0/2 | 🔎 | other | `assets/projects/king-solomon-school/` | [link](https://www.picpong.biz/en/portfolio/king-solomon-school/) |
-| **CLALIT Health Services Clinics – Haderim** | 0/2 | 🔎 | other | `assets/projects/clalit-health-services-clinics-haderim/` | [link](https://www.picpong.biz/en/portfolio/clalit-health-services-clinics-haderim/) |
-| **Mother and baby (“Tipat Halav”) Health clinic** | 0/2 | 🔎 | other | `assets/projects/mother-and-baby-tipat-halav-health-clinic/` | [link](https://www.picpong.biz/en/portfolio/mother-and-baby-tipat-halav-health-clinic/) |
-| **Maccabi Health Services - Service Center** | 0/2 | 🔎 | other | `assets/projects/maccabi-health-services-service-center/` | [link](https://www.picpong.biz/en/portfolio/maccabi-health-services-service-center/) |
-| **AHAVA** | 0/2 | 🔎 | other | `assets/projects/ahava/` | [link](https://www.picpong.biz/en/portfolio/ahava/) |
-| **Arava Agricultural Center** | 0/2 | 🔎 | other | `assets/projects/arava-agricultural-center/` | [link](https://www.picpong.biz/en/portfolio/arava-agricultural-center/) |
-| **Gadfin** | 0/2 | 🔎 | other | `assets/projects/gadfin/` | [link](https://www.picpong.biz/en/portfolio/%d7%92%d7%93%d7%a4%d7%99%d7%9f/) |
-| **Ogen Real Estate** | 0/2 | 🔎 | other | `assets/projects/ogen-real-estate/` | [link](https://www.picpong.biz/en/portfolio/ogen-real-estate/) |
-| **MRI rooms at Sheba Tel Hashomer Hospital** | 0/2 | 🔎 | other | `assets/projects/mri/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%93%d7%a8%d7%99-mri-%d7%91%d7%91%d7%99%d7%aa-%d7%94%d7%97%d7%95%d7%9c%d7%99%d7%9d-%d7%a9%d7%99%d7%91%d7%90-%d7%aa%d7%9c-%d7%94%d7%a9%d7%95%d7%9e%d7%a8/) |
-| **west and east north and south** | 0/2 | 🔎 | other | `assets/projects/west-and-east-north-and-south/` | [link](https://www.picpong.biz/en/portfolio/%d7%99%d7%9e%d7%94-%d7%95%d7%a7%d7%93%d7%9e%d7%94-%d7%a6%d7%a4%d7%95%d7%a0%d7%94-%d7%95%d7%a0%d7%92%d7%91%d7%94/) |
-| **Shafir Regional Council** | 0/2 | 🔎 | other | `assets/projects/shafir-regional-council/` | [link](https://www.picpong.biz/en/portfolio/%d7%9e%d7%95%d7%a2%d7%a6%d7%94-%d7%90%d7%96%d7%95%d7%a8%d7%99%d7%aa-%d7%a9%d7%a4%d7%99%d7%a8/) |
-| **Redefine Meat Rebranding** | 0/2 | 🔎 | other | `assets/projects/redefine-meat/` | [link](https://www.picpong.biz/en/portfolio/redefine-meat-%d7%9e%d7%99%d7%aa%d7%95%d7%92-%d7%9e%d7%97%d7%93%d7%a9/) |
-| **Home Front Command Corps - Design of a TV studio** | 0/2 | 🔎 | other | `assets/projects/home-front-command-corps-design-of-a-tv-studio/` | [link](https://www.picpong.biz/en/portfolio/%d7%a4%d7%99%d7%a7%d7%95%d7%93-%d7%94%d7%a2%d7%95%d7%a8%d7%a3-%d7%a2%d7%99%d7%a6%d7%95%d7%91-%d7%90%d7%95%d7%9c%d7%a4%d7%9f/) |
-| **Noam House** | 0/1 | 🔎 | other | `assets/projects/noam-house/` | [link](https://www.picpong.biz/en/portfolio/noam-house/) |
-| **DAISO** | 0/1 | 🔎 | other | `assets/projects/daiso/` | [link](https://www.picpong.biz/en/portfolio/daiso/) |
+| **Electra salon** | 2/2 | ✅ | conference | `assets/projects/electra-salon/` | [link](https://www.picpong.biz/en/portfolio/electra-salon/) |
+| **Activity complexes at Azrieli Malls** | 2/2 | ✅ | activity-compound | `assets/projects/activity-complexes-at-azrieli-malls/` | [link](https://www.picpong.biz/en/portfolio/activity-complexes-at-azrieli-malls/) |
+| **The 2018 Annual Conference for Government Funded Religious Schools** | 2/2 | ✅ | conference | `assets/projects/the-2018-annual-conference-for-government-funded-religious-schools/` | [link](https://www.picpong.biz/en/portfolio/the-2018-annual-conference-for-government-funded-religious-schools/) |
+| **Instagram event** | 2/2 | ✅ | conference | `assets/projects/instagram-event/` | [link](https://www.picpong.biz/en/portfolio/instagram-event/) |
+| **Family day – Israeli Air Force** | 2/2 | ✅ | conference | `assets/projects/family-day-israeli-air-force/` | [link](https://www.picpong.biz/en/portfolio/family-day-israeli-air-force/) |
+| **"Our IDF" Exhibition** | 2/2 | ✅ | booth-exhibition | `assets/projects/our-idf-exhibition/` | [link](https://www.picpong.biz/en/portfolio/our-idf-exhibition/) |
+| **Service with a mission** | 2/2 | ✅ | booth-exhibition | `assets/projects/service-with-a-mission/` | [link](https://www.picpong.biz/en/portfolio/service-with-a-mission/) |
+| **Israeli Air Force event in Hatzerim** | 2/2 | ✅ | conference | `assets/projects/israeli-air-force-event-in-hatzerim/` | [link](https://www.picpong.biz/en/portfolio/israeli-air-force-event-in-hatzerim/) |
+| **SHIKUN VE BINUI** | 2/2 | ✅ | conference | `assets/projects/shikun-ve-binui/` | [link](https://www.picpong.biz/en/portfolio/shikun-ve-binui/) |
+| **Joint event sponsored by the Absorption Ministry and the Municipality of Rehovot** | 2/2 | ✅ | conference | `assets/projects/joint-event-sponsored-by-the-absorption-ministry-and-the-municipality-of-rehovot/` | [link](https://www.picpong.biz/en/portfolio/joint-event-sponsored-by-the-absorption-ministry-and-the-municipality-of-rehovot/) |
+| **At a PICPONG exhibition** | 2/2 | ✅ | booth-exhibition | `assets/projects/at-a-picpong-exhibition/` | [link](https://www.picpong.biz/en/portfolio/at-a-picpong-exhibition/) |
+| **IBM conference** | 2/2 | ✅ | conference | `assets/projects/ibm-conference/` | [link](https://www.picpong.biz/en/portfolio/ibm-conference/) |
+| **Microsoft - Winter Event** | 2/2 | ✅ | event-activation | `assets/projects/microsoft-winter-event/` | [link](https://www.picpong.biz/en/portfolio/microsoft-winter-event/) |
+| **Halloween** | 2/2 | ✅ | xboard-product | `assets/projects/halloween/` | [link](https://www.picpong.biz/en/portfolio/halloween/) |
+| **Pillow Fight** | 2/2 | ✅ | conference | `assets/projects/pillow-fight/` | [link](https://www.picpong.biz/en/portfolio/pillow-fight/) |
+| **Home Design** | 2/2 | ✅ | xboard-product | `assets/projects/home-design/` | [link](https://www.picpong.biz/en/portfolio/home-design/) |
+| **TAT** | 2/2 | ✅ | booth-exhibition | `assets/projects/tat/` | [link](https://www.picpong.biz/en/portfolio/tat/) |
+| **Amdocs stand in Milan** | 2/2 | ✅ | booth-exhibition | `assets/projects/amdocs-stand-in-milan/` | [link](https://www.picpong.biz/en/portfolio/amdocs-stand-in-milan/) |
+| **NeuroDerm** | 2/2 | ✅ | conference | `assets/projects/neuroderm/` | [link](https://www.picpong.biz/en/portfolio/neuroderm/) |
+| **Toyga** | 2/2 | ✅ | conference | `assets/projects/toyga/` | [link](https://www.picpong.biz/en/portfolio/toyga/) |
+| **A costume for a branch of susu and sons** | 2/2 | ✅ | xboard-product | `assets/projects/a-costume-for-a-branch-of-susu-and-sons/` | [link](https://www.picpong.biz/en/portfolio/a-costume-for-a-branch-of-susu-and-sons/) |
+| **Microsoft-queen-event** | 2/2 | ✅ | conference | `assets/projects/microsoft-queen-event/` | [link](https://www.picpong.biz/en/portfolio/microsoft-queen-event/) |
+| **Bar Mitzvah** | 2/2 | ✅ | conference | `assets/projects/bar-mitzvah/` | [link](https://www.picpong.biz/en/portfolio/bar-mitzvah/) |
+| **The reactor** | 2/2 | ✅ | conference | `assets/projects/the-reactor/` | [link](https://www.picpong.biz/en/portfolio/the-reactor/) |
+| **Event for the Ministry of Education** | 2/2 | ✅ | booth-exhibition | `assets/projects/event-for-the-ministry-of-education/` | [link](https://www.picpong.biz/en/portfolio/event-for-the-ministry-of-education/) |
+| **Hasidism Fair** | 2/2 | ✅ | booth-exhibition | `assets/projects/hasidism-fair/` | [link](https://www.picpong.biz/en/portfolio/hasidism-fair/) |
+| **Super Heroes** | 2/2 | ✅ | conference | `assets/projects/super-heroes/` | [link](https://www.picpong.biz/en/portfolio/super-heroes/) |
+| **Google cloud spring party** | 2/2 | ✅ | conference | `assets/projects/google-cloud/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%92%d7%99%d7%92%d7%aa-%d7%94%d7%90%d7%91%d7%99%d7%91-%d7%a9%d7%9c-google-cloud/) |
+| **Gilat summer camp** | 2/2 | ✅ | conference | `assets/projects/gilat-summer-camp/` | [link](https://www.picpong.biz/en/portfolio/gilat-summer-camp/) |
+| **Intel Family Event** | 2/2 | ✅ | conference | `assets/projects/intel-family-event/` | [link](https://www.picpong.biz/en/portfolio/intel-family-event/) |
+| **100 years for the rabbinate** | 2/2 | ✅ | booth-exhibition | `assets/projects/100-years-for-the-rabbinate/` | [link](https://www.picpong.biz/en/portfolio/100-years-for-the-rabbinate/) |
+| **Learning spaces in schools** | 2/2 | ✅ | activity-compound | `assets/projects/learning-spaces-in-schools/` | [link](https://www.picpong.biz/en/portfolio/learning-spaces-in-schools/) |
+| **Carmel Winery** | 2/2 | ✅ | conference | `assets/projects/carmel-winery/` | [link](https://www.picpong.biz/en/portfolio/carmel-winery/) |
+| **A decade for Assuta** | 2/2 | ✅ | conference | `assets/projects/a-decade-for-assuta/` | [link](https://www.picpong.biz/en/portfolio/a-decade-for-assuta/) |
+| **Purim event for DSP** | 2/2 | ✅ | conference | `assets/projects/purim-event-for-dsp/` | [link](https://www.picpong.biz/en/portfolio/purim-event-for-dsp/) |
+| **Bat Mitzvah for Omar** | 2/2 | ✅ | conference | `assets/projects/bat-mitzvah-for-omar/` | [link](https://www.picpong.biz/en/portfolio/bat-mitzvah-for-omar/) |
+| **Leonardo Cosmetics Offices** | 2/2 | ✅ | office-branding | `assets/projects/leonardo-cosmetics-offices/` | [link](https://www.picpong.biz/en/portfolio/%d7%9e%d7%a9%d7%a8%d7%93%d7%99-%d7%9c%d7%90%d7%95%d7%a0%d7%a8%d7%93%d7%95-%d7%a7%d7%95%d7%a1%d7%9e%d7%98%d7%99%d7%a7%d7%94/) |
+| **Pavilion at a satellite exhibition of the Orbit company** | 2/2 | ✅ | booth-exhibition | `assets/projects/pavilion-at-a-satellite-exhibition-of-the-orbit-company/` | [link](https://www.picpong.biz/en/portfolio/%d7%91%d7%99%d7%aa%d7%9f-%d7%91%d7%aa%d7%a2%d7%a8%d7%95%d7%9b%d7%aa-%d7%9c%d7%95%d7%95%d7%99%d7%a0%d7%99%d7%9d-%d7%a9%d7%9c-%d7%97%d7%91%d7%a8%d7%aa-%d7%90%d7%95%d7%a8%d7%91%d7%99%d7%98/) |
+| **Hass Belgian waffle stand and French crepe** | 2/2 | ✅ | booth-exhibition | `assets/projects/hass/` | [link](https://www.picpong.biz/en/portfolio/hass-%d7%93%d7%95%d7%9b%d7%9f-%d7%95%d7%a4%d7%9c-%d7%91%d7%9c%d7%92%d7%99-%d7%95%d7%a7%d7%a8%d7%a4-%d7%a6%d7%a8%d7%a4%d7%aa%d7%99/) |
+| **Moden case stands** | 2/2 | ✅ | booth-exhibition | `assets/projects/moden-case-stands/` | [link](https://www.picpong.biz/en/portfolio/%d7%9e%d7%a2%d7%9e%d7%93%d7%99%d7%9d-%d7%9c%d7%aa%d7%99%d7%a7%d7%99-%d7%9e%d7%95%d7%93%d7%9f/) |
+| **Synamedia Event** | 2/2 | ✅ | conference | `assets/projects/synamedia/` | [link](https://www.picpong.biz/en/portfolio/%d7%90%d7%a8%d7%95%d7%a2-synamedia/) |
+| **Landa Digital Printing** | 2/2 | ✅ | booth-exhibition | `assets/projects/landa-digital-printing/` | [link](https://www.picpong.biz/en/portfolio/landa-digital-printing/) |
+| **Meet&Mind** | 2/2 | ✅ | conference | `assets/projects/meetmind/` | [link](https://www.picpong.biz/en/portfolio/meetmind/) |
+| **The army is marching on its stomach** | 2/2 | ✅ | office-branding | `assets/projects/the-army-is-marching-on-its-stomach/` | [link](https://www.picpong.biz/en/portfolio/%d7%94%d7%a6%d7%91%d7%90-%d7%a6%d7%95%d7%a2%d7%93-%d7%a2%d7%9c-%d7%a7%d7%99%d7%91%d7%aa%d7%95/) |
+| **Moriah - Jerusalem Development Company** | 2/2 | ✅ | conference | `assets/projects/moriah-jerusalem-development-company/` | [link](https://www.picpong.biz/en/portfolio/%d7%9e%d7%95%d7%a8%d7%99%d7%94-%d7%97%d7%91%d7%a8%d7%94-%d7%9c%d7%a4%d7%99%d7%aa%d7%95%d7%97-%d7%99%d7%a8%d7%95%d7%a9%d7%9c%d7%99%d7%9d/) |
+| **Amit Network Renewal Conference** | 2/2 | ✅ | booth-exhibition | `assets/projects/amit-network-renewal-conference/` | [link](https://www.picpong.biz/en/portfolio/%d7%9b%d7%a0%d7%a1-%d7%94%d7%94%d7%aa%d7%97%d7%93%d7%a9%d7%95%d7%aa-%d7%a9%d7%9c-%d7%a8%d7%a9%d7%aa-%d7%90%d7%9e%d7%99%d7%aa/) |
+| **Design for shields in Otef Aza - Gaza envelope** | 2/2 | ✅ | activity-compound | `assets/projects/design-for-shields-in-otef-aza-gaza-envelope/` | [link](https://www.picpong.biz/en/portfolio/%d7%a2%d7%99%d7%a6%d7%95%d7%91-%d7%9c%d7%9e%d7%99%d7%92%d7%95%d7%a0%d7%99%d7%95%d7%aa-%d7%91%d7%a2%d7%95%d7%98%d7%a3-%d7%a2%d7%96%d7%94/) |
+| **Ofer Mall Ramat Aviv - GO UNDER uniform** | 2/2 | ✅ | booth-exhibition | `assets/projects/go-under/` | [link](https://www.picpong.biz/en/portfolio/%d7%a7%d7%a0%d7%99%d7%95%d7%9f-%d7%a2%d7%95%d7%a4%d7%a8-%d7%a8%d7%9e%d7%aa-%d7%90%d7%91%d7%99%d7%91-%d7%aa%d7%9c%d7%91%d7%95%d7%a9%d7%aa-%d7%90%d7%97%d7%99%d7%93%d7%94-go-under/) |
+| **Memorial Wall - Air Force** | 2/2 | ✅ | xboard-product | `assets/projects/memorial-wall-air-force/` | [link](https://www.picpong.biz/en/portfolio/%d7%a7%d7%99%d7%a8-%d7%96%d7%99%d7%9b%d7%a8%d7%95%d7%9f-%d7%97%d7%99%d7%9c-%d7%94%d7%90%d7%95%d7%99%d7%a8/) |
+| **Space Acton - Microsoft** | 2/2 | ✅ | conference | `assets/projects/space-acton-microsoft/` | [link](https://www.picpong.biz/en/portfolio/%d7%94%d7%90%d7%a7%d7%aa%d7%95%d7%9f-%d7%97%d7%9c%d7%9c-%d7%9e%d7%99%d7%a7%d7%a8%d7%95%d7%a1%d7%95%d7%a4%d7%98/) |
+| **SciPlay Company - "Desert Queen Event"** | 2/2 | ✅ | conference | `assets/projects/sciplay/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%91%d7%a8%d7%aa-sciplay-%d7%90%d7%99%d7%a8%d7%95%d7%a2-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/) |
+| **Hanukkah - Weizmann Institute** | 2/2 | ✅ | conference | `assets/projects/hanukkah-weizmann-institute/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%a0%d7%95%d7%9b%d7%94-%d7%9e%d7%9b%d7%95%d7%9f-%d7%95%d7%99%d7%99%d7%a6%d7%9e%d7%9f/) |
+| **Inauguration of offices by Deep Instinct** | 2/2 | ✅ | office-branding | `assets/projects/deep-instinct/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%a0%d7%95%d7%9b%d7%aa-%d7%9e%d7%a9%d7%a8%d7%93%d7%99%d7%9d-%d7%97%d7%91%d7%a8%d7%aa-deep-instinct/) |
+| **Priority V.I.P room for Maccabi Tel Aviv Basketball games** | 2/2 | ✅ | conference | `assets/projects/priority-vip-room-for-maccabi-tel-aviv-basketball-games/` | [link](https://www.picpong.biz/en/portfolio/%d7%a4%d7%a8%d7%99%d7%95%d7%a8%d7%99%d7%98%d7%99-%d7%97%d7%93%d7%a8-%d7%90%d7%97%d7%9e%d7%99%d7%9d-%d7%9c%d7%9e%d7%a9%d7%97%d7%a7%d7%99-%d7%94%d7%9b%d7%93%d7%95%d7%a8%d7%a1%d7%9c-%d7%a9%d7%9c-%d7%9e/) |
+| **Microsoft new office** | 2/2 | ✅ | conference | `assets/projects/microsoft-new-office/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%a0%d7%95%d7%9b%d7%aa-%d7%91%d7%99%d7%aa-%d7%9c%d7%9e%d7%a9%d7%a8%d7%93%d7%99-%d7%9e%d7%99%d7%a7%d7%a8%d7%95%d7%a1%d7%95%d7%a4%d7%98/) |
+| **BlueVine branding event** | 2/2 | ✅ | conference | `assets/projects/bluevine/` | [link](https://www.picpong.biz/en/portfolio/bluevine-%d7%90%d7%a8%d7%95%d7%a2-%d7%9e%d7%99%d7%aa%d7%95%d7%92/) |
+| **Valentine&#039;s Day in the Sharonim compound** | 2/2 | ✅ | conference | `assets/projects/valentine039s-day-in-the-sharonim-compound/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%92-%d7%94%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%9e%d7%aa%d7%97%d7%9d-%d7%a9%d7%a8%d7%95%d7%a0%d7%99%d7%9d/) |
+| **King Solomon Expo!** | 2/2 | ✅ | booth-exhibition | `assets/projects/king-solomon-expo/` | [link](https://www.picpong.biz/en/portfolio/king-solomon-expo/) |
+| **Hackathon 2019, Microsoft** | 1/1 | ✅ | conference | `assets/projects/hackathon-2019-microsoft/` | [link](https://www.picpong.biz/en/portfolio/hackathon-2019-microsoft/) |
+| **CLALIT Health Services Clinics** | 2/2 | 🔎 | other | `assets/projects/clalit-health-services-clinics/` | [link](https://www.picpong.biz/en/portfolio/clalit-health-services-clinics/) |
+| **Microsoft** | 2/2 | 🔎 | other | `assets/projects/microsoft/` | [link](https://www.picpong.biz/en/portfolio/microsoft/) |
+| **CLALIT Health Services Clinic - Hadera** | 2/2 | 🔎 | other | `assets/projects/clalit-health-services-clinic-hadera/` | [link](https://www.picpong.biz/en/portfolio/clalit-health-services-clinic-hadera/) |
+| **King Solomon School** | 2/2 | 🔎 | other | `assets/projects/king-solomon-school/` | [link](https://www.picpong.biz/en/portfolio/king-solomon-school/) |
+| **CLALIT Health Services Clinics – Haderim** | 2/2 | 🔎 | other | `assets/projects/clalit-health-services-clinics-haderim/` | [link](https://www.picpong.biz/en/portfolio/clalit-health-services-clinics-haderim/) |
+| **Mother and baby (“Tipat Halav”) Health clinic** | 2/2 | 🔎 | other | `assets/projects/mother-and-baby-tipat-halav-health-clinic/` | [link](https://www.picpong.biz/en/portfolio/mother-and-baby-tipat-halav-health-clinic/) |
+| **Maccabi Health Services - Service Center** | 2/2 | 🔎 | other | `assets/projects/maccabi-health-services-service-center/` | [link](https://www.picpong.biz/en/portfolio/maccabi-health-services-service-center/) |
+| **AHAVA** | 2/2 | 🔎 | other | `assets/projects/ahava/` | [link](https://www.picpong.biz/en/portfolio/ahava/) |
+| **Arava Agricultural Center** | 2/2 | 🔎 | other | `assets/projects/arava-agricultural-center/` | [link](https://www.picpong.biz/en/portfolio/arava-agricultural-center/) |
+| **Gadfin** | 2/2 | 🔎 | other | `assets/projects/gadfin/` | [link](https://www.picpong.biz/en/portfolio/%d7%92%d7%93%d7%a4%d7%99%d7%9f/) |
+| **Ogen Real Estate** | 2/2 | 🔎 | other | `assets/projects/ogen-real-estate/` | [link](https://www.picpong.biz/en/portfolio/ogen-real-estate/) |
+| **MRI rooms at Sheba Tel Hashomer Hospital** | 2/2 | 🔎 | other | `assets/projects/mri/` | [link](https://www.picpong.biz/en/portfolio/%d7%97%d7%93%d7%a8%d7%99-mri-%d7%91%d7%91%d7%99%d7%aa-%d7%94%d7%97%d7%95%d7%9c%d7%99%d7%9d-%d7%a9%d7%99%d7%91%d7%90-%d7%aa%d7%9c-%d7%94%d7%a9%d7%95%d7%9e%d7%a8/) |
+| **west and east north and south** | 2/2 | 🔎 | other | `assets/projects/west-and-east-north-and-south/` | [link](https://www.picpong.biz/en/portfolio/%d7%99%d7%9e%d7%94-%d7%95%d7%a7%d7%93%d7%9e%d7%94-%d7%a6%d7%a4%d7%95%d7%a0%d7%94-%d7%95%d7%a0%d7%92%d7%91%d7%94/) |
+| **Shafir Regional Council** | 2/2 | 🔎 | other | `assets/projects/shafir-regional-council/` | [link](https://www.picpong.biz/en/portfolio/%d7%9e%d7%95%d7%a2%d7%a6%d7%94-%d7%90%d7%96%d7%95%d7%a8%d7%99%d7%aa-%d7%a9%d7%a4%d7%99%d7%a8/) |
+| **Redefine Meat Rebranding** | 2/2 | 🔎 | other | `assets/projects/redefine-meat/` | [link](https://www.picpong.biz/en/portfolio/redefine-meat-%d7%9e%d7%99%d7%aa%d7%95%d7%92-%d7%9e%d7%97%d7%93%d7%a9/) |
+| **Home Front Command Corps - Design of a TV studio** | 2/2 | 🔎 | other | `assets/projects/home-front-command-corps-design-of-a-tv-studio/` | [link](https://www.picpong.biz/en/portfolio/%d7%a4%d7%99%d7%a7%d7%95%d7%93-%d7%94%d7%a2%d7%95%d7%a8%d7%a3-%d7%a2%d7%99%d7%a6%d7%95%d7%91-%d7%90%d7%95%d7%9c%d7%a4%d7%9f/) |
+| **Noam House** | 1/1 | 🔎 | other | `assets/projects/noam-house/` | [link](https://www.picpong.biz/en/portfolio/noam-house/) |
+| **DAISO** | 1/1 | 🔎 | other | `assets/projects/daiso/` | [link](https://www.picpong.biz/en/portfolio/daiso/) |
 
 ## 🏗️ 2018 job-archive projects (booths, builds, activations)  (570 imgs / 140 groups)
 Full photo batches; mixed scope. `jobNNNN` = internal job number.
 
 | event / group | imgs | scope | type | folder | source page |
 |---|---|---|---|---|---|
-| **דוכן לחברת קוסמטיקה שוורץ** | 0/12 | ✅ | booth-exhibition | `assets/projects/job-9568/` | [link](https://www.picpong.biz/%d7%93%d7%95%d7%9b%d7%9f-%d7%9c%d7%97%d7%91%d7%a8%d7%aa-%d7%a7%d7%95%d7%a1%d7%9e%d7%98%d7%99%d7%a7%d7%94-%d7%a9%d7%95%d7%95%d7%a8%d7%a5/) |
-| **Kraft Utility Shelf** | 0/6 | ✅ | xboard-product | `assets/projects/kraft-utility-shelf/` | [link](https://www.picpong.biz/kraft-utility-shelf/) |
-| **Bernini** | 0/6 | ✅ | booth-exhibition | `assets/projects/job2110/` | [link](https://www.picpong.biz/job2110/) |
-| **Yolo Photobooth** | 0/5 | ✅ | booth-exhibition | `assets/projects/job1271/` | [link](https://www.picpong.biz/job1271/) |
-| **Gin Branded Wall** | 0/4 | ✅ | xboard-product | `assets/projects/gin-branded-wall/` | [link](https://www.picpong.biz/gin-branded-wall/) |
-| **Mopanya Mall Bulkhead Project Setup** | 0/4 | ✅ | activity-compound | `assets/projects/job1579/` | [link](https://www.picpong.biz/job1579/) |
-| **East Rand Mall** | 0/3 | ✅ | activity-compound | `assets/projects/east-rand-mall/` | [link](https://www.picpong.biz/east-rand-mall/) |
-| **bicon - דוכן מודולרי** | 0/3 | ✅ | booth-exhibition | `assets/projects/bicon/` | [link](https://www.picpong.biz/bicon-%d7%93%d7%95%d7%9b%d7%9f-%d7%9e%d7%95%d7%93%d7%95%d7%9c%d7%a8%d7%99/) |
+| **דוכן לחברת קוסמטיקה שוורץ** | 12/12 | ✅ | booth-exhibition | `assets/projects/job-9568/` | [link](https://www.picpong.biz/%d7%93%d7%95%d7%9b%d7%9f-%d7%9c%d7%97%d7%91%d7%a8%d7%aa-%d7%a7%d7%95%d7%a1%d7%9e%d7%98%d7%99%d7%a7%d7%94-%d7%a9%d7%95%d7%95%d7%a8%d7%a5/) |
+| **Kraft Utility Shelf** | 6/6 | ✅ | xboard-product | `assets/projects/kraft-utility-shelf/` | [link](https://www.picpong.biz/kraft-utility-shelf/) |
+| **Bernini** | 6/6 | ✅ | booth-exhibition | `assets/projects/job2110/` | [link](https://www.picpong.biz/job2110/) |
+| **Yolo Photobooth** | 5/5 | ✅ | booth-exhibition | `assets/projects/job1271/` | [link](https://www.picpong.biz/job1271/) |
+| **Gin Branded Wall** | 4/4 | ✅ | xboard-product | `assets/projects/gin-branded-wall/` | [link](https://www.picpong.biz/gin-branded-wall/) |
+| **Mopanya Mall Bulkhead Project Setup** | 4/4 | ✅ | activity-compound | `assets/projects/job1579/` | [link](https://www.picpong.biz/job1579/) |
+| **East Rand Mall** | 3/3 | ✅ | activity-compound | `assets/projects/east-rand-mall/` | [link](https://www.picpong.biz/east-rand-mall/) |
+| **bicon - דוכן מודולרי** | 3/3 | ✅ | booth-exhibition | `assets/projects/bicon/` | [link](https://www.picpong.biz/bicon-%d7%93%d7%95%d7%9b%d7%9f-%d7%9e%d7%95%d7%93%d7%95%d7%9c%d7%a8%d7%99/) |
 | **JOB-X133** | 2/2 | ✅ | xboard-product | `assets/projects/job-x133/` | [link](https://www.picpong.biz/job-x133/) |
-| **X178 Zigzag Wall** | 0/2 | ✅ | xboard-product | `assets/projects/job3219/` | [link](https://www.picpong.biz/job3219/) |
-| **כנס מכבי** | 0/2 | ✅ | conference | `assets/projects/job-9050/` | [link](https://www.picpong.biz/%d7%9b%d7%a0%d7%a1-%d7%9e%d7%9b%d7%91%d7%99/) |
-| **מתחברים למכביה ה - 19** | 0/1 | ✅ | activity-compound | `assets/projects/img-20130704-wa0005/` | [link](https://www.picpong.biz/%d7%9e%d7%aa%d7%97%d7%91%d7%a8%d7%99%d7%9d-%d7%9c%d7%9e%d7%9b%d7%91%d7%99%d7%94-%d7%94-19/) |
-| **Mom to be - קיר מודולרי** | 0/1 | ✅ | xboard-product | `assets/projects/mom-to-be/` | [link](https://www.picpong.biz/mom-to-be-%d7%a7%d7%99%d7%a8-%d7%9e%d7%95%d7%93%d7%95%d7%9c%d7%a8%d7%99/) |
+| **X178 Zigzag Wall** | 2/2 | ✅ | xboard-product | `assets/projects/job3219/` | [link](https://www.picpong.biz/job3219/) |
+| **כנס מכבי** | 2/2 | ✅ | conference | `assets/projects/job-9050/` | [link](https://www.picpong.biz/%d7%9b%d7%a0%d7%a1-%d7%9e%d7%9b%d7%91%d7%99/) |
+| **מתחברים למכביה ה - 19** | 1/1 | ✅ | activity-compound | `assets/projects/img-20130704-wa0005/` | [link](https://www.picpong.biz/%d7%9e%d7%aa%d7%97%d7%91%d7%a8%d7%99%d7%9d-%d7%9c%d7%9e%d7%9b%d7%91%d7%99%d7%94-%d7%94-19/) |
+| **Mom to be - קיר מודולרי** | 1/1 | ✅ | xboard-product | `assets/projects/mom-to-be/` | [link](https://www.picpong.biz/mom-to-be-%d7%a7%d7%99%d7%a8-%d7%9e%d7%95%d7%93%d7%95%d7%9c%d7%a8%d7%99/) |
 | **Amarula** | 13/13 | 🔎 | other | `assets/projects/job2100/` | [link](https://www.picpong.biz/job2100/) |
-| **Pnp Furn** | 0/10 | 🔎 | other | `assets/projects/job3483/` | [link](https://www.picpong.biz/job3483/) |
-| **Adidas** | 0/10 | 🔎 | other | `assets/projects/job3446-adidas-sportscene-windows/` | [link](https://www.picpong.biz/job3446-adidas-sportscene-windows/) |
-| **Be Epic - מדבקות** | 0/9 | 🚫 | sticker-decal | `assets/projects/be-epic/` | [link](https://www.picpong.biz/be-epic-%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa/) |
+| **Pnp Furn** | 10/10 | 🔎 | other | `assets/projects/job3483/` | [link](https://www.picpong.biz/job3483/) |
+| **Adidas** | 10/10 | 🔎 | other | `assets/projects/job3446-adidas-sportscene-windows/` | [link](https://www.picpong.biz/job3446-adidas-sportscene-windows/) |
+| **Be Epic - מדבקות** | 9/9 | 🚫 | sticker-decal | `assets/projects/be-epic/` | [link](https://www.picpong.biz/be-epic-%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa/) |
 | **Dsc 5127** | 8/8 | 🚫 | point-of-sale | `assets/projects/job5122/` | [link](https://www.picpong.biz/job5122/) |
-| **Gemma Baby Cot** | 0/8 | 🔎 | other | `assets/projects/gemma-baby-cot/` | [link](https://www.picpong.biz/gemma-baby-cot/) |
-| **Grolsch Coasters** | 0/8 | 🔎 | other | `assets/projects/grolsch-coasters/` | [link](https://www.picpong.biz/grolsch-coasters/) |
-| **Gogreen** | 0/8 | 🔎 | other | `assets/projects/job1172-wallys-mall-tree/` | [link](https://www.picpong.biz/job1172-wallys-mall-tree/) |
-| **Dove Promo Tables** | 5/7 | 🔎 | other | `assets/projects/job1301/` | [link](https://www.picpong.biz/job1301/) |
-| **Image** | 0/7 | 🔎 | other | `assets/projects/job1522/` | [link](https://www.picpong.biz/job1522/) |
-| **Rhino** | 0/7 | 🔎 | other | `assets/projects/job3044-rhino/` | [link](https://www.picpong.biz/job3044-rhino/) |
-| **Savanna Mini Can 3 Copy** | 0/7 | 🔎 | other | `assets/projects/job1591/` | [link](https://www.picpong.biz/job1591/) |
-| **Savanna Final** | 0/7 | 🔎 | other | `assets/projects/job1503/` | [link](https://www.picpong.biz/job1503/) |
-| **Greenpoint Spar Bulkheads** | 0/7 | 🔎 | other | `assets/projects/job1366/` | [link](https://www.picpong.biz/job1366/) |
-| **מרפאת מכבי אשקלון - מדבקות** | 0/7 | 🚫 | sticker-decal | `assets/projects/job-8422/` | [link](https://www.picpong.biz/%d7%9e%d7%a8%d7%a4%d7%90%d7%aa-%d7%9e%d7%9b%d7%91%d7%99-%d7%90%d7%a9%d7%a7%d7%9c%d7%95%d7%9f-%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa/) |
+| **Gemma Baby Cot** | 8/8 | 🔎 | other | `assets/projects/gemma-baby-cot/` | [link](https://www.picpong.biz/gemma-baby-cot/) |
+| **Grolsch Coasters** | 8/8 | 🔎 | other | `assets/projects/grolsch-coasters/` | [link](https://www.picpong.biz/grolsch-coasters/) |
+| **Gogreen** | 8/8 | 🔎 | other | `assets/projects/job1172-wallys-mall-tree/` | [link](https://www.picpong.biz/job1172-wallys-mall-tree/) |
+| **Dove Promo Tables** | 7/7 | 🔎 | other | `assets/projects/job1301/` | [link](https://www.picpong.biz/job1301/) |
+| **Image** | 7/7 | 🔎 | other | `assets/projects/job1522/` | [link](https://www.picpong.biz/job1522/) |
+| **Rhino** | 7/7 | 🔎 | other | `assets/projects/job3044-rhino/` | [link](https://www.picpong.biz/job3044-rhino/) |
+| **Savanna Mini Can 3 Copy** | 7/7 | 🔎 | other | `assets/projects/job1591/` | [link](https://www.picpong.biz/job1591/) |
+| **Savanna Final** | 7/7 | 🔎 | other | `assets/projects/job1503/` | [link](https://www.picpong.biz/job1503/) |
+| **Greenpoint Spar Bulkheads** | 7/7 | 🔎 | other | `assets/projects/job1366/` | [link](https://www.picpong.biz/job1366/) |
+| **מרפאת מכבי אשקלון - מדבקות** | 7/7 | 🚫 | sticker-decal | `assets/projects/job-8422/` | [link](https://www.picpong.biz/%d7%9e%d7%a8%d7%a4%d7%90%d7%aa-%d7%9e%d7%9b%d7%91%d7%99-%d7%90%d7%a9%d7%a7%d7%9c%d7%95%d7%9f-%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa/) |
 | **Lindt** | 6/6 | 🔎 | other | `assets/projects/job3059/` | [link](https://www.picpong.biz/job3059/) |
 | **Bells** | 6/6 | 🔎 | other | `assets/projects/job1876/` | [link](https://www.picpong.biz/job1876/) |
 | **Flying Fish** | 6/6 | 🔎 | other | `assets/projects/job3789/` | [link](https://www.picpong.biz/job3789/) |
@@ -139,26 +139,26 @@ Full photo batches; mixed scope. `jobNNNN` = internal job number.
 | **Froggit** | 6/6 | 🔎 | other | `assets/projects/job1399/` | [link](https://www.picpong.biz/job1399/) |
 | **Play** | 6/6 | 🔎 | other | `assets/projects/job3828/` | [link](https://www.picpong.biz/job3828/) |
 | **Oryx** | 6/6 | 🔎 | other | `assets/projects/job3594/` | [link](https://www.picpong.biz/job3594/) |
-| **Red Bull** | 0/6 | 🔎 | other | `assets/projects/job1163/` | [link](https://www.picpong.biz/job1163/) |
-| **Savanna** | 0/6 | 🔎 | other | `assets/projects/job1506-bench-table/` | [link](https://www.picpong.biz/job1506-bench-table/) |
-| **Klipdrift** | 0/6 | 🔎 | other | `assets/projects/job1861-one-seat/` | [link](https://www.picpong.biz/job1861-one-seat/) |
-| **Distell Fund Management** | 0/6 | 🔎 | other | `assets/projects/job4172/` | [link](https://www.picpong.biz/job4172/) |
-| **Savanna** | 0/6 | 🔎 | other | `assets/projects/job1506-foosball/` | [link](https://www.picpong.biz/job1506-foosball/) |
-| **Dsc 9144** | 0/6 | 🔎 | other | `assets/projects/job5401/` | [link](https://www.picpong.biz/job5401/) |
-| **Tape** | 0/6 | 🔎 | other | `assets/projects/tape/` | [link](https://www.picpong.biz/tape/) |
-| **Dgb** | 0/6 | 🔎 | other | `assets/projects/job3231/` | [link](https://www.picpong.biz/job3231/) |
-| **20131022 122453 Richtonehdr** | 0/6 | 🔎 | other | `assets/projects/job1773/` | [link](https://www.picpong.biz/job1773/) |
-| **Windhoek Bulkheads** | 0/6 | 🔎 | other | `assets/projects/job3746/` | [link](https://www.picpong.biz/job3746/) |
+| **Red Bull** | 6/6 | 🔎 | other | `assets/projects/job1163/` | [link](https://www.picpong.biz/job1163/) |
+| **Savanna** | 6/6 | 🔎 | other | `assets/projects/job1506-bench-table/` | [link](https://www.picpong.biz/job1506-bench-table/) |
+| **Klipdrift** | 6/6 | 🔎 | other | `assets/projects/job1861-one-seat/` | [link](https://www.picpong.biz/job1861-one-seat/) |
+| **Distell Fund Management** | 6/6 | 🔎 | other | `assets/projects/job4172/` | [link](https://www.picpong.biz/job4172/) |
+| **Savanna** | 6/6 | 🔎 | other | `assets/projects/job1506-foosball/` | [link](https://www.picpong.biz/job1506-foosball/) |
+| **Dsc 9144** | 6/6 | 🔎 | other | `assets/projects/job5401/` | [link](https://www.picpong.biz/job5401/) |
+| **Tape** | 6/6 | 🔎 | other | `assets/projects/tape/` | [link](https://www.picpong.biz/tape/) |
+| **Dgb** | 6/6 | 🔎 | other | `assets/projects/job3231/` | [link](https://www.picpong.biz/job3231/) |
+| **20131022 122453 Richtonehdr** | 6/6 | 🔎 | other | `assets/projects/job1773/` | [link](https://www.picpong.biz/job1773/) |
+| **Windhoek Bulkheads** | 6/6 | 🔎 | other | `assets/projects/job3746/` | [link](https://www.picpong.biz/job3746/) |
 | **Assembly Hunters Extreme** | 5/5 | 🔎 | other | `assets/projects/job1100/` | [link](https://www.picpong.biz/job1100/) |
 | **Bains Slimline 27 Copy** | 5/5 | 🔎 | other | `assets/projects/job1330/` | [link](https://www.picpong.biz/job1330/) |
 | **Amarula 375Ml** | 5/5 | 🔎 | other | `assets/projects/job1593/` | [link](https://www.picpong.biz/job1593/) |
 | **Kvw Table** | 5/5 | 🔎 | other | `assets/projects/job4499/` | [link](https://www.picpong.biz/job4499/) |
-| **Catch Media** | 0/5 | 🔎 | other | `assets/projects/job3245/` | [link](https://www.picpong.biz/job3245/) |
-| **Photos** | 0/5 | 🔎 | other | `assets/projects/job1139/` | [link](https://www.picpong.biz/job1139/) |
-| **Protea Chemicals** | 0/5 | 🔎 | other | `assets/projects/job1192/` | [link](https://www.picpong.biz/job1192/) |
-| **Savanna** | 0/5 | 🔎 | other | `assets/projects/job1506-airhockey/` | [link](https://www.picpong.biz/job1506-airhockey/) |
-| **Kraft Table Base** | 0/5 | 🔎 | other | `assets/projects/job1881-kraft-table/` | [link](https://www.picpong.biz/job1881-kraft-table/) |
-| **Jeep** | 0/5 | 🔎 | other | `assets/projects/job4567-jeep-store-front/` | [link](https://www.picpong.biz/job4567-jeep-store-front/) |
+| **Catch Media** | 5/5 | 🔎 | other | `assets/projects/job3245/` | [link](https://www.picpong.biz/job3245/) |
+| **Photos** | 5/5 | 🔎 | other | `assets/projects/job1139/` | [link](https://www.picpong.biz/job1139/) |
+| **Protea Chemicals** | 5/5 | 🔎 | other | `assets/projects/job1192/` | [link](https://www.picpong.biz/job1192/) |
+| **Savanna** | 5/5 | 🔎 | other | `assets/projects/job1506-airhockey/` | [link](https://www.picpong.biz/job1506-airhockey/) |
+| **Kraft Table Base** | 5/5 | 🔎 | other | `assets/projects/job1881-kraft-table/` | [link](https://www.picpong.biz/job1881-kraft-table/) |
+| **Jeep** | 5/5 | 🔎 | other | `assets/projects/job4567-jeep-store-front/` | [link](https://www.picpong.biz/job4567-jeep-store-front/) |
 | **Addis** | 4/4 | 🔎 | other | `assets/projects/job3848/` | [link](https://www.picpong.biz/job3848/) |
 | **Pics** | 4/4 | 🔎 | other | `assets/projects/job1382/` | [link](https://www.picpong.biz/job1382/) |
 | **Albany** | 4/4 | 🔎 | other | `assets/projects/job1693/` | [link](https://www.picpong.biz/job1693/) |
@@ -170,19 +170,19 @@ Full photo batches; mixed scope. `jobNNNN` = internal job number.
 | **Dstv S** | 4/4 | 🔎 | other | `assets/projects/job2060/` | [link](https://www.picpong.biz/job2060/) |
 | **Tfg Tables** | 4/4 | 🔎 | other | `assets/projects/job3296/` | [link](https://www.picpong.biz/job3296/) |
 | **Dsc 7527 Copy** | 4/4 | 🔎 | other | `assets/projects/job5195/` | [link](https://www.picpong.biz/job5195/) |
-| **Savanna** | 0/4 | 🔎 | other | `assets/projects/job1506/` | [link](https://www.picpong.biz/job1506/) |
-| **Klipdrift** | 0/4 | 🔎 | other | `assets/projects/job1861-2-seater/` | [link](https://www.picpong.biz/job1861-2-seater/) |
-| **Dsc 1022** | 0/4 | 🔎 | other | `assets/projects/job3018/` | [link](https://www.picpong.biz/job3018/) |
-| **Gac** | 0/4 | 🔎 | other | `assets/projects/job1137/` | [link](https://www.picpong.biz/job1137/) |
-| **The Saints** | 0/4 | 🔎 | other | `assets/projects/job3781/` | [link](https://www.picpong.biz/job3781/) |
-| **Dgb** | 0/4 | 🔎 | other | `assets/projects/job3232/` | [link](https://www.picpong.biz/job3232/) |
-| **Airplane** | 0/4 | 🔎 | other | `assets/projects/airplane/` | [link](https://www.picpong.biz/airplane/) |
-| **Hansa** | 0/4 | 🔎 | other | `assets/projects/job1973-hansa-tray/` | [link](https://www.picpong.biz/job1973-hansa-tray/) |
-| **Jeep Denim Letters** | 0/4 | 🔎 | other | `assets/projects/job5048/` | [link](https://www.picpong.biz/job5048/) |
-| **Dsc 9753** | 0/4 | 🔎 | other | `assets/projects/job1784/` | [link](https://www.picpong.biz/job1784/) |
-| **מזרק להורמון גדילה** | 0/4 | 🔎 | other | `assets/projects/job-9586/` | [link](https://www.picpong.biz/%d7%9e%d7%96%d7%a8%d7%a7-%d7%9c%d7%94%d7%95%d7%a8%d7%9e%d7%95%d7%9f-%d7%92%d7%93%d7%99%d7%9c%d7%94/) |
-| **משקפיים - פרוייקט תגלית** | 0/4 | 🔎 | other | `assets/projects/job-9604/` | [link](https://www.picpong.biz/%d7%9e%d7%a9%d7%a7%d7%a4%d7%99%d7%99%d7%9d-%d7%a4%d7%a8%d7%95%d7%99%d7%99%d7%a7%d7%98-%d7%aa%d7%92%d7%9c%d7%99%d7%aa/) |
-| **מארזים לחברת Kasamba** | 0/4 | 🔎 | other | `assets/projects/kasamba/` | [link](https://www.picpong.biz/%d7%9e%d7%90%d7%a8%d7%96%d7%99%d7%9d-%d7%9c%d7%97%d7%91%d7%a8%d7%aa-kasamba/) |
+| **Savanna** | 4/4 | 🔎 | other | `assets/projects/job1506/` | [link](https://www.picpong.biz/job1506/) |
+| **Klipdrift** | 4/4 | 🔎 | other | `assets/projects/job1861-2-seater/` | [link](https://www.picpong.biz/job1861-2-seater/) |
+| **Dsc 1022** | 4/4 | 🔎 | other | `assets/projects/job3018/` | [link](https://www.picpong.biz/job3018/) |
+| **Gac** | 4/4 | 🔎 | other | `assets/projects/job1137/` | [link](https://www.picpong.biz/job1137/) |
+| **The Saints** | 4/4 | 🔎 | other | `assets/projects/job3781/` | [link](https://www.picpong.biz/job3781/) |
+| **Dgb** | 4/4 | 🔎 | other | `assets/projects/job3232/` | [link](https://www.picpong.biz/job3232/) |
+| **Airplane** | 4/4 | 🔎 | other | `assets/projects/airplane/` | [link](https://www.picpong.biz/airplane/) |
+| **Hansa** | 4/4 | 🔎 | other | `assets/projects/job1973-hansa-tray/` | [link](https://www.picpong.biz/job1973-hansa-tray/) |
+| **Jeep Denim Letters** | 4/4 | 🔎 | other | `assets/projects/job5048/` | [link](https://www.picpong.biz/job5048/) |
+| **Dsc 9753** | 4/4 | 🔎 | other | `assets/projects/job1784/` | [link](https://www.picpong.biz/job1784/) |
+| **מזרק להורמון גדילה** | 4/4 | 🔎 | other | `assets/projects/job-9586/` | [link](https://www.picpong.biz/%d7%9e%d7%96%d7%a8%d7%a7-%d7%9c%d7%94%d7%95%d7%a8%d7%9e%d7%95%d7%9f-%d7%92%d7%93%d7%99%d7%9c%d7%94/) |
+| **משקפיים - פרוייקט תגלית** | 4/4 | 🔎 | other | `assets/projects/job-9604/` | [link](https://www.picpong.biz/%d7%9e%d7%a9%d7%a7%d7%a4%d7%99%d7%99%d7%9d-%d7%a4%d7%a8%d7%95%d7%99%d7%99%d7%a7%d7%98-%d7%aa%d7%92%d7%9c%d7%99%d7%aa/) |
+| **מארזים לחברת Kasamba** | 4/4 | 🔎 | other | `assets/projects/kasamba/` | [link](https://www.picpong.biz/%d7%9e%d7%90%d7%a8%d7%96%d7%99%d7%9d-%d7%9c%d7%97%d7%91%d7%a8%d7%aa-kasamba/) |
 | **Dsc 1696** | 3/3 | 🔎 | other | `assets/projects/job4902/` | [link](https://www.picpong.biz/job4902/) |
 | **6Pack Steri Stumpi Fsu** | 3/3 | 🚫 | point-of-sale | `assets/projects/job5306/` | [link](https://www.picpong.biz/job5306/) |
 | **JOB1529** | 3/3 | 🔎 | other | `assets/projects/job1529/` | [link](https://www.picpong.biz/job1529/) |
@@ -197,17 +197,17 @@ Full photo batches; mixed scope. `jobNNNN` = internal job number.
 | **Saldanha** | 3/3 | 🔎 | other | `assets/projects/job4198/` | [link](https://www.picpong.biz/job4198/) |
 | **Pmc Group Table** | 3/3 | 🔎 | other | `assets/projects/job4860/` | [link](https://www.picpong.biz/job4860/) |
 | **Dsc 1150** | 3/3 | 🔎 | other | `assets/projects/job5605/` | [link](https://www.picpong.biz/job5605/) |
-| **Garmic Table** | 0/3 | 🔎 | other | `assets/projects/job3764/` | [link](https://www.picpong.biz/job3764/) |
-| **Klipdrift** | 0/3 | 🔎 | other | `assets/projects/job1861/` | [link](https://www.picpong.biz/job1861/) |
-| **Klipdrift** | 0/3 | 🔎 | other | `assets/projects/job1861-table/` | [link](https://www.picpong.biz/job1861-table/) |
-| **Walter** | 0/3 | 🔎 | other | `assets/projects/job3040/` | [link](https://www.picpong.biz/job3040/) |
-| **Lecoste** | 0/3 | 🔎 | other | `assets/projects/job1777/` | [link](https://www.picpong.biz/job1777/) |
-| **Tanqueray Imported** | 0/3 | 🔎 | other | `assets/projects/job1628/` | [link](https://www.picpong.biz/job1628/) |
-| **Dsc 7503** | 0/3 | 🔎 | other | `assets/projects/job1675/` | [link](https://www.picpong.biz/job1675/) |
-| **Dsc 6744** | 0/3 | 🔎 | other | `assets/projects/job5277/` | [link](https://www.picpong.biz/job5277/) |
-| **Savanna Summer Cycle New** | 0/3 | 🔎 | other | `assets/projects/job1392/` | [link](https://www.picpong.biz/job1392/) |
-| **חמשישי בקארי** | 0/3 | 🔎 | other | `assets/projects/img0199-15001500/` | [link](https://www.picpong.biz/%d7%97%d7%9e%d7%a9%d7%99%d7%a9%d7%99-%d7%91%d7%a7%d7%90%d7%a8%d7%99/) |
-| **יום האישה קבוצת בזק** | 0/3 | 🔎 | other | `assets/projects/job-9847/` | [link](https://www.picpong.biz/%d7%99%d7%95%d7%9d-%d7%94%d7%90%d7%99%d7%a9%d7%94-%d7%a7%d7%91%d7%95%d7%a6%d7%aa-%d7%91%d7%96%d7%a7/) |
+| **Garmic Table** | 3/3 | 🔎 | other | `assets/projects/job3764/` | [link](https://www.picpong.biz/job3764/) |
+| **Klipdrift** | 3/3 | 🔎 | other | `assets/projects/job1861/` | [link](https://www.picpong.biz/job1861/) |
+| **Klipdrift** | 3/3 | 🔎 | other | `assets/projects/job1861-table/` | [link](https://www.picpong.biz/job1861-table/) |
+| **Walter** | 3/3 | 🔎 | other | `assets/projects/job3040/` | [link](https://www.picpong.biz/job3040/) |
+| **Lecoste** | 3/3 | 🔎 | other | `assets/projects/job1777/` | [link](https://www.picpong.biz/job1777/) |
+| **Tanqueray Imported** | 3/3 | 🔎 | other | `assets/projects/job1628/` | [link](https://www.picpong.biz/job1628/) |
+| **Dsc 7503** | 3/3 | 🔎 | other | `assets/projects/job1675/` | [link](https://www.picpong.biz/job1675/) |
+| **Dsc 6744** | 3/3 | 🔎 | other | `assets/projects/job5277/` | [link](https://www.picpong.biz/job5277/) |
+| **Savanna Summer Cycle New** | 3/3 | 🔎 | other | `assets/projects/job1392/` | [link](https://www.picpong.biz/job1392/) |
+| **חמשישי בקארי** | 3/3 | 🔎 | other | `assets/projects/img0199-15001500/` | [link](https://www.picpong.biz/%d7%97%d7%9e%d7%a9%d7%99%d7%a9%d7%99-%d7%91%d7%a7%d7%90%d7%a8%d7%99/) |
+| **יום האישה קבוצת בזק** | 3/3 | 🔎 | other | `assets/projects/job-9847/` | [link](https://www.picpong.biz/%d7%99%d7%95%d7%9d-%d7%94%d7%90%d7%99%d7%a9%d7%94-%d7%a7%d7%91%d7%95%d7%a6%d7%aa-%d7%91%d7%96%d7%a7/) |
 | **Amarula Fsu** | 2/2 | 🚫 | point-of-sale | `assets/projects/job5152/` | [link](https://www.picpong.biz/job5152/) |
 | **Afro Botanics** | 2/2 | 🔎 | other | `assets/projects/job4404/` | [link](https://www.picpong.biz/job4404/) |
 | **Four Cousins Creme** | 2/2 | 🔎 | other | `assets/projects/job4243/` | [link](https://www.picpong.biz/job4243/) |
@@ -224,37 +224,37 @@ Full photo batches; mixed scope. `jobNNNN` = internal job number.
 | **Assembly 13 Copy** | 2/2 | 🔎 | other | `assets/projects/job1476/` | [link](https://www.picpong.biz/job1476/) |
 | **Bos** | 2/2 | 🔎 | other | `assets/projects/job3687/` | [link](https://www.picpong.biz/job3687/) |
 | **Keg Table** | 2/2 | 🔎 | other | `assets/projects/job3950/` | [link](https://www.picpong.biz/job3950/) |
-| **Kellogs** | 0/2 | 🔎 | other | `assets/projects/job3138/` | [link](https://www.picpong.biz/job3138/) |
-| **Images** | 0/2 | 🔎 | other | `assets/projects/job00931/` | [link](https://www.picpong.biz/job00931/) |
-| **PUMA** | 0/2 | 🔎 | other | `assets/projects/puma/` | [link](https://www.picpong.biz/puma/) |
-| **Legrand** | 0/2 | 🔎 | other | `assets/projects/job3430/` | [link](https://www.picpong.biz/job3430/) |
-| **Bumbox** | 0/2 | 🔎 | other | `assets/projects/job1552-bumbox/` | [link](https://www.picpong.biz/job1552-bumbox/) |
-| **Distell Tree** | 0/2 | 🔎 | other | `assets/projects/job1678-distell-free-standing-tree/` | [link](https://www.picpong.biz/job1678-distell-free-standing-tree/) |
-| **Shopping Bag** | 0/2 | 🔎 | other | `assets/projects/job5298/` | [link](https://www.picpong.biz/job5298/) |
-| **לורדן** | 0/2 | 🔎 | other | `assets/projects/whatsapp-image-2018-12-05-at-175615/` | [link](https://www.picpong.biz/%d7%9c%d7%95%d7%a8%d7%93%d7%9f/) |
-| **BBB מדבקות חוץ** | 0/2 | 🚫 | sticker-decal | `assets/projects/bbb/` | [link](https://www.picpong.biz/bbb-%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa-%d7%97%d7%95%d7%a5/) |
-| **מדבקות לויטרינה - LANDA** | 0/2 | 🚫 | sticker-decal | `assets/projects/landa/` | [link](https://www.picpong.biz/%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa-%d7%9c%d7%95%d7%99%d7%98%d7%a8%d7%99%d7%a0%d7%94-landa/) |
-| **עץ משאלות** | 0/2 | 🔎 | other | `assets/projects/job-9042/` | [link](https://www.picpong.biz/%d7%a2%d7%a5-%d7%9e%d7%a9%d7%90%d7%9c%d7%95%d7%aa/) |
+| **Kellogs** | 2/2 | 🔎 | other | `assets/projects/job3138/` | [link](https://www.picpong.biz/job3138/) |
+| **Images** | 2/2 | 🔎 | other | `assets/projects/job00931/` | [link](https://www.picpong.biz/job00931/) |
+| **PUMA** | 2/2 | 🔎 | other | `assets/projects/puma/` | [link](https://www.picpong.biz/puma/) |
+| **Legrand** | 2/2 | 🔎 | other | `assets/projects/job3430/` | [link](https://www.picpong.biz/job3430/) |
+| **Bumbox** | 2/2 | 🔎 | other | `assets/projects/job1552-bumbox/` | [link](https://www.picpong.biz/job1552-bumbox/) |
+| **Distell Tree** | 2/2 | 🔎 | other | `assets/projects/job1678-distell-free-standing-tree/` | [link](https://www.picpong.biz/job1678-distell-free-standing-tree/) |
+| **Shopping Bag** | 2/2 | 🔎 | other | `assets/projects/job5298/` | [link](https://www.picpong.biz/job5298/) |
+| **לורדן** | 2/2 | 🔎 | other | `assets/projects/whatsapp-image-2018-12-05-at-175615/` | [link](https://www.picpong.biz/%d7%9c%d7%95%d7%a8%d7%93%d7%9f/) |
+| **BBB מדבקות חוץ** | 2/2 | 🚫 | sticker-decal | `assets/projects/bbb/` | [link](https://www.picpong.biz/bbb-%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa-%d7%97%d7%95%d7%a5/) |
+| **מדבקות לויטרינה - LANDA** | 2/2 | 🚫 | sticker-decal | `assets/projects/landa/` | [link](https://www.picpong.biz/%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa-%d7%9c%d7%95%d7%99%d7%98%d7%a8%d7%99%d7%a0%d7%94-landa/) |
+| **עץ משאלות** | 2/2 | 🔎 | other | `assets/projects/job-9042/` | [link](https://www.picpong.biz/%d7%a2%d7%a5-%d7%9e%d7%a9%d7%90%d7%9c%d7%95%d7%aa/) |
 | **Mainstay Bob** | 1/1 | 🔎 | other | `assets/projects/job3130/` | [link](https://www.picpong.biz/job3130/) |
-| **Job3417 Sm** | 0/1 | 🔎 | other | `assets/projects/job3417/` | [link](https://www.picpong.biz/job3417/) |
-| **BabyLand** | 0/1 | 🔎 | other | `assets/projects/babyland/` | [link](https://www.picpong.biz/babyland/) |
-| **מיני פארק** | 0/1 | 🔎 | other | `assets/projects/img-20140711-wa0013/` | [link](https://www.picpong.biz/%d7%9e%d7%99%d7%a0%d7%99-%d7%a4%d7%90%d7%a8%d7%a7/) |
-| **השוקה חשמונאי** | 0/1 | 🔎 | other | `assets/projects/img7338-15001500/` | [link](https://www.picpong.biz/%d7%94%d7%a9%d7%95%d7%a7%d7%94-%d7%97%d7%a9%d7%9e%d7%95%d7%a0%d7%90%d7%99/) |
-| **Arcos** | 0/1 | 🔎 | other | `assets/projects/arcos/` | [link](https://www.picpong.biz/arcos/) |
-| **skylook** | 0/1 | 🔎 | other | `assets/projects/skylook/` | [link](https://www.picpong.biz/skylook/) |
+| **Job3417 Sm** | 1/1 | 🔎 | other | `assets/projects/job3417/` | [link](https://www.picpong.biz/job3417/) |
+| **BabyLand** | 1/1 | 🔎 | other | `assets/projects/babyland/` | [link](https://www.picpong.biz/babyland/) |
+| **מיני פארק** | 1/1 | 🔎 | other | `assets/projects/img-20140711-wa0013/` | [link](https://www.picpong.biz/%d7%9e%d7%99%d7%a0%d7%99-%d7%a4%d7%90%d7%a8%d7%a7/) |
+| **השוקה חשמונאי** | 1/1 | 🔎 | other | `assets/projects/img7338-15001500/` | [link](https://www.picpong.biz/%d7%94%d7%a9%d7%95%d7%a7%d7%94-%d7%97%d7%a9%d7%9e%d7%95%d7%a0%d7%90%d7%99/) |
+| **Arcos** | 1/1 | 🔎 | other | `assets/projects/arcos/` | [link](https://www.picpong.biz/arcos/) |
+| **skylook** | 1/1 | 🔎 | other | `assets/projects/skylook/` | [link](https://www.picpong.biz/skylook/) |
 
 ## 📦 X-Board products & service pages  (202 imgs / 28 groups)
 
 | event / group | imgs | scope | type | folder | source page |
 |---|---|---|---|---|---|
-| **עלינו** | 50/54 | ✅ | xboard-product | `assets/products/%d7%a2%d7%9c%d7%99%d7%a0%d7%95/` | [link](https://www.picpong.biz/%d7%a2%d7%9c%d7%99%d7%a0%d7%95/) |
-| **הולכים לבחירות** | 0/42 | ✅ | xboard-product | `assets/products/%d7%94%d7%95%d7%9c%d7%9b%d7%99%d7%9d-%d7%9c%d7%91%d7%97%d7%99%d7%a8%d7%95%d7%aa/` | [link](https://www.picpong.biz/%d7%94%d7%95%d7%9c%d7%9b%d7%99%d7%9d-%d7%9c%d7%91%d7%97%d7%99%d7%a8%d7%95%d7%aa/) |
+| **עלינו** | 54/54 | ✅ | xboard-product | `assets/products/%d7%a2%d7%9c%d7%99%d7%a0%d7%95/` | [link](https://www.picpong.biz/%d7%a2%d7%9c%d7%99%d7%a0%d7%95/) |
+| **הולכים לבחירות** | 42/42 | ✅ | xboard-product | `assets/products/%d7%94%d7%95%d7%9c%d7%9b%d7%99%d7%9d-%d7%9c%d7%91%d7%97%d7%99%d7%a8%d7%95%d7%aa/` | [link](https://www.picpong.biz/%d7%94%d7%95%d7%9c%d7%9b%d7%99%d7%9d-%d7%9c%d7%91%d7%97%d7%99%d7%a8%d7%95%d7%aa/) |
 | **פיק פונג** | 28/28 | ✅ | xboard-product | `assets/products/%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92/` | [link](https://www.picpong.biz/) |
-| **קופסאות ממותגות** | 0/16 | ✅ | xboard-product | `assets/products/%d7%a7%d7%95%d7%a4%d7%a1%d7%90%d7%95%d7%aa-%d7%9e%d7%9e%d7%95%d7%aa%d7%92%d7%95%d7%aa/` | [link](https://www.picpong.biz/%d7%a7%d7%95%d7%a4%d7%a1%d7%90%d7%95%d7%aa-%d7%9e%d7%9e%d7%95%d7%aa%d7%92%d7%95%d7%aa/) |
+| **קופסאות ממותגות** | 16/16 | ✅ | xboard-product | `assets/products/%d7%a7%d7%95%d7%a4%d7%a1%d7%90%d7%95%d7%aa-%d7%9e%d7%9e%d7%95%d7%aa%d7%92%d7%95%d7%aa/` | [link](https://www.picpong.biz/%d7%a7%d7%95%d7%a4%d7%a1%d7%90%d7%95%d7%aa-%d7%9e%d7%9e%d7%95%d7%aa%d7%92%d7%95%d7%aa/) |
 | **עיצוב אירועים וכנסים** | 13/13 | ✅ | xboard-product | `assets/products/%d7%9b%d7%a0%d7%a1%d7%99%d7%9d-%d7%95%d7%90%d7%a8%d7%95%d7%a2%d7%99%d7%9d/` | [link](https://www.picpong.biz/%d7%9b%d7%a0%d7%a1%d7%99%d7%9d-%d7%95%d7%90%d7%a8%d7%95%d7%a2%d7%99%d7%9d/) |
 | **ביתנים מודולריים XBOARD** | 7/7 | ✅ | xboard-product | `assets/products/%d7%93%d7%95%d7%9b%d7%a0%d7%99%d7%9d-%d7%9e%d7%95%d7%93%d7%95%d7%9c%d7%a8%d7%99%d7%99%d7%9d-xboard/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%93%d7%95%d7%9b%d7%a0%d7%99%d7%9d-%d7%9e%d7%95%d7%93%d7%95%d7%9c%d7%a8%d7%99%d7%99%d7%9d-xboard/) |
 | **רולאפים / מתקני תצוגה** | 5/5 | ✅ | xboard-product | `assets/products/%d7%9e%d7%aa%d7%a7%d7%a0%d7%99-%d7%aa%d7%a6%d7%95%d7%92%d7%94/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%9e%d7%aa%d7%a7%d7%a0%d7%99-%d7%aa%d7%a6%d7%95%d7%92%d7%94/) |
-| **מוצרי קורונה** | 0/5 | ✅ | xboard-product | `assets/products/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a7%d7%95%d7%a8%d7%95%d7%a0%d7%94/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a7%d7%95%d7%a8%d7%95%d7%a0%d7%94/) |
+| **מוצרי קורונה** | 5/5 | ✅ | xboard-product | `assets/products/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a7%d7%95%d7%a8%d7%95%d7%a0%d7%94/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a7%d7%95%d7%a8%d7%95%d7%a0%d7%94/) |
 | **עיצוב תערוכות** | 3/3 | ✅ | xboard-product | `assets/products/%d7%a2%d7%99%d7%a6%d7%95%d7%91-%d7%aa%d7%a2%d7%a8%d7%95%d7%9b%d7%95%d7%aa/` | [link](https://www.picpong.biz/%d7%a2%d7%99%d7%a6%d7%95%d7%91-%d7%aa%d7%a2%d7%a8%d7%95%d7%9b%d7%95%d7%aa/) |
 | **חיתוך צורני, FSU &#8211; קאט אאוט** | 3/3 | ✅ | xboard-product | `assets/products/fsu-%d7%a7%d7%90%d7%98-%d7%90%d7%90%d7%95%d7%98/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/fsu-%d7%a7%d7%90%d7%98-%d7%90%d7%90%d7%95%d7%98/) |
 | **צרו קשר** | 2/2 | ✅ | xboard-product | `assets/products/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/` | [link](https://www.picpong.biz/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/) |
@@ -264,7 +264,7 @@ Full photo batches; mixed scope. `jobNNNN` = internal job number.
 | **חיפוי תקרה** | 2/2 | ✅ | xboard-product | `assets/products/%d7%97%d7%99%d7%a4%d7%95%d7%99-%d7%aa%d7%a7%d7%a8%d7%94/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%97%d7%99%d7%a4%d7%95%d7%99-%d7%aa%d7%a7%d7%a8%d7%94/) |
 | **הדפסה על בד / דגלים &#8211; הדפסה על סאטן** | 2/2 | ✅ | xboard-product | `assets/products/%d7%93%d7%92%d7%9c%d7%99%d7%9d-%d7%94%d7%93%d7%a4%d7%a1%d7%94-%d7%a2%d7%9c-%d7%a1%d7%90%d7%98%d7%9f/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%93%d7%92%d7%9c%d7%99%d7%9d-%d7%94%d7%93%d7%a4%d7%a1%d7%94-%d7%a2%d7%9c-%d7%a1%d7%90%d7%98%d7%9f/) |
 | **טפטים** | 2/2 | ✅ | xboard-product | `assets/products/%d7%98%d7%a4%d7%98%d7%99%d7%9d/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%98%d7%a4%d7%98%d7%99%d7%9d/) |
-| **404** | 0/2 | ✅ | xboard-product | `assets/products/404-2/` | [link](https://www.picpong.biz/404-2/) |
+| **404** | 2/2 | ✅ | xboard-product | `assets/products/404-2/` | [link](https://www.picpong.biz/404-2/) |
 | **סטנדים לתצוגה &#8211; עמדות מכירה רצפתיות** | 1/1 | ✅ | xboard-product | `assets/products/%d7%a2%d7%9e%d7%93%d7%95%d7%aa-%d7%9e%d7%9b%d7%99%d7%a8%d7%94-%d7%a8%d7%a6%d7%a4%d7%aa%d7%99%d7%95%d7%aa/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%a2%d7%9e%d7%93%d7%95%d7%aa-%d7%9e%d7%9b%d7%99%d7%a8%d7%94-%d7%a8%d7%a6%d7%a4%d7%aa%d7%99%d7%95%d7%aa/) |
 | **מתקני תצוגה לחנויות &#8211; עמדות מכירה שולחניות** | 1/1 | ✅ | xboard-product | `assets/products/%d7%a2%d7%9e%d7%93%d7%95%d7%aa-%d7%9e%d7%9b%d7%99%d7%a8%d7%94-%d7%a9%d7%95%d7%9c%d7%97%d7%a0%d7%99%d7%95%d7%aa/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%a2%d7%9e%d7%93%d7%95%d7%aa-%d7%9e%d7%9b%d7%99%d7%a8%d7%94-%d7%a9%d7%95%d7%9c%d7%97%d7%a0%d7%99%d7%95%d7%aa/) |
 | **כובשי מדף** | 1/1 | ✅ | xboard-product | `assets/products/%d7%9b%d7%95%d7%91%d7%a9%d7%99-%d7%9e%d7%93%d7%a3/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%9b%d7%95%d7%91%d7%a9%d7%99-%d7%9e%d7%93%d7%a3/) |
@@ -273,27 +273,81 @@ Full photo batches; mixed scope. `jobNNNN` = internal job number.
 | **דוכנים בקניונים &#8211; מתחמי פעילות ותצוגה** | 1/1 | ✅ | xboard-product | `assets/products/%d7%9e%d7%aa%d7%97%d7%9e%d7%99-%d7%a4%d7%a2%d7%99%d7%9c%d7%95%d7%aa-%d7%95%d7%aa%d7%a6%d7%95%d7%92%d7%94/` | [link](https://www.picpong.biz/%d7%9e%d7%aa%d7%97%d7%9e%d7%99-%d7%a4%d7%a2%d7%99%d7%9c%d7%95%d7%aa-%d7%95%d7%aa%d7%a6%d7%95%d7%92%d7%94/) |
 | **הדפסת תמונות גדולות** | 1/1 | ✅ | xboard-product | `assets/products/%d7%aa%d7%9e%d7%95%d7%a0%d7%95%d7%aa/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%aa%d7%9e%d7%95%d7%a0%d7%95%d7%aa/) |
 | **שלטים לעסקים** | 1/1 | ✅ | xboard-product | `assets/products/%d7%a9%d7%9c%d7%98%d7%99%d7%9d/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%a9%d7%9c%d7%98%d7%99%d7%9d/) |
-| **הדפסת מדבקות** | 0/1 | ✅ | xboard-product | `assets/products/%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa/) |
-| **X-board** | 0/1 | ✅ | xboard-product | `assets/products/x-board/` | [link](https://www.picpong.biz/x-board/) |
+| **הדפסת מדבקות** | 1/1 | ✅ | xboard-product | `assets/products/%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa/` | [link](https://www.picpong.biz/%d7%9e%d7%95%d7%a6%d7%a8%d7%99-%d7%a4%d7%99%d7%a7-%d7%a4%d7%95%d7%a0%d7%92-%d7%9c%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%9e%d7%93%d7%91%d7%a7%d7%95%d7%aa/) |
+| **X-board** | 1/1 | ✅ | xboard-product | `assets/products/x-board/` | [link](https://www.picpong.biz/x-board/) |
 
 ## 🏷️ Client logos  (2 imgs / 1 groups)
 
 | event / group | imgs | scope | type | folder | source page |
 |---|---|---|---|---|---|
-| **Client logos** | 0/2 | 📎 | client-logo | `assets/logos/client-logos/` | — |
+| **Client logos** | 2/2 | 📎 | client-logo | `assets/logos/client-logos/` | — |
 
 ## 🎨 Brand / site chrome  (3 imgs / 1 groups)
 
 | event / group | imgs | scope | type | folder | source page |
 |---|---|---|---|---|---|
-| **Site chrome (logo/favicon/CTA bg)** | 0/3 | 📎 | brand-chrome | `assets/brand/site-chrome/` | — |
+| **Site chrome (logo/favicon/CTA bg)** | 3/3 | 📎 | brand-chrome | `assets/brand/site-chrome/` | — |
 
 ## ❓ Unattached / uncategorised media  (375 imgs / 1 groups)
 Older media with no clear parent — triage before reuse.
 
 | event / group | imgs | scope | type | folder | source page |
 |---|---|---|---|---|---|
-| **Unattached / uncategorised media** | 0/375 | 🔎 | uncategorised | `assets/unattached/uncategorised/` | — |
+| **Unattached / uncategorised media** | 375/375 | 🔎 | uncategorised | `assets/unattached/uncategorised/` | — |
+
+## 🔍 What the photos show — vision analysis (47 events)
+
+Each event below was analysed by an agent that actually viewed its downloaded photos — grounded in the pixels (flags X-Board build details, warehouse-vs-live shots, reuse value). Full per-field notes live in each folder's `README.md`.
+
+| event | what it shows | reuse |
+|---|---|---|
+| **100 years for the rabbinate**<br>`assets/projects/100-years-for-the-rabbinate/` | An exhibition installation marking "100 years for the rabbinate" (the centennial of the Chief Rabbinate of Israel). The photos show a freestanding, multi-panel display wall built as an L-shaped corner: one teal/navy panel carries the Hebrew headline "הרבנות" (The Rabbinate) plus a long body of explanatory text and a portrait of Rabbi Avraham Yitzhak HaCohen Kook, while the adjoining panels form a faux library backdrop with a presentation table and a framed-photo gallery. | Usable as a thumbnail or secondary gallery image rather than a hero. The wide HD landscape shot is the stronger candidate — it best showcases Picpong's core offering (a c |
+| **2018 Annual Conference for Government Funded Religious Schools**<br>`assets/projects/the-2018-annual-conference-for-government-funded-religious-schools/` | An indoor exhibition installation for the 2018 Annual Conference for Government Funded Religious Schools, shot from an elevated angle. The photo shows a row of free-standing vertical display totems arranged in a colorful corridor, each carrying photographs of schoolchildren and Hebrew text, linked overhead by a lattice of horizontal beams — a modular pop-up museum/timeline-style exhibit. | Usable as a portfolio thumbnail and as a secondary gallery image. Strengths: vivid full-color totems, clear demonstration of a connected modular cardboard exhibit system, |
+| **A decade for Assuta**<br>`assets/projects/a-decade-for-assuta/` | The "A decade for Assuta" project: a 10-year anniversary decoration of the main entrance facade of an Assuta Medical Center hospital building. The photo literally shows the tall glass curtain-wall entrance covered with applied window graphics of colorful balloons and a large "10" anniversary mark, with a revolving door at center. | Thumbnail / supporting gallery image rather than hero. The photo is high quality (sharp, well-exposed dusk shot, strong symmetry), but it showcases facade window-graphics |
+| **Activity complexes at Azrieli Malls**<br>`assets/projects/activity-complexes-at-azrieli-malls/` | Branded children's activity compounds installed on the open floor of Azrieli shopping malls. Image 1 is a Paw Patrol-themed "creative workshop" (סדנת יצירה) play area with kid-sized seating; image 2 is a Shimmer and Shine themed activity kiosk/play zone with an underwater/mermaid sub-theme. | Image 1 is the stronger hero candidate: well-lit, sharp, wide angle that captures the entire branded compound (towers, backdrop, oversized cutouts, and matching cardboard |
+| **Amdocs stand in Milan**<br>`assets/projects/amdocs-stand-in-milan/` | A branded exhibition booth/stand for the "a-live" product (an Amdocs-related offering) at an event in Milan. The photo shows a corner of the stand interior: a freestanding wall printed with a large city-street nightscape, a wall-mounted vertical product graphic, a tall standing TV monitor showing a settings UI, and a light-wood pedestal counter. | Usable as a thumbnail or secondary portfolio image. The shot is well-lit, sharp, and color-rich (strong orange/blue contrast from the city mural), clearly showing the pri |
+| **At a PICPONG exhibition**<br>`assets/projects/at-a-picpong-exhibition/` | This is Picpong/X-Board's own exhibition booth at a trade show, photographed to showcase their cardboard fabrication capabilities. The photo shows a visitor (man from behind, in a blue shirt with a pink/magenta tote bag) standing in front of the company's branded stand, with a tall red Coca-Cola bottle-shaped display unit dominating the right side. | Strong hero/portfolio candidate. The shot vividly demonstrates X-Board's full range in one frame: branded furniture (table, stools, counter), suspended signage, 3D cut le |
+| **Bar Counter**<br>`assets/projects/job-x133/` | Cannot be determined from the source files. Both "images" for the "Bar Counter" project (job-x133) are not photographs — they are HTML interstitial pages ("One moment, please..." with a spinner and a 5-second auto-reload, a bot/challenge page), each ~12 KB of ASCII text saved with a .jpg extension. No pixels of any booth, counter, or event were captured. | Do NOT reuse — the assets are unusable. Both /Users/yuval/develop/repos/picpong-website/docs/analysis/picpong/assets/projects/job-x133/Bar-counter.jpg and Bar-counter_1.j |
+| **Bar Mitzvah street party**<br>`assets/projects/bar-mitzvah/` | A "Bar Mitzvah street party" event activation styled as an urban/graffiti-themed dinner. The photo shows a dressed round dining table with a street-art aesthetic: graffiti-painted tabletop, a stacked spray-painted car-tire centerpiece, table-number signage, and place settings (glasses, napkins, cutlery) in a raw industrial venue. | Thumbnail / supporting gallery image at best. The shot is atmospheric and shows the event theme and styling, but it is dim, motion-soft, and contains no signature cardboa |
+| **Bat Mitzvah for Omar**<br>`assets/projects/bat-mitzvah-for-omar/` | A travel/"around the world" themed Bat Mitzvah photo-backdrop installation for a girl named Omer (Omar). The photo shows a large printed selfie/photo wall depicting global landmarks and aircraft, fronted by a low staging platform holding freestanding 3D letters spelling "OMER" and decorative prop suitcases — a typical Picpong event-activation set built for guest photos. | Strong thumbnail and a good secondary hero candidate. The shot is well-lit, sharp, and cleanly composed with the full installation centered, showing the complete photo-wa |
+| **Bernini expo stand**<br>`assets/projects/job2110/` | This is a "Sparkling Bernini" branded exhibition/expo stand (job2110) built by Picpong, photographed from five angles during a pre-event build/staging inside the fabrication warehouse. The photos show a complete modular booth: a long back wall, a freestanding portal/arch gateway with a branded header beam, a central square pillar/column, and matching freestanding counters/plinths. Bernini is a sparkling wine brand (the famous SB crown crest and "Sparkling Bernini" wordmark appear throughout). | Strong portfolio/hero candidate. The five frames are sharp, well-lit, and clean, capturing the full assembled booth from several useful angles (full wide elevation, three |
+| **Carmel Winery**<br>`assets/projects/carmel-winery/` | A close-up table centerpiece at a seated event (likely a wine-themed dinner/gala associated with Carmel Winery). The photo shows a decorated dining table: a flat die-cut white scenic centerpiece standee depicting two figures carrying a large cluster of grapes (the classic "Spies of Canaan / Eshkol" grape-bearers motif tied to wine/Israel), flanked by two geometric brass/gold wire lanterns, one holding a lit white pillar candle, beside a low arrangement of white roses, lisianthus, baby's breath and eucalyptus greenery. Wine glasses are blurred in the background. | Not suitable as a hero or primary thumbnail for a booth-builder portfolio: it shows table decor / floral styling, not an X-Board structure, and it carries a third-party e |
+| **East Rand Mall**<br>`assets/projects/east-rand-mall/` | A custom cardboard "face-in-hole" selfie/photo-wall built by Picpong to celebrate East Rand Mall's 20th birthday. The three photos show the same free-standing double-sided board photographed from different angles inside the Picpong factory: one face (Pic_3) carries the "20 - My Kind of Place Since 1992" anniversary logo, and the other face (Pic_4, Pic_5) is the "Happy 20th birthday, East Rand Mall!" panel with three party-hat figures whose heads are die-cut as holes so people can poke their faces through for photos. | Good thumbnail / portfolio candidate, not a hero. The product (a polished, fully-printed double-sided face-cutout selfie wall) is appealing and shows Picpong's print qual |
+| **Electra salon**<br>`assets/projects/electra-salon/` | Bar counter detail from the Electra salon event showing orange Electra logo standees beside bottles and a plant | Re shoot recommended for structure showcase The photo quality is high with sharp focus and warm bokeh so it works as an atmospheric thumbnail or supporting gallery image |
+| **Family day Israeli Air Force**<br>`assets/projects/family-day-israeli-air-force/` | An Israeli Air Force "Family Day" open-house event hosted by the unit/network designated "108 רשת הביטחון" (108 Security Network). The photos show a large freestanding "108" number sculpture used as a photo display/landmark, plus a matching branded entrance gate that crowds of visitors pass through into the event grounds. | Thumbnail / secondary gallery candidate. The giant "108" numeral sculpture in image one is the strongest, cleanest hero asset — it isolates a single dramatic Picpong-buil |
+| **Gilat summer camp**<br>`assets/projects/gilat-summer-camp/` | A photo-op / selfie installation from Gilat's "Gilat Summer Camp" employee family event. The shot shows two young boys posing inside a life-size cutout of a boat; one wears swim goggles on his head and holds a wooden oar across the bow, the other peeks over the gunwale, while a printed cartoon "captain" character in a white sailor's cap fills the far end of the boat. | Usable as a portfolio thumbnail or secondary gallery image showing a playful kids' photo-op build, but weak as a hero: the children's faces are prominent and would likely |
+| **Gin Branded Wall**<br>`assets/projects/gin-branded-wall/` | A freestanding, self-supporting modular branded wall (an angled multi-panel display backdrop) built for Cape Town Gin & Spirits Company, photographed during fabrication/QC inside Picpong's workshop. The photos show the finished printed wall in different angled configurations, plus one shot with the print side facing away revealing bare white cardboard backs and triangular support feet. | Strong hero candidate. DSC_9044 is the cleanest, sharpest, best-composed shot of the full assembled wall in its angled configuration with even lighting — best for hero/th |
+| **Google cloud spring party**<br>`assets/projects/google-cloud/` | A photo/selfie backdrop wall built for the "Google Cloud Spring Party" corporate event. The image literally shows a freestanding white wall decorated with large 3D paper/cardboard flowers, butterflies, and flat printed stems/leaves, with the Google Cloud logo and "SPRING PARTY" headline centered on it. | Strong hero candidate. The photo is sharp, well-lit, evenly composed and centered, with vivid colorful 3D flower craft against a clean white wall and dark background that |
+| **Hasidism Fair**<br>`assets/projects/hasidism-fair/` | This is the "Hasidism Fair," a Hebrew-language booth/exhibition installation set up in a large public lobby. The photo literally shows a row of free-standing exhibition panels (printed walls/banners) lined up across a polished stone floor, each paired with a small branded lectern/totem podium in front of it, forming a sequential walk-through display. | Usable as a thumbnail or secondary gallery image, not a hero. Strengths: clean, well-lit, shows the full modular panel-plus-totem system in context and conveys scale. Wea |
+| **Hass Belgian waffle & French crepe stand**<br>`assets/projects/hass/` | A "Haas" Belgian-waffle & French-crepe catering stand built to mimic the front of a vintage VW-style camper van. HAAS-3.jpg shows the stand poolside (umbrella, surfboards, swimming pool with inflatables); top-haas.jpg is a wide crop showing two female staff serving from behind the counter, plus a tiled branded backdrop wall. | Good thumbnail/gallery candidate. HAAS-3.jpg is the stronger hero: well-lit, colorful, clearly shows the signature VW-van counter and surfboard totems with appealing pool |
+| **Home Design**<br>`assets/projects/home-design/` | A product-display setup inside a home-furnishings / interior-design retail showroom (a "Home Design" store selling rugs, flooring and designer furniture). The photo shows a cluster of cylindrical pedestal display plinths arranged on the showroom floor, each topped with a single designer chair or accent table presented as a hero product, with the wider rug/carpet sales floor visible in the background. | Thumbnail / secondary gallery use at best. The shot is a casual phone-style snapshot: slightly tilted horizon, mixed warm artificial lighting, busy retail background that |
+| **IBM conference**<br>`assets/projects/ibm-conference/` | An "IBM Alpha Zone" startup/partner showcase being set up under an event marquee. The photo literally shows a row of about a dozen identical small branded pedestal stands lined up in front of a living green plant wall, with a long two-tier reception/bar counter in the foreground, captured during build/staging (a man stands at left, a black equipment bag and a wheeled wooden crate sit nearby). | Usable as a thumbnail/secondary gallery image rather than a hero. Quality is decent (sharp, well-lit, good color) but it is a candid setup shot: the foreground is dominat |
+| **Instagram event**<br>`assets/projects/instagram-event/` | An Instagram-branded launch/influencer event inside an industrial venue, photographed from behind a long white catering/buffet counter. The frame shows the food-service zone in the foreground (with the Instagram camera glyph printed on the counter and a tabletop menu card) and a pink-walled lounge/stage area with guests and staff in the background. | Thumbnail or secondary/detail image at best. Strengths: sharp, well-lit, and shows clear Instagram branding plus a clean white cardboard-style counter and menu standee. W |
+| **Israeli Air Force event in Hatzerim**<br>`assets/projects/israeli-air-force-event-in-hatzerim/` | An outdoor exhibition for an Israeli Air Force (Heyl HaAvir) event at the Hatzerim airbase. The photo shows two large freestanding display walls printed with collages of IAF imagery — aircraft, helicopters, pilots and cadets in formation — set up on an open desert/tarmac area as part of a commemorative or ceremonial gathering. | Usable as a portfolio thumbnail or secondary image: it clearly demonstrates large-format freestanding printed display walls in a real outdoor event. Quality is acceptable |
+| **Joint Absorption Ministry / Rehovot event**<br>`assets/projects/joint-event-sponsored-by-the-absorption-ministry-and-the-municipality-of-rehovot/` | A multicultural community/integration event jointly hosted by the Rehovot Municipality and the Israeli Ministry of Absorption (Aliyah/immigration), staged in an indoor hall. The single photo shows guests milling among a row of branded display plinths topped with flower arrangements, with country-themed roll-up banners (Moldova, Ethiopia, Russia) and women in traditional Ethiopian dress at right. | Thumbnail or secondary gallery image only — not a hero. It is a candid, slightly dim phone snapshot (WhatsApp-sourced, 2018) with people mid-motion, busy background clutt |
+| **Kraft Utility Shelf**<br>`assets/projects/kraft-utility-shelf/` | Multi-angle studio product shots of one modular utility shelving unit made entirely from thick honeycomb-core kraft cardboard (X-Board). Tall vertical panels stand in a folded zig-zag plan with cantilevered shelves slotted through them at four to five levels, forming a self-standing free-edge display/bookcase fixture. | Good catalog/thumbnail and secondary-hero material for an X-Board furniture/retail-fixture category; clean, consistent multi-angle set that shows the honeycomb build and |
+| **Learning spaces in schools**<br>`assets/projects/learning-spaces-in-schools/` | An immersive "learning spaces" installation built into a school corridor, where the walls are clad floor-to-ceiling in large-format printed graphics depicting natural habitats — a coral reef / ocean scene (with photographic dolphin, hammerhead shark, sea turtle, kingfisher, clownfish, lionfish and reef fish), a tropical beach lagoon, and a red sand-dune desert landscape. Speech-bubble info callouts in Arabic with sensory icons annotate the marine animals, turning the hallway into an interactive educational nature trail. The second image shows children walking and interacting with the wall graphics along a synthetic-grass path. | Usable as a thumbnail and as a secondary gallery image for an "environmental graphics / themed learning spaces" category. Image 1 (1600x600 panorama) is sharp, well-lit a |
+| **Leonardo Cosmetics Offices**<br>`assets/projects/leonardo-cosmetics-offices/` | Interior wall décor at the Leonardo Cosmetics offices/clinic. The photo shows a cluster of five glossy printed campaign portraits mounted on a plain white wall, with a wheeled aesthetic/laser treatment device standing in the corner to the right. | Re-shoot recommended. The image is low resolution (~31 KB JPEG), the lighting is flat and washed out, the panels carry heavy glare/reflections, and the framing is tilted |
+| **Maccabi conference**<br>`assets/projects/job-9050/` | Maccabi Healthcare Services (Maccabi/מכבי) 2019 professionals' health conference ("כנס מקצועות הבריאות 2019 – מובילים לשיאים חדשים"). The two photos show the main stage front: a large LED video wall displaying a "ברוכים הבאים" (Welcome) opening slide, with a row of freestanding 3D letters spelling "Maccabi" lined up across the stage edge in front of it. Image 2 is a tighter angled crop of the same setup as image 1. | Re-shoot or use only as a low-priority thumbnail. These are dim, phone-shot stage photos with no cardboard/X-Board product visible — the only custom build is glossy 3D bo |
+| **Microsoft Winter Event**<br>`assets/projects/microsoft-winter-event/` | A cozy winter-lodge / alpine "ski chalet" themed lounge installation built for a Microsoft event. The photo literally shows a styled seating vignette: two tan leather sofas facing a central coffee table, set in front of a faux fireplace with a stylized stag-head mounted above it, against a wood-plank wall. | Usable as a thumbnail or secondary gallery image for a "lifestyle / experiential lounge" event styling. Image quality is good (sharp, well-lit, decent resolution, balance |
+| **Microsoft queen event**<br>`assets/projects/microsoft-queen-event/` | A large-scale Microsoft corporate event (gala/conference evening) shot inside a dark, blue-lit exhibition hall. The photo shows the main stage area from the rear bar/back-of-house, dominated by a giant suspended LED screen and a huge freestanding "MICROSOFT" wordmark sign in front of the stage. | Re-shoot recommended for primary use. The provided image is dim, heavily blue-cast, and cluttered with back-of-house elements (bottles, stacked boxes, truss), so it reads |
+| **Ministry of Education event (Binyanei Hauma)**<br>`assets/projects/event-for-the-ministry-of-education/` | An informational booth/exhibition installation built for a Ministry of Education event at Binyanei Hauma, Jerusalem, themed around parent-school partnership ("דרושים הורים שותפים!" — "Wanted: partner parents!"). The photos show a freestanding multi-panel display area with seating, set up in a foyer/concourse space, where visitors read printed panels and interact (one person is shown writing on a board). | Thumbnail / secondary gallery use. The wide "ss" crop works well as a portfolio thumbnail showing the full multi-panel exhibit. The "9.jpeg" is the stronger hero candidat |
+| **Mopanya Mall Bulkhead**<br>`assets/projects/job1579/` | This is the "Mopanya Mall Bulkhead" project: a set of large suspended ceiling bulkhead/banner panels installed under the glass-and-steel atrium roof of a shopping mall. The photos show the mall interior (atrium concourse, balconies, storefronts) and close-ups of the rectangular panels hung from the truss roof structure — apparently overhead signage/decor panels rather than floor-standing booths. | Re-shoot recommended if booth/cardboard content is needed — these images do not depict any X-Board booth product and are weak portfolio pieces: dark, wide architectural s |
+| **NeuroDerm**<br>`assets/projects/neuroderm/` | A Hollywood/Old-Cinema themed decor corner built for NeuroDerm's "Purim Party 2019" company event. The photo literally shows a black starry photo-wall printed with a gold "HOLLYWOOD" sign and a "NeuroDerm Purim Party 2019" film-reel header, paired with a life-size Marilyn Monroe figure striking the famous white-dress pose, set against an industrial-style bar backdrop. | Thumbnail or secondary gallery image rather than a hero. The shot is sharp, well-lit and the branded "HOLLYWOOD"/NeuroDerm photo-wall reads clearly, but it documents part |
+| **Our IDF Exhibition**<br>`assets/projects/our-idf-exhibition/` | "Our IDF Exhibition" is a children's play/activity zone ("משחקי מוכנים" / games corner) installed inside a large public lobby, likely a military or aviation visitor center/museum. The photos literally show a grid of small white-and-orange kids' tables and matching stools laid out on a glossy white floor, with a decorated low wall behind them and a full-size military drone (UAV, tail number 828) displayed on the hall floor in the background. | Usable as a secondary/thumbnail or gallery image rather than a hero. The two frames are near-duplicates of the same scene; quality is adequate (well-lit, sharp, casual ph |
+| **Pillow Fight**<br>`assets/projects/pillow-fight/` | A "Pillow Fight" event activation: an enclosed pink padded room where two costumed participants engage in a staged pillow fight. The photo literally shows a person in a colorful polka-dot dinosaur/lizard onesie on the left and a person in a black-and-white penguin/orca onesie on the right, each swinging white pillows, with loose pillows and burst feathers scattered all over the floor. | Suitable as a fun lifestyle/thumbnail image to convey playful event-activation energy, but NOT a good hero shot for showcasing Picpong's cardboard build work: no X-Board |
+| **Purim event for DSP**<br>`assets/projects/purim-event-for-dsp/` | A Purim event for DSP, styled as a rustic country/western (cowboy "wild west" / barn) themed photo set or decor backdrop. The photo shows a staged scenic vignette built from hay bales, wooden crates, and farm props arranged under a covered patio strung with festoon string lights. | Thumbnail or secondary gallery image at best. It is an atmospheric, well-lit lifestyle/mood shot that conveys event styling, but it contains no Picpong cardboard/X-Board |
+| **SHIKUN VE BINUI**<br>`assets/projects/shikun-ve-binui/` | A Shikun & Binui (Israeli construction/infrastructure company) display setup at a corporate or conference event, showcasing the company's green-building and infrastructure projects. The photo literally shows a row of five tall freestanding panel-boards lined up in an indoor lobby/foyer, each printed with a different project and a Hebrew headline. | Thumbnail / supporting gallery use at best, not a hero. The photo is sharp and well-lit on the panels with legible branding, but it is a casual WhatsApp-resolution snapsh |
+| **Schwartz cosmetics booth**<br>`assets/projects/job-9568/` | Schwartz Natural Cosmetics booth at a cosmetics trade show, showing private-label skincare and haircare lines on branded shelving plus logo and cut-tree close-ups. | Strong portfolio piece. Images 4, 5 and 6 are best wide hero shots, images 1, 2 and 3 are product-wall thumbnails, image 8 is an excellent X-Board build-detail proof shot |
+| **Service with a mission**<br>`assets/projects/service-with-a-mission/` | A row of branded exhibition wall panels and matching podium/counters set up for an Israeli national-service ("Sherut Im Shlichut" / "Service with a Mission") event, photographed in an indoor corridor. The photo literally shows a sequence of large printed backdrop walls with directional-arrow signpost graphics, each paired with a slim freestanding counter/totem in front of it. | Usable as a thumbnail or secondary gallery image. The shot is sharp, well-lit and clearly shows the modular wall-plus-counter system, which is good for demonstrating the |
+| **Super Heroes**<br>`assets/projects/super-heroes/` | A "Super Heroes" event-activation / themed venue installation, photographed from below looking up at a large horizontal hanging sign. The photo literally shows a wide rectangular signboard reading "SUPERHEROES" suspended over an octagonal bar/counter, with two people working at the counter and a restaurant/lounge interior behind it. | Thumbnail / supporting gallery image at best. The shot is an atmospheric upward angle taken in low light, the colors are muted and the main sign is partly backlit and cut |
+| **Susu and Sons branch costume**<br>`assets/projects/a-costume-for-a-branch-of-susu-and-sons/` | A nighttime street-level storefront/kiosk for a Domino's Pizza branch, photographed at a busy urban corner with pedestrians passing and people standing at an outdoor counter. Despite the project being titled "Susu and Sons branch costume," the visible branding in the photos is entirely Domino's Pizza, suggesting this is the actual built/dressed branch facade. The images show the lit shopfront facade rather than any expo-floor cardboard display. | Both files are the same scene; sososons-13.jpg is the cleaner, more complete framing (full logo, sign, awning, counter and crowd centered) and is the better hero/thumbnai |
+| **TAT**<br>`assets/projects/tat/` | This is a trade-show / aerospace-expo booth for "TAT Technologies," an aviation thermal-management and power & actuation company. The photo shows a corner of a fully built, occupied exhibition stand with branded back walls, a seating area, and product/service graphics — likely shot at an aerospace MRO or aviation expo. | Usable as a secondary / thumbnail or gallery image rather than a hero. Sharpness and lighting are good and branding is legible, but it is a partial corner view with foreg |
+| **The reactor (Microsoft)**<br>`assets/projects/the-reactor/` | A close-up of a printed branded backdrop / signage panel for "Reactor Tel Aviv Community Launch" — Microsoft's Reactor startup-community event. The photo literally shows a large flat decorative wall panel with a hexagon-framed event title, lit at an angle so the texture and surface are visible. | Detail / texture shot — usable as a thumbnail or accent image but not a hero. The frame is tilted, the spotlight blows out the top-left corner, and only a fragment of one |
+| **Toyga**<br>`assets/projects/toyga/` | A "Toyga"-branded event installation built around an Oriental/Moroccan theme: a large freestanding entrance wall with two ornate keyhole/horseshoe archways leading into a lounge-and-bar party space. In the foreground guests in elaborate Eastern/festive costumes mingle beside hanging paper lanterns; through the arches you see a bar area with high stool tables and red drapes. | Thumbnail-to-hero candidate for the themed-event/conference portfolio: the dual-arch Toyga gate is photogenic and clearly shows a custom branded cardboard archway structu |
+| **X178 Zigzag Wall**<br>`assets/projects/job3219/` | A freestanding zigzag (concertina/accordion-folded) cardboard display wall built for Bellingham Wines, photographed from two angles in a studio. The panels promote Bellingham's wine ranges — "Ancient Earth," "Tree Series," and the "Insignia Series" / "The Bellingham Collection" — with large product shots of bottles and brand imagery. | Good thumbnail and supporting gallery candidate. Both shots are clean, evenly lit, sharp, and color-accurate, clearly showcasing the zigzag folding-wall product and the p |
+| **Yolo Photobooth**<br>`assets/projects/job1271/` | An "Yolo Photobooth" — a single enclosed photo-booth structure built by Picpong for MTN's "MTN Play As You Go" / YOLO campaign. The photos are clean studio shots of the same finished booth from multiple angles: an open-fronted phone-booth-style cabin with a green interior and a built-in seat, plus a couple of detail shots of the fully wrapped exterior panel. No people are present; these are product/build documentation shots, not live event candids. | Strong reuse candidate for a portfolio thumbnail or gallery hero. The clean white-background studio shots are sharp, well-lit, and isolate the product clearly, which is i |
+| **bicon modular booth**<br>`assets/projects/bicon/` | A compact modular exhibition booth for the dental brand "bicon," photographed at an expo during/just after build. Two angles show the same corner stand: a tall dark totem column, a printed brand wall with values keywords, and two pedestal display counters on a green floor. | Usable as thumbnail/secondary gallery images rather than a hero. Image 1 (09.10.53) is the stronger, cleaner shot — booth fully dressed, lit, no clutter, logos legible — |
 
 ## Reuse guidance (carry-over from inventory.md §7)
 

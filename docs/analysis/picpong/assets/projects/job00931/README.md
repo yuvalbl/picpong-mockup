@@ -5,11 +5,11 @@
 - **Scope:** 🔎 review
 - **Source generation:** gen1-rest
 - **Source page:** https://www.picpong.biz/job00931/
-- **Images:** 0/2 downloaded
+- **Images:** 2/2 downloaded
 
 | file | dims | size | represents (title / alt / caption) |
 |---|---|---|---|
-| `Images_5.jpg` | 1600×1221 | — | Images_5 |
-| `Images_4.jpg` | 1600×1221 | — | Images_4 |
+| `Images_5.jpg` | 1600×1221 | 89 KB | Images_5 |
+| `Images_4.jpg` | 1600×1221 | 87 KB | Images_4 |
 
 _Provenance: picpong.biz WordPress media. Source = gen1-rest._

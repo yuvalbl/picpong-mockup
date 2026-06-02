@@ -9,6 +9,8 @@ import os, json, struct
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 amap = json.load(open(os.path.join(ROOT, "asset-map.json")))
+DESC_PATH = os.path.join(ROOT, "descriptions.json")
+DESCS = json.load(open(DESC_PATH)) if os.path.exists(DESC_PATH) else {}
 
 def img_dims(path):
     try:
@@ -88,6 +90,13 @@ for g in amap["groups"]:
         size = f"{a['_disk']//1024} KB" if a.get("_disk") else "—"
         rep = md_escape(a.get("title") or a.get("alt") or a.get("caption") or "—")
         lines.append(f"| `{a['file']}` | {dims} | {size} | {rep} |")
+    d = DESCS.get(g["key"])
+    if d:
+        lines += ["", "## What the photos show (vision analysis)", ""]
+        for fld, head in [("represents", "Represents"), ("structures", "Structures / X-Board"),
+                          ("branding", "Branding"), ("setting", "Setting"), ("reuse", "Reuse")]:
+            if d.get(fld):
+                lines.append(f"- **{head}:** {d[fld]}")
     lines += ["", "_Provenance: picpong.biz WordPress media. "
               f"Source = {g['generation']}._", ""]
     open(os.path.join(folder, "README.md"), "w").write("\n".join(lines))
@@ -143,6 +152,19 @@ section("🎨 Brand / site chrome", lambda g: g["bucket"] == "brand")
 section("❓ Unattached / uncategorised media",
         lambda g: g["bucket"] == "unattached",
         "Older media with no clear parent — triage before reuse.")
+
+if DESCS:
+    M += [f"## 🔍 What the photos show — vision analysis ({len(DESCS)} events)", "",
+          "Each event below was analysed by an agent that actually viewed its downloaded "
+          "photos — grounded in the pixels (flags X-Board build details, warehouse-vs-live "
+          "shots, reuse value). Full per-field notes live in each folder's `README.md`.", "",
+          "| event | what it shows | reuse |", "|---|---|---|"]
+    for key, d in sorted(DESCS.items(), key=lambda kv: kv[1].get("label", "")):
+        lbl = md_escape(d.get("label") or key)
+        rep = md_escape(d.get("represents", ""))
+        reuse = md_escape(d.get("reuse", "")[:170])
+        M.append(f"| **{lbl}**<br>`assets/{key}/` | {rep} | {reuse} |")
+    M.append("")
 
 M += ["## Reuse guidance (carry-over from inventory.md §7)", "",
       "- **2021–2022 brand heroes** (Landa, Synamedia, Deep Instinct, King Solomon, "
