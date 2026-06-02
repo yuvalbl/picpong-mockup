@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "mockup-v2",
+    "public": "mockup-v3",
     "cleanUrls": true,
     "trailingSlash": false,
     "ignore": [

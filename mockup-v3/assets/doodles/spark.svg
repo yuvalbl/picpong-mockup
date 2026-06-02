@@ -1,0 +1,12 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--spark" aria-hidden="true">
+  <g stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path pathLength="1" d="M60 18 L60 44"/>
+    <path pathLength="1" d="M60 76 L60 102"/>
+    <path pathLength="1" d="M18 60 L44 60"/>
+    <path pathLength="1" d="M76 60 L102 60"/>
+    <path pathLength="1" d="M30 30 L46 46"/>
+    <path pathLength="1" d="M74 74 L90 90"/>
+    <path pathLength="1" d="M90 30 L74 46"/>
+    <path pathLength="1" d="M46 74 L30 90"/>
+  </g>
+</svg>
