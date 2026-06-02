@@ -927,8 +927,16 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    still visible under the wipe — that snap was the stutter. With the scale on
    the persistent stage, every frame shares the same live scale, so nothing ever
    resets at a cut. The drift is a slow ease-in-out that ping-pongs forever. */
-.slideshow__stage { position: absolute; inset: 0; z-index: 0;
-  animation: stage-drift 17s ease-in-out infinite alternate; will-change: transform; }
+.slideshow__stage { position: absolute; inset: 0; z-index: 0; }
+/* The zoom is an animated transform on this ancestor of the clip-path slides.
+   Mobile WebKit/iOS Safari fails to paint clip-path children under an
+   animated-transform parent (made worse by the mix-blend streak), blanking the
+   slides the instant the drift starts. Limit the drift to wider screens where
+   it composites reliably; mobile keeps a static stage (image always visible)
+   with the diagonal wipe as its motion. */
+@media (min-width: 760px) {
+  .slideshow__stage { animation: stage-drift 17s ease-in-out infinite alternate; will-change: transform; }
+}
 /* Resting visibility is driven by OPACITY, not clip-path. Mobile WebKit/iOS
    Safari intermittently drops an `animation-fill-mode` HELD clip-path value
    once the keyframes end (especially under a transformed ancestor + a
