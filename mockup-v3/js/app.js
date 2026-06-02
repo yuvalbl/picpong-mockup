@@ -156,19 +156,33 @@
   var mc = document.getElementById("menuClose"); if (mc) mc.addEventListener("click", closeMenu);
   document.querySelectorAll("#mobileMenu a").forEach(function (a) { a.addEventListener("click", closeMenu); });
 
+  /* ---------- motion preference ---------- */
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* draw-on: stroke the SVG doodles inside a revealed .draw tile.
+     Driven from JS (inline) for reliability across the cascade. */
+  var DRAW_EASE = "cubic-bezier(0.62,0.37,0.1,0.95)";
+  function drawDoodles(el) {
+    var ps = el.querySelectorAll("[pathLength]");
+    ps.forEach(function (p, i) {
+      if (reduceMotion) { p.style.strokeDashoffset = "0"; return; }
+      p.style.animation = "drawOn 1.05s " + DRAW_EASE + " " + Math.min(i * 0.05, 0.5).toFixed(2) + "s forwards";
+    });
+  }
+
   /* ---------- scroll reveal ---------- */
   var reveals = document.querySelectorAll(".reveal");
+  function revealEl(el) { el.classList.add("in"); if (el.classList.contains("draw")) drawDoodles(el); }
   if (!("IntersectionObserver" in window)) {
-    reveals.forEach(function (el) { el.classList.add("in"); });
+    reveals.forEach(revealEl);
   } else {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+      entries.forEach(function (en) { if (en.isIntersecting) { revealEl(en.target); io.unobserve(en.target); } });
     }, { threshold: 0.12, rootMargin: "0px 0px -7% 0px" });
     reveals.forEach(function (el) { io.observe(el); });
   }
 
   /* ---------- collage parallax (gentle, scroll-linked) ---------- */
-  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var pxEls = reduceMotion ? [] : Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
   if (pxEls.length) {
     var ticking = false;
@@ -189,6 +203,81 @@
     window.addEventListener("resize", onScroll, { passive: true });
     applyParallax();
   }
+
+  /* ---------- collage slideshow (crossfade + caption swap) ---------- */
+  document.querySelectorAll("[data-slideshow]").forEach(function (box) {
+    var slides = box.querySelectorAll(".slide");
+    if (slides.length < 2) return;
+    var cardK = box.querySelector("[data-card-k]");
+    var cardM = box.querySelector("[data-card-m]");
+    var card = box.querySelector(".ctile__card");
+    if (reduceMotion) return; // hold first slide, no cycling
+    var i = 0;
+    setInterval(function () {
+      slides[i].classList.remove("is-active");
+      i = (i + 1) % slides.length;
+      slides[i].classList.add("is-active");
+      var s = slides[i];
+      if (cardK && cardM && s.dataset.k) {
+        if (card) card.style.opacity = "0";
+        setTimeout(function () {
+          cardK.textContent = s.dataset.k;
+          cardM.textContent = s.dataset.m || "";
+          if (card) card.style.opacity = "1";
+        }, 280);
+      }
+    }, 4200);
+  });
+
+  /* ---------- dynamic slogan: rotating phrases + highlighter sweep ----------
+     One phrase shows for ~7s, then lifts away and the next settles in. Marked
+     words get a hand-drawn marker sweep, alternating ping-pong orange / coral.
+     Pauses when scrolled out of view so it never runs unseen. */
+  (function () {
+    var slogan = document.querySelector("[data-slogan-cycle]");
+    if (!slogan) return;
+
+    // Each phrase = array of line HTML. Markers alternate orange / coral.
+    var PHRASES = [
+      ['<span class="mark mark--orange">Remarkable</span>', 'events, made', 'to impact —', '<em><span class="mark mark--coral">no trace.</span></em>'],
+      ['Built to', 'be <span class="mark mark--orange">seen</span> —', 'designed', 'to <em><span class="mark mark--coral">vanish.</span></em>'],
+      ['Bold while', 'it <span class="mark mark--orange">stands.</span>', 'Gentle', 'when it <em><span class="mark mark--coral">goes.</span></em>']
+    ];
+
+    function render(lines) {
+      return lines.map(function (h, n) {
+        return '<span class="line" style="--l:' + n + '">' + h + "</span>";
+      }).join("");
+    }
+
+    slogan.innerHTML = render(PHRASES[0]);
+    if (reduceMotion) { slogan.classList.add("is-in"); return; }
+
+    var idx = 0, timer = null;
+
+    function settle() {
+      slogan.classList.remove("is-out");
+      void slogan.offsetWidth; // reflow → restart the line-settle/sweep animations
+      slogan.classList.add("is-in");
+    }
+    function advance() {
+      slogan.classList.remove("is-in");
+      slogan.classList.add("is-out");
+      setTimeout(function () {
+        idx = (idx + 1) % PHRASES.length;
+        slogan.innerHTML = render(PHRASES[idx]);
+        settle();
+      }, 480); // covers the .is-out lift (transition + stagger)
+    }
+    function start() { if (timer) return; settle(); timer = setInterval(advance, 7000); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    if (!("IntersectionObserver" in window)) { start(); return; }
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { start(); } else { stop(); } });
+    }, { threshold: 0.35 });
+    sio.observe(slogan);
+  })();
 
   /* ---------- projects filter ---------- */
   document.querySelectorAll("[data-filterbar]").forEach(function (bar) {

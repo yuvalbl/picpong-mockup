@@ -79,8 +79,8 @@
   <div class="wrap">
     <div class="collage">
 
-      <!-- headline panel -->
-      <div class="ctile ctile--headline panel--orange reveal draw" style="--i:0">
+      <!-- A · headline text panel — vibrant "ocean" blue + real puffer + bubbles -->
+      <div class="ctile ctile--headline panel--bayside reveal" style="--i:0">
         <p class="eyebrow">Exclusive X-Board importer · since 2004</p>
         <h1 class="display">Displays that show up, <em>stand out</em>, and leave <span class="accent">no&nbsp;trace.</span></h1>
         <p class="lead">100% recycled corrugated board, pressed at 60&nbsp;tons and built to be reused — then folded flat and recycled again.</p>
@@ -88,44 +88,44 @@
           <a class="btn btn--onDark" href="shop.html">Shop the range <span class="arrow">&rarr;</span></a>
           <a class="btn btn--ghostDark" href="#contact">Start a project <span class="arrow">&rarr;</span></a>
         </div>
-        <svg viewBox="0 0 240 190" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--puffer" aria-hidden="true">
-          <g stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-            <path pathLength="1" d="M70 44 L58 26"/><path pathLength="1" d="M104 34 L100 12"/><path pathLength="1" d="M140 35 L146 13"/><path pathLength="1" d="M172 49 L190 35"/><path pathLength="1" d="M44 78 L20 70"/><path pathLength="1" d="M40 104 L16 108"/><path pathLength="1" d="M52 132 L36 152"/><path pathLength="1" d="M86 146 L82 168"/><path pathLength="1" d="M124 147 L130 169"/><path pathLength="1" d="M160 134 L178 150"/>
-            <path pathLength="1" d="M72 46 C40 54 28 96 48 122 C70 150 150 152 178 120 C200 95 196 56 158 46 C128 38 100 38 72 46 Z"/>
-            <path pathLength="1" d="M186 70 C212 58 222 70 220 96 C218 118 206 124 184 116"/>
-            <circle pathLength="1" cx="92" cy="86" r="11"/><circle cx="95" cy="89" r="3.6" fill="currentColor" stroke="none"/>
-            <path pathLength="1" d="M52 116 q 12 12 26 6"/>
-            <path pathLength="1" d="M70 132 q 38 16 78 4" stroke-width="2.6" opacity="0.75"/>
-          </g>
-        </svg>
+        <div class="bubbles" aria-hidden="true">
+          <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+          <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+        </div>
+        <img class="fish" src="assets/brand/puffer.png" alt="" aria-hidden="true" />
       </div>
 
-      <!-- media tile + overlapping info card + ping-pong doodle -->
-      <div class="ctile ctile--media reveal draw" data-parallax="0.05" style="--i:1">
-        <img src="assets/projects/king-solomon.jpg" alt="Colourful X-Board exhibition booths built for the King Solomon expo" loading="eager" />
-        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--pin-tr" style="color:#fff" aria-hidden="true">
-          <g stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-            <path pathLength="1" d="M58 112 C36 90 38 56 64 40 C92 22 130 30 144 58 C156 82 146 112 120 124 C104 131 90 130 78 124"/>
-            <path pathLength="1" d="M78 124 L96 168 q 4 12 18 10 q 14 -2 10 -16 L116 116"/>
-            <circle pathLength="1" cx="160" cy="150" r="13"/>
-            <path pathLength="1" d="M126 96 C150 108 176 128 178 150" stroke-dasharray="2 9" stroke-width="3" opacity="0.85"/>
-          </g>
-        </svg>
+      <!-- B-top · auto-changing slideshow + overlapping info card -->
+      <div class="ctile ctile--media slideshow reveal" data-slideshow data-parallax="0.05" style="--i:1">
+        <img class="slide is-active" src="assets/projects/king-solomon.jpg" alt="Colourful X-Board exhibition booths built for the King Solomon expo" data-k="King Solomon Expo" data-m="X-Board booths · from the archive" loading="eager" />
+        <img class="slide" src="assets/projects/microsoft.jpg" alt="Microsoft new-office launch environment built from X-Board" data-k="Microsoft · Launch" data-m="A welcome built to be re-staged" loading="lazy" />
+        <img class="slide" src="assets/projects/google-cloud.jpg" alt="Google Cloud spring party build" data-k="Google Cloud · Spring" data-m="Free-standing welcome build" loading="lazy" />
         <div class="ctile__card">
           <span class="ctile__chip" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-          <span class="ctile__card-k">King Solomon Expo</span>
-          <span class="ctile__card-m">X-Board booths · from the archive</span>
+          <span class="ctile__card-k" data-card-k>King Solomon Expo</span>
+          <span class="ctile__card-m" data-card-m>X-Board booths · from the archive</span>
         </div>
       </div>
 
-      <!-- cinemagraph "video" tile -->
+      <!-- C-top · cinemagraph "video" tile -->
       <div class="ctile ctile--video reveal" data-parallax="0.09" style="--i:2">
         <img class="cinemagraph" src="assets/projects/microsoft.jpg" alt="Microsoft launch environment built from X-Board, on the show floor" loading="eager" />
         <span class="ctile__live">On the show floor</span>
       </div>
 
-      <!-- sticker tile -->
-      <div class="ctile ctile--sticker reveal" data-parallax="0.07" style="--i:3">
+      <!-- B-bottom · dynamic Fraunces slogan panel (rotating phrases + marker sweep) -->
+      <div class="ctile ctile--slogan panel--pond reveal" data-parallax="0.04" style="--i:3">
+        <span class="sr-only">Remarkable events, made to impact, gone without a trace. Picpong builds bold displays that leave nothing behind.</span>
+        <p class="slogan" data-slogan-cycle aria-hidden="true">
+          <span class="line" style="--l:0">Remarkable</span>
+          <span class="line" style="--l:1">events, made</span>
+          <span class="line" style="--l:2">to impact —</span>
+          <span class="line" style="--l:3"><em><span class="mark mark--coral">no trace.</span></em></span>
+        </p>
+      </div>
+
+      <!-- C-bottom · sticker photo + printer doodle -->
+      <div class="ctile ctile--sticker reveal draw" data-parallax="0.07" style="--i:4">
         <img src="assets/projects/landa.jpg" alt="Landa Digital Printing branded environment" loading="lazy" />
         <span class="sticker" aria-hidden="true">
           <svg viewBox="0 0 120 120">
@@ -134,12 +134,7 @@
             <text><textPath href="#stickPath" startOffset="0">picpong&#160;·&#160;selected&#160;projects&#160;·&#160;picpong&#160;·&#160;</textPath></text>
           </svg>
         </span>
-      </div>
-
-      <!-- detail tile + printer doodle -->
-      <div class="ctile ctile--detail reveal draw" data-parallax="0.12" style="--i:4">
-        <img src="assets/projects/redefine-meat.jpg" alt="Close-up of a printed recycled-board environment" loading="lazy" />
-        <svg viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--pin-bl" style="color:#fff" aria-hidden="true">
+        <svg viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--pin-bl" style="color:#fff;width:clamp(80px,11vw,130px)" aria-hidden="true">
           <g stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
             <path pathLength="1" d="M30 92 q 0 -10 10 -10 H200 q 10 0 10 10 V138 q 0 10 -10 10 H40 q -10 0 -10 -10 Z"/>
             <path pathLength="1" d="M52 148 L44 184"/><path pathLength="1" d="M188 148 L196 184"/>
