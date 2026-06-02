@@ -16,6 +16,9 @@ def fetch(url):
     with urllib.request.urlopen(req, timeout=12) as r:
         return r.read()
 
+DELAY = float(os.environ.get("DL_DELAY", "0.4"))   # politeness between requests
+WORKERS = int(os.environ.get("DL_WORKERS", "2"))
+
 def one(row):
     dest, url, fb = row
     out = os.path.join(ROOT, dest)
@@ -31,6 +34,7 @@ def one(row):
                 if data and len(data) > 200:
                     with open(out, "wb") as f:
                         f.write(data)
+                    time.sleep(DELAY)
                     return ("ok", dest, len(data))
             except urllib.error.HTTPError as e:
                 if e.code == 404:
@@ -48,7 +52,7 @@ def main():
             rows.append((parts[0], parts[1], parts[2] if len(parts) > 2 else ""))
     res = {"ok": 0, "skip": 0, "fail": 0, "bytes": 0, "failures": []}
     done = 0
-    with ThreadPoolExecutor(max_workers=4) as ex:
+    with ThreadPoolExecutor(max_workers=WORKERS) as ex:
         futs = [ex.submit(one, r) for r in rows]
         for fut in as_completed(futs):
             status, dest, n = fut.result()

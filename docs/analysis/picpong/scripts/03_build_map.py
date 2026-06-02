@@ -89,6 +89,20 @@ def parent_label(pid):
         return (t or r["slug"], "portfolio", r["permalink"], r.get("categories", []))
     return (f"post-{pid}", "unknown", None, [])
 
+def nice_label(orig, items):
+    """JOBxxxx / post-N titles -> readable name from the dominant filename."""
+    if orig and not re.match(r"(job\d|post-)", orig, re.I):
+        return orig
+    stems = collections.Counter()
+    for m in items:
+        s = stem(fname(m["url"]))
+        if re.search(r"[A-Za-z]{3}", s):           # has real ascii word
+            stems[s] += 1
+    if stems:
+        s = stems.most_common(1)[0][0]
+        return re.sub(r"[-_]+", " ", s).strip().title()
+    return orig
+
 PAGE_BUCKET = {"x-board": "products", "exhibition-design": "products",
     "conferences-and-events": "products", "activity-compounds": "products",
     "picpong-products-for-businesses": "products", "point-of-sale": "products",
@@ -126,6 +140,7 @@ for pid, items in byparent.items():
         bucket = "projects"
         sl = ascii_slug(label) or ascii_slug(stem(fname(items[0]["url"]))) or f"job-{pid}"
         gkey = f"projects/{sl}"
+        label = nice_label(label, items)        # readable display name; slug unchanged
     g = ensure_group(gkey, label, bucket, url, cats, "he", "gen1-rest")
     for m in items:
         nf = norm_path(m["file"])
@@ -231,10 +246,23 @@ for gkey, g in groups.items():
         gtype, scope = "uncategorised", "review"
     g["type"], g["scope"] = gtype, scope
     g["count"] = len(g["assets"])
+    # download priority: brand events & in-scope first, junk last (survives re-block)
+    if g["bucket"] == "projects" and "gen2" in g["generation"]:
+        prio = 0 if scope == "in-scope" else 2
+    elif g["bucket"] in ("products", "logos", "brand"):
+        prio = 1
+    elif g["bucket"] == "projects" and scope == "in-scope":
+        prio = 3
+    elif g["bucket"] == "projects" and scope == "review":
+        prio = 4
+    elif scope == "out-of-scope":
+        prio = 5
+    else:
+        prio = 6
     for a in g["assets"]:
         dest = f"assets/{gkey}/{a['file']}"
         a["dest"] = dest
-        dl.append((dest, a["download"], a["fallback"]))
+        dl.append((prio, dest, a["download"], a["fallback"]))
     out_groups.append(g)
     bucket_counts[g["bucket"]] += g["count"]
     type_counts[gtype] += g["count"]
@@ -250,8 +278,9 @@ amap = {"source": base, "generated_from": "WP REST + page HTML",
         "groups": out_groups}
 json.dump(amap, open(os.path.join(ROOT, "asset-map.json"), "w"),
           ensure_ascii=False, indent=1)
+dl.sort(key=lambda r: r[0])          # priority order
 with open(os.path.join(ROOT, "download-list.tsv"), "w") as f:
-    for dest, url, fb in dl:
+    for prio, dest, url, fb in dl:
         f.write(f"{dest}\t{url}\t{fb}\n")
 
 print("buckets:", dict(bucket_counts), "| total", sum(bucket_counts.values()))

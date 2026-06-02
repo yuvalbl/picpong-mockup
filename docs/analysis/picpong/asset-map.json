@@ -11,10 +11,10 @@
  },
  "types": {
   "xboard-product": 225,
-  "other": 507,
+  "other": 517,
   "point-of-sale": 16,
-  "booth-exhibition": 58,
-  "activity-compound": 22,
+  "booth-exhibition": 56,
+  "activity-compound": 14,
   "sticker-decal": 20,
   "conference": 67,
   "event-activation": 2,
@@ -24,8 +24,8 @@
   "client-logo": 2
  },
  "scope": {
-  "in-scope": 380,
-  "review": 882,
+  "in-scope": 370,
+  "review": 892,
   "out-of-scope": 36,
   "reference": 5
  },
@@ -33,7 +33,7 @@
  "groups": [
   {
    "key": "projects/job2100",
-   "label": "JOB2100",
+   "label": "Amarula",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job2100/",
    "categories": [],
@@ -461,7 +461,7 @@
   },
   {
    "key": "projects/job3483",
-   "label": "JOB3483",
+   "label": "Pnp Furn",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3483/",
    "categories": [],
@@ -635,7 +635,7 @@
   },
   {
    "key": "projects/job3446-adidas-sportscene-windows",
-   "label": "Job3446 - Adidas Sportscene windows",
+   "label": "Adidas",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3446-adidas-sportscene-windows/",
    "categories": [],
@@ -967,7 +967,7 @@
   },
   {
    "key": "projects/job5122",
-   "label": "JOB5122",
+   "label": "Dsc 5127",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job5122/",
    "categories": [],
@@ -1393,7 +1393,7 @@
   },
   {
    "key": "projects/job1172-wallys-mall-tree",
-   "label": "Job1172 - Wallys Mall Tree",
+   "label": "Gogreen",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1172-wallys-mall-tree/",
    "categories": [],
@@ -1529,13 +1529,13 @@
      "dest": "assets/projects/job1172-wallys-mall-tree/GoGreen_8.jpg"
     }
    ],
-   "type": "activity-compound",
-   "scope": "in-scope",
+   "type": "other",
+   "scope": "review",
    "count": 8
   },
   {
    "key": "projects/job1301",
-   "label": "JOB1301",
+   "label": "Dove Promo Tables",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1301/",
    "categories": [],
@@ -1661,7 +1661,7 @@
   },
   {
    "key": "projects/job1522",
-   "label": "JOB1522",
+   "label": "Image",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1522/",
    "categories": [],
@@ -1787,7 +1787,7 @@
   },
   {
    "key": "projects/job3044-rhino",
-   "label": "Job3044 - Rhino",
+   "label": "Rhino",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3044-rhino/",
    "categories": [],
@@ -1913,7 +1913,7 @@
   },
   {
    "key": "projects/job1591",
-   "label": "Job1591",
+   "label": "Savanna Mini Can 3 Copy",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1591/",
    "categories": [],
@@ -2039,7 +2039,7 @@
   },
   {
    "key": "projects/job1503",
-   "label": "Job1503",
+   "label": "Savanna Final",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1503/",
    "categories": [],
@@ -2165,7 +2165,7 @@
   },
   {
    "key": "projects/job1366",
-   "label": "JOB1366",
+   "label": "Greenpoint Spar Bulkheads",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1366/",
    "categories": [],
@@ -2417,7 +2417,7 @@
   },
   {
    "key": "projects/job3059",
-   "label": "JOB3059",
+   "label": "Lindt",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3059/",
    "categories": [],
@@ -2527,7 +2527,7 @@
   },
   {
    "key": "projects/job1876",
-   "label": "JOB1876",
+   "label": "Bells",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1876/",
    "categories": [],
@@ -2637,7 +2637,7 @@
   },
   {
    "key": "projects/job3789",
-   "label": "JOB3789",
+   "label": "Flying Fish",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3789/",
    "categories": [],
@@ -2747,7 +2747,7 @@
   },
   {
    "key": "projects/job1430",
-   "label": "JOB1430",
+   "label": "Mini Dispenser V5",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1430/",
    "categories": [],
@@ -2857,7 +2857,7 @@
   },
   {
    "key": "projects/job1815",
-   "label": "JOB1815",
+   "label": "Antalis Paperman",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1815/",
    "categories": [],
@@ -2967,7 +2967,7 @@
   },
   {
    "key": "projects/job3054",
-   "label": "JOB3054",
+   "label": "Cdu",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3054/",
    "categories": [],
@@ -3077,7 +3077,7 @@
   },
   {
    "key": "projects/job1399",
-   "label": "JOB1399",
+   "label": "Froggit",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1399/",
    "categories": [],
@@ -3187,7 +3187,7 @@
   },
   {
    "key": "projects/job3828",
-   "label": "JOB3828",
+   "label": "Play",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3828/",
    "categories": [],
@@ -3297,7 +3297,7 @@
   },
   {
    "key": "projects/job3594",
-   "label": "JOB3594",
+   "label": "Oryx",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3594/",
    "categories": [],
@@ -3407,7 +3407,7 @@
   },
   {
    "key": "projects/job1163",
-   "label": "JOB1163",
+   "label": "Red Bull",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1163/",
    "categories": [],
@@ -3517,7 +3517,7 @@
   },
   {
    "key": "projects/job1506-bench-table",
-   "label": "JOB1506 - bench & table",
+   "label": "Savanna",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1506-bench-table/",
    "categories": [],
@@ -3627,7 +3627,7 @@
   },
   {
    "key": "projects/job1861-one-seat",
-   "label": "JOB1861 one seat",
+   "label": "Klipdrift",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1861-one-seat/",
    "categories": [],
@@ -3847,7 +3847,7 @@
   },
   {
    "key": "projects/job4172",
-   "label": "JOB4172",
+   "label": "Distell Fund Management",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4172/",
    "categories": [],
@@ -3957,7 +3957,7 @@
   },
   {
    "key": "projects/job2110",
-   "label": "JOB2110",
+   "label": "Bernini",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job2110/",
    "categories": [],
@@ -4067,7 +4067,7 @@
   },
   {
    "key": "projects/job1506-foosball",
-   "label": "job1506-Foosball",
+   "label": "Savanna",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1506-foosball/",
    "categories": [],
@@ -4177,7 +4177,7 @@
   },
   {
    "key": "projects/job5401",
-   "label": "Job5401",
+   "label": "Dsc 9144",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job5401/",
    "categories": [],
@@ -4397,7 +4397,7 @@
   },
   {
    "key": "projects/job3231",
-   "label": "Job3231",
+   "label": "Dgb",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3231/",
    "categories": [],
@@ -4507,7 +4507,7 @@
   },
   {
    "key": "projects/job1773",
-   "label": "JOB1773",
+   "label": "20131022 122453 Richtonehdr",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1773/",
    "categories": [],
@@ -4617,7 +4617,7 @@
   },
   {
    "key": "projects/job3746",
-   "label": "JOB3746",
+   "label": "Windhoek Bulkheads",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3746/",
    "categories": [],
@@ -4727,7 +4727,7 @@
   },
   {
    "key": "projects/job1100",
-   "label": "JOB1100",
+   "label": "Assembly Hunters Extreme",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1100/",
    "categories": [],
@@ -4821,7 +4821,7 @@
   },
   {
    "key": "projects/job1330",
-   "label": "JOB1330",
+   "label": "Bains Slimline 27 Copy",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1330/",
    "categories": [],
@@ -4915,7 +4915,7 @@
   },
   {
    "key": "projects/job1593",
-   "label": "JOB1593",
+   "label": "Amarula 375Ml",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1593/",
    "categories": [],
@@ -5009,7 +5009,7 @@
   },
   {
    "key": "projects/job4499",
-   "label": "JOB4499",
+   "label": "Kvw Table",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4499/",
    "categories": [],
@@ -5103,7 +5103,7 @@
   },
   {
    "key": "projects/job3245",
-   "label": "JOB3245",
+   "label": "Catch Media",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3245/",
    "categories": [],
@@ -5197,7 +5197,7 @@
   },
   {
    "key": "projects/job1139",
-   "label": "JOB1139",
+   "label": "Photos",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1139/",
    "categories": [],
@@ -5291,7 +5291,7 @@
   },
   {
    "key": "projects/job1192",
-   "label": "JOB1192",
+   "label": "Protea Chemicals",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1192/",
    "categories": [],
@@ -5385,7 +5385,7 @@
   },
   {
    "key": "projects/job1271",
-   "label": "JOB1271",
+   "label": "Yolo Photobooth",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1271/",
    "categories": [],
@@ -5479,7 +5479,7 @@
   },
   {
    "key": "projects/job1506-airhockey",
-   "label": "job1506-Airhockey",
+   "label": "Savanna",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1506-airhockey/",
    "categories": [],
@@ -5573,7 +5573,7 @@
   },
   {
    "key": "projects/job1881-kraft-table",
-   "label": "Job1881 - Kraft table",
+   "label": "Kraft Table Base",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1881-kraft-table/",
    "categories": [],
@@ -5667,7 +5667,7 @@
   },
   {
    "key": "projects/job4567-jeep-store-front",
-   "label": "Job4567 - Jeep Store Front",
+   "label": "Jeep",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4567-jeep-store-front/",
    "categories": [],
@@ -5761,7 +5761,7 @@
   },
   {
    "key": "projects/job3848",
-   "label": "JOB3848",
+   "label": "Addis",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3848/",
    "categories": [],
@@ -5839,7 +5839,7 @@
   },
   {
    "key": "projects/job1382",
-   "label": "JOB1382",
+   "label": "Pics",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1382/",
    "categories": [],
@@ -5917,7 +5917,7 @@
   },
   {
    "key": "projects/job1693",
-   "label": "JOB1693",
+   "label": "Albany",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1693/",
    "categories": [],
@@ -5995,7 +5995,7 @@
   },
   {
    "key": "projects/job1866",
-   "label": "JOB1866",
+   "label": "Amarula Tree",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1866/",
    "categories": [],
@@ -6073,7 +6073,7 @@
   },
   {
    "key": "projects/job3194",
-   "label": "JOB3194",
+   "label": "Amarula Low",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3194/",
    "categories": [],
@@ -6151,7 +6151,7 @@
   },
   {
    "key": "projects/job1990",
-   "label": "JOB1990",
+   "label": "Dstv New",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1990/",
    "categories": [],
@@ -6229,7 +6229,7 @@
   },
   {
    "key": "projects/job3263",
-   "label": "JOB3263",
+   "label": "Royal Reserve",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3263/",
    "categories": [],
@@ -6307,7 +6307,7 @@
   },
   {
    "key": "projects/job1569",
-   "label": "JOB1569",
+   "label": "Uefa Championship Pallet Wrap",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1569/",
    "categories": [],
@@ -6385,7 +6385,7 @@
   },
   {
    "key": "projects/job2060",
-   "label": "JOB2060",
+   "label": "Dstv S",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job2060/",
    "categories": [],
@@ -6463,7 +6463,7 @@
   },
   {
    "key": "projects/job3296",
-   "label": "JOB3296",
+   "label": "Tfg Tables",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3296/",
    "categories": [],
@@ -6541,7 +6541,7 @@
   },
   {
    "key": "projects/job5195",
-   "label": "JOB5195",
+   "label": "Dsc 7527 Copy",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job5195/",
    "categories": [],
@@ -6619,7 +6619,7 @@
   },
   {
    "key": "projects/job1506",
-   "label": "JOB1506",
+   "label": "Savanna",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1506/",
    "categories": [],
@@ -6697,7 +6697,7 @@
   },
   {
    "key": "projects/job1861-2-seater",
-   "label": "JOB1861 2 Seater",
+   "label": "Klipdrift",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1861-2-seater/",
    "categories": [],
@@ -6775,7 +6775,7 @@
   },
   {
    "key": "projects/job3018",
-   "label": "JOB3018",
+   "label": "Dsc 1022",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3018/",
    "categories": [],
@@ -6853,7 +6853,7 @@
   },
   {
    "key": "projects/job1137",
-   "label": "JOB1137",
+   "label": "Gac",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1137/",
    "categories": [],
@@ -7009,7 +7009,7 @@
   },
   {
    "key": "projects/job3781",
-   "label": "JOB3781",
+   "label": "The Saints",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3781/",
    "categories": [],
@@ -7087,7 +7087,7 @@
   },
   {
    "key": "projects/job3232",
-   "label": "JOB3232",
+   "label": "Dgb",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3232/",
    "categories": [],
@@ -7243,7 +7243,7 @@
   },
   {
    "key": "projects/job1973-hansa-tray",
-   "label": "Job1973 - Hansa Tray",
+   "label": "Hansa",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1973-hansa-tray/",
    "categories": [],
@@ -7321,7 +7321,7 @@
   },
   {
    "key": "projects/job5048",
-   "label": "job5048",
+   "label": "Jeep Denim Letters",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job5048/",
    "categories": [],
@@ -7399,7 +7399,7 @@
   },
   {
    "key": "projects/job1579",
-   "label": "JOB1579",
+   "label": "Mopanya Mall Bulkhead Project Setup",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1579/",
    "categories": [],
@@ -7477,7 +7477,7 @@
   },
   {
    "key": "projects/job1784",
-   "label": "JOB1784",
+   "label": "Dsc 9753",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1784/",
    "categories": [],
@@ -7789,7 +7789,7 @@
   },
   {
    "key": "projects/job4902",
-   "label": "JOB4902",
+   "label": "Dsc 1696",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4902/",
    "categories": [],
@@ -7851,7 +7851,7 @@
   },
   {
    "key": "projects/job5306",
-   "label": "JOB5306",
+   "label": "6Pack Steri Stumpi Fsu",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job5306/",
    "categories": [],
@@ -7975,7 +7975,7 @@
   },
   {
    "key": "projects/job0324",
-   "label": "JOB0324",
+   "label": "Bisquit Cognac",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job0324/",
    "categories": [],
@@ -8037,7 +8037,7 @@
   },
   {
    "key": "projects/job3005",
-   "label": "JOB3005",
+   "label": "Cocacola 180 Bottle Fsu",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3005/",
    "categories": [],
@@ -8099,7 +8099,7 @@
   },
   {
    "key": "projects/job1307",
-   "label": "JOB1307",
+   "label": "Bisquit Units",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1307/",
    "categories": [],
@@ -8161,7 +8161,7 @@
   },
   {
    "key": "projects/job1311",
-   "label": "JOB1311",
+   "label": "Bisquit Units",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1311/",
    "categories": [],
@@ -8223,7 +8223,7 @@
   },
   {
    "key": "projects/job1697",
-   "label": "JOB1697",
+   "label": "Savanna Project Pantha Gondola Ends",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1697/",
    "categories": [],
@@ -8285,7 +8285,7 @@
   },
   {
    "key": "projects/job2101",
-   "label": "JOB2101",
+   "label": "Lovers",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job2101/",
    "categories": [],
@@ -8347,7 +8347,7 @@
   },
   {
    "key": "projects/job1115",
-   "label": "JOB1115",
+   "label": "Puma Block Boxes",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1115/",
    "categories": [],
@@ -8409,7 +8409,7 @@
   },
   {
    "key": "projects/job4432",
-   "label": "JOB4432",
+   "label": "4Th Street",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4432/",
    "categories": [],
@@ -8471,7 +8471,7 @@
   },
   {
    "key": "projects/job4198",
-   "label": "JOB4198",
+   "label": "Saldanha",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4198/",
    "categories": [],
@@ -8533,7 +8533,7 @@
   },
   {
    "key": "projects/job4860",
-   "label": "JOB4860",
+   "label": "Pmc Group Table",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4860/",
    "categories": [],
@@ -8595,7 +8595,7 @@
   },
   {
    "key": "projects/job5605",
-   "label": "JOB5605",
+   "label": "Dsc 1150",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job5605/",
    "categories": [],
@@ -8657,7 +8657,7 @@
   },
   {
    "key": "projects/job3764",
-   "label": "JOB3764",
+   "label": "Garmic Table",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3764/",
    "categories": [],
@@ -8719,7 +8719,7 @@
   },
   {
    "key": "projects/job1861",
-   "label": "JOB1861",
+   "label": "Klipdrift",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1861/",
    "categories": [],
@@ -8781,7 +8781,7 @@
   },
   {
    "key": "projects/job1861-table",
-   "label": "JOB1861 Table",
+   "label": "Klipdrift",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1861-table/",
    "categories": [],
@@ -8843,7 +8843,7 @@
   },
   {
    "key": "projects/job3040",
-   "label": "JOB3040",
+   "label": "Walter",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3040/",
    "categories": [],
@@ -8905,7 +8905,7 @@
   },
   {
    "key": "projects/job1777",
-   "label": "JOB1777",
+   "label": "Lecoste",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1777/",
    "categories": [],
@@ -8967,7 +8967,7 @@
   },
   {
    "key": "projects/job1628",
-   "label": "JOB1628",
+   "label": "Tanqueray Imported",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1628/",
    "categories": [],
@@ -9029,7 +9029,7 @@
   },
   {
    "key": "projects/job1675",
-   "label": "JOB1675",
+   "label": "Dsc 7503",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1675/",
    "categories": [],
@@ -9153,7 +9153,7 @@
   },
   {
    "key": "projects/job5277",
-   "label": "job5277",
+   "label": "Dsc 6744",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job5277/",
    "categories": [],
@@ -9215,7 +9215,7 @@
   },
   {
    "key": "projects/job1392",
-   "label": "Job1392",
+   "label": "Savanna Summer Cycle New",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1392/",
    "categories": [],
@@ -9463,7 +9463,7 @@
   },
   {
    "key": "projects/job5152",
-   "label": "JOB5152",
+   "label": "Amarula Fsu",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job5152/",
    "categories": [],
@@ -9509,7 +9509,7 @@
   },
   {
    "key": "projects/job4404",
-   "label": "JOB4404",
+   "label": "Afro Botanics",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4404/",
    "categories": [],
@@ -9555,7 +9555,7 @@
   },
   {
    "key": "projects/job4243",
-   "label": "JOB4243",
+   "label": "Four Cousins Creme",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4243/",
    "categories": [],
@@ -9601,7 +9601,7 @@
   },
   {
    "key": "projects/job1722",
-   "label": "JOB1722",
+   "label": "Assembly",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1722/",
    "categories": [],
@@ -9647,7 +9647,7 @@
   },
   {
    "key": "projects/job4248",
-   "label": "JOB4248",
+   "label": "Blm 180",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4248/",
    "categories": [],
@@ -9693,7 +9693,7 @@
   },
   {
    "key": "projects/job1693-t",
-   "label": "JOB1693-T",
+   "label": "Albany",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1693-t/",
    "categories": [],
@@ -9739,7 +9739,7 @@
   },
   {
    "key": "projects/job5516",
-   "label": "JOB5516",
+   "label": "Dsc 0084",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job5516/",
    "categories": [],
@@ -9785,7 +9785,7 @@
   },
   {
    "key": "projects/job1598",
-   "label": "JOB1598",
+   "label": "Dsc 7573",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1598/",
    "categories": [],
@@ -9831,7 +9831,7 @@
   },
   {
    "key": "projects/job1684",
-   "label": "JOB1684",
+   "label": "Tangle Teezer",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1684/",
    "categories": [],
@@ -9877,7 +9877,7 @@
   },
   {
    "key": "projects/job1343",
-   "label": "JOB1343",
+   "label": "Image",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1343/",
    "categories": [],
@@ -9923,7 +9923,7 @@
   },
   {
    "key": "projects/job3553",
-   "label": "JOB3553",
+   "label": "Nicolay",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3553/",
    "categories": [],
@@ -9969,7 +9969,7 @@
   },
   {
    "key": "projects/job4109",
-   "label": "JOB4109",
+   "label": "Pampers",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job4109/",
    "categories": [],
@@ -10015,7 +10015,7 @@
   },
   {
    "key": "projects/job1317",
-   "label": "JOB1317",
+   "label": "Pic 1 Copy",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1317/",
    "categories": [],
@@ -10061,7 +10061,7 @@
   },
   {
    "key": "projects/job1476",
-   "label": "JOB1476",
+   "label": "Assembly 13 Copy",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1476/",
    "categories": [],
@@ -10107,7 +10107,7 @@
   },
   {
    "key": "projects/job3687",
-   "label": "JOB3687",
+   "label": "Bos",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3687/",
    "categories": [],
@@ -10199,7 +10199,7 @@
   },
   {
    "key": "projects/job3950",
-   "label": "JOB3950",
+   "label": "Keg Table",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3950/",
    "categories": [],
@@ -10245,7 +10245,7 @@
   },
   {
    "key": "projects/job3138",
-   "label": "JOB3138",
+   "label": "Kellogs",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3138/",
    "categories": [],
@@ -10291,7 +10291,7 @@
   },
   {
    "key": "projects/job00931",
-   "label": "JOB00931",
+   "label": "Images",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job00931/",
    "categories": [],
@@ -10383,7 +10383,7 @@
   },
   {
    "key": "projects/job3219",
-   "label": "JOB3219",
+   "label": "X178 Zigzag Wall",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3219/",
    "categories": [],
@@ -10429,7 +10429,7 @@
   },
   {
    "key": "projects/job3430",
-   "label": "JOB3430",
+   "label": "Legrand",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3430/",
    "categories": [],
@@ -10475,7 +10475,7 @@
   },
   {
    "key": "projects/job1552-bumbox",
-   "label": "Job1552 - BUMBOX",
+   "label": "Bumbox",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1552-bumbox/",
    "categories": [],
@@ -10521,7 +10521,7 @@
   },
   {
    "key": "projects/job1678-distell-free-standing-tree",
-   "label": "Job1678 - Distell Free standing tree",
+   "label": "Distell Tree",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job1678-distell-free-standing-tree/",
    "categories": [],
@@ -10561,13 +10561,13 @@
      "dest": "assets/projects/job1678-distell-free-standing-tree/Distell-tree_7.jpg"
     }
    ],
-   "type": "booth-exhibition",
-   "scope": "in-scope",
+   "type": "other",
+   "scope": "review",
    "count": 2
   },
   {
    "key": "projects/job5298",
-   "label": "Job5298",
+   "label": "Shopping Bag",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job5298/",
    "categories": [],
@@ -14456,7 +14456,7 @@
   },
   {
    "key": "projects/job3130",
-   "label": "JOB3130",
+   "label": "Mainstay Bob",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3130/",
    "categories": [],
@@ -14486,7 +14486,7 @@
   },
   {
    "key": "projects/job3417",
-   "label": "JOB3417",
+   "label": "Job3417 Sm",
    "bucket": "projects",
    "url": "https://www.picpong.biz/job3417/",
    "categories": [],
