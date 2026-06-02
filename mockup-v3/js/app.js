@@ -204,29 +204,51 @@
     applyParallax();
   }
 
-  /* ---------- collage slideshow (crossfade + caption swap) ---------- */
+  /* ---------- collage slideshow: reel player (zoom-cut + story bars) ---------- */
   document.querySelectorAll("[data-slideshow]").forEach(function (box) {
+    var SLIDE_MS = 4200;
     var slides = box.querySelectorAll(".slide");
     if (slides.length < 2) return;
     var cardK = box.querySelector("[data-card-k]");
     var cardM = box.querySelector("[data-card-m]");
     var card = box.querySelector(".ctile__card");
-    if (reduceMotion) return; // hold first slide, no cycling
+    var bars = box.querySelectorAll(".slideshow__bars .bar");
+    box.style.setProperty("--slide-ms", SLIDE_MS + "ms");
+
+    // restart the active bar's fill from 0 (reflow forces the reset); earlier bars stay full
+    function runBar(idx) {
+      bars.forEach(function (b, k) {
+        b.classList.remove("is-running");
+        b.classList.toggle("is-done", k < idx);
+      });
+      var b = bars[idx];
+      if (!b) return;
+      void b.offsetWidth;
+      b.classList.add("is-running");
+    }
+
+    if (reduceMotion) { // hold first slide, fill bars, no cycling
+      bars.forEach(function (b) { b.classList.add("is-done"); });
+      return;
+    }
+    runBar(0);
+
     var i = 0;
     setInterval(function () {
       slides[i].classList.remove("is-active");
       i = (i + 1) % slides.length;
       slides[i].classList.add("is-active");
+      runBar(i);
       var s = slides[i];
-      if (cardK && cardM && s.dataset.k) {
-        if (card) card.style.opacity = "0";
+      if (card && s.dataset.k) {
+        card.classList.add("is-swapping");
         setTimeout(function () {
-          cardK.textContent = s.dataset.k;
-          cardM.textContent = s.dataset.m || "";
-          if (card) card.style.opacity = "1";
-        }, 280);
+          if (cardK) cardK.textContent = s.dataset.k;
+          if (cardM) cardM.textContent = s.dataset.m || "";
+          card.classList.remove("is-swapping");
+        }, 300);
       }
-    }, 4200);
+    }, SLIDE_MS);
   });
 
   /* ---------- dynamic slogan: rotating phrases + highlighter sweep ----------

@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..500,0..100,0..1;1,9..144,300..500,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=4" />
+<link rel="stylesheet" href="css/styles.css?v=6" />
 </head>
 <body>
 
@@ -95,13 +95,23 @@
         <img class="fish" src="assets/brand/puffer.png" alt="" aria-hidden="true" />
       </div>
 
-      <!-- B-top · auto-changing slideshow + overlapping info card -->
+      <!-- B-top · auto-changing slideshow, reel-player feel + overlapping info card -->
       <div class="ctile ctile--media slideshow reveal" data-slideshow data-parallax="0.05" style="--i:1">
-        <img class="slide is-active" src="assets/projects/king-solomon.jpg" alt="Colourful X-Board exhibition booths built for the King Solomon expo" data-k="King Solomon Expo" data-m="X-Board booths · from the archive" loading="eager" />
-        <img class="slide" src="assets/projects/microsoft.jpg" alt="Microsoft new-office launch environment built from X-Board" data-k="Microsoft · Launch" data-m="A welcome built to be re-staged" loading="lazy" />
-        <img class="slide" src="assets/projects/google-cloud.jpg" alt="Google Cloud spring party build" data-k="Google Cloud · Spring" data-m="Free-standing welcome build" loading="lazy" />
+        <div class="slideshow__bars" aria-hidden="true">
+          <span class="bar"><i></i></span>
+          <span class="bar"><i></i></span>
+          <span class="bar"><i></i></span>
+        </div>
+        <div class="slide is-active" data-k="King Solomon Expo" data-m="X-Board booths · from the archive">
+          <img src="assets/projects/king-solomon.jpg" alt="Colourful X-Board exhibition booths built for the King Solomon expo" loading="eager" />
+        </div>
+        <div class="slide" data-k="Microsoft · Launch" data-m="A welcome built to be re-staged">
+          <img src="assets/projects/microsoft.jpg" alt="Microsoft new-office launch environment built from X-Board" loading="lazy" />
+        </div>
+        <div class="slide" data-k="Google Cloud · Spring" data-m="Free-standing welcome build">
+          <img src="assets/projects/google-cloud.jpg" alt="Google Cloud spring party build" loading="lazy" />
+        </div>
         <div class="ctile__card">
-          <span class="ctile__chip" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
           <span class="ctile__card-k" data-card-k>King Solomon Expo</span>
           <span class="ctile__card-m" data-card-m>X-Board booths · from the archive</span>
         </div>
@@ -477,6 +487,6 @@
   <img src="assets/brand/puffer.svg" alt="" />
 </button>
 
-<script src="js/app.js"></script>
+<script src="js/app.js?v=6"></script>
 </body>
 </html>
