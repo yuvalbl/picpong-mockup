@@ -34,10 +34,10 @@
   --t-h3:      clamp(1.4rem, 2.6vw, 2.125rem);
   --t-h4:      clamp(1.15rem, 1.8vw, 1.5rem);
   --t-lead:    1.125rem;
-  --t-body:    0.9375rem;
-  --t-ui:      0.875rem;
-  --t-meta:    0.75rem;
-  --t-eyebrow: 0.6875rem;
+  --t-body:    1rem;        /* 16px — comfortable reading floor (was 15px) */
+  --t-ui:      0.9375rem;   /* 15px (was 14px) */
+  --t-meta:    0.8125rem;   /* 13px captions (was 12px) */
+  --t-eyebrow: 0.6875rem;   /* 11px — legit tiny eyebrow */
 
   /* ---- motion ---- */
   --ease: cubic-bezier(0.62, 0.37, 0.1, 0.95);
@@ -221,7 +221,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    ============================================================ */
 .ribbon {
   background: var(--ink); color: var(--cream);
-  font-size: 0.625rem; font-weight: 700; letter-spacing: 0.28em;
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.26em;
   text-transform: uppercase; text-align: center; padding: 0.4rem 1rem;
 }
 .ribbon b { color: var(--orange); }
@@ -317,13 +317,13 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 
 .funnels {
-  display: grid; grid-template-columns: 1fr; gap: 1px;
-  margin-top: clamp(2.5rem, 5vw, 3.5rem);
-  background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 2.4vw, 1.75rem);
+  margin-top: clamp(2rem, 4vw, 2.75rem);
 }
 .lane { background: var(--cream); padding: clamp(1.75rem, 3.5vw, 2.6rem) clamp(1.25rem, 3vw, 2.25rem);
   transition: background var(--speed) var(--ease); }
-.lane:hover { background: var(--cream-2); }
+.lane:not(.lane--panel):hover { background: var(--cream-2); }
 .lane__num { font-family: "Fraunces", serif; font-weight: 300; font-size: 1.25rem; color: var(--kraft-deep); }
 .lane__title { margin: 0.5rem 0; }
 .lane__desc { color: #45453f; max-width: 40ch; margin-bottom: 1.6rem; }
@@ -381,7 +381,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .tile__media-art { position: absolute; inset: 0; transition: transform var(--speed-slow) var(--ease); }
 .tile:hover .tile__media-art { transform: scale(1.04); }
 .tile__badge { position: absolute; top: 0.8rem; left: 0.8rem; z-index: 2;
-  font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
   background: var(--ink); color: var(--cream); padding: 0.3rem 0.6rem; border-radius: 999px; }
 .tile__badge--eco { background: #2f7d52; }
 .tile__body { padding: 1.1rem 1.15rem 1.25rem; display: flex; flex-direction: column; gap: 0.35rem; flex: 1; }
@@ -436,7 +436,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .project__client { font-size: var(--t-eyebrow); text-transform: uppercase; letter-spacing: 0.14em;
   color: var(--orange-bright); font-weight: 600; }
 .project__title { margin: 0.4rem 0 0; color: #fff; }
-.project__tag { position: absolute; top: 1rem; right: 1rem; font-size: 0.625rem; letter-spacing: 0.1em;
+.project__tag { position: absolute; top: 1rem; right: 1rem; font-size: 0.6875rem; letter-spacing: 0.08em;
   text-transform: uppercase; background: rgba(247,247,241,0.16); backdrop-filter: blur(4px);
   color: var(--cream); padding: 0.3rem 0.65rem; border-radius: 999px; }
 
@@ -645,8 +645,10 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 
 /* sharpen hero hierarchy on small screens (display must clearly dominate lead) */
 @media (max-width: 600px) {
-  :root { --t-display: clamp(2.9rem, 12vw, 3.6rem); --t-body: 0.9375rem; }
-  .lead { font-size: 1.05rem; }
+  :root { --t-display: clamp(2.9rem, 12vw, 3.6rem); --t-body: 1rem; }
+  .lead { font-size: 1.08rem; }
+  /* 16px inputs stop iOS Safari from auto-zooming on focus */
+  .field input, .qf input, .qf select, .qf textarea { font-size: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -667,14 +669,18 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .panel--orange .eyebrow { color: rgba(26,26,26,0.62); }
 .panel--orange .lead { color: rgba(26,26,26,0.84); }
 .panel--pond { background: var(--pond); color: var(--ink); }
-.panel--pond .eyebrow { color: rgba(26,26,26,0.64); }
-.panel--pond .lead { color: rgba(26,26,26,0.85); }
+.panel--pond .eyebrow { color: rgba(26,26,26,0.72); }
+.panel--pond .lead { color: rgba(26,26,26,0.88); }
 .panel--ink  { background: var(--ink); color: var(--cream); }
 .panel--ink .eyebrow { color: var(--orange-bright); }
 /* vibrant blue "ocean" panel — white text (5.16:1) */
 .panel--bayside { background: var(--bayside); color: #fff; }
 .panel--bayside .eyebrow { color: rgba(255,255,255,0.82); }
 .panel--bayside .lead { color: rgba(255,255,255,0.94); }
+/* kraft / corrugated-board panel — warm tan, ink text (≈5:1). Breaks the blue
+   stack and ties the slogan to the actual X-Board product. */
+.panel--kraft { background: var(--kraft); color: var(--ink); }
+.panel--kraft .eyebrow { color: rgba(26,26,26,0.6); }
 
 /* ---- collage hero ---- */
 .hero3 { padding-top: clamp(1.4rem, 3.5vw, 3rem); padding-bottom: clamp(2rem, 4vw, 3.4rem); }
@@ -790,8 +796,10 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 /* MOBILE (default ≤759): big text panels full-width, image tiles paired 2-up.
    Source order = headline, media, video, slogan, sticker. */
 .ctile--headline { grid-column: 1 / 3; }
-.ctile--media    { grid-column: 1 / 2; aspect-ratio: 1 / 1; }
-.ctile--video    { grid-column: 2 / 3; aspect-ratio: 1 / 1; }
+/* square tiles size from the grid track; without min-height:0 the base
+   .ctile min-height (200px) + 1/1 ratio forces width 200 > track → overflow */
+.ctile--media    { grid-column: 1 / 2; aspect-ratio: 1 / 1; min-height: 0; }
+.ctile--video    { grid-column: 2 / 3; aspect-ratio: 1 / 1; min-height: 0; }
 .ctile--slogan   { grid-column: 1 / 3; min-height: 220px; }
 .ctile--sticker  { grid-column: 1 / 3; aspect-ratio: 16 / 10; }
 
@@ -825,12 +833,18 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 
 /* dual-path chooser as bold panels */
 .lane--panel { display: block; text-decoration: none; border-radius: var(--radius-lg);
+  padding: clamp(2rem, 3.6vw, 3rem) clamp(1.75rem, 3.2vw, 2.75rem);
+  box-shadow: 0 6px 18px rgba(26,26,26,0.08);
   transition: transform var(--speed-slow) var(--ease), box-shadow var(--speed-slow) var(--ease); }
-.lane--panel:hover { transform: translateY(-0.5rem); box-shadow: 0 18px 40px rgba(26,26,26,0.16); background: inherit; }
+/* keep each panel's own background on hover so text contrast never drops —
+   only lift + deepen the shadow (ink stays cream-on-ink, pond stays ink-on-pond) */
+.lane--panel:hover { transform: translateY(-0.5rem); box-shadow: 0 22px 48px rgba(26,26,26,0.22); }
+.panel--ink.lane--panel:hover { background: var(--ink); }
+.panel--pond.lane--panel:hover { background: var(--pond); }
 /* text inherits each panel's own color (ink on pond, cream on ink) */
-.lane--panel .lane__num { color: inherit; opacity: 0.6; }
+.lane--panel .lane__num { color: inherit; opacity: 0.72; font-size: 1.4rem; }
 .lane--panel .lane__title { color: inherit; }
-.lane--panel .lane__desc { color: inherit; opacity: 0.85; }
+.lane--panel .lane__desc { color: inherit; opacity: 0.9; max-width: 38ch; }
 .lane--panel .link-arrow { color: inherit; border-color: currentColor; }
 
 /* ---- slideshow tile: crossfade + ken-burns ---- */
@@ -842,11 +856,16 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    words. Two accents alternate so it never feels monotone: ping-pong orange +
    warm coral. Everything is subtle and CSS-driven; JS only swaps phrases. */
 .ctile--slogan { display: flex; align-items: flex-end; padding: clamp(1.15rem, 2.2vw, 1.7rem);
-  overflow: hidden; }
+  overflow: hidden;
+  /* subtle corrugated-board fluting — vertical ridges, very low contrast */
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.045) 0 1px, rgba(255,255,255,0.05) 1px 2px, transparent 2px 9px);
+}
 .slogan { font-family: "Fraunces", Georgia, serif; font-weight: 400; margin: 0;
-  font-variation-settings: "opsz" 110, "wght" 420, "SOFT" 0, "WONK" 0; }
-.slogan .line { display: block; font-size: clamp(1.45rem, 2.25vw, 2.1rem); line-height: 1.06;
-  letter-spacing: -0.022em; font-style: italic; opacity: 0; transform: translateY(0.5em); }
+  font-variation-settings: "opsz" 110, "wght" 440, "SOFT" 0, "WONK" 0; }
+/* upright = legible; italic is reserved for the marked accent word only */
+.slogan .line { display: block; font-size: clamp(1.45rem, 2.25vw, 2.1rem); line-height: 1.08;
+  letter-spacing: -0.01em; font-style: normal; opacity: 0; transform: translateY(0.5em); }
 
 /* lines settle in (staggered) and then HOLD — no infinite breathe, so nothing
    competes with the marker moment. The only post-settle motion is the one-shot
@@ -866,14 +885,22 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   from { opacity: 0; transform: translateY(0.55em); font-variation-settings: "opsz" 26, "wght" 300, "SOFT" 100, "WONK" 1; }
   to   { opacity: 1; transform: translateY(0);     font-variation-settings: "opsz" 110, "wght" 450, "SOFT" 0, "WONK" 0; }
 }
-@keyframes fraunces-breathe {
-  0%, 100% { font-variation-settings: "opsz" 90, "wght" 360, "SOFT" 0, "WONK" 0; }
-  50%      { font-variation-settings: "opsz" 120, "wght" 460, "SOFT" 36, "WONK" 0; }
-}
-
 /* ---- highlighter marker: a band sweeps left→right behind the word ---- */
 .slogan .mark { position: relative; display: inline-block; color: var(--ink);
-  white-space: nowrap; isolation: isolate; padding: 0 0.06em; }
+  white-space: nowrap; isolation: isolate; font-style: italic; /* the accent flourish */
+  /* padding sets the band's inner breathing room; margin keeps the band (which
+     overhangs by 0.12em each side) clear of neighbouring unmarked words */
+  padding: 0 0.12em; margin: 0 0.26em;
+  font-variation-settings: "opsz" 110, "wght" 460, "SOFT" 0, "WONK" 0; }
+/* as the marker lands, the word settles heavier — a single deliberate emphasis */
+.slogan.is-in .mark {
+  animation: mark-bold 0.5s var(--ease) forwards;
+  animation-delay: calc(var(--l, 0) * 120ms + 0.6s);
+}
+@keyframes mark-bold {
+  from { font-variation-settings: "opsz" 110, "wght" 460, "SOFT" 0, "WONK" 0; }
+  to   { font-variation-settings: "opsz" 130, "wght" 640, "SOFT" 0, "WONK" 0; }
+}
 .slogan .mark::before {
   content: ""; position: absolute; z-index: -1;
   left: -0.12em; right: -0.12em; top: 0.1em; bottom: 0.02em;
@@ -909,7 +936,8 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .bubbles { position: absolute; right: 8%; left: auto; bottom: 14%; width: 42%; height: 64%; z-index: 1; pointer-events: none; }
 .bubble { position: absolute; bottom: 0; border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.7), rgba(255,255,255,0.18) 70%);
-  box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.45); animation: rise var(--bd, 8s) ease-in infinite; }
+  box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.45);
+  animation: rise var(--bd, 8s) ease-in infinite; animation-fill-mode: backwards; }
 .bubble:nth-child(1) { left: 4%;  width: 26px; height: 26px; --bd: 9s;   animation-delay: 0s; }
 .bubble:nth-child(2) { left: 30%; width: 16px; height: 16px; --bd: 7s;   animation-delay: 1.4s; }
 .bubble:nth-child(3) { left: 16%; width: 12px; height: 12px; --bd: 8s;   animation-delay: 3s; }
@@ -929,5 +957,6 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   .slogan .line { opacity: 1 !important; transform: none !important; animation: none !important;
     font-variation-settings: "opsz" 110, "wght" 450, "SOFT" 0, "WONK" 0 !important; }
   .slogan .mark::before { animation: none !important; transform: scaleX(1) skewX(-2deg) !important; }
+  .slogan .mark { animation: none !important; font-variation-settings: "opsz" 130, "wght" 640, "SOFT" 0, "WONK" 0 !important; }
   .ctile--headline .fish, .bubble { animation: none !important; }
 }

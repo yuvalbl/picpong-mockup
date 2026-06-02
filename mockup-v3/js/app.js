@@ -239,9 +239,9 @@
 
     // Each phrase = array of line HTML. Markers alternate orange / coral.
     var PHRASES = [
-      ['<span class="mark mark--orange">Remarkable</span>', 'events, made', 'to impact —', '<em><span class="mark mark--coral">no trace.</span></em>'],
-      ['Built to', 'be <span class="mark mark--orange">seen</span> —', 'designed', 'to <em><span class="mark mark--coral">vanish.</span></em>'],
-      ['Bold while', 'it <span class="mark mark--orange">stands.</span>', 'Gentle', 'when it <em><span class="mark mark--coral">goes.</span></em>']
+      ['<span class="mark mark--orange">Remarkable</span>', 'events, made', 'to impact —', '<span class="mark mark--coral">no trace.</span>'],
+      ['Built to', 'be <span class="mark mark--orange">seen</span> —', 'designed', 'to <span class="mark mark--coral">vanish.</span>'],
+      ['Bold while', 'it <span class="mark mark--orange">stands.</span>', 'Gentle', 'when it <span class="mark mark--coral">goes.</span>']
     ];
 
     function render(lines) {
