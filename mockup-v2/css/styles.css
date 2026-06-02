@@ -245,8 +245,9 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   display: flex; align-items: center; gap: 1.5rem; justify-content: space-between;
 }
 .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-/* mascot is a low-res raster (137x93); cap height at native so it stays crisp on 2x/3x */
-.brand__mark { height: 31px; width: auto; display: block; }
+/* mascot is a low-res raster (137x93); cap height at native so it stays crisp on 2x/3x.
+   aspect-ratio + object-fit + flex:none guarantee it can never be squished by a flex parent. */
+.brand__mark { height: 31px; width: auto; aspect-ratio: 137 / 93; object-fit: contain; flex: 0 0 auto; display: block; }
 .brand__word { font-family: "Fraunces", serif; font-weight: 400; font-size: 1.45rem; letter-spacing: -0.02em; }
 .brand__word b { color: var(--orange); font-weight: 500; }
 .nav--dark .brand__word { color: var(--cream); }
