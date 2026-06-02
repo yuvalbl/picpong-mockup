@@ -32,6 +32,35 @@ No build step, no dependencies. Just open `index.html`.
 - **Projects filter**, **mobile menu**, **PDP gallery/variants/accordion**, **newsletter** (mock submit).
 - Respects `prefers-reduced-motion`.
 
+## Hero collage slideshow — engineering notes (mobile Safari gotchas)
+
+The hero `.slideshow` (auto-advancing reel: opacity for show/hide, a `clip-path`
+diagonal **wipe** entrance, an orange `mix-blend` light-streak, and a continuous
+shared **zoom** on the `.slideshow__stage` wrapper) hit two **mobile WebKit / iOS
+Safari** rendering bugs. Both are load-bearing — keep these rules when touching it:
+
+1. **Drive resting slide visibility with `opacity`, never with a held `clip-path`.**
+   Mobile Safari intermittently **drops an `animation-fill-mode` (`forwards`/`both`)
+   clip-path value once the keyframes end**, so a slide revealed by a clip-path
+   wipe *disappeared ~1s after the wipe*. Fix: `opacity` owns show/hide (active +
+   prev = 1, others = 0); `clip-path` is a **decorative entrance only**. Then even
+   if the held clip is dropped, the active frame stays painted (`opacity:1`, no clip).
+
+2. **Never put a `clip-path` child under an animated-`transform` ancestor on mobile.**
+   The continuous zoom is an animated `transform` on `.slideshow__stage`, the parent
+   of the clip-path slides. Mobile WebKit **fails to paint clip-path children under
+   an animated-transform parent** (made worse by the `mix-blend-mode` streak pseudo),
+   so the slideshow **blanked the instant the zoom started** (on load). Fix: the zoom
+   `animation` + `will-change:transform` are scoped to `@media (min-width: 760px)`.
+   Mobile gets a **static stage** (image always visible) with the wipe as its motion;
+   desktop keeps the full cinematic zoom.
+
+> Rule of thumb for this codebase: on mobile, transient `clip-path`/`mix-blend`
+> effects are fine, but **steady-state visibility and animated-transform ancestors
+> over clipped children are not** — gate those behind a width query and let
+> `opacity` carry persistence. Always verify hero motion on a real iOS device;
+> these bugs don't reproduce on desktop.
+
 ## Images (from picpong.biz, per the brief)
 Real event photos curated from Picpong's 2021–22 archive are downloaded into `assets/projects/`.
 The mascot is redrawn as a clean **`assets/brand/puffer.svg`** (the brief flags the original as raster-only).
