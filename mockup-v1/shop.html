@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shop — X-Board displays, stands &amp; counters | Picpong</title>
+<meta name="description" content="Browse ready-made X-Board displays: counters, stands, shelving and photocall walls. 100% recycled, reusable, printed to your artwork." />
+<link rel="icon" href="assets/brand/puffer.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="ribbon">Design mockup — <b>v1</b> — concept for client review, not the live site</div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="index.html" aria-label="Picpong home">
+      <img class="brand__mark" src="assets/brand/puffer.svg" alt="" />
+      <span class="brand__word">pic<b>pong</b></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="shop.html" aria-current="page">Shop</a>
+      <a href="projects.html">Projects</a>
+      <a href="index.html#sustainability">Sustainability</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="iconbtn cart-btn" data-cart-open aria-label="Open cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count">0</span>
+      </button>
+      <button class="iconbtn nav__menu-btn" id="menuBtn" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__top">
+    <span class="brand__word">pic<b>pong</b></span>
+    <button class="iconbtn" id="menuClose" aria-label="Close menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <nav>
+    <a href="shop.html">Shop</a><a href="projects.html">Projects</a><a href="index.html#sustainability">Sustainability</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a>
+  </nav>
+  <div class="mobile-menu__foot"><a class="btn btn--brand btn--block" href="index.html#contact">Start a project <span class="arrow">&rarr;</span></a></div>
+</div>
+
+<!-- HEADER -->
+<section class="band band--tight">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / <span>Shop</span></nav>
+    <div class="section-head" style="margin-top:1rem;margin-bottom:1.5rem">
+      <p class="eyebrow">Shop · X-Board systems</p>
+      <h1 class="h1" style="max-width:20ch">Ready-made displays, built to be reused.</h1>
+      <p class="lead">Pick a piece, choose a finish, print your artwork. Everything ships flat and folds down again after the show.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="shop">
+      <!-- FACETS -->
+      <aside class="facets" aria-label="Filters">
+        <div class="facet" data-filterbar>
+          <h4>Category</h4>
+          <ul>
+            <li><button class="chip-text" data-filter="all" aria-pressed="true" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;width:100%"><span>All systems</span><span class="ct">6</span></button></li>
+          </ul>
+          <ul style="margin-top:0.4rem">
+            <li><button data-filter="counters" aria-pressed="false">Counters <span class="ct">1</span></button></li>
+            <li><button data-filter="stands" aria-pressed="false">Stands &amp; totems <span class="ct">2</span></button></li>
+            <li><button data-filter="shelving" aria-pressed="false">Shelving <span class="ct">1</span></button></li>
+            <li><button data-filter="walls" aria-pressed="false">Photocall walls <span class="ct">1</span></button></li>
+            <li><button data-filter="arches" aria-pressed="false">Gates &amp; arches <span class="ct">1</span></button></li>
+          </ul>
+        </div>
+        <div class="facet">
+          <h4>Finish</h4>
+          <ul>
+            <li><button>Natural kraft</button></li>
+            <li><button>Full-colour print</button></li>
+            <li><button>White-faced</button></li>
+          </ul>
+        </div>
+        <div class="facet">
+          <h4>Good to know</h4>
+          <p class="meta" style="margin:0">Every piece is 100% recycled X-Board, flame-retardant and water-resistant. Need a size we don't list? <a href="index.html#contact" style="color:var(--orange-deep)">Start a custom project</a>.</p>
+        </div>
+      </aside>
+
+      <!-- GRID -->
+      <div>
+        <div class="shop__bar">
+          <span class="shop__count" id="shopCount">6 pieces</span>
+          <span class="meta">Sorted by: <strong style="color:var(--ink)">Featured</strong></span>
+        </div>
+
+        <div class="grid-products" id="shopGrid">
+          <!-- Counter -->
+          <article class="tile reveal" data-cat="counters">
+            <a href="product.html" class="tile__media" aria-label="X-Board Demo Counter">
+              <span class="tile__badge tile__badge--eco">100% recycled</span>
+              <div class="tile__media-art">
+                <svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="s1" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5h10" stroke="#b98c52" stroke-width="1" opacity="0.4"/></pattern></defs><ellipse cx="200" cy="320" rx="120" ry="16" fill="#000" opacity="0.06"/><path d="M120 150h160l24 170H96z" fill="#cfa46a"/><path d="M120 150h160l24 170H96z" fill="url(#s1)"/><path d="M96 320h208v10H96z" fill="#bb8c4f"/><rect x="110" y="120" width="180" height="34" rx="4" fill="#dcb87f"/><text x="200" y="245" text-anchor="middle" font-family="Fraunces, serif" font-size="28" fill="#8a6334" opacity="0.55">X·BOARD</text></svg>
+              </div>
+            </a>
+            <div class="tile__body">
+              <p class="eyebrow eyebrow--plain tile__cat">Counters</p>
+              <h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Demo Counter</a></h3>
+              <div class="tile__foot"><span class="tile__price">$148 <small>/ unit</small></span>
+                <button class="icon-btn" data-add="counter-demo" data-name="X-Board Demo Counter" data-meta="Natural kraft · 1 pc" data-price="148" aria-label="Add Demo Counter to cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+              </div>
+            </div>
+          </article>
+          <!-- Totem -->
+          <article class="tile reveal d1" data-cat="stands">
+            <a href="product.html" class="tile__media" aria-label="Free-Standing Totem">
+              <span class="tile__badge">Ships flat</span>
+              <div class="tile__media-art">
+                <svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="s2" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 4.5h9" stroke="#b98c52" stroke-width="1" opacity="0.4"/></pattern></defs><ellipse cx="200" cy="330" rx="90" ry="14" fill="#000" opacity="0.06"/><rect x="150" y="70" width="100" height="250" rx="6" fill="#d4ad72"/><rect x="150" y="70" width="100" height="250" rx="6" fill="url(#s2)"/><path d="M150 320l-26 12h152l-26-12z" fill="#bb8c4f"/><rect x="166" y="96" width="68" height="120" rx="4" fill="#eadcc2"/><circle cx="200" cy="250" r="20" fill="#E67A2F" opacity="0.85"/></svg>
+              </div>
+            </a>
+            <div class="tile__body">
+              <p class="eyebrow eyebrow--plain tile__cat">Stands</p>
+              <h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Free-Standing Totem</a></h3>
+              <div class="tile__foot"><span class="tile__price">$96 <small>/ unit</small></span>
+                <button class="icon-btn" data-add="totem-fs" data-name="Free-Standing Totem" data-meta="Natural kraft · 1 pc" data-price="96" aria-label="Add Free-Standing Totem to cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+              </div>
+            </div>
+          </article>
+          <!-- Shelf -->
+          <article class="tile reveal d2" data-cat="shelving">
+            <a href="product.html" class="tile__media" aria-label="Modular Shelf Unit">
+              <span class="tile__badge tile__badge--eco">Reusable</span>
+              <div class="tile__media-art">
+                <svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="s3" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5h10" stroke="#b98c52" stroke-width="1" opacity="0.4"/></pattern></defs><ellipse cx="200" cy="330" rx="110" ry="14" fill="#000" opacity="0.06"/><rect x="110" y="90" width="180" height="230" rx="6" fill="#cfa46a"/><rect x="110" y="90" width="180" height="230" rx="6" fill="url(#s3)"/><g fill="#eadcc2"><rect x="124" y="106" width="152" height="40"/><rect x="124" y="166" width="152" height="40"/><rect x="124" y="226" width="152" height="40"/></g><rect x="110" y="90" width="180" height="230" rx="6" fill="none" stroke="#bb8c4f" stroke-width="3"/></svg>
+              </div>
+            </a>
+            <div class="tile__body">
+              <p class="eyebrow eyebrow--plain tile__cat">Shelving</p>
+              <h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Modular Shelf Unit</a></h3>
+              <div class="tile__foot"><span class="tile__price">$210 <small>/ unit</small></span>
+                <button class="icon-btn" data-add="shelf-mod" data-name="Modular Shelf Unit" data-meta="Natural kraft · 1 pc" data-price="210" aria-label="Add Modular Shelf Unit to cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+              </div>
+            </div>
+          </article>
+          <!-- Photocall wall -->
+          <article class="tile reveal" data-cat="walls">
+            <a href="product.html" class="tile__media" aria-label="Photocall Wall">
+              <span class="tile__badge">Full-colour print</span>
+              <div class="tile__media-art">
+                <svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="s4" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5h10" stroke="#b98c52" stroke-width="1" opacity="0.35"/></pattern></defs><ellipse cx="200" cy="330" rx="130" ry="14" fill="#000" opacity="0.06"/><rect x="80" y="90" width="240" height="220" rx="6" fill="#d8b67d"/><rect x="80" y="90" width="240" height="220" rx="6" fill="url(#s4)"/><g opacity="0.85"><circle cx="150" cy="170" r="26" fill="#E67A2F"/><rect x="200" y="150" width="80" height="14" rx="7" fill="#2A9BD0"/><rect x="200" y="178" width="56" height="14" rx="7" fill="#2b2b2b"/><rect x="120" y="232" width="160" height="12" rx="6" fill="#fff" opacity="0.7"/></g></svg>
+              </div>
+            </a>
+            <div class="tile__body">
+              <p class="eyebrow eyebrow--plain tile__cat">Photocall walls</p>
+              <h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Photocall Wall 2×2.4m</a></h3>
+              <div class="tile__foot"><span class="tile__price">$340 <small>/ unit</small></span>
+                <button class="icon-btn" data-add="wall-photocall" data-name="Photocall Wall 2×2.4m" data-meta="Full-colour print · 1 pc" data-price="340" aria-label="Add Photocall Wall to cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+              </div>
+            </div>
+          </article>
+          <!-- Arch -->
+          <article class="tile reveal d1" data-cat="arches">
+            <a href="product.html" class="tile__media" aria-label="Welcome Arch">
+              <span class="tile__badge tile__badge--eco">Reusable</span>
+              <div class="tile__media-art">
+                <svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="s5" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5h10" stroke="#b98c52" stroke-width="1" opacity="0.4"/></pattern></defs><ellipse cx="200" cy="330" rx="120" ry="14" fill="#000" opacity="0.06"/><path d="M96 320V190a104 104 0 0 1 208 0v130h-48V190a56 56 0 0 0-112 0v130z" fill="#cfa46a"/><path d="M96 320V190a104 104 0 0 1 208 0v130h-48V190a56 56 0 0 0-112 0v130z" fill="url(#s5)"/><path d="M96 320V190a104 104 0 0 1 208 0v130h-48V190a56 56 0 0 0-112 0v130z" fill="none" stroke="#bb8c4f" stroke-width="3"/></svg>
+              </div>
+            </a>
+            <div class="tile__body">
+              <p class="eyebrow eyebrow--plain tile__cat">Gates &amp; arches</p>
+              <h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Welcome Arch</a></h3>
+              <div class="tile__foot"><span class="tile__price">$420 <small>/ unit</small></span>
+                <button class="icon-btn" data-add="arch-welcome" data-name="Welcome Arch" data-meta="Natural kraft · 1 pc" data-price="420" aria-label="Add Welcome Arch to cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+              </div>
+            </div>
+          </article>
+          <!-- Custom / quote tile -->
+          <article class="tile reveal d2" data-cat="stands">
+            <a href="product.html" class="tile__media" aria-label="Tiered Riser Set">
+              <span class="tile__badge">Ships flat</span>
+              <div class="tile__media-art">
+                <svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="s6" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5h10" stroke="#b98c52" stroke-width="1" opacity="0.4"/></pattern></defs><ellipse cx="200" cy="330" rx="120" ry="14" fill="#000" opacity="0.06"/><g fill="#cfa46a"><rect x="100" y="250" width="200" height="70" rx="4"/><rect x="130" y="190" width="140" height="64" rx="4"/><rect x="160" y="134" width="80" height="60" rx="4"/></g><g fill="url(#s6)"><rect x="100" y="250" width="200" height="70" rx="4"/><rect x="130" y="190" width="140" height="64" rx="4"/><rect x="160" y="134" width="80" height="60" rx="4"/></g></svg>
+              </div>
+            </a>
+            <div class="tile__body">
+              <p class="eyebrow eyebrow--plain tile__cat">Stands</p>
+              <h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Tiered Riser Set</a></h3>
+              <div class="tile__foot"><span class="tile__price tile__price--quote">From quote</span>
+                <a class="icon-btn" href="index.html#contact" aria-label="Request a quote for Tiered Riser Set"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- dual-funnel band inside shop -->
+        <div class="reveal" style="margin-top:2.5rem;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(1.5rem,4vw,2.4rem);display:flex;gap:1.5rem;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--cream-2)">
+          <div style="max-width:46ch"><h3 class="h3" style="margin-bottom:0.4rem">Can't find the exact size?</h3><p class="lead" style="margin:0">We build bespoke stands, walls and furniture from the same recycled board. Send your brief and we'll quote it.</p></div>
+          <a class="btn btn--brand" href="index.html#contact">Start a project <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <h2 class="display">pic<b>pong</b></h2>
+        <p class="footer__story">A family workshop turning recycled corrugated board into displays worth keeping — since 2004.</p>
+        <a class="btn btn--onDark" href="index.html#contact">Start a project <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="footer__col"><h4>Shop</h4><ul><li><a href="shop.html">Counters</a></li><li><a href="shop.html">Stands &amp; totems</a></li><li><a href="shop.html">Shelving</a></li><li><a href="shop.html">Photocall walls</a></li><li><a href="shop.html">Custom builds</a></li></ul></div>
+      <div class="footer__col"><h4>Studio</h4><ul><li><a href="index.html#about">Our story</a></li><li><a href="projects.html">Projects</a></li><li><a href="index.html#sustainability">Sustainability</a></li><li><a href="index.html#contact">Contact</a></li></ul></div>
+      <div class="footer__col"><h4>Trusted by</h4><ul><li><a href="projects.html">Microsoft · Intel</a></li><li><a href="projects.html">Google · IBM</a></li><li><a href="projects.html">Landa · Amdocs</a></li><li><a href="projects.html">Wix · Maccabi</a></li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <span><img class="footer__puffer" src="assets/brand/puffer.svg" alt="" /> &nbsp;© 2026 Picpong · Sustainable display systems</span>
+      <span>Mockup v1 — concept, not final</span>
+    </div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" data-cart-close></div>
+<aside class="drawer" id="drawer" aria-label="Shopping cart">
+  <div class="drawer__head"><span class="drawer__title">Your cart</span><button class="iconbtn" data-cart-close aria-label="Close cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="drawer__items" id="cartItems"></div>
+  <div class="drawer__foot" id="cartFoot">
+    <div class="drawer__row"><span class="muted">Subtotal</span><span class="drawer__total" id="cartTotal">$0</span></div>
+    <p class="drawer__note">Shipping &amp; VAT calculated at checkout. Bespoke pieces are quoted separately.</p>
+    <a class="btn btn--primary btn--block" href="#">Checkout <span class="arrow">&rarr;</span></a>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js"></script>
+<script>
+  // live count for the shop filter
+  (function(){
+    var grid=document.getElementById('shopGrid'), out=document.getElementById('shopCount');
+    if(!grid) return;
+    var bar=document.querySelector('[data-filterbar]');
+    bar.addEventListener('click',function(){ setTimeout(function(){
+      var n=[].slice.call(grid.querySelectorAll('[data-cat]')).filter(function(c){return c.style.display!=='none';}).length;
+      out.textContent=n+(n===1?' piece':' pieces');
+    },0);});
+  })();
+</script>
+</body>
+</html>

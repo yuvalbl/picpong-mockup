@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Picpong — Redesign Visual Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     PICPONG — DESIGN CONCEPT
+     Tokens, type, motion per the Final Visual Direction spec.
+     ============================================================ */
+  :root {
+    /* Color system */
+    --cream:   #F7F7F1; /* page background */
+    --ink:     #1A1A1A; /* primary text */
+    --gallery: #333333; /* dark bands */
+    --kraft:   #C49A6C; /* texture / warmth */
+    --orange:  #E67A2F; /* brand / CTA / hover */
+    --pond:    #2A9BD0; /* pond blue, sparing */
+    --line:    rgba(26, 26, 26, 0.12);
+    --line-on-dark: rgba(247, 247, 241, 0.16);
+
+    /* Type scale (px) */
+    --t-display: clamp(2.75rem, 6.2vw, 4.75rem); /* 44 -> 76 */
+    --t-h2:      clamp(2rem, 4.2vw, 3.25rem);    /* 32 -> 52 */
+    --t-h3:      clamp(1.5rem, 2.6vw, 2.125rem); /* 24 -> 34 */
+    --t-lead:    1.125rem; /* 18 */
+    --t-body:    0.9375rem; /* 15 */
+    --t-ui:      0.875rem;  /* 14 */
+    --t-meta:    0.75rem;   /* 12 */
+    --t-eyebrow: 0.6875rem; /* 11 */
+
+    /* Motion: ONE easing curve */
+    --ease: cubic-bezier(0.62, 0.37, 0.1, 0.95);
+    --speed: 0.32s;
+
+    /* Layout */
+    --max: 1920px;
+    --gutter: clamp(1.25rem, 4vw, 1.875rem); /* up to ~30px */
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    font-size: var(--t-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* corrugated kraft texture, very subtle, applied to warm bands */
+  .kraft-grain {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,0.035) 0px,
+        rgba(0,0,0,0.035) 1px,
+        transparent 1px,
+        transparent 9px
+      );
+  }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  /* ---------- Typography primitives ---------- */
+  .display {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 300;
+    font-optical-sizing: auto;
+    font-size: var(--t-display);
+    line-height: 1.02;
+    letter-spacing: -0.025em; /* negative tracking at large sizes */
+    margin: 0;
+  }
+  .h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 300;
+    font-size: var(--t-h2);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .h3 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: var(--t-h3);
+    line-height: 1.1;
+    letter-spacing: -0.012em;
+    margin: 0;
+  }
+  .lead {
+    font-size: var(--t-lead);
+    line-height: 1.55;
+    max-width: 46ch;
+  }
+  .eyebrow {
+    font-family: "Hanken Grotesk", sans-serif;
+    font-size: var(--t-eyebrow);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--kraft);
+    margin: 0 0 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.5rem; height: 1px;
+    background: var(--kraft);
+    display: inline-block;
+  }
+  .eyebrow--ink { color: #6b6b63; }
+  .eyebrow--ink::before { background: #6b6b63; }
+  .eyebrow--dark { color: var(--kraft); }
+  .meta { font-size: var(--t-meta); color: #6b6b63; }
+
+  em.serif-italic { font-family: "Fraunces", serif; font-style: italic; font-weight: 400; }
+
+  /* ---------- Section scaffolding ---------- */
+  .band { padding: clamp(3.5rem, 8vw, 7rem) 0; position: relative; }
+  .band--dark { background: var(--gallery); color: var(--cream); }
+  .band--kraft { background: var(--kraft); color: var(--ink); }
+  .section-tag {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 2.25rem;
+    display: block;
+  }
+  .band--dark .section-tag,
+  .band--kraft .section-tag { color: var(--orange); }
+
+  /* ---------- Corrugated-edge divider (ownable move) ---------- */
+  /* Thin double-wave line marking light<->dark transitions. */
+  .corrugate {
+    line-height: 0;
+    display: block;
+  }
+  .corrugate svg { display: block; width: 100%; height: 26px; }
+
+  /* ============================================================
+     RIBBON
+     ============================================================ */
+  .ribbon {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.45rem 1rem;
+  }
+  .ribbon b { color: var(--orange); }
+  body { padding-top: 1.9rem; }
+
+  /* ============================================================
+     1. HERO — dual funnel
+     ============================================================ */
+  .hero { padding-top: clamp(2.5rem, 6vw, 5rem); padding-bottom: 0; }
+  .hero__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .brandmark { display: flex; align-items: center; gap: 0.85rem; }
+  .brandmark__img {
+    width: 132px; height: auto; max-height: 46px;
+    object-fit: contain;
+    display: block;
+  }
+  /* CSS fallback wordmark if the placeholder PNG is missing */
+  .brandmark__fallback {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .brandmark__fallback b { color: var(--orange); font-weight: 500; }
+  .brandmark__cap {
+    font-size: 0.5625rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9a9a90;
+    max-width: 12ch;
+    line-height: 1.3;
+  }
+  .topnav { display: flex; gap: 1.5rem; font-size: var(--t-ui); font-weight: 500; }
+  .topnav a { color: var(--ink); text-decoration: none; opacity: 0.7; transition: opacity var(--speed) var(--ease); }
+  .topnav a:hover { opacity: 1; }
+
+  .hero__head { max-width: 22ch; }
+  .hero__head .accent { color: var(--orange); }
+  .hero__sub { margin-top: 1.6rem; color: #45453f; }
+
+  .funnels {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .lane {
+    background: var(--cream);
+    padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2.25rem);
+    transition: background var(--speed) var(--ease);
+    position: relative;
+  }
+  .lane:hover { background: #fffffb; }
+  .lane__num {
+    font-family: "Fraunces", serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    color: var(--kraft);
+  }
+  .lane__title { margin: 0.5rem 0 0.5rem; }
+  .lane__desc { color: #45453f; max-width: 38ch; margin-bottom: 1.5rem; }
+  .lane--shop { }
+  .lane--project { }
+
+  /* ============================================================
+     BUTTONS — pill, color-swap hover
+     ============================================================ */
+  .btn {
+    font-family: "Hanken Grotesk", sans-serif;
+    font-size: var(--t-ui);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border-radius: 999px;
+    padding: 0.8rem 1.6rem;
+    border: 1.5px solid var(--ink);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+    transition: background var(--speed) var(--ease),
+                color var(--speed) var(--ease),
+                border-color var(--speed) var(--ease),
+                transform var(--speed) var(--ease);
+  }
+  /* Primary: ink fill -> orange fill on hover (color swap) */
+  .btn--primary { background: var(--ink); color: var(--cream); }
+  .btn--primary:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+  /* Secondary: outline -> ink fill */
+  .btn--ghost { background: transparent; color: var(--ink); }
+  .btn--ghost:hover { background: var(--ink); color: var(--cream); }
+  /* Brand: orange fill -> ink fill (color swap, label stays high-contrast) */
+  .btn--brand { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .btn--brand:hover { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+  /* On dark */
+  .btn--onDark { background: var(--cream); color: var(--ink); border-color: var(--cream); }
+  .btn--onDark:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .btn .arrow { transition: transform var(--speed) var(--ease); }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* ============================================================
+     2. COLOR SYSTEM
+     ============================================================ */
+  .swatches {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .swatch {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #fff;
+  }
+  .swatch__chip { height: 96px; }
+  .swatch__body { padding: 0.85rem 1rem 1rem; }
+  .swatch__role { font-weight: 600; font-size: var(--t-ui); }
+  .swatch__hex { font-size: var(--t-meta); color: #6b6b63; letter-spacing: 0.06em; margin-top: 0.15rem; }
+  .swatch__note { font-size: var(--t-meta); color: #8a8a80; margin-top: 0.5rem; }
+
+  /* ============================================================
+     3. TYPOGRAPHY SPECIMEN
+     ============================================================ */
+  .type-grid { display: grid; gap: 1.75rem; }
+  .type-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .type-row__label {
+    font-size: var(--t-meta);
+    color: #8a8a80;
+    letter-spacing: 0.06em;
+  }
+  .specimen-76 { font-family:"Fraunces"; font-weight:300; font-size: clamp(3rem,8vw,4.75rem); letter-spacing:-0.03em; line-height:1; }
+  .specimen-52 { font-family:"Fraunces"; font-weight:300; font-size: clamp(2.25rem,5vw,3.25rem); letter-spacing:-0.022em; line-height:1.04; }
+  .specimen-34 { font-family:"Fraunces"; font-weight:400; font-size: clamp(1.6rem,3vw,2.125rem); letter-spacing:-0.012em; }
+  .specimen-18 { font-size: 1.125rem; }
+  .specimen-14 { font-size: 0.875rem; font-weight: 500; }
+  .specimen-12 { font-size: 0.75rem; }
+  .specimen-10 { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; font-weight: 600; color: var(--kraft); }
+
+  /* ============================================================
+     BUTTON SHOWCASE
+     ============================================================ */
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
+  .btn-note { font-size: var(--t-meta); color: #8a8a80; margin-top: 1rem; }
+
+  /* ============================================================
+     5. PRODUCT TILE
+     ============================================================ */
+  .tiles { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  .tile {
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform var(--speed) var(--ease);
+    /* separation via white-on-cream — NO drop shadow */
+  }
+  .tile:hover { transform: translateY(-0.75rem); }
+  .tile__media {
+    aspect-ratio: 4 / 3;
+    background:
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 11px),
+      var(--kraft);
+    overflow: hidden;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tile__media span {
+    font-size: var(--t-meta);
+    color: rgba(26,26,26,0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tile__media::after { content: ""; position:absolute; inset:0; transition: transform var(--speed) var(--ease); }
+  .tile:hover .tile__media { /* image zoom proxy */ }
+  .tile__media-inner {
+    position:absolute; inset:0; background: inherit;
+    transition: transform var(--speed) var(--ease);
+  }
+  .tile:hover .tile__media-inner { transform: scale(1.033); }
+  .tile__body { padding: 1.1rem 1.15rem 1.25rem; }
+  .tile__cat { color: var(--kraft); }
+  .tile__title { margin: 0.4rem 0 0.9rem; }
+  .tile__foot { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+  .tile__price { font-family:"Fraunces"; font-weight: 400; font-size: 1.25rem; }
+  .icon-btn {
+    width: 2.6rem; height: 2.6rem;
+    border-radius: 999px;
+    border: 1.5px solid var(--ink);
+    background: transparent;
+    display: inline-grid; place-items: center;
+    cursor: pointer;
+    transition: background var(--speed) var(--ease), color var(--speed) var(--ease), border-color var(--speed) var(--ease);
+    color: var(--ink);
+  }
+  .icon-btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+  /* ============================================================
+     6. PROJECT CARD (dark/kraft band)
+     ============================================================ */
+  .projects { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  .project {
+    border: 1px solid var(--line-on-dark);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform var(--speed) var(--ease);
+  }
+  .project:hover { transform: translateY(-0.75rem); }
+  .project__media {
+    aspect-ratio: 3 / 2;
+    background:
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.10) 0 1px, transparent 1px 12px),
+      var(--kraft);
+    display:flex; align-items:flex-end;
+    padding: 1.1rem;
+  }
+  .project__media .meta { color: rgba(26,26,26,0.7); }
+  .project__body { padding: 1.25rem 1.25rem 1.5rem; background: rgba(247,247,241,0.04); }
+  .project__client {
+    font-size: var(--t-eyebrow);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--kraft);
+    font-weight: 600;
+  }
+  .project__title { margin: 0.45rem 0 0.6rem; color: var(--cream); }
+  .project__desc { font-size: var(--t-body); color: rgba(247,247,241,0.72); max-width: 42ch; }
+
+  /* ============================================================
+     7. SPEC-AS-HERO STRIP
+     ============================================================ */
+  .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-on-dark); border: 1px solid var(--line-on-dark); border-radius: var(--radius); overflow:hidden; }
+  .spec {
+    background: var(--gallery);
+    padding: clamp(1.4rem, 3.5vw, 2.4rem) clamp(1.1rem,3vw,1.8rem);
+  }
+  .spec__num {
+    font-family:"Fraunces"; font-weight: 300;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    letter-spacing: -0.03em; line-height: 1;
+    color: var(--cream);
+  }
+  .spec__num .unit { color: var(--orange); }
+  .spec__label { margin-top: 0.6rem; font-size: var(--t-ui); color: rgba(247,247,241,0.66); }
+
+  /* ============================================================
+     8. PUFFERFISH WINK
+     ============================================================ */
+  .puffer-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
+  .puffer-slot {
+    border: 1px dashed var(--kraft);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.25rem;
+    text-align: center;
+    background: rgba(196,154,108,0.06);
+    transition: transform var(--speed) var(--ease), background var(--speed) var(--ease);
+  }
+  .puffer-slot:hover { transform: translateY(-0.4rem); background: rgba(196,154,108,0.12); }
+  .puffer-emoji {
+    font-size: 2.4rem; line-height: 1;
+    filter: grayscale(0.15);
+    display: inline-block;
+    transition: transform var(--speed) var(--ease);
+  }
+  .puffer-slot:hover .puffer-emoji { transform: scale(1.12) rotate(-4deg); }
+  .puffer-slot__where { margin-top: 0.7rem; font-weight: 600; font-size: var(--t-ui); }
+  .puffer-slot__sub { font-size: var(--t-meta); color: #8a8a80; margin-top: 0.2rem; }
+  .redraw-note {
+    margin-top: 1.5rem;
+    font-size: var(--t-meta);
+    color: #8a8a80;
+    border-left: 2px solid var(--orange);
+    padding-left: 0.85rem;
+    max-width: 56ch;
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .footer { background: var(--ink); color: var(--cream); padding: clamp(3rem,7vw,5rem) 0 2.5rem; }
+  .footer__grid { display: grid; grid-template-columns: 1fr; gap: 2.25rem; }
+  .footer__col h4 { font-family:"Fraunces"; font-weight: 400; font-size: 1rem; margin: 0 0 1rem; letter-spacing: -0.01em; }
+  .footer__col ul { list-style:none; margin:0; padding:0; }
+  .footer__col li { margin-bottom: 0.5rem; }
+  .footer__col a { color: rgba(247,247,241,0.7); text-decoration: none; font-size: var(--t-ui); transition: color var(--speed) var(--ease); }
+  .footer__col a:hover { color: var(--orange); }
+  .footer__brand .display { font-size: clamp(2rem,5vw,2.75rem); color: var(--cream); }
+  .footer__story { font-size: var(--t-body); color: rgba(247,247,241,0.6); max-width: 40ch; margin-top: 1rem; }
+  .footer__bottom {
+    margin-top: 3rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--line-on-dark);
+    display:flex; flex-wrap:wrap; gap: 0.75rem; justify-content: space-between;
+    font-size: var(--t-meta); color: rgba(247,247,241,0.5);
+  }
+
+  /* ============================================================
+     SCROLL REVEAL
+     ============================================================ */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ============================================================
+     RESPONSIVE (mobile-first; enhance up)
+     ============================================================ */
+  @media (min-width: 640px) {
+    .swatches { grid-template-columns: repeat(3, 1fr); }
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+    .puffer-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .funnels { grid-template-columns: 1fr 1fr; }
+    .swatches { grid-template-columns: repeat(6, 1fr); }
+    .tiles { grid-template-columns: repeat(3, 1fr); }
+    .projects { grid-template-columns: repeat(3, 1fr); }
+    .specs { grid-template-columns: repeat(5, 1fr); }
+    .puffer-grid { grid-template-columns: repeat(4, 1fr); }
+    .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+    .type-row { grid-template-columns: 7rem 1fr; align-items: baseline; gap: 1.5rem; }
+  }
+
+  /* ============================================================
+     REDUCED MOTION
+     ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ribbon">Design Concept &mdash; <b>not final</b> &mdash; for client review</div>
+
+<!-- ============================================================
+     SECTION 1 — HERO (dual funnel)
+     ============================================================ -->
+<section class="band hero" data-showcase="1 / Hero">
+  <div class="wrap">
+    <div class="hero__top">
+      <div class="brandmark">
+        <img class="brandmark__img" src="../analysis/picpong/assets/brand/PP_Logo.png" alt="Picpong logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
+        <span class="brandmark__fallback" style="display:none">pic<b>pong</b></span>
+        <span class="brandmark__cap">Low-res placeholder &middot; pending SVG redraw</span>
+      </div>
+      <nav class="topnav">
+        <a href="#">Shop</a>
+        <a href="#">Projects</a>
+        <a href="#">About</a>
+      </nav>
+    </div>
+
+    <span class="section-tag">Showcase 01 — Hero / Dual Funnel</span>
+
+    <p class="eyebrow eyebrow--ink">Exclusive X-Board importer &middot; since 2004</p>
+    <h1 class="display hero__head">
+      Displays that show up, <em class="serif-italic">stand out</em>, and leave <span class="accent">no trace.</span>
+    </h1>
+    <p class="lead hero__sub">
+      100% recycled corrugated board, pressed at 60 tons, engineered to be reused &mdash;
+      then folded flat and recycled again. You choose how to start.
+    </p>
+
+    <!-- DUAL FUNNEL -->
+    <div class="funnels">
+      <div class="lane lane--shop">
+        <span class="lane__num">01</span>
+        <h2 class="h3 lane__title">Shop the range</h2>
+        <p class="lead lane__desc">Ready-made X-Board displays, stands and counters. Pick, customise, ship flat.</p>
+        <a class="btn btn--primary" href="#">Browse the shop <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="lane lane--project">
+        <span class="lane__num">02</span>
+        <h2 class="h3 lane__title">Tell us about your project</h2>
+        <p class="lead lane__desc">Bespoke builds for events, retail and launches. From sketch to show floor.</p>
+        <a class="btn btn--brand" href="#">Start a project <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: cream -> dark -->
+<div class="corrugate" aria-hidden="true">
+  <svg viewBox="0 0 1200 26" preserveAspectRatio="none">
+    <path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13 T480,13 T540,13 T600,13 T660,13 T720,13 T780,13 T840,13 T900,13 T960,13 T1020,13 T1080,13 T1140,13 T1200,13" fill="none" stroke="#333333" stroke-width="2"/>
+    <path d="M0,20 Q30,9 60,20 T120,20 T180,20 T240,20 T300,20 T360,20 T420,20 T480,20 T540,20 T600,20 T660,20 T720,20 T780,20 T840,20 T900,20 T960,20 T1020,20 T1080,20 T1140,20 T1200,20" fill="#333333"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     SECTION 6 — PROJECT CARDS (placed on dark band)
+     (kept high in flow so dark band has real content)
+     ============================================================ -->
+<section class="band band--dark" data-showcase="6 / Project cards">
+  <div class="wrap">
+    <span class="section-tag">Showcase 06 — Project cards</span>
+    <p class="eyebrow eyebrow--dark">Selected work</p>
+    <h2 class="h2" style="max-width:18ch">Trusted on the world&rsquo;s biggest show floors.</h2>
+
+    <div class="projects reveal" style="margin-top:2.5rem">
+      <article class="project">
+        <div class="project__media"><span class="meta">Event hero &middot; placeholder (curate 2021&ndash;22 archive)</span></div>
+        <div class="project__body">
+          <span class="project__client">Microsoft &middot; Hackathon 2019</span>
+          <h3 class="h3 project__title">Stage &amp; booths in X-Board</h3>
+          <p class="project__desc">Colorful, professional booths built from our recycled X-Board &mdash; struck down and re-staged, not skipped.</p>
+        </div>
+      </article>
+      <article class="project">
+        <div class="project__media"><span class="meta">Event hero &middot; placeholder (curate 2021&ndash;22 archive)</span></div>
+        <div class="project__body">
+          <span class="project__client">Intel &middot; Family Event, Shefayim</span>
+          <h3 class="h3 project__title">Counters &amp; spec walls</h3>
+          <p class="project__desc">Flame-retardant X-Board counters with direct-printed panels, zero hardware on site.</p>
+        </div>
+      </article>
+      <article class="project">
+        <div class="project__media"><span class="meta">Event hero &middot; placeholder (curate 2021&ndash;22 archive)</span></div>
+        <div class="project__body">
+          <span class="project__client">Google Cloud &middot; Spring party</span>
+          <h3 class="h3 project__title">Free-standing welcome build</h3>
+          <p class="project__desc">Water-resistant, lightweight X-Board structures &mdash; carried in, assembled, fully recyclable after.</p>
+        </div>
+      </article>
+    </div>
+    <p class="meta" style="margin-top:1.5rem;color:rgba(247,247,241,0.55)">Real credits from the 74+ project archive: Microsoft, Intel, Google Cloud, IBM, Landa, Amdocs, Wix, Facebook. Heroes to be curated from the 2021&ndash;22 set; 2018&ndash;19 entries re-shot.</p>
+  </div>
+</section>
+
+<!-- DIVIDER: dark -> cream -->
+<div class="corrugate" aria-hidden="true">
+  <svg viewBox="0 0 1200 26" preserveAspectRatio="none">
+    <path d="M0,6 Q30,17 60,6 T120,6 T180,6 T240,6 T300,6 T360,6 T420,6 T480,6 T540,6 T600,6 T660,6 T720,6 T780,6 T840,6 T900,6 T960,6 T1020,6 T1080,6 T1140,6 T1200,6" fill="#333333"/>
+    <path d="M0,13 Q30,24 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13 T480,13 T540,13 T600,13 T660,13 T720,13 T780,13 T840,13 T900,13 T960,13 T1020,13 T1080,13 T1140,13 T1200,13" fill="none" stroke="#C49A6C" stroke-width="2"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     SECTION 2 — COLOR SYSTEM
+     ============================================================ -->
+<section class="band" data-showcase="2 / Color system">
+  <div class="wrap">
+    <span class="section-tag">Showcase 02 — Color system</span>
+    <p class="eyebrow eyebrow--ink">Palette &amp; roles</p>
+    <h2 class="h2" style="max-width:20ch">Warm, paper-honest, never cold.</h2>
+    <div class="swatches reveal" style="margin-top:2.5rem">
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#F7F7F1;border-bottom:1px solid var(--line)"></div>
+        <div class="swatch__body"><div class="swatch__role">Cream</div><div class="swatch__hex">#F7F7F1</div><div class="swatch__note">Page background</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#1A1A1A"></div>
+        <div class="swatch__body"><div class="swatch__role">Ink</div><div class="swatch__hex">#1A1A1A</div><div class="swatch__note">Primary text</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#333333"></div>
+        <div class="swatch__body"><div class="swatch__role">Gallery</div><div class="swatch__hex">#333333</div><div class="swatch__note">Dark bands</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#C49A6C"></div>
+        <div class="swatch__body"><div class="swatch__role">Kraft</div><div class="swatch__hex">#C49A6C</div><div class="swatch__note">Texture / warmth</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#E67A2F"></div>
+        <div class="swatch__body"><div class="swatch__role">Brand orange</div><div class="swatch__hex">#E67A2F</div><div class="swatch__note">CTA / hover (fills only)</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__chip" style="background:#2A9BD0"></div>
+        <div class="swatch__body"><div class="swatch__role">Pond</div><div class="swatch__hex">#2A9BD0</div><div class="swatch__note">Accent, sparing</div></div>
+      </div>
+    </div>
+    <p class="btn-note">No pure black or white. No cool greys. Accent colors are fills behind ink/white labels &mdash; never small text on cream.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 — TYPOGRAPHY SPECIMEN
+     ============================================================ -->
+<section class="band" style="padding-top:0" data-showcase="3 / Typography">
+  <div class="wrap">
+    <span class="section-tag">Showcase 03 — Typography</span>
+    <p class="eyebrow eyebrow--ink">Fraunces &times; Hanken Grotesk</p>
+    <h2 class="h2" style="max-width:22ch">A display serif with backbone, a grotesk that gets out of the way.</h2>
+
+    <div class="type-grid reveal" style="margin-top:2.5rem">
+      <div class="type-row"><div class="type-row__label">76 / Display</div><div class="specimen-76">Show floor</div></div>
+      <div class="type-row"><div class="type-row__label">52 / H2</div><div class="specimen-52">Pressed to last</div></div>
+      <div class="type-row"><div class="type-row__label">34 / H3</div><div class="specimen-34">Folded flat, shipped light</div></div>
+      <div class="type-row"><div class="type-row__label">18 / Lead</div><div class="specimen-18">Engineered from 100% recycled corrugated board, reusable and recyclable.</div></div>
+      <div class="type-row"><div class="type-row__label">14 / UI</div><div class="specimen-14">Add to cart &middot; Start a project &middot; View specs</div></div>
+      <div class="type-row"><div class="type-row__label">12 / Meta</div><div class="specimen-12">SKU XB-240 &middot; lead time 5&ndash;7 days &middot; ships flat-packed</div></div>
+      <div class="type-row"><div class="type-row__label">10 / Eyebrow</div><div class="specimen-10">Sustainable display systems</div></div>
+    </div>
+    <p class="btn-note">Fraunces: Light 300, high optical contrast, negative tracking at display sizes. Uppercase reserved for 10&ndash;11px eyebrows only.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 — BUTTONS
+     ============================================================ -->
+<section class="band" style="padding-top:0" data-showcase="4 / Buttons">
+  <div class="wrap">
+    <span class="section-tag">Showcase 04 — Buttons</span>
+    <p class="eyebrow eyebrow--ink">Pill variants</p>
+    <h2 class="h2" style="max-width:20ch">Hover is a color swap, not a glow.</h2>
+    <div class="btn-row reveal" style="margin-top:2.25rem">
+      <a class="btn btn--primary" href="#">Add to cart <span class="arrow">&rarr;</span></a>
+      <a class="btn btn--brand" href="#">Start a project <span class="arrow">&rarr;</span></a>
+      <a class="btn btn--ghost" href="#">View specs</a>
+    </div>
+    <p class="btn-note">Primary ink&rarr;orange &middot; Brand orange&rarr;ink &middot; Ghost outline&rarr;ink. One easing curve, 0.32s. Labels stay high-contrast through the swap.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 5 — PRODUCT TILES
+     ============================================================ -->
+<section class="band" style="padding-top:0" data-showcase="5 / Product tile">
+  <div class="wrap">
+    <span class="section-tag">Showcase 05 — Product tile</span>
+    <p class="eyebrow eyebrow--ink">Shop card</p>
+    <h2 class="h2" style="max-width:20ch">White on cream. Lift on hover. No shadows.</h2>
+    <div class="tiles reveal" style="margin-top:2.5rem">
+      <article class="tile">
+        <div class="tile__media"><div class="tile__media-inner"></div><span>Product photo &middot; placeholder</span></div>
+        <div class="tile__body">
+          <p class="eyebrow tile__cat" style="margin-bottom:0">Counters</p>
+          <h3 class="h3 tile__title">X-Board Demo Counter</h3>
+          <div class="tile__foot">
+            <span class="tile__price">$148</span>
+            <button class="icon-btn" aria-label="Add to cart">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+      <article class="tile">
+        <div class="tile__media"><div class="tile__media-inner"></div><span>Product photo &middot; placeholder</span></div>
+        <div class="tile__body">
+          <p class="eyebrow tile__cat" style="margin-bottom:0">Stands</p>
+          <h3 class="h3 tile__title">Free-Standing Display</h3>
+          <div class="tile__foot">
+            <span class="tile__price">$96</span>
+            <button class="icon-btn" aria-label="Add to cart">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+      <article class="tile">
+        <div class="tile__media"><div class="tile__media-inner"></div><span>Product photo &middot; placeholder</span></div>
+        <div class="tile__body">
+          <p class="eyebrow tile__cat" style="margin-bottom:0">Shelving</p>
+          <h3 class="h3 tile__title">Modular Shelf Unit</h3>
+          <div class="tile__foot">
+            <span class="tile__price">$210</span>
+            <button class="icon-btn" aria-label="Add to cart">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: cream -> kraft -->
+<div class="corrugate" aria-hidden="true">
+  <svg viewBox="0 0 1200 26" preserveAspectRatio="none">
+    <path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13 T480,13 T540,13 T600,13 T660,13 T720,13 T780,13 T840,13 T900,13 T960,13 T1020,13 T1080,13 T1140,13 T1200,13" fill="none" stroke="#C49A6C" stroke-width="2"/>
+    <path d="M0,20 Q30,9 60,20 T120,20 T180,20 T240,20 T300,20 T360,20 T420,20 T480,20 T540,20 T600,20 T660,20 T720,20 T780,20 T840,20 T900,20 T960,20 T1020,20 T1080,20 T1140,20 T1200,20" fill="#C49A6C"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     SECTION 9 — CORRUGATED DIVIDER (demonstrated explicitly)
+     Sits on the kraft band so the wave is the subject.
+     ============================================================ -->
+<section class="band band--kraft kraft-grain" data-showcase="9 / Corrugated divider">
+  <div class="wrap">
+    <span class="section-tag">Showcase 09 — Corrugated-edge divider</span>
+    <p class="eyebrow eyebrow--ink">Ownable detail</p>
+    <h2 class="h2" style="max-width:24ch">The double-wave edge is our signature &mdash; the cut profile of corrugated board.</h2>
+    <p class="lead" style="margin-top:1.2rem;color:#3a2e1f">It separates every light&harr;dark transition on the site. Demonstrated above (entering this band) and below (leaving it). Drawn in SVG, recolored per band, never a flat rule.</p>
+  </div>
+</section>
+
+<!-- DIVIDER: kraft -> cream -->
+<div class="corrugate" aria-hidden="true">
+  <svg viewBox="0 0 1200 26" preserveAspectRatio="none">
+    <path d="M0,6 Q30,17 60,6 T120,6 T180,6 T240,6 T300,6 T360,6 T420,6 T480,6 T540,6 T600,6 T660,6 T720,6 T780,6 T840,6 T900,6 T960,6 T1020,6 T1080,6 T1140,6 T1200,6" fill="#C49A6C"/>
+    <path d="M0,13 Q30,24 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13 T480,13 T540,13 T600,13 T660,13 T720,13 T780,13 T840,13 T900,13 T960,13 T1020,13 T1080,13 T1140,13 T1200,13" fill="none" stroke="#333333" stroke-width="2"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     SECTION 7 — SPEC-AS-HERO STRIP (dark band)
+     ============================================================ -->
+<section class="band band--dark" data-showcase="7 / Spec strip">
+  <div class="wrap">
+    <span class="section-tag">Showcase 07 — Spec-as-hero strip</span>
+    <p class="eyebrow eyebrow--dark">X-Board, by the numbers</p>
+    <h2 class="h2" style="max-width:20ch">The material does the talking.</h2>
+    <div class="specs reveal" style="margin-top:2.5rem">
+      <div class="spec"><div class="spec__num">60<span class="unit">t</span></div><div class="spec__label">Press force &mdash; rigid, board-true edges</div></div>
+      <div class="spec"><div class="spec__num">100<span class="unit">%</span></div><div class="spec__label">Recycled corrugated content</div></div>
+      <div class="spec"><div class="spec__num">FR</div><div class="spec__label">Flame-retardant treated</div></div>
+      <div class="spec"><div class="spec__num">H<span class="unit">&#8322;O</span></div><div class="spec__label">Water-resistant coating</div></div>
+      <div class="spec"><div class="spec__num">&infin;</div><div class="spec__label">Reusable, then fully recyclable</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: dark -> cream -->
+<div class="corrugate" aria-hidden="true">
+  <svg viewBox="0 0 1200 26" preserveAspectRatio="none">
+    <path d="M0,6 Q30,17 60,6 T120,6 T180,6 T240,6 T300,6 T360,6 T420,6 T480,6 T540,6 T600,6 T660,6 T720,6 T780,6 T840,6 T900,6 T960,6 T1020,6 T1080,6 T1140,6 T1200,6" fill="#333333"/>
+    <path d="M0,13 Q30,24 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13 T480,13 T540,13 T600,13 T660,13 T720,13 T780,13 T840,13 T900,13 T960,13 T1020,13 T1080,13 T1140,13 T1200,13" fill="none" stroke="#E67A2F" stroke-width="2"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     SECTION 8 — PUFFERFISH WINK
+     ============================================================ -->
+<section class="band" data-showcase="8 / Pufferfish wink">
+  <div class="wrap">
+    <span class="section-tag">Showcase 08 — The pufferfish wink</span>
+    <p class="eyebrow eyebrow--ink">Mascot moments</p>
+    <h2 class="h2" style="max-width:24ch">A pufferfish that puffs up at just the right moment.</h2>
+    <p class="lead" style="margin-top:1.2rem">The mascot is the brand&rsquo;s wink &mdash; small, dry, never cute-for-cute&rsquo;s-sake. Here&rsquo;s where it earns its keep.</p>
+
+    <div class="puffer-grid reveal">
+      <div class="puffer-slot">
+        <span class="puffer-emoji">&#x1F421;</span>
+        <div class="puffer-slot__where">Loading</div>
+        <div class="puffer-slot__sub">Inflates while you wait</div>
+      </div>
+      <div class="puffer-slot">
+        <span class="puffer-emoji">&#x1F421;</span>
+        <div class="puffer-slot__where">Empty cart</div>
+        <div class="puffer-slot__sub">&ldquo;Nothing here yet&rdquo;</div>
+      </div>
+      <div class="puffer-slot">
+        <span class="puffer-emoji">&#x1F421;</span>
+        <div class="puffer-slot__where">404</div>
+        <div class="puffer-slot__sub">Swam off course</div>
+      </div>
+      <div class="puffer-slot">
+        <span class="puffer-emoji">&#x1F421;</span>
+        <div class="puffer-slot__where">Footer</div>
+        <div class="puffer-slot__sub">A quiet sign-off</div>
+      </div>
+    </div>
+    <p class="redraw-note">Placeholder glyph only. The pufferfish needs a custom SVG redraw &mdash; line-weight matched to the wordmark, single-color, with a 2&ndash;3 frame &ldquo;puff&rdquo; micro-animation for the loading and hover states.</p>
+  </div>
+</section>
+
+<!-- DIVIDER: cream -> ink (footer) -->
+<div class="corrugate" aria-hidden="true">
+  <svg viewBox="0 0 1200 26" preserveAspectRatio="none">
+    <path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13 T480,13 T540,13 T600,13 T660,13 T720,13 T780,13 T840,13 T900,13 T960,13 T1020,13 T1080,13 T1140,13 T1200,13" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+    <path d="M0,20 Q30,9 60,20 T120,20 T180,20 T240,20 T300,20 T360,20 T420,20 T480,20 T540,20 T600,20 T660,20 T720,20 T780,20 T840,20 T900,20 T960,20 T1020,20 T1080,20 T1140,20 T1200,20" fill="#1A1A1A"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     SECTION 10 — FOOTER
+     ============================================================ -->
+<footer class="footer" data-showcase="10 / Footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__col footer__brand">
+        <h2 class="display">pic<span style="color:var(--orange)">pong</span></h2>
+        <p class="footer__story">A family workshop turning recycled corrugated board into displays worth keeping &mdash; since 2004.</p>
+        <div style="margin-top:1.6rem"><a class="btn btn--onDark" href="#">Start a project <span class="arrow">&rarr;</span></a></div>
+      </div>
+      <div class="footer__col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Counters</a></li>
+          <li><a href="#">Stands</a></li>
+          <li><a href="#">Shelving</a></li>
+          <li><a href="#">Custom builds</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#">Our story</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Trusted by</h4>
+        <ul>
+          <li><a href="#">Microsoft</a></li>
+          <li><a href="#">Intel</a></li>
+          <li><a href="#">Google</a></li>
+          <li><a href="#">IBM &middot; Landa</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 Picpong &middot; Sustainable display systems</span>
+      <span>Design concept &mdash; not final</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal — gentle fade-up. Respects reduced motion via CSS.
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

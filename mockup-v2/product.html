@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>X-Board Demo Counter — Picpong</title>
+<meta name="description" content="A 100% recycled X-Board demo counter — flame-retardant, water-resistant, ships flat, prints to your artwork." />
+<link rel="icon" href="assets/brand/puffer.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..500,0..100,0..1;1,9..144,300..500,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="ribbon">Design mockup — <b>v2</b> — concept for client review, not the live site</div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="index.html" aria-label="Picpong home"><img class="brand__mark" src="assets/brand/puffer.svg" alt="" /><span class="brand__word">pic<b>pong</b></span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="shop.html" aria-current="page">Shop</a><a href="projects.html">Projects</a><a href="index.html#sustainability">Sustainability</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="iconbtn cart-btn" data-cart-open aria-label="Open cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span class="cart-count">0</span></button>
+      <button class="iconbtn nav__menu-btn" id="menuBtn" aria-label="Open menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__top"><span class="brand__word">pic<b>pong</b></span><button class="iconbtn" id="menuClose" aria-label="Close menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <nav><a href="shop.html">Shop</a><a href="projects.html">Projects</a><a href="index.html#sustainability">Sustainability</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+  <div class="mobile-menu__foot"><a class="btn btn--brand btn--block" href="index.html#contact">Start a project <span class="arrow">&rarr;</span></a></div>
+</div>
+
+<section class="band band--tight">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <a href="shop.html">Counters</a> / <span>Demo Counter</span></nav>
+
+    <div class="pdp" style="margin-top:1.5rem">
+      <!-- GALLERY -->
+      <div data-gallery>
+        <div class="gallery__main" data-gallery-main>
+          <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-label="X-Board Demo Counter, natural kraft"><defs><pattern id="g1" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 7h14" stroke="#b98c52" stroke-width="1.3" opacity="0.4"/></pattern></defs><ellipse cx="300" cy="470" rx="190" ry="24" fill="#000" opacity="0.06"/><path d="M180 220h240l36 250H144z" fill="#cfa46a"/><path d="M180 220h240l36 250H144z" fill="url(#g1)"/><path d="M144 470h312v16H144z" fill="#bb8c4f"/><rect x="166" y="178" width="268" height="46" rx="6" fill="#dcb87f"/><rect x="166" y="178" width="268" height="46" rx="6" fill="url(#g1)"/><text x="300" y="360" text-anchor="middle" font-family="Fraunces, serif" font-size="40" fill="#8a6334" opacity="0.5">X·BOARD</text></svg>
+        </div>
+        <div class="gallery__thumbs">
+          <button class="gallery__thumb" aria-current="true" aria-label="View 1 — natural"><svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="600" fill="#efe6d8"/><path d="M180 220h240l36 250H144z" fill="#cfa46a"/><path d="M144 470h312v16H144z" fill="#bb8c4f"/><rect x="166" y="178" width="268" height="46" rx="6" fill="#dcb87f"/></svg></button>
+          <button class="gallery__thumb" aria-current="false" aria-label="View 2 — printed"><svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="600" fill="#f1ece0"/><path d="M180 220h240l36 250H144z" fill="#e8ddc8"/><rect x="200" y="250" width="200" height="120" rx="6" fill="#E67A2F" opacity="0.9"/><rect x="220" y="400" width="160" height="20" rx="10" fill="#2b2b2b"/><path d="M144 470h312v16H144z" fill="#bb8c4f"/></svg></button>
+          <button class="gallery__thumb" aria-current="false" aria-label="View 3 — flat-packed"><svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><rect width="600" height="600" fill="#efe6d8"/><g transform="rotate(-8 300 300)"><rect x="150" y="250" width="300" height="120" rx="6" fill="#cfa46a"/><path d="M150 290h300M150 330h300" stroke="#b98c52" stroke-width="3"/></g><text x="300" y="470" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="34" fill="#8a6334" opacity="0.6">ships flat</text></svg></button>
+        </div>
+        <p class="placeholder-cap" style="margin-top:0.8rem">Illustrated placeholder — studio product photography to be shot for launch</p>
+      </div>
+
+      <!-- INFO -->
+      <div class="pdp__info">
+        <p class="eyebrow" style="margin-bottom:0.4rem">Counters · SKU&nbsp;XB-CT-240</p>
+        <h1 class="h1 pdp__title">DEMO COUNTER <span style="font-family:Hanken Grotesk;font-weight:400;font-size:0.42em;color:var(--muted);letter-spacing:0;display:block;margin-top:0.4rem">Recycled X-Board, printed to your artwork</span></h1>
+        <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.8rem">
+          <span class="tile__badge tile__badge--eco" style="position:static">100% recycled</span>
+          <span class="tile__badge" style="position:static">Ships flat</span>
+          <span class="tile__badge" style="position:static;background:#2A9BD0">Water-resistant</span>
+        </div>
+
+        <p class="pdp__price" id="pdpPrice">$148 <small>/ unit · ex. VAT</small></p>
+        <p class="pdp__desc lead">A lightweight reception or demo counter that arrives flat, folds up in minutes and prints edge-to-edge with your brand. Built from the same 60-ton-pressed board behind our exhibition stands — then fully recyclable when the show's over.</p>
+
+        <!-- FINISH -->
+        <div class="optgroup" data-optgroup>
+          <div class="optgroup__label">Finish</div>
+          <div class="opts">
+            <button class="opt" data-opt data-delta="0" data-short="Natural kraft" aria-pressed="true">Natural kraft</button>
+            <button class="opt" data-opt data-delta="38" data-short="Full-colour" aria-pressed="false">Full-colour print</button>
+            <button class="opt" data-opt data-delta="22" data-short="White-faced" aria-pressed="false">White-faced</button>
+          </div>
+        </div>
+
+        <!-- SIZE -->
+        <div class="optgroup" data-optgroup>
+          <div class="optgroup__label">Height</div>
+          <div class="opts">
+            <button class="opt" data-opt data-delta="0" data-short="95cm" aria-pressed="true">Standard · 95&nbsp;cm</button>
+            <button class="opt" data-opt data-delta="18" data-short="110cm" aria-pressed="false">Bar · 110&nbsp;cm</button>
+          </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="pdp__actions">
+          <div class="stepper" id="pdpStepper" aria-label="Quantity">
+            <button data-act="dec" aria-label="Decrease quantity">&minus;</button>
+            <span>1</span>
+            <button data-act="inc" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="btn btn--primary" id="pdpAdd" data-add="counter-demo" data-name="X-Board Demo Counter" data-base="148" data-meta="Natural kraft · 95cm" data-price="148" data-qty="1" data-open>Add to cart <span class="arrow">&rarr;</span></button>
+        </div>
+
+        <!-- QUOTE FUNNEL -->
+        <div class="pdp__quote">
+          <p><strong>Need 20+, a custom size, or installation?</strong> We'll quote it as a project — same board, same workshop.</p>
+          <a class="btn btn--ghost btn--sm" href="index.html#contact">Request a quote</a>
+        </div>
+
+        <!-- SPECS ACCORDION -->
+        <div class="acc">
+          <div class="acc__item open">
+            <button class="acc__btn" aria-expanded="true">Specifications <span class="pm">+</span></button>
+            <div class="acc__panel" style="max-height:600px"><div class="acc__panel-inner">
+              <table class="spec-table"><tbody>
+                <tr><td>Material</td><td>X-Board · 100% recycled corrugated</td></tr>
+                <tr><td>Footprint</td><td>120 × 50 cm</td></tr>
+                <tr><td>Height</td><td>95 cm (standard) / 110 cm (bar)</td></tr>
+                <tr><td>Press strength</td><td>60-ton pressed panel</td></tr>
+                <tr><td>Treatment</td><td>Flame-retardant · water-resistant</td></tr>
+                <tr><td>Assembly</td><td>Tool-free · ~5 minutes</td></tr>
+                <tr><td>Pack</td><td>Ships flat · 4 cm thick</td></tr>
+                <tr><td>End of life</td><td>Reusable, then 100% recyclable</td></tr>
+              </tbody></table>
+            </div></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__btn" aria-expanded="false">Artwork &amp; printing <span class="pm">+</span></button>
+            <div class="acc__panel"><div class="acc__panel-inner">
+              <p style="margin:0 0 0.6rem">We print directly onto the panel — no laminates, no vinyl. Supply a PDF at 1:1 scale with 5&nbsp;mm bleed, or hand us a brief and our studio will design it. Five-step proof flow before anything goes to press.</p>
+            </div></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__btn" aria-expanded="false">Shipping &amp; lead time <span class="pm">+</span></button>
+            <div class="acc__panel"><div class="acc__panel-inner">
+              <p style="margin:0">Stock finishes ship in 5–7 working days, flat-packed. Printed and custom sizes, 7–10 days. Installation available across Israel and for international events on request.</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="band band--cream2" style="padding-top:clamp(2.5rem,5vw,4rem)">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:1.8rem"><p class="eyebrow">Pairs well with</p><h2 class="h3">Complete the stand</h2></div>
+    <div class="grid-products">
+      <article class="tile reveal" data-cat="stands">
+        <a href="product.html" class="tile__media"><span class="tile__badge">Ships flat</span><div class="tile__media-art"><svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="r2" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 4.5h9" stroke="#b98c52" stroke-width="1" opacity="0.4"/></pattern></defs><ellipse cx="200" cy="330" rx="90" ry="14" fill="#000" opacity="0.06"/><rect x="150" y="70" width="100" height="250" rx="6" fill="#d4ad72"/><rect x="150" y="70" width="100" height="250" rx="6" fill="url(#r2)"/><rect x="166" y="96" width="68" height="120" rx="4" fill="#eadcc2"/><circle cx="200" cy="250" r="20" fill="#E67A2F" opacity="0.85"/></svg></div></a>
+        <div class="tile__body"><p class="eyebrow eyebrow--plain tile__cat">Stands</p><h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Free-Standing Totem</a></h3><div class="tile__foot"><span class="tile__price">$96</span><button class="icon-btn" data-add="totem-fs" data-name="Free-Standing Totem" data-meta="Natural kraft · 1 pc" data-price="96" aria-label="Add to cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div></div>
+      </article>
+      <article class="tile reveal d1" data-cat="shelving">
+        <a href="product.html" class="tile__media"><span class="tile__badge tile__badge--eco">Reusable</span><div class="tile__media-art"><svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="r3" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5h10" stroke="#b98c52" stroke-width="1" opacity="0.4"/></pattern></defs><ellipse cx="200" cy="330" rx="110" ry="14" fill="#000" opacity="0.06"/><rect x="110" y="90" width="180" height="230" rx="6" fill="#cfa46a"/><rect x="110" y="90" width="180" height="230" rx="6" fill="url(#r3)"/><g fill="#eadcc2"><rect x="124" y="106" width="152" height="40"/><rect x="124" y="166" width="152" height="40"/><rect x="124" y="226" width="152" height="40"/></g></svg></div></a>
+        <div class="tile__body"><p class="eyebrow eyebrow--plain tile__cat">Shelving</p><h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Modular Shelf Unit</a></h3><div class="tile__foot"><span class="tile__price">$210</span><button class="icon-btn" data-add="shelf-mod" data-name="Modular Shelf Unit" data-meta="Natural kraft · 1 pc" data-price="210" aria-label="Add to cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div></div>
+      </article>
+      <article class="tile reveal d2" data-cat="walls">
+        <a href="product.html" class="tile__media"><span class="tile__badge">Full-colour print</span><div class="tile__media-art"><svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="r4" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5h10" stroke="#b98c52" stroke-width="1" opacity="0.35"/></pattern></defs><ellipse cx="200" cy="330" rx="130" ry="14" fill="#000" opacity="0.06"/><rect x="80" y="90" width="240" height="220" rx="6" fill="#d8b67d"/><rect x="80" y="90" width="240" height="220" rx="6" fill="url(#r4)"/><circle cx="150" cy="170" r="26" fill="#E67A2F"/><rect x="200" y="150" width="80" height="14" rx="7" fill="#2A9BD0"/><rect x="200" y="178" width="56" height="14" rx="7" fill="#2b2b2b"/></svg></div></a>
+        <div class="tile__body"><p class="eyebrow eyebrow--plain tile__cat">Photocall walls</p><h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Photocall Wall 2×2.4m</a></h3><div class="tile__foot"><span class="tile__price">$340</span><button class="icon-btn" data-add="wall-photocall" data-name="Photocall Wall 2×2.4m" data-meta="Full-colour print · 1 pc" data-price="340" aria-label="Add to cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand"><h2 class="display">pic<b>pong</b></h2><p class="footer__story">A family workshop turning recycled corrugated board into displays worth keeping — since 2004.</p><a class="btn btn--onDark" href="index.html#contact">Start a project <span class="arrow">&rarr;</span></a></div>
+      <div class="footer__col"><h4>Shop</h4><ul><li><a href="shop.html">Counters</a></li><li><a href="shop.html">Stands &amp; totems</a></li><li><a href="shop.html">Shelving</a></li><li><a href="shop.html">Photocall walls</a></li><li><a href="shop.html">Custom builds</a></li></ul></div>
+      <div class="footer__col"><h4>Studio</h4><ul><li><a href="index.html#about">Our story</a></li><li><a href="projects.html">Projects</a></li><li><a href="index.html#sustainability">Sustainability</a></li><li><a href="index.html#contact">Contact</a></li></ul></div>
+      <div class="footer__col"><h4>Trusted by</h4><ul><li><a href="projects.html">Microsoft · Intel</a></li><li><a href="projects.html">Google · IBM</a></li><li><a href="projects.html">Landa · Amdocs</a></li><li><a href="projects.html">Wix · Maccabi</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span><img class="footer__puffer" src="assets/brand/puffer.svg" alt="" /> &nbsp;© 2026 Picpong · Sustainable display systems</span><span>Mockup v2 — concept, not final</span></div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" data-cart-close></div>
+<aside class="drawer" id="drawer" aria-label="Shopping cart">
+  <div class="drawer__head"><span class="drawer__title">Your cart</span><button class="iconbtn" data-cart-close aria-label="Close cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="drawer__items" id="cartItems"></div>
+  <div class="drawer__foot" id="cartFoot">
+    <div class="drawer__row"><span class="muted">Subtotal</span><span class="drawer__total" id="cartTotal">$0</span></div>
+    <p class="drawer__note">Shipping &amp; VAT calculated at checkout. Bespoke pieces are quoted separately.</p>
+    <a class="btn btn--primary btn--block" href="#">Checkout <span class="arrow">&rarr;</span></a>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<button class="to-top" id="toTop" aria-label="Back to top — the pufferfish puffs up"><img src="assets/brand/puffer.svg" alt="" /></button>
+
+<script src="js/app.js"></script>
+</body>
+</html>
