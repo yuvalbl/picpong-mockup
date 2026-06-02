@@ -3,16 +3,25 @@
 Tries the original (full-res) URL first, falls back to the sized/exact URL on
 404. Skips files already present. Writes download-report.json.
 """
-import os, sys, json, time, socket, urllib.request, urllib.error
+import os, sys, json, time, socket, urllib.request, urllib.error, urllib.parse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 socket.setdefaulttimeout(12)
+
+def enc(url):
+    """Percent-encode non-ASCII path chars (Hebrew filenames) so requests resolve."""
+    try:
+        p = urllib.parse.urlsplit(url)
+        path = urllib.parse.quote(p.path, safe="/%")
+        return urllib.parse.urlunsplit((p.scheme, p.netloc, path, p.query, p.fragment))
+    except Exception:
+        return url
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 TSV = os.path.join(ROOT, "download-list.tsv")
 HDR = {"User-Agent": "Mozilla/5.0 asset-audit"}
 
 def fetch(url):
-    req = urllib.request.Request(url, headers=HDR)
+    req = urllib.request.Request(enc(url), headers=HDR)
     with urllib.request.urlopen(req, timeout=12) as r:
         return r.read()
 
