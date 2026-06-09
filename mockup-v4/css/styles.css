@@ -87,15 +87,15 @@ a { color: inherit; }
 
 /* ---------- typography primitives ---------- */
 .display, .h1, .h2, .h3, .h4 {
-  font-family: "Fraunces", Georgia, serif;
+  font-family: "Rubik", system-ui, sans-serif;
   font-weight: 300;
   font-optical-sizing: auto;
-  /* engraved-monograph axes — the spec's #1 anti-generic fix (avoid default Fraunces) */
-  font-variation-settings: "opsz" 144, "SOFT" 28, "WONK" 1;
+  /* engraved-monograph axes — the spec's #1 anti-generic fix (avoid default Rubik) */
+  /* font-variation-settings removed for Rubik */
   margin: 0;
 }
 .display { font-size: var(--t-display); line-height: 1.0; letter-spacing: -0.03em;
-  font-variation-settings: "opsz" 144, "SOFT" 12, "WONK" 1; }
+  /* font-variation-settings removed for Rubik */ }
 .h1 { font-size: var(--t-h1); line-height: 1.02; letter-spacing: -0.028em; }
 .h2 { font-size: var(--t-h2); line-height: 1.05; letter-spacing: -0.02em; }
 .h3 { font-size: var(--t-h3); line-height: 1.1; letter-spacing: -0.012em; font-weight: 400; }
@@ -235,7 +235,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 /* mascot is a low-res raster (137x93); cap height at native so it stays crisp on 2x/3x.
    aspect-ratio + object-fit + flex:none guarantee it can never be squished by a flex parent. */
 .brand__mark { height: 31px; width: auto; aspect-ratio: 137 / 93; object-fit: contain; flex: 0 0 auto; display: block; }
-.brand__word { font-family: "Fraunces", serif; font-weight: 400; font-size: 1.45rem; letter-spacing: -0.02em; }
+.brand__word { font-family: "Rubik", system-ui, sans-serif; font-weight: 400; font-size: 1.45rem; letter-spacing: -0.02em; }
 .brand__word b { color: var(--orange); font-weight: 500; }
 .nav--dark .brand__word { color: var(--cream); }
 
@@ -268,7 +268,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .mobile-menu.open { transform: none; }
 .mobile-menu__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
 .mobile-menu nav { display: flex; flex-direction: column; gap: 0.4rem; }
-.mobile-menu nav a { font-family: "Fraunces", serif; font-size: 2rem; font-weight: 300;
+.mobile-menu nav a { font-family: "Rubik", system-ui, sans-serif; font-size: 2rem; font-weight: 300;
   letter-spacing: -0.02em; text-decoration: none; padding: 0.5rem 0; border-bottom: 1px solid var(--line-soft); }
 .mobile-menu__foot { margin-top: auto; }
 
@@ -299,7 +299,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .lane { background: var(--cream); padding: clamp(1.75rem, 3.5vw, 2.6rem) clamp(1.25rem, 3vw, 2.25rem);
   transition: background var(--speed) var(--ease); }
 .lane:not(.lane--panel):hover { background: var(--cream-2); }
-.lane__num { font-family: "Fraunces", serif; font-weight: 300; font-size: 1.25rem; color: var(--kraft-deep); }
+.lane__num { font-family: "Rubik", system-ui, sans-serif; font-weight: 300; font-size: 1.25rem; color: var(--kraft-deep); }
 .lane__title { margin: 0.5rem 0; }
 .lane__desc { color: #45453f; max-width: 40ch; margin-bottom: 1.6rem; }
 @media (min-width: 820px) { .funnels { grid-template-columns: 1fr 1fr; } }
@@ -314,7 +314,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .marquee--kraft .marquee__item::after { color: var(--ink); }
 .marquee__track { display: flex; gap: 3rem; width: max-content; animation: marquee 38s linear infinite; }
 .marquee:hover .marquee__track { animation-play-state: paused; }
-.marquee__item { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(1.25rem,2.6vw,1.9rem);
+.marquee__item { font-family: "Rubik", system-ui, sans-serif; font-weight: 300; font-size: clamp(1.25rem,2.6vw,1.9rem);
   letter-spacing: -0.01em; color: var(--ink); display: inline-flex; align-items: center; gap: 3rem; }
 .marquee__item::after { content:"✦"; color: var(--orange); font-size: 0.7em; }
 @keyframes marquee { to { transform: translateX(-50%); } }
@@ -322,15 +322,14 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 /* ============================================================
    TRUST STRIP
    ============================================================ */
-.trust { display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; align-items: center; }
-.trust__label { font-size: var(--t-meta); text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); }
-/* logo wall lockup: hairline-divided wordmarks so it reads as proof, not a tag list */
-.trust__logos { display: flex; flex-wrap: wrap; align-items: center; }
-.trust__logos span { font-weight: 600; font-size: 1.02rem; letter-spacing: 0.02em; color: #5a584e;
-  padding: 0 1.25rem; line-height: 1.1; border-left: 1px solid var(--line);
-  transition: color var(--speed) var(--ease); }
-.trust__logos span:first-child { border-left: 0; padding-left: 0; }
-.trust__logos span:hover { color: var(--ink); }
+.trust { display: flex; flex-direction: column; gap: clamp(1.5rem, 3vw, 2.25rem); align-items: center; justify-content: center; text-align: center; }
+.trust__label { justify-content: center; margin: 0; color: var(--muted); }
+
+/* logo wall lockup: normalized heights for visual balance */
+.trust__logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem 4rem; }
+.trust__logos img { height: 28px; width: auto; max-width: 140px; object-fit: contain;
+  filter: grayscale(1) opacity(0.6); transition: filter var(--speed) var(--ease), opacity var(--speed) var(--ease); }
+.trust__logos img:hover { filter: none; opacity: 1; }
 
 /* ============================================================
    PRODUCT GRID + TILE
@@ -379,7 +378,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 @media (min-width: 760px) { .specs { grid-template-columns: repeat(5, 1fr); } }
 .spec { background: var(--gallery); padding: clamp(1.5rem,3vw,2.6rem) clamp(1.1rem,2.5vw,1.7rem); }
 /* numbers as personality — louder than cartonlab's quiet spec tabs (spec §2.4/§4) */
-.spec__num { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(2.8rem,6vw,4.5rem);
+.spec__num { font-family: "Rubik", system-ui, sans-serif; font-weight: 300; font-size: clamp(2.8rem,6vw,4.5rem);
   letter-spacing: -0.04em; line-height: 0.95; color: var(--cream);
   font-variant-numeric: tabular-nums; font-feature-settings: "tnum";
   font-variation-settings: "opsz" 144, "SOFT" 10, "WONK" 1; }
@@ -410,10 +409,24 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   color: var(--orange-bright); font-weight: 600; }
 .project__title { margin: 0.4rem 0 0; color: #fff; }
 /* badge sits TOP-LEFT (the "+" owns top-right). Solid orange pill, high contrast. */
-.project__tag { position: absolute; z-index: 6; top: 0.9rem; inset-inline-start: 0.9rem;
-  font-size: 0.6875rem; letter-spacing: 0.08em; font-weight: 700;
-  text-transform: uppercase; background: var(--orange); color: #fff;
-  padding: 0.32rem 0.7rem; border-radius: 999px; box-shadow: 0 2px 8px rgba(26,26,26,0.28); }
+.project__tag {
+  position: absolute;
+  z-index: 6;
+  top: 0.7rem;
+  inset-inline-start: 0.7rem;
+  height: 2.4rem;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--orange);
+  color: #fff;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(26,26,26,0.28);
+}
 
 /* projects filter */
 .filterbar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.25rem; }
@@ -483,7 +496,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .footer__brand .display { font-size: clamp(2rem,5vw,2.75rem); color: var(--cream); }
 .footer__brand .display b { color: var(--orange); font-weight: 400; }
 .footer__story { font-size: var(--t-body); color: rgba(247,247,241,0.6); max-width: 38ch; margin: 1rem 0 1.6rem; }
-.footer__col h4 { font-family: "Fraunces", serif; font-weight: 400; font-size: 1rem; margin: 0 0 1rem; }
+.footer__col h4 { font-family: "Rubik", system-ui, sans-serif; font-weight: 400; font-size: 1rem; margin: 0 0 1rem; }
 .footer__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
 .footer__col a { color: rgba(247,247,241,0.7); text-decoration: none; font-size: var(--t-ui);
   transition: color var(--speed) var(--ease); }
@@ -528,7 +541,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .gallery__thumb svg, .gallery__thumb img { width: 100%; height: 100%; }
 
 .pdp__title { margin: 0.7rem 0 0.5rem; }
-.pdp__price { font-family: "Fraunces", serif; font-size: 2rem; margin: 1rem 0 0.2rem; }
+.pdp__price { font-family: "Rubik", system-ui, sans-serif; font-size: 2rem; margin: 1rem 0 0.2rem; }
 .pdp__price small { font-size: 0.9rem; color: var(--muted); }
 .pdp__desc { margin: 1.1rem 0 0; }
 .optgroup { margin-top: 1.8rem; }
@@ -678,7 +691,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    NO ellipsis/clip — the card's auto-width grows to its widest line (capped at
    max-width), and the copy is written to fit, so the full text is always shown.
    nowrap also keeps the JS width-measure meaningful (auto-width = widest line). */
-.ctile__card-k { font-family: "Fraunces", serif; font-weight: 400; font-size: 1.08rem; line-height: 1.12; letter-spacing: -0.01em; white-space: nowrap; }
+.ctile__card-k { font-family: "Rubik", system-ui, sans-serif; font-weight: 400; font-size: 1.08rem; line-height: 1.12; letter-spacing: -0.01em; white-space: nowrap; }
 .ctile__card-m { font-size: var(--t-meta); color: var(--muted); white-space: nowrap; }
 
 /* "live" pulse label for the cinemagraph tile */
@@ -758,17 +771,17 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .reveal--slide.in { transform: none; }
 
 /* trust logos cascade in once the strip reveals */
-.trust__logos span { opacity: 0; transform: translateY(8px);
+.trust__logos img { opacity: 0; transform: translateY(8px);
   transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
-.trust.in .trust__logos span { opacity: 1; transform: none; }
-.trust.in .trust__logos span:nth-child(1) { transition-delay: 0.05s; }
-.trust.in .trust__logos span:nth-child(2) { transition-delay: 0.10s; }
-.trust.in .trust__logos span:nth-child(3) { transition-delay: 0.15s; }
-.trust.in .trust__logos span:nth-child(4) { transition-delay: 0.20s; }
-.trust.in .trust__logos span:nth-child(5) { transition-delay: 0.25s; }
-.trust.in .trust__logos span:nth-child(6) { transition-delay: 0.30s; }
-.trust.in .trust__logos span:nth-child(7) { transition-delay: 0.35s; }
-.trust.in .trust__logos span:nth-child(8) { transition-delay: 0.40s; }
+.trust.in .trust__logos img { opacity: 1; transform: none; }
+.trust.in .trust__logos img:nth-child(1) { transition-delay: 0.05s; }
+.trust.in .trust__logos img:nth-child(2) { transition-delay: 0.10s; }
+.trust.in .trust__logos img:nth-child(3) { transition-delay: 0.15s; }
+.trust.in .trust__logos img:nth-child(4) { transition-delay: 0.20s; }
+.trust.in .trust__logos img:nth-child(5) { transition-delay: 0.25s; }
+.trust.in .trust__logos img:nth-child(6) { transition-delay: 0.30s; }
+.trust.in .trust__logos img:nth-child(7) { transition-delay: 0.35s; }
+.trust.in .trust__logos img:nth-child(8) { transition-delay: 0.40s; }
 
 /* spec tiles settle in sequence as the dark strip reveals */
 .specs .spec { opacity: 0; transform: translateY(16px);
@@ -787,17 +800,66 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   background-size: 280% 100%; animation: sheen 9s linear infinite; }
 #material > .wrap { position: relative; z-index: 1; }
 
-/* MOBILE (default ≤759): headline full; slide box full; slogan + Landa share a
-   half/half row; "on the show floor" full-width band LAST. Visual order via
-   `order` (DOM order stays headline, media, video, slogan, sticker). */
-.ctile--headline { grid-column: 1 / 3; }
-/* slide box: full-width cinematic band — min-height:0 so aspect-ratio drives height */
-.ctile--media    { grid-column: 1 / 3; aspect-ratio: 16 / 10; min-height: 0; }
-/* half/half row */
-.ctile--slogan   { grid-column: 1 / 2; min-height: 230px; order: 3; }
-.ctile--sticker  { grid-column: 2 / 3; aspect-ratio: auto; min-height: 0; order: 4; }
-/* "on the show floor": full-width band pushed to the end of the collage */
-.ctile--video    { grid-column: 1 / 3; aspect-ratio: 16 / 10; min-height: 0; order: 5; }
+/* MOBILE (≤759.98): editorial asymmetric masonry that mirrors cartonlab's
+   mobile banner block — a featured-large tile + standard tiles of VARIED
+   heights, full-bleed rounded cover photos, with the kraft/pond TEXT panels
+   woven IN AMONG the photos so type breaks up the imagery (not a flat uniform
+   2-up grid). Visual order via `order`; DOM order stays headline, media,
+   video, slogan, sticker. Hard-ceiled at 759.98px so none of this can leak
+   into the desktop interlock (≥760) below. */
+@media (max-width: 759.98px) {
+  /* cartonlab `.bloque-5-banners` mobile rhythm: a full-bleed editorial lead,
+     then a two-column STAGGERED mosaic. Both media columns span the same row
+     band (rows 2-10 = 8 units) so they're equal height with NO empty gaps, but
+     their interior seam falls on different rows — col-1 is TALL→short, col-2 is
+     short→TALL — so the seam zig-zags (woven masonry), never a flat stack. A
+     fine row unit + grid-row spans drive the tile heights; align-items:stretch
+     (grid default) makes each tile fill its span, so the columns interlock. */
+  .collage {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;                 /* row 1 (headline) sizes to content */
+    grid-auto-rows: clamp(44px, 12vw, 64px);  /* rows 2-10 (the mosaic) = fine unit */
+    gap: clamp(0.5rem, 2.4vw, 0.8rem);
+  }
+  .ctile { min-height: 0; }
+
+  /* A · headline pond panel — full-bleed editorial anchor across the top.
+     Auto-height (row 1 sizes to content) so the H1 + both CTAs never clip. */
+  .ctile--headline { grid-column: 1 / -1; grid-row: 1; }
+
+  /* col-1 : slideshow TALL feature → slogan short  (rows 2-10) */
+  .ctile--media  { grid-column: 1; grid-row: 2 / span 5; aspect-ratio: auto; }
+  .ctile--slogan { grid-column: 1; grid-row: 7 / span 3; aspect-ratio: auto; min-height: 0; }
+
+  /* col-2 : video short → sticker TALL  (rows 2-10) — mirror rhythm, so the
+     seam between the two columns staggers against col-1's. */
+  .ctile--video   { grid-column: 2; grid-row: 2 / span 3; aspect-ratio: auto; }
+  .ctile--sticker { grid-column: 2; grid-row: 5 / span 5; aspect-ratio: auto; }
+
+  /* slideshow is now a half-width tile, so its caption card must wrap instead of
+     running off the edge (the base card holds each line to `nowrap` for the
+     desktop width-lock). Let both lines wrap and shrink; width:auto !important
+     overrides the inline width the JS swap-lock sets. */
+  .slideshow .ctile__card {
+    left: 0.5rem; right: 0.5rem; bottom: 0.5rem;
+    max-width: none; width: auto !important; padding: 0.45rem 0.6rem; border-radius: 11px;
+  }
+  .slideshow .ctile__card-k { font-size: 0.86rem; line-height: 1.12; white-space: normal; }
+  .slideshow .ctile__card-m { font-size: 0.66rem; line-height: 1.18; white-space: normal; }
+
+  /* The sticker tile is a half-width tile: its badge (bottom-right) and printer
+     doodle (bottom-left) sit at opposite corners. Shrink both and tighten the
+     corner insets so they cannot collide in LTR or RTL (the doodle's inline
+     width:clamp needs !important to override). */
+  .ctile--sticker .sticker {
+    right: clamp(0.45rem, 2.4vw, 0.75rem); bottom: clamp(0.45rem, 2.4vw, 0.75rem);
+    width: clamp(54px, 15vw, 72px);
+  }
+  .ctile--sticker .doodle--pin-bl {
+    left: 5%; bottom: 6%;
+    width: clamp(50px, 14vw, 68px) !important;
+  }
+}
 
 /* DESKTOP (≥760): cartonlab interlock — 3 columns 2:1:1, equal height,
    staggered interior seams (mid col 66/34, right col 33/67). */
@@ -958,7 +1020,9 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    tighten padding so the longest single-word line ("Remarkable") fits the panel */
 @media (max-width: 759px) {
   .ctile--slogan { padding: clamp(1rem, 4vw, 1.4rem); }
-  .slogan .line { font-size: clamp(1.3rem, 6.5vw, 1.7rem); }
+  /* lower bound trimmed (1.3→1.15rem) + gentler vw so "Remarkable" fits the
+     narrow woven column down to 360px without overflowing horizontally. */
+  .slogan .line { font-size: clamp(1.15rem, 5vw, 1.7rem); }
 }
 
 /* lines settle in (staggered) and then HOLD — no infinite breathe, so nothing
@@ -1343,7 +1407,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    bottom-left printer doodle (.doodle--pin-bl). Keep physical right in both dirs. */
 [dir="rtl"] .slideshow__bars { left: 0.6rem; right: 0.6rem; }
 [dir="rtl"] .tile__badge { left: auto; inset-inline-start: 0.8rem; }
-[dir="rtl"] .project__tag { right: auto; inset-inline-end: 1rem; }
+[dir="rtl"] .project__tag { right: auto; inset-inline-end: 0.7rem; }
 [dir="rtl"] .project__body { left: 0; right: 0; }
 [dir="rtl"] .trust__logos span { border-left: 0; border-right: 1px solid var(--line); }
 [dir="rtl"] .trust__logos span:first-child { border-right: 0; padding-right: 0; }
@@ -1357,7 +1421,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 [dir="rtl"] .arrow,
 [dir="rtl"] .lane__num { display: inline-block; transform: scaleX(-1); }
 
-/* Hebrew typography: Fraunces lacks Hebrew glyphs — fall back to a Hebrew-capable
+/* Hebrew typography: Rubik lacks Hebrew glyphs — fall back to a Hebrew-capable
    stack so RTL copy renders cleanly (browser default Hebrew face). */
 [dir="rtl"] body { font-family: "Hanken Grotesk", "Arial Hebrew", "Heebo", system-ui, sans-serif; }
 [dir="rtl"] .display, [dir="rtl"] .h1, [dir="rtl"] .h2, [dir="rtl"] .h3, [dir="rtl"] .h4,
