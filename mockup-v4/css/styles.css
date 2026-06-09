@@ -324,19 +324,35 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    ============================================================ */
 .trust__label { display: flex; justify-content: center; margin: 0 0 clamp(1.5rem, 3vw, 2.25rem); }
 
-/* client logo marquee — matches the original site: 120×90 slides, continuous scroll.
-   Per-item margin (not flex gap) so the -50% loop repeats seamlessly. */
+/* client logo marquee — matches the original site (Slick carousel): 120×90 slides that
+   advance ONE cell at a time with a short eased move, then hold/pause, then step again.
+   8 unique logos are duplicated (16 items); -50% = exactly one set, so the loop is seamless.
+   Per-item margin (not flex gap) keeps each step exactly one cell wide. */
 .logo-marquee { overflow: hidden; width: 100%;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
           mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
 .logo-marquee__track { display: flex; align-items: center; width: max-content;
-  animation: marquee 40s linear infinite; }
+  animation: logo-step 20s ease infinite; }
 .logo-marquee:hover .logo-marquee__track { animation-play-state: paused; }
 .logo-marquee__item { flex: 0 0 auto; width: 120px; height: 90px; margin-right: clamp(2rem, 5vw, 4.5rem);
   display: flex; align-items: center; justify-content: center; }
 .logo-marquee__item img { max-width: 120px; max-height: 90px; width: auto; height: auto;
   object-fit: contain; opacity: 0.85; transition: opacity var(--speed) var(--ease); }
 .logo-marquee__item img:hover { opacity: 1; }
+
+/* Step-and-pause: each 12.5% of the timeline = one cell. Within it, hold ~80% (pause)
+   then move ~20% (the quick eased slide), landing on the next cell. 8 cells → -50%. */
+@keyframes logo-step {
+  0%,    10%   { transform: translateX(0); }
+  12.5%, 22.5% { transform: translateX(-6.25%); }
+  25%,   35%   { transform: translateX(-12.5%); }
+  37.5%, 47.5% { transform: translateX(-18.75%); }
+  50%,   60%   { transform: translateX(-25%); }
+  62.5%, 72.5% { transform: translateX(-31.25%); }
+  75%,   85%   { transform: translateX(-37.5%); }
+  87.5%, 97.5% { transform: translateX(-43.75%); }
+  100%         { transform: translateX(-50%); }
+}
 @media (prefers-reduced-motion: reduce) {
   .logo-marquee { -webkit-mask-image: none; mask-image: none; }
   .logo-marquee__track { animation: none; flex-wrap: wrap; justify-content: center; row-gap: 1rem; }
