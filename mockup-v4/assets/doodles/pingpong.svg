@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--pingpong" aria-hidden="true">
+  <g stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- paddle blade -->
+    <path pathLength="1" d="M58 112 C36 90 38 56 64 40 C92 22 130 30 144 58 C156 82 146 112 120 124 C104 131 90 130 78 124"/>
+    <!-- handle -->
+    <path pathLength="1" d="M78 124 L96 168 q 4 12 18 10 q 14 -2 10 -16 L116 116"/>
+    <!-- ball -->
+    <circle pathLength="1" cx="160" cy="150" r="13"/>
+    <!-- bounce arc (motion) -->
+    <path pathLength="1" d="M126 96 C150 108 176 128 178 150" stroke-dasharray="2 9" stroke-width="3" opacity="0.85"/>
+  </g>
+</svg>

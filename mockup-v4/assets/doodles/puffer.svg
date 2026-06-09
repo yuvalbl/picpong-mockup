@@ -1,0 +1,26 @@
+<svg viewBox="0 0 240 190" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--puffer" aria-hidden="true">
+  <g stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- spikes (drawn first, behind body) -->
+    <path pathLength="1" d="M70 44 L58 26"/>
+    <path pathLength="1" d="M104 34 L100 12"/>
+    <path pathLength="1" d="M140 35 L146 13"/>
+    <path pathLength="1" d="M172 49 L190 35"/>
+    <path pathLength="1" d="M44 78 L20 70"/>
+    <path pathLength="1" d="M40 104 L16 108"/>
+    <path pathLength="1" d="M52 132 L36 152"/>
+    <path pathLength="1" d="M86 146 L82 168"/>
+    <path pathLength="1" d="M124 147 L130 169"/>
+    <path pathLength="1" d="M160 134 L178 150"/>
+    <!-- body -->
+    <path pathLength="1" d="M72 46 C40 54 28 96 48 122 C70 150 150 152 178 120 C200 95 196 56 158 46 C128 38 100 38 72 46 Z"/>
+    <!-- tail fin (right) -->
+    <path pathLength="1" d="M186 70 C212 58 222 70 220 96 C218 118 206 124 184 116"/>
+    <!-- eye -->
+    <circle pathLength="1" cx="92" cy="86" r="11"/>
+    <circle cx="95" cy="89" r="3.6" fill="currentColor" stroke="none"/>
+    <!-- pursed mouth -->
+    <path pathLength="1" d="M52 116 q 12 12 26 6"/>
+    <!-- belly seam -->
+    <path pathLength="1" d="M70 132 q 38 16 78 4" stroke-width="2.6" opacity="0.75"/>
+  </g>
+</svg>

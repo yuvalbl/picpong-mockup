@@ -8,6 +8,8 @@
 > **Current client site:** https://www.picpong.biz/en
 >
 > **Locked decisions (client call, 2026-05-31):** (1) Full e-commerce — cart + checkout + online pay (note: cartonlab is quote-only, so commerce is *our* addition on top of its look). (2) Lead with eco/cardboard like cartonlab; X-Board is the hero story. (3) Cartonlab is primary, mediagarden demoted to secondary. (4) Product scope mirrors cartonlab's content set (cardboard products for conferences / events / exhibitions).
+>
+> ⚠️ **AMENDED at the 2026-06-03 concept-review meeting.** Scope shifted: the **Phase-1 deliverable is a UI-only lead-gen catalog mockup (`mockup-v4`)** — **commerce → Phase 2** (browse-only catalog, quote/contact only), and **Hebrew-first + RTL is in Phase 1** (was "English-first; Hebrew RTL phase 2"). Content is **colorful eco-only** (not cartonlab's brown), client prefers **pastels**. Source of truth: `docs/human-review/meeting1-analysis.md`; embodied in `docs/prd/01-foundation-structure.md`. This plan below is **not** fully rewritten — read those two docs for current scope.
 
 ---
 
@@ -47,10 +49,12 @@
 - Weak product discovery, no testimonials, no quantified case studies.
 
 ### 1.3 Goal
+> ⚠️ **AMENDED 2026-06-03 — see top-of-doc note.** Commerce (online order + pay) is now Phase 2; Phase 1 is a lead-gen catalog.
+
 Rebuild as a **modern, distinctive, e-commerce-enabled** site that matches **cartonlab.com's** look, structure, and tone (the client's explicit "just like it" reference) — warm-minimal editorial, eco/cardboard-led — while adding what cartonlab lacks: real **online order + pay** (cart, checkout, payments). Mediagarden is a secondary reference, used mainly for its commerce/SKU-table ideas.
 
 ### 1.4 Constraints
-- English-first; Hebrew + RTL in phase 2.
+- English-first; Hebrew + RTL in phase 2. ⚠️ **AMENDED 2026-06-03 — see top-of-doc note.** Now Hebrew-first + RTL in Phase 1 (geo-detected).
 - Global market.
 - TypeScript stack preferred. Order flow is unique → need high flexibility (Next.js + headless commerce favored over off-the-shelf Shopify theme).
 - CMS required (client edits content).
@@ -59,7 +63,7 @@ Rebuild as a **modern, distinctive, e-commerce-enabled** site that matches **car
 ### 1.5 Success criteria
 - Cartonlab-grade visual quality (warm-minimal editorial), **better** UI than both reference and current.
 - Lighthouse ≥ 90 on key pages.
-- Working sandbox order end-to-end for at least one product family.
+- Working sandbox order end-to-end for at least one product family. ⚠️ **AMENDED 2026-06-03 — see top-of-doc note.** This is a Phase-2 criterion now (commerce deferred).
 - Mobile-first parity.
 - Sign-off from client at each phase gate.
 
@@ -229,6 +233,8 @@ Catalog of reusable patterns observed (good and bad), with screenshot + 1-line v
 ---
 
 ## 4. Phase 2 — Client Meeting & Open Questions
+
+> ⚠️ **AMENDED 2026-06-03 (concept review).** A second client meeting (Yuval × Kuki Saad) re-scoped the project. Net effect on this section's open questions: **commerce moves to Phase 2** (Q4–Q10, Q16 commerce/stack become Phase-2 concerns); **Hebrew + RTL are Phase 1** (Q3); the new Phase-1 spine is a lead-gen catalog with a per-media "+"→quote, a floating contact form, lead routing to email + WhatsApp, a daily-publish CMS, and a **custom build** (not Shopify). Visual direction shifts to **colorful eco-only / pastels** (not cartonlab brown). Full analysis: `docs/human-review/meeting1-analysis.md`; current requirements: `docs/prd/01-foundation-structure.md`. The Q&A below is retained as history.
 
 ### TOC
 - [4.1 Brand & visual](#41-brand--visual)
