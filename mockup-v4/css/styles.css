@@ -107,7 +107,7 @@ a { color: inherit; }
   padding-bottom: 0.02em; }
 .on-dark .accent, .accent--solid { background: none; color: var(--orange-bright); }
 em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 400;
-  font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 0; }
+  /* font-variation-settings removed for Rubik */ }
 
 .lead { font-size: var(--t-lead); line-height: 1.55; color: #45453f; max-width: 52ch; }
 .muted { color: var(--muted); }
@@ -323,13 +323,13 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    TRUST STRIP
    ============================================================ */
 .trust { display: flex; flex-direction: column; gap: clamp(1.5rem, 3vw, 2.25rem); align-items: center; justify-content: center; text-align: center; }
-.trust__label { justify-content: center; margin: 0; color: var(--muted); }
+.trust__label { justify-content: center; margin: 0; }
 
 /* logo wall lockup: normalized heights for visual balance */
-.trust__logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem 4rem; }
-.trust__logos img { height: 28px; width: auto; max-width: 140px; object-fit: contain;
-  filter: grayscale(1) opacity(0.6); transition: filter var(--speed) var(--ease), opacity var(--speed) var(--ease); }
-.trust__logos img:hover { filter: none; opacity: 1; }
+.trust__logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5rem 3rem; }
+.trust__logos img { height: 52px; width: auto; max-width: 150px; object-fit: contain;
+  opacity: 0.9; transition: opacity var(--speed) var(--ease); }
+.trust__logos img:hover { opacity: 1; }
 
 /* ============================================================
    PRODUCT GRID + TILE
@@ -381,7 +381,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .spec__num { font-family: "Rubik", system-ui, sans-serif; font-weight: 300; font-size: clamp(2.8rem,6vw,4.5rem);
   letter-spacing: -0.04em; line-height: 0.95; color: var(--cream);
   font-variant-numeric: tabular-nums; font-feature-settings: "tnum";
-  font-variation-settings: "opsz" 144, "SOFT" 10, "WONK" 1; }
+  /* font-variation-settings removed for Rubik */ }
 .spec__num .unit { color: var(--orange-bright); }
 .spec__label { margin-top: 0.6rem; font-size: var(--t-ui); color: rgba(247,247,241,0.66); }
 
