@@ -101,7 +101,7 @@ A single reusable wrapper used **everywhere media appears** (collage tiles, proj
 ### 7.1 Home (`index.html`)
 Section order (deltas from v3 in **bold**):
 1. **Hero collage with a real video tile** — keep `.collage` 5-tile grid, but the media tiles use the §6.1 component; **at least one large `<video>`** (muted autoplay), prominent on **desktop and mobile**. *(FR-7/8/9, NFR-4)*
-2. **Single enquiry path** — replace the dual `.funnels` (Shop vs Project) with **one** lead path ("Tell us about your project / request a quote"). **Remove the buy lane.** *(D1)*
+2. **Two ways to start** (corrected 2026-06-09) — keep cartonlab's dual-lane entry, but reframe it for the no-commerce phase: **(a) Browse the catalog** (ready-made X-Board pieces → request a quote; **no buy/cart/price** language) and **(b) Tell us about your project** (custom enquiry → `#contact`). This swaps v3's *buy-now* lane for a *browse-catalog* lane — the catalog is still a primary front door, so it stays a distinct way to start. Section heading: **"You choose how to start."** *(Earlier single-lane collapse was an over-correction of D1: removing commerce ≠ removing the catalog entry.)* The contact section's form is the **minimal four-field form — Name, Email, Phone, Message** (locked 2026-06-09); the floating quote menu and media "+" reuse the same component (full behavior + field spec in **PRD 2 §2.2–2.3**). *(D1)*
 3. Marquee — keep.
 4. Trust logos — keep.
 5. **Catalog preview** (was "Shop preview") — 3 catalog cards (§6.2), link "See the full catalog". **No prices/add buttons.**

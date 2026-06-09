@@ -14,8 +14,8 @@ Specify the **behavior** of the lead-capture interactions whose *slots* PRD 1 re
    - How the **selected item's thumbnail** is injected into the form (uses the `data-media-id` / `data-media-title` / `data-media-thumb` hooks defined in PRD 1 §6.1).
    - Behavior for **both image and video** media (resolves Open Q1).
    - Fields, validation, and the mock submit → confirmation (toast/inline success). No real send.
-2. **Floating contact form** behavior (the `.contact-fab` placed in PRD 1 §5): open/close, and whether it shares one component with the per-media form or is a variant.
-3. **Form field set** — decide minimal vs. fuller (name / phone / email / message) (resolves Open Q4).
+2. **Floating contact form** behavior (the `.contact-fab` placed in PRD 1 §5): open/close. **LOCKED (2026-06-09):** the floating "request a quote" menu uses the **same single form component** as the inline contact section — not a variant. The media "+" reuses the same component too, only adding the selected item's thumbnail.
+3. **Form field set — LOCKED (2026-06-09, resolves Open Q4): minimal.** Exactly four fields: **Name, Email, Phone, Message** (free-text). No company / dates / venue / budget. The same four-field form is shared by (a) the inline home contact section, (b) the floating quote menu, and (c) the media "+" flow (which additionally injects the `data-media-*` thumbnail). Keep friction near zero per the meeting.
 4. **Affordance style** — round "+" button vs. a "more info" text link, applied consistently (resolves Open Q2).
 5. **Email/WhatsApp routing — representation only:** how to *show* the email-vs-WhatsApp choice (e.g. a "send via WhatsApp" action) and the idea of a single comms inbox. Real routing/inbox = build note.
 6. **States:** empty / filled / submitting / success / error (all mocked), and **RTL** rendering of the form.
@@ -42,5 +42,6 @@ Covers requirements: **FR-16 (behavior), FR-17, FR-18, FR-19, FR-20 (behavior), 
 
 - **Q1** — exact form behavior when "+" is on a **video** vs an image.
 - **Q2** — "+" button vs "more info" text (consistency).
-- **Q4** — minimal vs fuller field set.
-- Modal vs drawer vs inline for the form; one shared component vs per-context variants.
+- ~~**Q4** — minimal vs fuller field set.~~ **RESOLVED (2026-06-09):** minimal — Name, Email, Phone, Message.
+- ~~one shared component vs per-context variants.~~ **RESOLVED (2026-06-09):** one shared component (inline section = floating menu = media "+").
+- Modal vs drawer vs inline for the form (still open).

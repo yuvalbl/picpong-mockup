@@ -170,9 +170,32 @@
     });
   }
 
+  /* count-up: tick [data-countup] numbers from 0 to their target once the
+     containing .reveal enters view. easeOutCubic, ~1.1s. Rides the existing
+     reveal observer (no second observer); holds the final value if reduced. */
+  function countUp(scope) {
+    scope.querySelectorAll("[data-countup]").forEach(function (node) {
+      var target = parseInt(node.getAttribute("data-countup"), 10) || 0;
+      if (reduceMotion) { node.textContent = target; return; }
+      var dur = 1100, start = null;
+      function tick(ts) {
+        if (start === null) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        node.textContent = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(tick); else node.textContent = target;
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
   /* ---------- scroll reveal ---------- */
   var reveals = document.querySelectorAll(".reveal");
-  function revealEl(el) { el.classList.add("in"); if (el.classList.contains("draw")) drawDoodles(el); }
+  function revealEl(el) {
+    el.classList.add("in");
+    if (el.classList.contains("draw")) drawDoodles(el);
+    if (el.querySelector && el.querySelector("[data-countup]")) countUp(el);
+  }
   if (!("IntersectionObserver" in window)) {
     reveals.forEach(revealEl);
   } else {
@@ -194,7 +217,11 @@
         var prog = ((r.top + r.height / 2) - vh / 2) / vh;
         var f = parseFloat(el.getAttribute("data-parallax")) || 0;
         var shift = -prog * f * 100; // px; small factors keep it subtle
-        el.style.transform = "translate3d(0," + shift.toFixed(1) + "px,0)";
+        // optional base scale: when the element fills a clipped frame, the scale
+        // gives slack so the vertical shift never bares an edge. Kept in the same
+        // transform string so the translate doesn't clobber it.
+        var sc = parseFloat(el.getAttribute("data-parallax-scale")) || 1;
+        el.style.transform = "translate3d(0," + shift.toFixed(1) + "px,0) scale(" + sc + ")";
       });
       ticking = false;
     };
