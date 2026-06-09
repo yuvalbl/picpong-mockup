@@ -322,14 +322,25 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 /* ============================================================
    TRUST STRIP
    ============================================================ */
-.trust { display: flex; flex-direction: column; gap: clamp(1.5rem, 3vw, 2.25rem); align-items: center; justify-content: center; text-align: center; }
-.trust__label { justify-content: center; margin: 0; }
+.trust__label { display: flex; justify-content: center; margin: 0 0 clamp(1.5rem, 3vw, 2.25rem); }
 
-/* logo wall lockup: normalized heights for visual balance */
-.trust__logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5rem 3rem; }
-.trust__logos img { height: 52px; width: auto; max-width: 150px; object-fit: contain;
-  opacity: 0.9; transition: opacity var(--speed) var(--ease); }
-.trust__logos img:hover { opacity: 1; }
+/* client logo marquee — matches the original site: 120×90 slides, continuous scroll.
+   Per-item margin (not flex gap) so the -50% loop repeats seamlessly. */
+.logo-marquee { overflow: hidden; width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.logo-marquee__track { display: flex; align-items: center; width: max-content;
+  animation: marquee 40s linear infinite; }
+.logo-marquee:hover .logo-marquee__track { animation-play-state: paused; }
+.logo-marquee__item { flex: 0 0 auto; width: 120px; height: 90px; margin-right: clamp(2rem, 5vw, 4.5rem);
+  display: flex; align-items: center; justify-content: center; }
+.logo-marquee__item img { max-width: 120px; max-height: 90px; width: auto; height: auto;
+  object-fit: contain; opacity: 0.85; transition: opacity var(--speed) var(--ease); }
+.logo-marquee__item img:hover { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee { -webkit-mask-image: none; mask-image: none; }
+  .logo-marquee__track { animation: none; flex-wrap: wrap; justify-content: center; row-gap: 1rem; }
+}
 
 /* ============================================================
    PRODUCT GRID + TILE
@@ -612,7 +623,6 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
   .reveal--slide { transform: none; }
-  .trust__logos span { opacity: 1; transform: none; }
   .specs .spec { opacity: 1; transform: none; }
   .marquee__track { animation: none; transform: none; }
 }
@@ -769,19 +779,6 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   transform: translate(calc(var(--dir, 0) * 40px), 24px) scale(0.985);
 }
 .reveal--slide.in { transform: none; }
-
-/* trust logos cascade in once the strip reveals */
-.trust__logos img { opacity: 0; transform: translateY(8px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
-.trust.in .trust__logos img { opacity: 1; transform: none; }
-.trust.in .trust__logos img:nth-child(1) { transition-delay: 0.05s; }
-.trust.in .trust__logos img:nth-child(2) { transition-delay: 0.10s; }
-.trust.in .trust__logos img:nth-child(3) { transition-delay: 0.15s; }
-.trust.in .trust__logos img:nth-child(4) { transition-delay: 0.20s; }
-.trust.in .trust__logos img:nth-child(5) { transition-delay: 0.25s; }
-.trust.in .trust__logos img:nth-child(6) { transition-delay: 0.30s; }
-.trust.in .trust__logos img:nth-child(7) { transition-delay: 0.35s; }
-.trust.in .trust__logos img:nth-child(8) { transition-delay: 0.40s; }
 
 /* spec tiles settle in sequence as the dark strip reveals */
 .specs .spec { opacity: 0; transform: translateY(16px);
@@ -1409,8 +1406,6 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 [dir="rtl"] .tile__badge { left: auto; inset-inline-start: 0.8rem; }
 [dir="rtl"] .project__tag { right: auto; inset-inline-end: 0.7rem; }
 [dir="rtl"] .project__body { left: 0; right: 0; }
-[dir="rtl"] .trust__logos span { border-left: 0; border-right: 1px solid var(--line); }
-[dir="rtl"] .trust__logos span:first-child { border-right: 0; padding-right: 0; }
 [dir="rtl"] .slogan .mark::before { transform-origin: right center; }
 /* drawer + back-to-top removed in v4; the .contact-fab (inset-inline-start)
    is the only floating control and flips side under RTL on its own. */
