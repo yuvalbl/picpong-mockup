@@ -272,45 +272,359 @@
     dlg.addEventListener("close", function () { img.src = ""; });
   })();
 
-  /* ---------- inert "+" media trigger + floating contact trigger ----------
-     Behaviour ships in PRD 2 (quote capture w/ thumbnail). Here: placeholder. */
+  /* ============================================================
+     LEAD-CAPTURE MODULE (PRD 2)
+     The site's core job: "I liked this — get back to me" in one click, with
+     the item's thumbnail carried into a quote form. One JS-injected side
+     drawer hosts a shared four-field form; three triggers feed it (the media
+     "+", the floating fab, the minimized pill); a running selection of
+     thumbnail chips travels with the visitor. UI-only/mock — nothing sends;
+     real routing + a unified WhatsApp/email inbox stay BUILD NOTES. */
+
+  function currentLang() { return document.documentElement.getAttribute("lang") === "he" ? "he" : "en"; }
+  function t(en, he) { return currentLang() === "he" ? he : en; }
+  function itemsLabel(n) { return currentLang() === "he" ? (n + " פריטים") : (n + (n === 1 ? " item" : " items")); }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  /* ---- selection state: the items the visitor has tagged ---- */
+  var selection = []; // [{ id, title, thumb }]
+  // BUILD NOTE: a sessionStorage mirror (survive page nav within a visit) is a
+  // PRD §15 nicety, left unwired for the mockup.
+  function selIndexOf(id) { for (var i = 0; i < selection.length; i++) { if (selection[i].id === id) return i; } return -1; }
+  function selToggle(it) { var i = selIndexOf(it.id); if (i >= 0) { selection.splice(i, 1); return false; } selection.push(it); return true; }
+  function selRemove(id) { var i = selIndexOf(id); if (i >= 0) selection.splice(i, 1); }
+  function selClear() { selection.length = 0; }
+
+  function drawerEl() { return document.getElementById("leadDrawer"); }
+  function drawerIsOpen() { var d = drawerEl(); return !!(d && d.open); }
+
+  /* ---- shared four-field form markup (Name / Email / Phone / Message) ---- */
+  function fieldRows(sfx) {
+    return '<div class="quote-grid">'
+      + '<div class="qf qf--full"><label for="qn' + sfx + '" data-en="Name" data-he="שם">Name</label>'
+      + '<input id="qn' + sfx + '" name="name" autocomplete="name" placeholder="Your name" data-en-ph="Your name" data-he-ph="השם שלך" />'
+      + '<span class="qf-error" data-qf-error></span></div>'
+      + '<div class="qf"><label for="qe' + sfx + '" data-en="Email" data-he="אימייל">Email</label>'
+      + '<input id="qe' + sfx + '" type="email" name="email" autocomplete="email" placeholder="you@company.com" data-en-ph="you@company.com" data-he-ph="you@company.com" />'
+      + '<span class="qf-error" data-qf-error></span></div>'
+      + '<div class="qf"><label for="qp' + sfx + '" data-en="Phone" data-he="טלפון">Phone</label>'
+      + '<input id="qp' + sfx + '" type="tel" name="phone" autocomplete="tel" placeholder="Phone number" data-en-ph="Phone number" data-he-ph="מספר טלפון" />'
+      + '<span class="qf-error" data-qf-error></span></div>'
+      + '<div class="qf qf--full"><label for="qm' + sfx + '" data-en="Message" data-he="הודעה">Message</label>'
+      + '<textarea id="qm' + sfx + '" name="message" placeholder="Tell us what you need…" data-en-ph="Tell us what you need…" data-he-ph="ספרו לנו מה אתם צריכים…"></textarea></div>'
+      + '</div>';
+  }
+
+  /* ---- build the drawer + pill once, inject into <body> ---- */
+  function buildDrawer() {
+    if (drawerEl()) return;
+    var dlg = document.createElement("dialog");
+    dlg.id = "leadDrawer";
+    dlg.className = "lead-drawer";
+    dlg.setAttribute("aria-label", "Request a quote");
+    dlg.innerHTML =
+      '<div class="lead-drawer__panel">'
+      + '<div class="lead-drawer__head">'
+      + '<div>'
+      + '<p class="eyebrow" data-en="Request a quote" data-he="בקשת הצעת מחיר">Request a quote</p>'
+      + '<h2 class="h3 lead-drawer__title" data-lead-title data-en="Your selection" data-he="הבחירה שלך">Your selection</h2>'
+      + '</div>'
+      + '<button class="lightbox__close lead-drawer__close" type="button" data-lead-close aria-label="Close" data-en-aria="Close" data-he-aria="סגור"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'
+      + '</div>'
+      + '<p class="lead-drawer__intro" data-en="Tell us how to reach you and we\'ll reply within a working day." data-he="ספרו לנו איך ליצור איתכם קשר ונחזור אליכם תוך יום עסקים.">Tell us how to reach you and we\'ll reply within a working day.</p>'
+      + '<div class="lead-chiprow" data-lead-chiprow hidden></div>'
+      + '<form class="quote-form" data-quote data-lead-form novalidate aria-label="Quote request">'
+      + fieldRows("-d")
+      + '<div class="lead-actions">'
+      + '<button class="btn btn--brand" type="submit" data-i18n-html data-en="Send request <span class=&quot;arrow&quot;>&rarr;</span>" data-he="שליחת בקשה <span class=&quot;arrow&quot;>&rarr;</span>">Send request <span class="arrow">&rarr;</span></button>'
+      + '<button class="lead-keep" type="button" data-lead-keep data-en="Keep browsing" data-he="להמשיך לעיין">Keep browsing</button>'
+      + '</div>'
+      + '<a class="lead-wa" data-lead-wa href="#" target="_blank" rel="noopener" data-en="or message us on WhatsApp" data-he="או שלחו לנו הודעה בוואטסאפ">or message us on WhatsApp</a>'
+      + '<p class="placeholder-cap" data-en="Mockup form: validates &amp; confirms, sends nothing" data-he="טופס הדגמה: מאמת ומאשר, לא שולח דבר">Mockup form: validates &amp; confirms, sends nothing</p>'
+      + '</form>'
+      + '<div class="lead-success" data-lead-success hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><p class="lead-success__msg" data-lead-success-msg></p></div>'
+      + '</div>';
+    document.body.appendChild(dlg);
+
+    var pill = document.createElement("button");
+    pill.className = "lead-pill";
+    pill.type = "button";
+    pill.setAttribute("data-lead-pill", "");
+    pill.hidden = true;
+    pill.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 8.3l-8-5a1.2 1.2 0 0 0-1.2 0l-8 5A1.2 1.2 0 0 0 3 9.3v9.4A1.3 1.3 0 0 0 4.3 20h15.4a1.3 1.3 0 0 0 1.3-1.3V9.3a1.2 1.2 0 0 0-.4-1z"/><path d="M3.5 8.8 12 13l8.5-4.2"/></svg><span data-lead-pill-text></span>';
+    document.body.appendChild(pill);
+
+    // close button + Keep browsing both minimize; backdrop click + native Esc close
+    dlg.querySelector("[data-lead-close]").addEventListener("click", closeDrawer);
+    dlg.querySelector("[data-lead-keep]").addEventListener("click", closeDrawer);
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) closeDrawer(); });
+    dlg.addEventListener("close", function () {
+      if (selection.length) showPill();
+      if (lastTrigger && lastTrigger.focus) { try { lastTrigger.focus(); } catch (e) {} }
+    });
+    // chip ✕ removal (delegated; drawer stays open)
+    dlg.querySelector("[data-lead-chiprow]").addEventListener("click", function (e) {
+      var x = e.target.closest("[data-rm]"); if (!x) return;
+      selRemove(x.getAttribute("data-rm"));
+      renderChips(); syncTiles(); updatePill(); refreshWa(); updateDrawerTitle();
+    });
+
+    // localize the freshly-injected nodes to the current language
+    applyLang(currentLang());
+  }
+
+  /* ---- chips: one removable thumbnail per selected item ---- */
+  function renderChips() {
+    var row = document.querySelector("[data-lead-chiprow]"); if (!row) return;
+    if (!selection.length) { row.innerHTML = ""; row.hidden = true; return; }
+    row.hidden = false;
+    row.innerHTML = selection.map(function (s) {
+      return '<span class="lead-chip">'
+        + '<img src="' + esc(s.thumb) + '" alt="" />'
+        + '<span class="lead-chip__t">' + esc(s.title) + '</span>'
+        + '<button class="lead-chip__x" type="button" data-rm="' + esc(s.id) + '" aria-label="' + t("Remove", "הסרה") + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'
+        + '</span>';
+    }).join("");
+  }
+
+  /* ---- reflect selection on every "+" tile (✓ / "Selected" state) ---- */
+  function syncTiles() {
+    document.querySelectorAll(".media__more").forEach(function (btn) {
+      var on = selIndexOf(btn.getAttribute("data-media-id")) >= 0;
+      btn.classList.toggle("is-added", on);
+      var path = btn.querySelector("path");
+      if (path) path.setAttribute("d", on ? "M5 13l4 4L19 7" : "M12 5v14M5 12h14");
+      var label = btn.querySelector(".media__more__label");
+      if (label) {
+        label.setAttribute("data-en", on ? "Selected" : "I want this");
+        label.setAttribute("data-he", on ? "נבחר" : "אני רוצה כזה");
+        label.textContent = label.getAttribute(currentLang() === "he" ? "data-he" : "data-en");
+      }
+    });
+  }
+
+  /* ---- minimized pill (count of tagged items) ---- */
+  function updatePill() {
+    var pill = document.querySelector(".lead-pill"); if (!pill) return;
+    var txt = pill.querySelector("[data-lead-pill-text]");
+    if (txt) txt.textContent = itemsLabel(selection.length) + " " + t("selected", "שנבחרו");
+  }
+  function showPill() { var p = document.querySelector(".lead-pill"); if (p) { updatePill(); p.hidden = selection.length === 0; } }
+  function hidePill() { var p = document.querySelector(".lead-pill"); if (p) p.hidden = true; }
+
+  function updateDrawerTitle() {
+    var h = document.querySelector("[data-lead-title]"); if (!h) return;
+    var has = selection.length > 0;
+    h.setAttribute("data-en", has ? "Your selection" : "Request a quote");
+    h.setAttribute("data-he", has ? "הבחירה שלך" : "בקשת הצעת מחיר");
+    h.textContent = h.getAttribute(currentLang() === "he" ? "data-he" : "data-en");
+  }
+
+  /* ---- open / close (minimize) ---- */
+  var lastTrigger = null;
+  function openDrawer(trigger) {
+    var dlg = drawerEl(); if (!dlg) return;
+    lastTrigger = trigger || null;
+    // reset to the form view (in case a previous success panel is showing)
+    var form = dlg.querySelector("[data-quote]");
+    var succ = dlg.querySelector("[data-lead-success]");
+    if (form) { form.hidden = false; clearErrors(form); }
+    if (succ) succ.hidden = true;
+    renderChips(); updateDrawerTitle(); refreshWa(); hidePill();
+    if (!dlg.open) dlg.showModal();
+    // animate the panel in one frame after showModal (transform needs the toggle)
+    requestAnimationFrame(function () { var p = dlg.querySelector(".lead-drawer__panel"); if (p) p.classList.add("is-open"); });
+    // focus the first field (showModal initially focuses the close button)
+    requestAnimationFrame(function () { var f = dlg.querySelector('[name="name"]'); if (f) f.focus(); });
+  }
+  function closeDrawer() {
+    var dlg = drawerEl(); if (!dlg || !dlg.open) return;
+    var p = dlg.querySelector(".lead-drawer__panel");
+    if (p) p.classList.remove("is-open");
+    var done = function () { if (dlg.open) dlg.close(); }; // native "close" handler shows the pill
+    if (reduceMotion) done(); else setTimeout(done, 320);
+  }
+
+  /* ---- validation (Name required · email-OR-phone) + mock submit ---- */
+  function readForm(form) {
+    function v(n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ""; }
+    return { name: v("name"), email: v("email"), phone: v("phone"), message: v("message") };
+  }
+  // OQ-1 (docs/prd/open-questions.md): currently "at least one of email/phone".
+  // Flip THIS predicate to change the rule (both → `v.email && v.phone`; email-only → `!!v.email`).
+  function contactRuleOK(v) { return !!(v.email || v.phone); }
+  function isEmail(s) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s); }
+
+  function clearErrors(form) {
+    form.querySelectorAll("[data-qf-error]").forEach(function (s) { s.textContent = ""; });
+    form.querySelectorAll('[aria-invalid="true"]').forEach(function (i) { i.removeAttribute("aria-invalid"); });
+  }
+  function setError(form, name, msg) {
+    var input = form.querySelector('[name="' + name + '"]');
+    if (!input) return null;
+    input.setAttribute("aria-invalid", "true");
+    var slot = input.parentNode.querySelector("[data-qf-error]");
+    if (slot && msg) slot.textContent = msg;
+    return input;
+  }
+  function validateLead(form) {
+    clearErrors(form);
+    var v = readForm(form), firstBad = null;
+    if (!v.name) firstBad = setError(form, "name", t("Please add your name", "נא להזין שם"));
+    if (v.email && !isEmail(v.email)) { var e1 = setError(form, "email", t("Check the email format", "בדקו את כתובת האימייל")); firstBad = firstBad || e1; }
+    if (!contactRuleOK(v)) {
+      // mark ONE field (email) with the shared message — a second red field with
+      // no message of its own reads as a glitch, so phone is left unmarked.
+      var e2 = setError(form, "email", t("Add an email or phone so we can reply", "הוסיפו אימייל או טלפון כדי שנחזור אליכם"));
+      firstBad = firstBad || e2;
+    }
+    return { ok: !firstBad, first: firstBad, data: v };
+  }
+
+  function showSuccessFor(form, data) {
+    var box = form.parentNode.querySelector("[data-lead-success]");
+    if (!box) return;
+    var msg = box.querySelector("[data-lead-success-msg]");
+    var first = (data.name.split(" ")[0]) || "";
+    var on = selection.length ? selection.map(function (s) { return s.title; }).join(", ") : "";
+    if (msg) {
+      msg.textContent = currentLang() === "he"
+        ? ("תודה " + first + " — הבקשה התקבלה" + (on ? (" על " + on) : "") + ". נחזור אליכם תוך יום עסקים.")
+        : ("Thanks " + first + " — your request is in" + (on ? (" for " + on) : "") + ". We'll reply within a working day.");
+    }
+    form.hidden = true;
+    box.hidden = false;
+  }
+
+  function submitLead(form, data) {
+    var btn = form.querySelector('button[type="submit"]');
+    var orig = btn ? btn.innerHTML : "";
+    if (btn) { btn.disabled = true; btn.innerHTML = t("Sending…", "שולח…"); }
+    setTimeout(function () {
+      if (btn) { btn.disabled = false; btn.innerHTML = orig; }
+      var isDrawer = !!form.closest(".lead-drawer");
+      showSuccessFor(form, data);
+      var first = (data.name.split(" ")[0]) || "";
+      toast(t("Brief received, <b>" + first + "</b>. We'll reply within 1 working day",
+              "הבריף התקבל, <b>" + first + "</b>. נחזור אליך תוך יום עסקים"));
+      form.reset();
+      if (isDrawer) {
+        selClear(); renderChips(); syncTiles(); updatePill();
+        setTimeout(closeDrawer, 1600);
+      }
+    }, 600);
+  }
+
+  /* ---- WhatsApp: a live, full-selection prefilled message (representation) ----
+     BUILD NOTE: replace WA_NUMBER with Picpong's real WhatsApp Business number;
+     production also routes WhatsApp + email + form into ONE inbox. */
+  var WA_NUMBER = "972000000000"; // placeholder
+  function buildWaText(form) {
+    var v = form ? readForm(form) : { name: "", phone: "" };
+    var lines = [];
+    if (selection.length) {
+      lines.push(t("Hi PicPong, I'd like a quote on these items:", "היי PicPong, אשמח להצעת מחיר על הפריטים הבאים:"));
+      selection.forEach(function (s) { lines.push("• " + s.title); });
+    } else {
+      lines.push(t("Hi PicPong, I'd like a quote.", "היי PicPong, אשמח להצעת מחיר."));
+    }
+    if (v.name) lines.push(t("Name: ", "שם: ") + v.name);
+    if (v.phone) lines.push(t("Phone: ", "טלפון: ") + v.phone);
+    return lines.join("\n"); // real newlines → %0A → line breaks in WhatsApp
+  }
+  function refreshWa() {
+    document.querySelectorAll("[data-lead-wa]").forEach(function (a) {
+      a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(buildWaText(a.closest("[data-quote]")));
+    });
+  }
+
+  /* ---- ensure inline #contact forms share the drawer's states ---- */
+  function enhanceFormStates(form) {
+    if (form.closest(".lead-drawer")) return; // drawer markup already has these
+    form.querySelectorAll(".qf").forEach(function (qf) {
+      if (!qf.querySelector("[data-qf-error]")) {
+        var s = document.createElement("span"); s.className = "qf-error"; s.setAttribute("data-qf-error", ""); qf.appendChild(s);
+      }
+    });
+    if (!form.querySelector("[data-lead-wa]")) {
+      var a = document.createElement("a");
+      a.className = "lead-wa"; a.setAttribute("data-lead-wa", ""); a.href = "#"; a.target = "_blank"; a.rel = "noopener";
+      a.setAttribute("data-en", "or message us on WhatsApp"); a.setAttribute("data-he", "או שלחו לנו הודעה בוואטסאפ");
+      a.textContent = "or message us on WhatsApp";
+      form.appendChild(a);
+    }
+    if (!form.parentNode.querySelector("[data-lead-success]")) {
+      var box = document.createElement("div");
+      box.className = "lead-success"; box.setAttribute("data-lead-success", ""); box.hidden = true;
+      box.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><p class="lead-success__msg" data-lead-success-msg></p>';
+      form.parentNode.insertBefore(box, form.nextSibling);
+    }
+  }
+
+  function bindLeadForm(form) {
+    if (form.__leadBound) return; form.__leadBound = true;
+    form.setAttribute("novalidate", "novalidate"); // JS owns validation (email-OR-phone)
+    enhanceFormStates(form);
+    form.addEventListener("input", function (e) {
+      var el = e.target;
+      if (el && el.name) {
+        el.removeAttribute("aria-invalid");
+        var slot = el.parentNode && el.parentNode.querySelector && el.parentNode.querySelector("[data-qf-error]");
+        if (slot) slot.textContent = "";
+      }
+      refreshWa();
+    });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var res = validateLead(form);
+      if (!res.ok) { if (res.first) res.first.focus(); return; }
+      submitLead(form, res.data);
+    });
+  }
+
+  /* ---- triggers: media "+", floating fab, minimized pill ---- */
   document.addEventListener("click", function (e) {
     var more = e.target.closest(".media__more");
     if (more) {
       e.preventDefault();
-      var added = more.classList.toggle("is-added");
-      var path = more.querySelector("path");
-      var label = more.querySelector(".media__more__label");
-      var he = document.documentElement.getAttribute("lang") === "he";
-
-      if (added) {
-        // Change to checkmark (V)
-        if (path) path.setAttribute("d", "M5 13l4 4L19 7");
-        if (label) {
-          label.setAttribute("data-en", "Added");
-          label.setAttribute("data-he", "נוסף");
-          label.textContent = he ? "נוסף" : "Added";
+      var item = {
+        id: more.getAttribute("data-media-id"),
+        title: more.getAttribute("data-media-title") || "",
+        thumb: more.getAttribute("data-media-thumb") || ""
+      };
+      var nowOn = selToggle(item);
+      syncTiles(); renderChips(); updatePill(); refreshWa();
+      if (nowOn) {
+        if (selection.length === 1 && !drawerIsOpen()) {
+          openDrawer(more);                  // first item → reveal the drawer
+        } else {
+          showPill();
+          toast(t("Added — ", "נוסף — ") + itemsLabel(selection.length));
         }
-        toast(he ? "נוסף להצעת המחיר" : "Added to quote");
       } else {
-        // Change back to plus (+)
-        if (path) path.setAttribute("d", "M12 5v14M5 12h14");
-        if (label) {
-          label.setAttribute("data-en", "I want this");
-          label.setAttribute("data-he", "אני רוצה כזה");
-          label.textContent = he ? "אני רוצה כזה" : "I want this";
-        }
+        if (selection.length) showPill(); else hidePill();
+        toast(t("Removed", "הוסר"));
       }
       return;
     }
-    var fab = e.target.closest(".contact-fab");
-    if (fab) {
-      e.preventDefault();
-      var heF = document.documentElement.getAttribute("lang") === "he";
-      toast(heF ? "טופס יצירת קשר צף: בקרוב (PRD 2)" : "Floating contact form: coming in PRD 2");
-      return;
-    }
+    if (e.target.closest(".contact-fab")) { e.preventDefault(); openDrawer(e.target.closest(".contact-fab")); return; }
+    if (e.target.closest(".lead-pill")) { e.preventDefault(); openDrawer(e.target.closest(".lead-pill")); return; }
   });
+
+  /* ---- re-localize JS-derived strings on language switch (no applyLang here → no recursion) ---- */
+  document.addEventListener("picpong:langchange", function () {
+    updatePill(); refreshWa(); syncTiles(); updateDrawerTitle();
+  });
+
+  /* ---- init: build the drawer, bind every quote form, sync initial state ---- */
+  buildDrawer();
+  document.querySelectorAll("[data-quote]").forEach(bindLeadForm);
+  syncTiles();
+  refreshWa();
 
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeMenu(); } });
 
@@ -600,23 +914,9 @@
     });
   });
 
-  /* ---------- quote form (mock submit) ---------- */
-  document.querySelectorAll("[data-quote]").forEach(function (form) {
-    form.addEventListener("click", function (e) {
-      var chip = e.target.closest(".qf-chip"); if (!chip) return;
-      e.preventDefault();
-      chip.setAttribute("aria-pressed", chip.getAttribute("aria-pressed") === "true" ? "false" : "true");
-    });
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var name = (form.querySelector('[name="name"]') || {}).value || "there";
-      var he = document.documentElement.getAttribute("lang") === "he";
-      var first = name.split(" ")[0];
-      toast(he ? "הבריף התקבל, <b>" + first + "</b>. נחזור אליך תוך יום עסקים" : "Brief received, <b>" + first + "</b>. We'll reply within 1 working day");
-      form.reset();
-      form.querySelectorAll('.qf-chip').forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
-    });
-  });
+  /* quote-form behaviour now lives in the LEAD-CAPTURE MODULE above
+     (validateLead / submitLead / bindLeadForm) — shared by the inline #contact
+     form and the injected drawer form. */
 
   /* ---------- project search field (inert this PRD; behaviour = PRD 3) ---------- */
   document.querySelectorAll("[data-search]").forEach(function (form) {

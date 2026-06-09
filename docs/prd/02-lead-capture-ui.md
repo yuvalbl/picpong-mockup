@@ -135,7 +135,7 @@ State lives in a transient in-page **selection** array (item id/title/thumb). No
 ## 9. Email + WhatsApp representation (FR-22/23, D-3)
 
 - **Primary** Send = the email lead path (mock).
-- **Secondary** "message us on WhatsApp" link builds a **prefilled `wa.me`** URL: the message text seeds with the selected item title(s) and any typed name/phone, e.g. `https://wa.me/<number>?text=<encoded: "היי, אשמח להצעת מחיר על: <titles>. שם: <name>">`. Opening it is *representation* — it hands off to WhatsApp and sends nothing through any backend.
+- **Secondary** "message us on WhatsApp" link builds a **prefilled `wa.me`** URL whose message **lists every item currently in the selection** (one title per line), followed by any typed name/phone — e.g. `https://wa.me/<number>?text=<encoded: "היי PicPong, אשמח להצעת מחיר על הפריטים הבאים:\n• <title 1>\n• <title 2>\nשם: <name>\nטלפון: <phone>">`. The link is **recomputed live** whenever the selection or name/phone changes, so it always reflects the full current basket (add a 3rd item → it appears in the draft; remove one → it drops). With no items selected it falls back to a generic quote message. Opening it is *representation* — it hands off to WhatsApp and sends nothing through any backend.
 - **Build notes (not built):** real email delivery; WhatsApp Business API; and the **single unified inbox** where Picpong manages all incoming comms (FR-23). Mark these clearly in the UI's mock-disclaimer and in code comments so no one mistakes them for working.
 
 ## 10. States (all mocked) + toast

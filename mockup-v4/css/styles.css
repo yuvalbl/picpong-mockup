@@ -1440,7 +1440,126 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   font-family: "Hanken Grotesk", "Arial Hebrew", "Heebo", system-ui, sans-serif;
   letter-spacing: 0;
 }
- {
-  font-family: "Hanken Grotesk", "Arial Hebrew", "Heebo", system-ui, sans-serif;
-  letter-spacing: 0;
+
+/* ============================================================
+   LEAD-CAPTURE (PRD 2): side drawer · thumbnail chips · pill · form states
+   Injected once by app.js; one instance serves every page.
+   Mirrors the lightbox <dialog> pattern; logical props auto-flip in RTL.
+   ============================================================ */
+
+/* ---- side drawer (native <dialog>, anchored to the inline-end edge) ---- */
+.lead-drawer {
+  border: none;
+  padding: 0;
+  margin: 0;
+  max-width: none;
+  max-height: none;
+  background: transparent;
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;            /* RTL: flips to the left edge (opposite the fab) */
+  inset-inline-start: auto;
+  width: min(440px, 92vw);
+  height: 100vh;
+  height: 100dvh;
+  overflow: visible;
+}
+.lead-drawer::backdrop { background: rgba(12,12,12,0.82); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+.lead-drawer__panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+  width: 100%;
+  height: 100%;
+  background: var(--cream);
+  color: var(--ink);
+  padding: clamp(1.3rem, 3.5vw, 2rem);
+  padding-block-end: clamp(1.6rem, 6vh, 2.6rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: -18px 0 48px rgba(0,0,0,0.22);
+  transform: translateX(100%);
+  transition: transform var(--speed-slow) var(--ease);
+}
+.lead-drawer__panel.is-open { transform: translateX(0); }
+/* RTL: panel parks off the LEFT edge and the shadow falls the other way */
+[dir="rtl"] .lead-drawer__panel { transform: translateX(-100%); box-shadow: 18px 0 48px rgba(0,0,0,0.22); }
+[dir="rtl"] .lead-drawer__panel.is-open { transform: translateX(0); }
+
+.lead-drawer__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.lead-drawer__head .eyebrow { margin: 0 0 0.2rem; }
+.lead-drawer__title { margin: 0; }
+.lead-drawer__intro { margin: 0; font-size: var(--t-ui); color: var(--muted); max-width: 34ch; }
+/* reuse .lightbox__close visuals but sit it inside the header, not floated out */
+.lead-drawer__close { position: static; inset: auto; width: 2.4rem; height: 2.4rem; flex-shrink: 0; }
+
+/* ---- thumbnail chips (one per selected media item) ---- */
+.lead-chiprow { display: flex; flex-direction: column; gap: 0.5rem; }
+.lead-chip {
+  display: flex; align-items: center; gap: 0.7rem;
+  padding: 0.4rem; padding-inline-end: 0.55rem;
+  border: 1px solid var(--line); border-radius: var(--radius); background: #fff;
+}
+.lead-chip img { width: 2.6rem; height: 2.6rem; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+.lead-chip__t { flex: 1; min-width: 0; font-size: var(--t-ui); font-weight: 500; line-height: 1.25; }
+.lead-chip__x {
+  width: 1.8rem; height: 1.8rem; border-radius: 999px; flex-shrink: 0;
+  border: 1px solid var(--line); background: transparent; color: var(--muted);
+  display: inline-grid; place-items: center; cursor: pointer;
+  transition: background var(--speed) var(--ease), color var(--speed) var(--ease), border-color var(--speed) var(--ease);
+}
+.lead-chip__x:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.lead-chip__x svg { width: 0.95rem; height: 0.95rem; }
+
+/* ---- drawer form (narrow → single column) + shared states ---- */
+.lead-drawer .quote-grid { grid-template-columns: 1fr; }
+.lead-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.lead-keep {
+  font: inherit; font-size: var(--t-ui); font-weight: 600; cursor: pointer;
+  background: none; border: none; color: var(--ink);
+  text-decoration: underline; text-underline-offset: 3px; padding: 0.3rem 0;
+}
+.lead-keep:hover { color: var(--orange); }
+.lead-wa {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: var(--t-ui); font-weight: 600; color: #1FA855; text-decoration: none; width: fit-content;
+}
+/* simple WhatsApp glyph placeholder (real brand icon = build) */
+.lead-wa::before { content: ""; width: 1.05rem; height: 1.05rem; border-radius: 999px; background: #25D366; flex-shrink: 0; }
+.lead-wa:hover { text-decoration: underline; }
+
+.qf-error { font-size: var(--t-meta); color: #c0392b; line-height: 1.3; }
+.qf input[aria-invalid="true"], .qf textarea[aria-invalid="true"] { border-color: #c0392b; }
+
+.lead-success {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem;
+  padding: 1.15rem 1.3rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--cream-2);
+}
+.lead-success svg { width: 1.7rem; height: 1.7rem; color: var(--orange); }
+.lead-success__msg { margin: 0; font-size: var(--t-lead); }
+
+/* ---- minimized pill (non-modal; sits above the fab on the same edge) ---- */
+.lead-pill {
+  position: fixed; z-index: 191;
+  inset-inline-start: clamp(1rem, 3vw, 2rem);
+  inset-block-end: calc(clamp(1rem, 3vw, 2rem) + 3.6rem);
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1rem; border-radius: 999px;
+  border: 1.5px solid var(--ink); background: var(--ink); color: var(--cream);
+  font: inherit; font-weight: 600; font-size: var(--t-ui); cursor: pointer;
+  box-shadow: 0 8px 24px rgba(26,26,26,0.22);
+  transition: transform var(--speed) var(--ease), background var(--speed) var(--ease);
+}
+.lead-pill:hover { transform: translateY(-2px); }
+.lead-pill svg { width: 1.05rem; height: 1.05rem; flex-shrink: 0; }
+
+/* the [hidden] attribute must win over the explicit display values above */
+.lead-pill[hidden], .lead-success[hidden], .lead-chiprow[hidden], .quote-form[hidden] { display: none; }
+
+@media (max-width: 560px) { .lead-drawer { width: 100vw; } }
+
+/* reduced motion: never park the panel off-screen — show it in place, no slide */
+@media (prefers-reduced-motion: reduce) {
+  .lead-drawer__panel, [dir="rtl"] .lead-drawer__panel { transform: none; }
 }
