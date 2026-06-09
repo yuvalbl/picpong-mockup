@@ -284,7 +284,8 @@
       var he = document.documentElement.getAttribute("lang") === "he";
 
       if (added) {
-        if (path) path.setAttribute("d", "M20 6L9 17l-5-5");
+        // Change to checkmark (V)
+        if (path) path.setAttribute("d", "M5 13l4 4L19 7");
         if (label) {
           label.setAttribute("data-en", "Added");
           label.setAttribute("data-he", "נוסף");
@@ -292,6 +293,7 @@
         }
         toast(he ? "נוסף להצעת המחיר" : "Added to quote");
       } else {
+        // Change back to plus (+)
         if (path) path.setAttribute("d", "M12 5v14M5 12h14");
         if (label) {
           label.setAttribute("data-en", "I want this");
