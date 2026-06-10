@@ -16,3 +16,6 @@ Thumbs.db
 
 # logs
 *.log
+
+# Playwright MCP run artifacts
+.playwright-mcp/

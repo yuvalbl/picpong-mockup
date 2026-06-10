@@ -350,27 +350,29 @@
       + '</div>';
     document.body.appendChild(dlg);
 
-    var pill = document.createElement("button");
-    pill.className = "lead-pill";
-    pill.type = "button";
-    pill.setAttribute("data-lead-pill", "");
-    pill.hidden = true;
-    pill.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 8.3l-8-5a1.2 1.2 0 0 0-1.2 0l-8 5A1.2 1.2 0 0 0 3 9.3v9.4A1.3 1.3 0 0 0 4.3 20h15.4a1.3 1.3 0 0 0 1.3-1.3V9.3a1.2 1.2 0 0 0-.4-1z"/><path d="M3.5 8.8 12 13l8.5-4.2"/></svg><span data-lead-pill-text></span>';
-    document.body.appendChild(pill);
+    // inject the live item-count badge into every floating fab (the count lives
+    // on the ever-present trigger; replaces the old separate minimized pill)
+    document.querySelectorAll(".contact-fab").forEach(function (fab) {
+      if (fab.querySelector(".contact-fab__badge")) return;
+      var b = document.createElement("span");
+      b.className = "contact-fab__badge";
+      b.hidden = true;
+      fab.appendChild(b);
+    });
 
     // close button + Keep browsing both minimize; backdrop click + native Esc close
     dlg.querySelector("[data-lead-close]").addEventListener("click", closeDrawer);
     dlg.querySelector("[data-lead-keep]").addEventListener("click", closeDrawer);
     dlg.addEventListener("click", function (e) { if (e.target === dlg) closeDrawer(); });
     dlg.addEventListener("close", function () {
-      if (selection.length) showPill();
+      syncBadge();
       if (lastTrigger && lastTrigger.focus) { try { lastTrigger.focus(); } catch (e) {} }
     });
     // chip ✕ removal (delegated; drawer stays open)
     dlg.querySelector("[data-lead-chiprow]").addEventListener("click", function (e) {
       var x = e.target.closest("[data-rm]"); if (!x) return;
       selRemove(x.getAttribute("data-rm"));
-      renderChips(); syncTiles(); updatePill(); refreshWa(); updateDrawerTitle();
+      renderChips(); syncTiles(); syncBadge(); refreshWa(); updateDrawerTitle();
     });
 
     // localize the freshly-injected nodes to the current language
@@ -407,14 +409,14 @@
     });
   }
 
-  /* ---- minimized pill (count of tagged items) ---- */
-  function updatePill() {
-    var pill = document.querySelector(".lead-pill"); if (!pill) return;
-    var txt = pill.querySelector("[data-lead-pill-text]");
-    if (txt) txt.textContent = itemsLabel(selection.length) + " " + t("selected", "שנבחרו");
+  /* ---- fab badge (live count of tagged items) ---- */
+  function syncBadge() {
+    var n = selection.length;
+    document.querySelectorAll(".contact-fab__badge").forEach(function (b) {
+      b.textContent = n;
+      b.hidden = n === 0;
+    });
   }
-  function showPill() { var p = document.querySelector(".lead-pill"); if (p) { updatePill(); p.hidden = selection.length === 0; } }
-  function hidePill() { var p = document.querySelector(".lead-pill"); if (p) p.hidden = true; }
 
   function updateDrawerTitle() {
     var h = document.querySelector("[data-lead-title]"); if (!h) return;
@@ -434,7 +436,7 @@
     var succ = dlg.querySelector("[data-lead-success]");
     if (form) { form.hidden = false; clearErrors(form); }
     if (succ) succ.hidden = true;
-    renderChips(); updateDrawerTitle(); refreshWa(); hidePill();
+    renderChips(); updateDrawerTitle(); refreshWa(); syncBadge();
     if (!dlg.open) dlg.showModal();
     // animate the panel in one frame after showModal (transform needs the toggle)
     requestAnimationFrame(function () { var p = dlg.querySelector(".lead-drawer__panel"); if (p) p.classList.add("is-open"); });
@@ -513,7 +515,7 @@
               "הבריף התקבל, <b>" + first + "</b>. נחזור אליך תוך יום עסקים"));
       form.reset();
       if (isDrawer) {
-        selClear(); renderChips(); syncTiles(); updatePill();
+        selClear(); renderChips(); syncTiles(); syncBadge();
         setTimeout(closeDrawer, 1600);
       }
     }, 600);
@@ -597,27 +599,26 @@
         thumb: more.getAttribute("data-media-thumb") || ""
       };
       var nowOn = selToggle(item);
-      syncTiles(); renderChips(); updatePill(); refreshWa();
+      syncTiles(); renderChips(); syncBadge(); refreshWa();
       if (nowOn) {
         if (selection.length === 1 && !drawerIsOpen()) {
           openDrawer(more);                  // first item → reveal the drawer
         } else {
-          showPill();
-          toast(t("Added — ", "נוסף — ") + itemsLabel(selection.length));
+          syncBadge();
+          toast('<span class="toast__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>' + t("Added — ", "נוסף — ") + itemsLabel(selection.length));
         }
       } else {
-        if (selection.length) showPill(); else hidePill();
+        syncBadge();
         toast(t("Removed", "הוסר"));
       }
       return;
     }
     if (e.target.closest(".contact-fab")) { e.preventDefault(); openDrawer(e.target.closest(".contact-fab")); return; }
-    if (e.target.closest(".lead-pill")) { e.preventDefault(); openDrawer(e.target.closest(".lead-pill")); return; }
   });
 
   /* ---- re-localize JS-derived strings on language switch (no applyLang here → no recursion) ---- */
   document.addEventListener("picpong:langchange", function () {
-    updatePill(); refreshWa(); syncTiles(); updateDrawerTitle();
+    syncBadge(); refreshWa(); syncTiles(); updateDrawerTitle();
   });
 
   /* ---- init: build the drawer, bind every quote form, sync initial state ---- */
@@ -625,6 +626,7 @@
   document.querySelectorAll("[data-quote]").forEach(bindLeadForm);
   syncTiles();
   refreshWa();
+  syncBadge();
 
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeMenu(); } });
 

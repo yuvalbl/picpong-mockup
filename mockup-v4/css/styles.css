@@ -538,12 +538,21 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 /* ============================================================
    TOAST
    ============================================================ */
-.toast { position: fixed; left: 50%; bottom: 1.4rem; transform: translate(-50%, 140%);
+.toast { position: fixed; left: 50%; bottom: 1.4rem; transform: translate(-50%, 140%) scale(0.94);
+  opacity: 0;
   background: var(--ink); color: var(--cream); padding: 0.85rem 1.3rem; border-radius: 999px;
+  border: 1px solid rgba(247,247,241,0.10);
   font-size: var(--t-ui); font-weight: 500; z-index: 500; display: flex; align-items: center; gap: 0.6rem;
-  transition: transform var(--speed-slow) var(--ease); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
-.toast.show { transform: translate(-50%, 0); }
+  transition: transform var(--speed-slow) cubic-bezier(0.34,1.48,0.64,1), opacity var(--speed-slow) var(--ease);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.32); }
+.toast.show { transform: translate(-50%, 0) scale(1); opacity: 1; }
 .toast b { color: var(--orange-bright); }
+.toast__check {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.3rem; height: 1.3rem; flex-shrink: 0;
+  border-radius: 999px; background: #46BE7E; color: #fff;
+}
+.toast__check svg { width: 0.85rem; height: 0.85rem; }
 
 /* ============================================================
    BREADCRUMB
@@ -1207,6 +1216,14 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   opacity: 1;
   margin-inline-start: 0.4rem;
 }
+/* selected state — light pastel green so an added item is obvious at a glance */
+.media__more.is-added,
+.media__more.is-added:hover,
+.media__more.is-added:focus-visible {
+  background: #CDEBD8;
+  border-color: #8FCBA6;
+  color: #1F5134;
+}
 
 /* ---- video hero tile ---- */
 /* the home hero "video" tile reuses .ctile--video framing; the <video> fills it.
@@ -1217,13 +1234,14 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .hero-video { width: 100%; height: 100%; object-fit: cover; }
 
 /* ---- floating contact trigger (every page) ---- */
-/* anchored bottom corner (inset-inline-start, so it flips side in RTL).
-   inert this phase (toast placeholder); real open/submit = PRD 2. */
+/* anchored to the inline-END bottom corner — the SAME edge the quote drawer
+   slides from and where the per-tile "+" buttons sit, so trigger and panel
+   share a side (auto-mirrors under RTL). Carries the live item-count badge. */
 .contact-fab {
   position: fixed;
   z-index: 190;
   inset-block-end: clamp(1rem, 3vw, 2rem);
-  inset-inline-start: clamp(1rem, 3vw, 2rem);
+  inset-inline-end: clamp(1rem, 3vw, 2rem);
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -1242,6 +1260,28 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .contact-fab:hover { transform: translateY(-2px); background: var(--orange-deep); }
 .contact-fab svg { width: 1.15rem; height: 1.15rem; flex-shrink: 0; }
 .contact-fab__label { white-space: nowrap; }
+/* live item-count badge (replaces the old separate minimized pill) */
+.contact-fab__badge {
+  position: absolute;
+  inset-block-start: -0.4rem;
+  inset-inline-end: -0.3rem;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  padding: 0 0.34rem;
+  box-sizing: border-box;
+  border-radius: 999px;
+  border: 2px solid var(--cream);
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(26,26,26,0.3);
+}
+.contact-fab__badge[hidden] { display: none; }
 @media (max-width: 520px) {
   /* keep the label on small screens but tighten the padding */
   .contact-fab { padding: 0.65rem 0.85rem; font-size: var(--t-meta); }
@@ -1423,8 +1463,8 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 [dir="rtl"] .project__tag { right: auto; inset-inline-end: 0.7rem; }
 [dir="rtl"] .project__body { left: 0; right: 0; }
 [dir="rtl"] .slogan .mark::before { transform-origin: right center; }
-/* drawer + back-to-top removed in v4; the .contact-fab (inset-inline-start)
-   is the only floating control and flips side under RTL on its own. */
+/* drawer + back-to-top removed in v4; the .contact-fab now shares the drawer's
+   inset-inline-end edge (carrying the item-count badge) and flips under RTL. */
 
 /* directional "forward" arrows must point the reading direction. In RTL the
    literal → reads backwards, so mirror the glyph (and the enquiry lane's big
@@ -1539,23 +1579,8 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .lead-success svg { width: 1.7rem; height: 1.7rem; color: var(--orange); }
 .lead-success__msg { margin: 0; font-size: var(--t-lead); }
 
-/* ---- minimized pill (non-modal; sits above the fab on the same edge) ---- */
-.lead-pill {
-  position: fixed; z-index: 191;
-  inset-inline-start: clamp(1rem, 3vw, 2rem);
-  inset-block-end: calc(clamp(1rem, 3vw, 2rem) + 3.6rem);
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.6rem 1rem; border-radius: 999px;
-  border: 1.5px solid var(--ink); background: var(--ink); color: var(--cream);
-  font: inherit; font-weight: 600; font-size: var(--t-ui); cursor: pointer;
-  box-shadow: 0 8px 24px rgba(26,26,26,0.22);
-  transition: transform var(--speed) var(--ease), background var(--speed) var(--ease);
-}
-.lead-pill:hover { transform: translateY(-2px); }
-.lead-pill svg { width: 1.05rem; height: 1.05rem; flex-shrink: 0; }
-
 /* the [hidden] attribute must win over the explicit display values above */
-.lead-pill[hidden], .lead-success[hidden], .lead-chiprow[hidden], .quote-form[hidden] { display: none; }
+.lead-success[hidden], .lead-chiprow[hidden], .quote-form[hidden] { display: none; }
 
 @media (max-width: 560px) { .lead-drawer { width: 100vw; } }
 
