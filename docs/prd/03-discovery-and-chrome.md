@@ -97,7 +97,7 @@ Rules the real build MUST follow:
 
 ### 4.3 Item identity — the `data-media-id` contract (mockup)
 
-Every addressable item carries a **globally-unique** `data-media-id` (mirrored to the element's DOM `id` as `item-<id>` so the hash can target it). The grammar **matches what `app.js` already emits** (`mediaMoreBtn()` at ~L196/L207) — do **not** introduce a second convention:
+Every addressable item carries a **page-unique** `data-media-id` (the on-arrival reader resolves the `#item-<id>` hash by querying this attribute; a DOM `id="item-<id>"` mirror is optional). The grammar **matches what `app.js` already emits** (`mediaMoreBtn()` at ~L196/L207) — do **not** introduce a second convention:
 
 | Item type | `data-media-id` pattern | Example | Notes |
 |---|---|---|---|
@@ -107,13 +107,16 @@ Every addressable item carries a **globally-unique** `data-media-id` (mirrored t
 | Product (catalog item) | `prod-<slug>` | `prod-modular-counter` | |
 | Product gallery image | `prod-<slug>-hero` / `prod-<slug>-<n>` | `prod-modular-counter-2` | Same hero/n rule. |
 | Client logo | `client-<slug>` | `client-intel` | |
+| Daily feed post | `feed-<slug>` | `feed-microsoft-teardown` | Each `latest.html` post (and its Home-strip twin) shares one id. |
 
 > **Grammar note:** image ids use a **single-dash** suffix (`-hero`, `-<n>`), not `__img-<n>` — this is the string `mediaMoreBtn()` constructs, so the hash, the highlight reader, and the lightbox all key off the *same* value with no translation layer.
 
-**Global-uniqueness is a hard precondition, and it is NOT true today.** Before any hash/highlight code is wired, an id-minting sweep MUST guarantee one id → exactly one element across the whole mockup:
-- `data-media-id`s are currently **duplicated across pages** (e.g. `proj-google`/`proj-landa`/`proj-microsoft` appear on both `index.html` and `projects.html`; `counter-demo` appears on three pages). A hash would be ambiguous.
-- **Rule:** when the *same* project appears as a **Home teaser** and a **projects-index tile**, that is **one project → one canonical id**, and the canonical page is the **project detail page** (per D-9). The teaser/tile are entry points that *link to* the canonical item; they are not separately addressable duplicates. Give the listing tile the project's `proj-<slug>` id once, on its canonical listing (the projects index), and let the Home teaser link to it without re-minting the same id.
-- Audit `index.html`, `projects.html`, `catalog`/product pages, and the new feed for collisions; rename demo placeholders (`counter-demo`) to unique, real ids.
+**Uniqueness — the real invariant is per-page, refined during implementation.** The `#item-<id>` hash only ever resolves *within the loaded page*, so the binding constraint is: **no two elements on the same page share an id.** That was already true in the mockup — so the highlight works without a destructive re-mint. Cross-page repeats of the *same logical item* (e.g. `proj-google` on both the Home teaser and the projects-index tile) are **fine and intended**: same item, same id, different page; the resolver (§4.4) just picks one canonical page per id (a build-note, not a markup bug). What the sweep actually does:
+- **Normalize placeholder ids to the grammar** so products read as `prod-<slug>` (done: `counter-demo`→`prod-demo-counter`, `totem-fs`→`prod-totem`, `shelf-mod`→`prod-shelf`, `wall-photocall`→`prod-photocall-wall`).
+- Keep cross-page same-item ids consistent (a Home teaser and its listing tile carry the *same* `proj-<slug>` id; per D-9 the resolver's canonical page for an image-level id is the detail page).
+- The earlier "globally unique across the whole site" wording was stricter than the per-page reality requires — corrected here.
+
+**Implementation note (built):** the highlight reader keys off `data-media-id` directly (querying the attribute), so a separate DOM `id="item-<id>"` mirror is *not* required for it to work — though `latest.html` posts also carry the mirror harmlessly. The detail-page **hero is addressable and lightbox-able** (`proj-<slug>-hero` opens the lightbox), matching gallery images.
 
 > **Real-site note:** in production these public ids are the **stable internal id** (§4.2.5), not the slug-derived string — the mockup uses readable slug-based ids only for legibility. The contract (every addressable item has a unique id; the highlight + resolver key off it) is identical.
 
