@@ -338,6 +338,147 @@
     });
   });
 
+  /* ---------- DEV MENU + rep-email demo (PRD 3 §10.2) ----------
+     A static, elegant representation of the templated email the SALES REP gets
+     when a visitor sends a brief: contact block + one deep link per flagged
+     item. Opened from a subtle Dev launcher so it can be shown in a pitch.
+     Seeds from the visitor's real last submit when present, else a sample lead.
+     BUILD NOTES: real email send + template render; the /m/<id> resolver; the
+     interactive rep-receiving experience + WhatsApp-format view → Phase 2 (L-7).
+     The links DISPLAY the durable /m/<id> form (§4.4) but navigate via the
+     working ?p=…#item-… mockup URL through this local resolver shim (§4.1). */
+  (function repEmailDemo() {
+    // id → working mockup URL (the shim that stands in for the real resolver)
+    var RESOLVER = (function () {
+      var m = {};
+      Object.keys(PROJECTS).forEach(function (slug) {
+        var p = PROJECTS[slug], base = "project-detail.html?p=" + slug;
+        m["proj-" + slug] = base;                                     // whole project
+        m["proj-" + slug + "-hero"] = base + "#item-proj-" + slug + "-hero";
+        var imgs = p.images.length > 1 ? p.images.slice(1) : p.images;
+        for (var i = 1; i <= imgs.length; i++) m["proj-" + slug + "-" + i] = base + "#item-proj-" + slug + "-" + i;
+      });
+      return m;
+    })();
+    function resolveHref(id) {
+      if (!id) return "#";
+      if (RESOLVER[id]) return RESOLVER[id];
+      if (id.indexOf("prod-") === 0) return (id === "prod-demo-counter" ? "product.html" : "catalog.html") + "#item-" + id;
+      return "projects.html#item-" + id; // index-tile ids highlight on the projects page
+    }
+
+    var SAMPLE = {
+      data: {
+        name: "Dana Cohen", email: "dana@bewell.co.il", phone: "054-123-4567",
+        message: { en: "Hi — we have a launch event in March, ~120 sqm. Loved these three. Can you quote?",
+                   he: "היי — יש לנו אירוע השקה במרץ, בערך 120 מ\"ר. אהבנו את שלושת אלה. אפשר הצעת מחיר?" }
+      },
+      items: [
+        { id: "proj-microsoft-1", title: "Microsoft · New-office launch — detail", thumb: IMG + "microsoft.jpg" },
+        { id: "proj-landa-hero",  title: "Landa · Illuminated letters", thumb: IMG + "landa.jpg" },
+        { id: "prod-demo-counter", title: "Demo Counter — recycled X-Board", thumb: "" }
+      ]
+    };
+
+    function seed() {
+      if (lastLead && lastLead.items && lastLead.items.length) {
+        return { data: { name: lastLead.data.name, email: lastLead.data.email, phone: lastLead.data.phone,
+                         message: { en: lastLead.data.message, he: lastLead.data.message } },
+                 items: lastLead.items, live: true };
+      }
+      if (selection && selection.length) return { data: SAMPLE.data, items: selection.slice(), live: true };
+      return { data: SAMPLE.data, items: SAMPLE.items, live: false };
+    }
+
+    var dlg = null;
+    function build() {
+      dlg = document.createElement("dialog");
+      dlg.className = "repmail";
+      dlg.setAttribute("aria-label", "Sales-rep email preview");
+      document.body.appendChild(dlg);
+      dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    }
+
+    function rowHtml(it) {
+      var href = resolveHref(it.id);
+      var thumb = it.thumb
+        ? '<img class="repmail__thumb" src="' + esc(it.thumb) + '" alt="" />'
+        : '<span class="repmail__thumb repmail__thumb--ph" aria-hidden="true"></span>';
+      return '<li class="repmail__item">' + thumb
+        + '<div class="repmail__item-body">'
+        + '<span class="repmail__item-title">' + esc(it.title || it.id) + '</span>'
+        + '<a class="repmail__item-link" href="' + esc(href) + '">'
+        + '<code>picpong.biz/m/' + esc(it.id) + '</code> '
+        + '<span class="repmail__arrow" data-en="View item →" data-he="צפו בפריט ←">View item →</span></a>'
+        + '</div></li>';
+    }
+
+    function render() {
+      var s = seed(), d = s.data, he = currentLang() === "he";
+      var first = (d.name || "").split(" ")[0] || "";
+      var msg = d.message ? (he ? (d.message.he || d.message.en) : (d.message.en || d.message.he)) : "";
+      var contact = [];
+      if (d.email) contact.push('<a href="mailto:' + esc(d.email) + '">' + esc(d.email) + '</a>');
+      if (d.phone) contact.push('<a href="tel:' + esc(d.phone.replace(/\s/g, "")) + '">' + esc(d.phone) + '</a>');
+
+      dlg.innerHTML =
+        '<div class="repmail__head">'
+        + '<span class="repmail__badge" data-en="Demo — nothing is actually sent" data-he="הדמיה — לא נשלח דבר">Demo — nothing is actually sent</span>'
+        + '<button class="repmail__close lead-drawer__close" type="button" data-repmail-close aria-label="Close" data-en-aria="Close" data-he-aria="סגור"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'
+        + '</div>'
+        + '<div class="repmail__meta">'
+        + '<div><span class="repmail__k">' + (he ? "מאת" : "From") + '</span> PicPong.biz &lt;leads@picpong.biz&gt;</div>'
+        + '<div><span class="repmail__k">' + (he ? "אל" : "To") + '</span> ' + (he ? "צוות מכירות" : "Sales team") + ' &lt;sales@picpong.biz&gt;</div>'
+        + '<div><span class="repmail__k">' + (he ? "נושא" : "Subject") + '</span> '
+          + (he ? ("ליד חדש — " + esc(d.name) + " · " + s.items.length + " פריטים")
+                : ("New lead — " + esc(d.name) + " · " + s.items.length + " item" + (s.items.length === 1 ? "" : "s"))) + '</div>'
+        + '</div>'
+        + '<div class="repmail__body">'
+        + '<p class="repmail__hello">' + (he ? ("התקבלה פנייה חדשה מ-" + esc(first) + ".") : ("New enquiry from " + esc(first) + ".")) + '</p>'
+        + '<div class="repmail__contact">'
+        + '<div><span class="repmail__k">' + (he ? "שם" : "Name") + '</span> ' + esc(d.name) + '</div>'
+        + (contact.length ? '<div><span class="repmail__k">' + (he ? "יצירת קשר" : "Contact") + '</span> ' + contact.join(" · ") + '</div>' : '')
+        + (msg ? '<div class="repmail__msg"><span class="repmail__k">' + (he ? "הודעה" : "Message") + '</span> ' + esc(msg) + '</div>' : '')
+        + '</div>'
+        + '<p class="repmail__items-h">' + (he ? ("הפריטים שסומנו (" + s.items.length + "):") : ("Items they flagged (" + s.items.length + "):")) + '</p>'
+        + '<ul class="repmail__items">' + s.items.map(rowHtml).join("") + '</ul>'
+        + '<p class="repmail__note" data-en="Each link opens the exact piece, highlighted on the page. Real emails use the durable picpong.biz/m/&lt;id&gt; resolver." data-he="כל קישור פותח את הפריט המדויק, מודגש בעמוד. במיילים האמיתיים נשתמש ב-picpong.biz/m/&lt;id&gt; הקבוע.">Each link opens the exact piece, highlighted on the page. Real emails use the durable picpong.biz/m/&lt;id&gt; resolver.</p>'
+        + (s.live ? '' : '<p class="repmail__seed" data-en="(sample lead — submit the quote form to see a real one)" data-he="(ליד לדוגמה — שלחו את טופס ההצעה כדי לראות אמיתי)">(sample lead — submit the quote form to see a real one)</p>')
+        + '</div>';
+      dlg.querySelector("[data-repmail-close]").addEventListener("click", function () { dlg.close(); });
+      // links navigate the same tab → close the modal first so nav isn't trapped
+      dlg.querySelectorAll(".repmail__item-link").forEach(function (a) {
+        a.addEventListener("click", function () { dlg.close(); });
+      });
+      applyLang(currentLang());
+    }
+
+    function openEmail() { if (!dlg) build(); render(); if (!dlg.open) dlg.showModal(); }
+
+    /* ---- Dev launcher: subtle fixed button → small menu ---- */
+    var dev = document.createElement("div");
+    dev.className = "devmenu";
+    dev.innerHTML =
+      '<button class="devmenu__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Developer menu" title="Dev menu">'
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
+      + '<span data-en="Dev" data-he="Dev">Dev</span></button>'
+      + '<div class="devmenu__pop" hidden role="menu">'
+      + '<button type="button" role="menuitem" data-dev-email data-en="📧 Preview sales-rep email" data-he="📧 תצוגת מייל למכירות">📧 Preview sales-rep email</button>'
+      + '</div>';
+    document.body.appendChild(dev);
+    var devBtn = dev.querySelector(".devmenu__btn");
+    var devPop = dev.querySelector(".devmenu__pop");
+    function toggleDev(open) {
+      var show = open === undefined ? devPop.hidden : open;
+      devPop.hidden = !show; devBtn.setAttribute("aria-expanded", show ? "true" : "false");
+    }
+    devBtn.addEventListener("click", function () { toggleDev(); });
+    dev.querySelector("[data-dev-email]").addEventListener("click", function () { toggleDev(false); openEmail(); });
+    document.addEventListener("click", function (e) { if (!dev.contains(e.target)) toggleDev(false); });
+    // ?dev in the URL opens the email straight away (handy for a deep-linked pitch)
+    if (/[?&]dev\b/.test(location.search)) setTimeout(openEmail, 120);
+  })();
+
   /* ============================================================
      LEAD-CAPTURE MODULE (PRD 2)
      The site's core job: "I liked this — get back to me" in one click, with
@@ -358,6 +499,7 @@
 
   /* ---- selection state: the items the visitor has tagged ---- */
   var selection = []; // [{ id, title, thumb }]
+  var lastLead = null; // snapshot of the visitor's last submit → seeds the rep-email demo (§10.2)
   // BUILD NOTE: a sessionStorage mirror (survive page nav within a visit) is a
   // PRD §15 nicety, left unwired for the mockup.
   function selIndexOf(id) { for (var i = 0; i < selection.length; i++) { if (selection[i].id === id) return i; } return -1; }
@@ -575,6 +717,8 @@
     setTimeout(function () {
       if (btn) { btn.disabled = false; btn.innerHTML = orig; }
       var isDrawer = !!form.closest(".lead-drawer");
+      // snapshot for the rep-email demo BEFORE the selection is cleared (§10.2)
+      lastLead = { data: data, items: selection.slice() };
       showSuccessFor(form, data);
       var first = (data.name.split(" ")[0]) || "";
       toast(t("Brief received, <b>" + first + "</b>. We'll reply within 1 working day",

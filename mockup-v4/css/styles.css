@@ -1667,3 +1667,100 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .lightbox__share:hover { border-color: var(--orange); background: rgba(0,0,0,0.65); }
 .lightbox__share svg { width: 1rem; height: 1rem; flex: none; }
 .lightbox__share[hidden] { display: none; }
+
+/* ---- rep-email demo (§10.2): a faux email card the sales rep receives ---- */
+.repmail {
+  width: min(580px, 94vw); max-height: 90vh; overflow: auto;
+  padding: 0; border: none; border-radius: 16px;
+  background: #fff; color: var(--ink, #1a1a1a);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+}
+.repmail::backdrop { background: rgba(20,16,12,0.55); backdrop-filter: blur(2px); }
+.repmail__head {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.9rem 1.1rem; background: var(--cream-2, #f4eee0); border-bottom: 1px solid var(--line, #e3dccc);
+}
+.repmail__badge {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.02em;
+  color: #fff; background: var(--orange); padding: 0.28rem 0.6rem; border-radius: 999px;
+}
+.repmail__close { position: static; flex: none; }
+.repmail__meta {
+  padding: 1rem 1.3rem; border-bottom: 1px solid var(--line, #e3dccc);
+  font-size: 0.86rem; line-height: 1.7; color: var(--muted, #6b6357);
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+}
+.repmail__meta > div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.repmail__k { display: inline-block; min-width: 4.2em; font-weight: 700; color: var(--ink, #1a1a1a); }
+.repmail__body { padding: 1.2rem 1.3rem 1.5rem; }
+.repmail__hello { margin: 0 0 0.9rem; font-size: 1rem; }
+.repmail__contact {
+  border: 1px solid var(--line, #e3dccc); border-radius: 12px;
+  padding: 0.8rem 1rem; background: var(--cream, #faf7f0); font-size: 0.92rem; line-height: 1.7;
+}
+.repmail__contact a { color: var(--orange); text-decoration: none; }
+.repmail__msg { margin-top: 0.4rem; }
+.repmail__items-h { margin: 1.2rem 0 0.6rem; font-weight: 700; font-size: 0.95rem; }
+.repmail__items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+.repmail__item {
+  display: flex; gap: 0.8rem; align-items: center;
+  border: 1px solid var(--line, #e3dccc); border-radius: 12px; padding: 0.6rem; background: #fff;
+}
+.repmail__thumb { width: 60px; height: 60px; flex: none; object-fit: cover; border-radius: 8px; }
+.repmail__thumb--ph {
+  background: repeating-linear-gradient(45deg, #d9c2a0 0 8px, #cfa46a 8px 16px);
+}
+.repmail__item-body { min-width: 0; display: flex; flex-direction: column; gap: 0.25rem; }
+.repmail__item-title { font-weight: 600; font-size: 0.92rem; }
+.repmail__item-link { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+.repmail__item-link code {
+  font-size: 0.76rem; color: var(--muted, #6b6357);
+  background: var(--cream-2, #f4eee0); padding: 0.12rem 0.4rem; border-radius: 6px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.repmail__arrow { color: var(--orange); font-weight: 700; font-size: 0.85rem; flex: none; }
+.repmail__note { margin: 1.1rem 0 0; font-size: 0.8rem; color: var(--muted, #6b6357); line-height: 1.6; }
+.repmail__seed { margin: 0.4rem 0 0; font-size: 0.8rem; color: var(--orange); }
+
+/* ---- Dev launcher (review-build affordance to surface the rep-email demo) ---- */
+.devmenu { position: fixed; bottom: 1rem; inset-inline-start: 1rem; z-index: 1400; }
+.devmenu__btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font: inherit; font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  padding: 0.45rem 0.75rem; border-radius: 999px;
+  border: 1.5px solid rgba(120,120,120,0.4); background: rgba(30,30,30,0.78); color: #fff;
+  opacity: 0.4; transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+.devmenu__btn:hover, .devmenu__btn[aria-expanded="true"] { opacity: 1; border-color: var(--orange); }
+.devmenu__btn svg { width: 1rem; height: 1rem; }
+.devmenu__pop {
+  position: absolute; bottom: calc(100% + 0.5rem); inset-inline-start: 0;
+  background: #fff; color: var(--ink, #1a1a1a); border: 1px solid var(--line, #e3dccc);
+  border-radius: 12px; box-shadow: 0 16px 40px rgba(0,0,0,0.25); padding: 0.4rem; min-width: 230px;
+}
+.devmenu__pop[hidden] { display: none; }
+.devmenu__pop button {
+  display: block; width: 100%; text-align: start; font: inherit; font-size: 0.88rem;
+  padding: 0.55rem 0.7rem; border: none; background: none; border-radius: 8px; cursor: pointer; color: inherit;
+}
+.devmenu__pop button:hover { background: var(--cream-2, #f4eee0); }
+
+/* ---- content states (§9): loading skeletons + empty feed ---- */
+.skeleton {
+  position: relative; overflow: hidden;
+  background: var(--cream-2, #f4eee0); border-radius: 10px; min-height: 1rem;
+}
+.skeleton::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  transform: translateX(-100%); animation: pp-shimmer 1.4s infinite;
+}
+@keyframes pp-shimmer { 100% { transform: translateX(100%); } }
+.feed-empty {
+  padding: 2rem 1.2rem; text-align: center; color: var(--muted, #6b6357);
+  border: 1px dashed var(--line, #e3dccc); border-radius: 14px; background: var(--cream, #faf7f0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after { animation: none; }
+}
