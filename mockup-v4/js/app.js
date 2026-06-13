@@ -1008,12 +1008,12 @@
       en: [
         ['<span class="mark mark--orange">Remarkable</span>', 'events, made', 'to impact.', '<span class="mark mark--coral">no trace.</span>'],
         ['Built to', 'be <span class="mark mark--orange">seen</span>,', 'designed', 'to <span class="mark mark--coral">vanish.</span>'],
-        ['Bold while', 'it <span class="mark mark--orange">stands.</span>', 'Gentle', 'when it <span class="mark mark--coral">goes.</span>']
+        ['Loud at', 'the <span class="mark mark--orange">show.</span>', 'Light on', 'the <span class="mark mark--coral">earth.</span>']
       ],
       he: [
         ['<span class="mark mark--orange">חותם</span>', 'שנשאר', 'גם כשהכל', '<span class="mark mark--coral">כבר נעלם.</span>'],
         ['נבנה', '<span class="mark mark--orange">לבלוט</span>,', 'ונועד', '<span class="mark mark--coral">להיעלם.</span>'],
-        ['נועז', 'כשהוא <span class="mark mark--orange">עומד.</span>', 'עדין', 'כשהוא <span class="mark mark--coral">הולך.</span>']
+        ['רועשת', '<span class="mark mark--orange">באולם.</span>', 'נעלמת', 'בלי <span class="mark mark--coral">חתימה.</span>']
       ]
     };
     function phrases() {
