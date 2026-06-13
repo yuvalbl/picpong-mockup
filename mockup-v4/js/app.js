@@ -849,21 +849,28 @@
     sio.observe(slogan);
   })();
 
-  /* ---------- projects + catalog filter ----------
-     Matches any element carrying data-filter (projects uses .chip; the catalog
-     facet sidebar uses .chip-text / plain <button data-filter>). Keying off
-     [data-filter] makes both bars work with one handler. */
+  /* ---------- projects + catalog filter + live search: ONE visibility system ----------
+     A [data-cat] card is visible IFF it passes BOTH the active filter chip AND
+     the search query (projects only). The chip handler and the search input
+     both funnel through applyVisibility() — never writing style.display
+     independently — so they can't fight (PRD 3 §11). Matches any element
+     carrying data-filter (projects .chip; catalog facet sidebar). */
+  var activeFilter = "all";
+  function applyVisibility(card) {
+    var passCat = activeFilter === "all" || card.getAttribute("data-cat") === activeFilter;
+    var passSearch = card.getAttribute("data-hidden-by-search") !== "1";
+    card.style.display = (passCat && passSearch) ? "" : "none";
+  }
+  function applyVisibilityAll() { document.querySelectorAll("[data-cat]").forEach(applyVisibility); }
+
   document.querySelectorAll("[data-filterbar]").forEach(function (bar) {
     bar.addEventListener("click", function (e) {
       var chip = e.target.closest("[data-filter]");
       if (!chip || !bar.contains(chip)) return;
       bar.querySelectorAll("[data-filter]").forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
       chip.setAttribute("aria-pressed", "true");
-      var f = chip.getAttribute("data-filter");
-      document.querySelectorAll("[data-cat]").forEach(function (card) {
-        var show = f === "all" || card.getAttribute("data-cat") === f;
-        card.style.display = show ? "" : "none";
-      });
+      activeFilter = chip.getAttribute("data-filter");
+      applyVisibilityAll();
     });
   });
 
@@ -920,13 +927,120 @@
      (validateLead / submitLead / bindLeadForm) — shared by the inline #contact
      form and the injected drawer form. */
 
-  /* ---------- project search field (inert this PRD; behaviour = PRD 3) ---------- */
+  /* ---------- live project search (PRD 3 §7) ----------
+     Type-to-filter over the rendered tiles; indexes client + title + category
+     in the ACTIVE language (textContent already reflects it after applyLang),
+     case/diacritic-insensitive (Latin diacritics + Hebrew niqqud stripped).
+     Composes with the chips through the shared applyVisibility(). */
+  function normText(s) {
+    return String(s).toLowerCase()
+      .normalize("NFD").replace(/[̀-ͯ]/g, "")  // Latin diacritics
+      .replace(/[֑-ׇ]/g, "")                   // Hebrew niqqud / cantillation
+      .replace(/\s+/g, " ").trim();
+  }
   document.querySelectorAll("[data-search]").forEach(function (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      // BUILD NOTE: live project search ships in PRD 3 (filter the collage by query).
-      var he = document.documentElement.getAttribute("lang") === "he";
-      toast(he ? "חיפוש פרויקטים: בקרוב (PRD 3)" : "Project search: coming in PRD 3");
-    });
+    var input = form.querySelector("input");
+    if (!input) return;
+    var tiles = document.querySelectorAll(".collage-projects .project");
+    var empty = document.querySelector("[data-search-empty]");
+    var tmr;
+    function run() {
+      var q = normText(input.value);
+      var anyVisible = false;
+      tiles.forEach(function (tile) {
+        var hay = normText(tile.textContent + " " + (tile.getAttribute("data-cat") || ""));
+        var hit = q === "" || hay.indexOf(q) >= 0;
+        tile.setAttribute("data-hidden-by-search", hit ? "0" : "1");
+        applyVisibility(tile);
+        if (tile.style.display !== "none") anyVisible = true;
+      });
+      if (empty) empty.hidden = !(q !== "" && !anyVisible);
+    }
+    form.addEventListener("submit", function (e) { e.preventDefault(); run(); });
+    input.addEventListener("input", function () { clearTimeout(tmr); tmr = setTimeout(run, 120); });
   });
+
+  /* ---------- on-arrival highlight (PRD 3 §4.5) ----------
+     A shared link lands as <page>#item-<id>. Find the item, FORCE it visible
+     (reset chips + search so a filtered-out target can't silently no-op),
+     scroll it to centre, spotlight + label it, and — for an image-level id on a
+     page that owns the lightbox — open that frame. Unknown id = clean no-op. */
+  (function arrivalHighlight() {
+    var PREFIX = "#item-";
+    var handled = null;     // last hash acted on — idempotent across load/hashchange
+    var activeClear = null; // tears down the current spotlight before a new one
+
+    function findNode(id) {
+      var hit = null;
+      document.querySelectorAll("[data-media-id]").forEach(function (el) {
+        if (!hit && el.getAttribute("data-media-id") === id) hit = el;
+      });
+      return hit;
+    }
+
+    function run() {
+      // read the hash FRESH each call — capturing it at script-eval time races
+      // the navigation commit on data-driven pages (detail gallery injected late).
+      var hash = location.hash || "";
+      if (hash.indexOf(PREFIX) !== 0) return;
+      if (hash === handled) return;
+      var id = decodeURIComponent(hash.slice(PREFIX.length));
+      if (!id) return;
+      var node = findNode(id);
+      if (!node) return; // unknown / not-on-this-page id → clean no-op
+      handled = hash;
+      if (activeClear) activeClear(); // retire any previous spotlight first
+
+      // force-reveal: undo any chip filter or search query hiding the target
+      activeFilter = "all";
+      document.querySelectorAll("[data-filterbar] [data-filter]").forEach(function (c) {
+        c.setAttribute("aria-pressed", c.getAttribute("data-filter") === "all" ? "true" : "false");
+      });
+      document.querySelectorAll("[data-search] input").forEach(function (i) { i.value = ""; });
+      document.querySelectorAll("[data-cat]").forEach(function (card) {
+        card.removeAttribute("data-hidden-by-search"); applyVisibility(card);
+      });
+      var emptyEl = document.querySelector("[data-search-empty]"); if (emptyEl) emptyEl.hidden = true;
+
+      var target = node.closest(".project, .media, .feed-card, .product-card, article") || node;
+      var zoom = node.closest("[data-zoom]"); // image-level lives inside a lightbox-able .media
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+      spotlight(target);
+      if (zoom) { try { zoom.click(); } catch (e) {} } // open the lightbox on that frame
+    }
+
+    function spotlight(target) {
+      target.classList.add("is-spotlit");
+      var tag = document.createElement("span");
+      tag.className = "spotlight-tag";
+      tag.textContent = t("Here's the piece you asked about", "זה הפריט שביקשתם לראות");
+      target.appendChild(tag);
+      var veil = document.createElement("div");
+      veil.className = "spotlight-veil";
+      document.body.appendChild(veil);
+      requestAnimationFrame(function () { veil.classList.add("is-out"); });
+      setTimeout(function () { if (veil.parentNode) veil.parentNode.removeChild(veil); }, 1500);
+
+      function clear() {
+        target.classList.remove("is-spotlit");
+        if (tag.parentNode) tag.parentNode.removeChild(tag);
+        if (veil.parentNode) veil.parentNode.removeChild(veil);
+        document.removeEventListener("keydown", onKey);
+        document.removeEventListener("click", onClick, true);
+        if (activeClear === clear) activeClear = null;
+      }
+      function onKey(e) { if (e.key === "Escape") clear(); }
+      function onClick() { clear(); } // first deliberate click dismisses the spotlight
+      activeClear = clear;
+      document.addEventListener("keydown", onKey);
+      setTimeout(function () { document.addEventListener("click", onClick, true); }, 700);
+    }
+
+    // run once layout + any data-driven galleries are in place, and on later hash changes
+    if (document.readyState === "complete") run();
+    else window.addEventListener("load", run);
+    window.addEventListener("hashchange", function () { handled = null; run(); });
+  })();
 })();
