@@ -733,8 +733,9 @@
 
   /* ---- WhatsApp: a live, full-selection prefilled message (representation) ----
      BUILD NOTE: replace WA_NUMBER with Picpong's real WhatsApp Business number;
-     production also routes WhatsApp + email + form into ONE inbox. */
-  var WA_NUMBER = "972000000000"; // placeholder
+     production also routes WhatsApp + email + form into ONE inbox.
+     Currently the Twilio WhatsApp sandbox number (+1 415 523 8886) for testing. */
+  var WA_NUMBER = "14155238886"; // Twilio WhatsApp sandbox (+1 415 523 8886)
   function buildWaText(form) {
     var v = form ? readForm(form) : { name: "", phone: "" };
     var lines = [];
