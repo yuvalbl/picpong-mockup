@@ -1764,3 +1764,104 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 @media (prefers-reduced-motion: reduce) {
   .skeleton::after { animation: none; }
 }
+
+/* ============================================================
+   PRD 3 §8.2 — Daily-publish: Home "Latest" strip + feed page
+   RTL-safe (logical props only); reduced-motion handled below.
+   ============================================================ */
+
+/* ---- Home "Latest" strip (horizontal, scroll-snap) ---- */
+.latest-strip__head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap; margin-block-end: 1.4rem;
+}
+.latest-strip__row {
+  display: grid; grid-auto-flow: column;
+  grid-auto-columns: minmax(248px, 1fr);
+  gap: 1.1rem;
+  overflow-x: auto; overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  padding-block-end: 0.6rem; /* room for focus rings */
+  margin-inline: calc(-1 * var(--gutter, 0px));
+  padding-inline: var(--gutter, 0px);
+  scrollbar-width: thin; scrollbar-color: var(--kraft) transparent;
+}
+.latest-strip__row::-webkit-scrollbar { height: 6px; }
+.latest-strip__row::-webkit-scrollbar-thumb { background: var(--kraft); border-radius: 999px; }
+.latest-strip__row::-webkit-scrollbar-track { background: transparent; }
+.latest-strip__row > .feed-card { scroll-snap-align: start; }
+@media (min-width: 880px) {
+  .latest-strip__row { grid-auto-columns: minmax(280px, 1fr); }
+}
+
+/* ---- The feed card (shared by strip + feed page) ---- */
+.feed-card {
+  display: flex; flex-direction: column;
+  background: #fff; border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden;
+  text-decoration: none; color: var(--ink);
+  box-shadow: 0 1px 2px rgba(26,26,26,0.04);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.feed-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(26,26,26,0.10); }
+.feed-card .media { aspect-ratio: 4 / 3; }
+.feed-card__img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.feed-card__body { padding: 0.95rem 1.05rem 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.feed-card__date {
+  font-family: "Rubik", system-ui, sans-serif; font-weight: 500;
+  font-size: 0.74rem; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--kraft-deep);
+  display: inline-flex; align-items: center; gap: 0.4rem;
+}
+.feed-card__date::before {
+  content: ""; inline-size: 6px; block-size: 6px; border-radius: 50%;
+  background: var(--orange); flex: none;
+}
+.feed-card__title {
+  font-family: "Rubik", system-ui, sans-serif; font-weight: 600;
+  font-size: 1.05rem; line-height: 1.3; color: var(--ink); margin: 0;
+}
+.feed-card__lines { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+.feed-card__lines li { list-style: none; }
+.feed-card__lines li + li { margin-block-start: 0.15rem; }
+
+/* compact variant for the Home strip */
+.feed-card--compact .feed-card__body { padding: 0.8rem 0.9rem 0.95rem; }
+.feed-card--compact .feed-card__title { font-size: 0.98rem; }
+.feed-card--compact .feed-card__lines { font-size: 0.86rem; }
+
+/* ---- Video post: play-button overlay (static; real clip = build note) ---- */
+.feed-card__video { position: relative; }
+.feed-card__play {
+  position: absolute; inset-block-start: 50%; inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+  inline-size: 58px; block-size: 58px; border-radius: 50%;
+  background: rgba(26,26,26,0.55); backdrop-filter: blur(2px);
+  border: 2px solid rgba(255,255,255,0.85);
+  display: grid; place-items: center; color: #fff;
+  pointer-events: none; transition: transform .25s ease, background .25s ease;
+}
+.feed-card:hover .feed-card__play { transform: translate(-50%, -50%) scale(1.08); background: var(--orange); }
+.feed-card__play svg { inline-size: 22px; block-size: 22px; margin-inline-start: 3px; }
+.feed-card__videotag {
+  position: absolute; inset-block-start: 0.6rem; inset-inline-start: 0.6rem;
+  background: rgba(26,26,26,0.7); color: #fff;
+  font-family: "Rubik", system-ui, sans-serif; font-weight: 500;
+  font-size: 0.68rem; letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 0.2rem 0.55rem; border-radius: 999px;
+}
+
+/* ---- Feed page: vertical grid of posts ---- */
+.feed {
+  display: grid; gap: 1.4rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+.feed .feed-card .feed-card__title { font-size: 1.12rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .feed-card, .feed-card__play { transition: none; }
+  .feed-card:hover { transform: none; }
+  .latest-strip__row { scroll-snap-type: none; }
+}

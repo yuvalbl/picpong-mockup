@@ -41,6 +41,7 @@
     <nav class="nav__links" aria-label="Primary">
       <a href="catalog.html" data-en="Catalog" data-he="קטלוג">Catalog</a>
       <a href="projects.html" data-en="Projects" data-he="פרויקטים">Projects</a>
+      <a href="latest.html" data-en="Latest" data-he="יומן">Latest</a>
       <a href="index.html#sustainability" data-en="Sustainability" data-he="קיימות">Sustainability</a>
       <a href="index.html#about" data-en="About" data-he="אודות">About</a>
       <a href="index.html#contact" data-en="Contact" data-he="צור קשר">Contact</a>
@@ -76,6 +77,7 @@
   <nav>
     <a href="catalog.html" data-en="Catalog" data-he="קטלוג">Catalog</a>
     <a href="projects.html" data-en="Projects" data-he="פרויקטים">Projects</a>
+    <a href="latest.html" data-en="Latest" data-he="יומן">Latest</a>
     <a href="index.html#sustainability" data-en="Sustainability" data-he="קיימות">Sustainability</a>
     <a href="index.html#about" data-en="About" data-he="אודות">About</a>
     <a href="index.html#contact" data-en="Contact" data-he="צור קשר">Contact</a>
@@ -257,6 +259,79 @@
       <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/brinks.png" alt="" /></div>
       <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/siteNewLogo.png" alt="" /></div>
       <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/download.png" alt="" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST STRIP (PRD 3 §8.2 / L-4): horizontally-scannable row of the most recent
+     daily-journal posts. Cards reuse the SAME feed-* media ids as latest.html so a
+     shared link resolves to the same item. Full stream lives on latest.html. -->
+<section class="band band--tight latest-strip" aria-label="From the studio journal">
+  <div class="wrap">
+    <div class="latest-strip__head reveal">
+      <div>
+        <p class="eyebrow" data-en="Latest · Studio journal" data-he="יומן · מרצפת הסטודיו">Latest · Studio journal</p>
+        <h2 class="h3" style="margin:0.2rem 0 0" data-en="From the studio journal" data-he="מהיומן של הסטודיו">From the studio journal</h2>
+      </div>
+      <a class="link-arrow" href="latest.html" data-i18n-html data-en="View all <span class=&quot;arrow&quot;>&rarr;</span>" data-he="לכל היומן <span class=&quot;arrow&quot;>&rarr;</span>">View all <span class="arrow">&rarr;</span></a>
+    </div>
+
+    <div class="latest-strip__row reveal" role="list">
+
+      <!-- 1 · Microsoft -->
+      <article class="feed-card feed-card--compact" role="listitem">
+        <div class="media" data-media>
+          <img class="feed-card__img" src="assets/projects/microsoft.jpg" alt="דוכן מקרטון ממוחזר נארז שטוח אחרי כנס Microsoft" loading="lazy" />
+          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה" data-media-id="feed-microsoft-teardown" data-media-title="Microsoft · Teardown day" data-media-thumb="assets/projects/microsoft.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div class="feed-card__body">
+          <p class="feed-card__date"><time datetime="2026-06-08" data-en="8 June 2026" data-he="8 ביוני 2026">8 June 2026</time></p>
+          <h3 class="feed-card__title"><a href="latest.html#item-feed-microsoft-teardown" style="text-decoration:none;color:inherit" data-en="Microsoft launch — struck in 40 minutes" data-he="השקת Microsoft — פורק ב-40 דקות">Microsoft launch — struck in 40 minutes</a></h3>
+          <ul class="feed-card__lines"><li data-en="The whole launch environment folded back to flat board." data-he="כל סביבת ההשקה התקפלה חזרה ללוחות שטוחים.">The whole launch environment folded back to flat board.</li></ul>
+        </div>
+      </article>
+
+      <!-- 2 · Landa -->
+      <article class="feed-card feed-card--compact" role="listitem">
+        <div class="media" data-media>
+          <img class="feed-card__img" src="assets/projects/landa.jpg" alt="אותיות תלת-ממד מוארות מקרטון ממוחזר עבור Landa" loading="lazy" />
+          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה" data-media-id="feed-landa-letters" data-media-title="Landa · Illuminated letters" data-media-thumb="assets/projects/landa.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div class="feed-card__body">
+          <p class="feed-card__date"><time datetime="2026-06-02" data-en="2 June 2026" data-he="2 ביוני 2026">2 June 2026</time></p>
+          <h3 class="feed-card__title"><a href="latest.html#item-feed-landa-letters" style="text-decoration:none;color:inherit" data-en="Cutting 1.4-metre letters for Landa" data-he="חותכים אותיות בגובה 1.4 מטר ל-Landa">Cutting 1.4-metre letters for Landa</a></h3>
+          <ul class="feed-card__lines"><li data-en="Hollow board, lit from inside — lighter than it looks." data-he="קרטון חלול, מואר מבפנים — קל ממה שנראה.">Hollow board, lit from inside — lighter than it looks.</li></ul>
+        </div>
+      </article>
+
+      <!-- 3 · King Solomon (VIDEO) -->
+      <article class="feed-card feed-card--compact" role="listitem">
+        <div class="media feed-card__video" data-media>
+          <img class="feed-card__img" src="assets/projects/king-solomon.jpg" alt="סרטון מרצפת התערוכה: ביתני קרטון צבעוניים ל-King Solomon" loading="lazy" />
+          <span class="feed-card__videotag" data-en="Video" data-he="וידאו">Video</span>
+          <span class="feed-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה" data-media-id="feed-king-solomon-floor" data-media-title="King Solomon · On the show floor (video)" data-media-thumb="assets/projects/king-solomon.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div class="feed-card__body">
+          <p class="feed-card__date"><time datetime="2026-05-26" data-en="26 May 2026" data-he="26 במאי 2026">26 May 2026</time></p>
+          <h3 class="feed-card__title"><a href="latest.html#item-feed-king-solomon-floor" style="text-decoration:none;color:inherit" data-en="Walkthrough: a colour-block expo" data-he="סיור: תערוכת בלוקים צבעוניים">Walkthrough: a colour-block expo</a></h3>
+          <ul class="feed-card__lines"><li data-en="Our quarterly studio film, filmed as the doors opened." data-he="הסרטון הרבעוני שלנו, צולם כשנפתחו הדלתות.">Our quarterly studio film, filmed as the doors opened.</li></ul>
+        </div>
+      </article>
+
+      <!-- 4 · Google Cloud -->
+      <article class="feed-card feed-card--compact" role="listitem">
+        <div class="media" data-media>
+          <img class="feed-card__img" src="assets/projects/google-cloud.jpg" alt="מבנה קבלת פנים מקרטון ממוחזר למסיבת אביב של Google Cloud" loading="lazy" />
+          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה" data-media-id="feed-google-cloud-welcome" data-media-title="Google Cloud · Welcome build" data-media-thumb="assets/projects/google-cloud.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div class="feed-card__body">
+          <p class="feed-card__date"><time datetime="2026-05-19" data-en="19 May 2026" data-he="19 במאי 2026">19 May 2026</time></p>
+          <h3 class="feed-card__title"><a href="latest.html#item-feed-google-cloud-welcome" style="text-decoration:none;color:inherit" data-en="A welcome arch that arrived flat-packed" data-he="שער קבלת פנים שהגיע ארוז שטוח">A welcome arch that arrived flat-packed</a></h3>
+          <ul class="feed-card__lines"><li data-en="Assembled on site in an hour, recycled after the weekend." data-he="הורכב במקום בשעה, מוחזר אחרי סוף השבוע.">Assembled on site in an hour, recycled after the weekend.</li></ul>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
