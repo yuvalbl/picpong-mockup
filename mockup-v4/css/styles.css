@@ -729,16 +729,14 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .ctile__card-k { font-family: "Rubik", system-ui, sans-serif; font-weight: 400; font-size: 1.08rem; line-height: 1.12; letter-spacing: -0.01em; white-space: nowrap; }
 .ctile__card-m { font-size: var(--t-meta); color: var(--muted); white-space: nowrap; }
 
-/* "live" pulse label for the cinemagraph tile */
+/* provenance caption pill for the video tile */
 .ctile__live {
   position: absolute; left: 1rem; top: 1rem; z-index: 3;
-  display: inline-flex; align-items: center; gap: 0.5rem;
+  display: inline-flex; align-items: center;
   background: rgba(26,26,26,0.55); color: #fff; backdrop-filter: blur(6px);
   font-size: var(--t-meta); font-weight: 600; letter-spacing: 0.04em;
   padding: 0.35rem 0.7rem; border-radius: 999px; text-transform: uppercase;
 }
-.ctile__live::before { content:""; width: 8px; height: 8px; border-radius: 999px; background: #57d06a; box-shadow: 0 0 0 0 rgba(87,208,106,0.7); animation: livepulse 2.2s var(--ease) infinite; }
-@keyframes livepulse { 0%{box-shadow:0 0 0 0 rgba(87,208,106,0.6)} 70%{box-shadow:0 0 0 9px rgba(87,208,106,0)} 100%{box-shadow:0 0 0 0 rgba(87,208,106,0)} }
 
 /* gradient scrim so overlays read on photos */
 .ctile--media::after, .ctile--sticker::after {
@@ -910,7 +908,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 
 /* reduced-motion: freeze the kinetic bits, keep everything legible */
 @media (prefers-reduced-motion: reduce) {
-  .cinemagraph, .sticker svg, .ctile--video::after, .ctile__live::before { animation: none !important; }
+  .cinemagraph, .sticker svg, .ctile--video::after { animation: none !important; }
   #material::after { animation: none !important; }
   .draw [pathLength] { stroke-dashoffset: 0 !important; }
   .collage .reveal { transform: none; }
