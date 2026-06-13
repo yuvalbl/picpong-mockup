@@ -1,91 +1,90 @@
 # Implementation estimate — Picpong lead-gen site (PRD 1–3)
 
-> **What this estimates:** the **real production build** of the bilingual lead-generation catalog described by PRD 1 (foundation), PRD 2 (lead capture), and PRD 3 (discovery & chrome) — i.e. turning the signed-off `mockup-v4` into a live site.
-> **NOT in scope:** commerce (cart / checkout / payments / variant pricing) and the interactive sales-rep portal — both are **Phase 2**.
-> **Team assumption:** one senior developer who builds primarily with **Claude Code** (agent-orchestrated, not hand-typed).
-> **Status:** estimate for a client go/no-go. Ranges, not a fixed bid (see §6).
-> **Date:** 2026-06.
+> **What this estimates:** the **real production build** of the bilingual lead-generation catalog described by PRD 1–3 — i.e. turning the signed-off `mockup-v4` into a live site.
+> **NOT in scope:** commerce (cart/checkout/payments/pricing) and the interactive sales-rep portal — both are **Phase 2**.
+> **Team assumption:** one expert developer building **entirely with Claude Code** (agent-orchestrated). Framework-conventional coding is held to a fast pace (e.g. dynamic OG ≈ 1 day, lead-email ≈ 1 day); work with a human/wall-clock floor is named separately and **not** compressed.
+> **Stack:** Next.js (App Router) + TS, headless CMS (Sanity or Payload), Vercel, Resend/SendGrid, Tailwind + the mockup's tokens.
+> **Method:** bottoms-up, re-derived from a fresh read of the actual mockup (1,257-line `app.js`, 1,867-line `styles.css`, 858 bilingual attribute pairs already authored). A day = ~6 focused dev-hours. Ranges are honest, not padded.
+> **Status:** estimate for a client go/no-go. Date: 2026-06.
 
 ---
 
-## 1. The big head-start
+## 1. The head-start that makes this cheap
 
-The expensive, ambiguous part of a web project — UX, information architecture, content model, every interaction, the bilingual/RTL behaviour, and the actual copy — is **already done and demonstrable** in `mockup-v4`. This is roughly what a discovery + design phase normally produces, delivered as a clickable artifact the client can sign off. So this build is **mostly a greenfield *port* of a finished design into a real stack**, which is the most AI-favourable kind of work (see §4).
+The expensive, ambiguous part of a web project — UX, IA, content model, every interaction, the bilingual/RTL behaviour, and the copy — is **already done and demonstrable** in `mockup-v4`. The headline machinery that *looks* like the hard part (the "+"/lead drawer, running selection + chips, share + clipboard, deep-link highlight-on-arrival, lightbox, live search, the rep-email demo) is **already built and debugged** and ports cheaply. So this is a **greenfield port of a finished design into a real stack** — the most AI-favourable kind of work — plus wiring the backend the mockup only represents.
 
-**Recommended stack** (from `docs/build-plan.md`, minus commerce): Next.js 15 (App Router) + TypeScript, a headless CMS (Sanity managed, or Payload self-hosted), Vercel hosting, an email provider (Resend/SendGrid) for lead delivery. Tailwind + the existing design tokens.
+## 2. Bottoms-up work breakdown
 
-## 2. Work breakdown
+Each package tagged **[code]** (fast/conventional — held to the calibrated pace), **[judgement]** (modelling/QA — AI helps only modestly), **[wall-clock]** (approval/DNS — calendar, not dev-effort), or **[content]** (client-supplied).
 
-Two columns: a **traditional** senior-dev estimate, and an **AI-adjusted** one. The adjustment is applied *per phase* — aggressively to code-generation work, barely at all to judgement / integration / QA / content work (the evidence for why is in §4).
-
-| # | Work package | Type | Traditional (days) | AI-adjusted (days) |
-|---|---|---|---|---|
-| 1 | Scaffold: Next.js + TS + Tailwind/tokens + lint/test/CI + Vercel | code | 2–4 | 1–2 |
-| 2 | **Port the mockup UI → React components** (all pages + drawer, lightbox, search, share, highlight, lead flow) | code (bulk) | 6–10 | 3–5 |
-| 3 | i18n: he/en, RTL, path-prefix routing, no auto-translate | mixed (RTL = judgement) | 3–5 | 2–4 |
-| 4 | CMS setup + bilingual content model (projects/products/feed/clients, paired EN+HE fields, per-item meta/OG) | judgement | 5–8 | 4–7 |
-| 5 | Draft → preview → publish (staging) | code | 2–4 | 1.5–3 |
-| 6 | Real URLs: slug rules (unique/immutable/301), hreflang/canonical, `/m/<id>` resolver | code | 4–6 | 2–4 |
-| 7 | Dynamic per-item SEO + **OG-image generation** per item/language | code | 3–5 | 2–3.5 |
-| 8 | Lead delivery: form → templated rep email + live deep links | mixed (sender-domain approval = wall-clock) | 3–5 | 2.5–4.5 |
-| 9 | Full-archive search (Pagefind/Fuse or CMS query) | code | 2–4 | 1–2.5 |
-| 10 | JSON-LD + sitemap + robots + analytics | code | 2–3 | 1–2 |
-| 11 | Content modelling + load real/sample content (client supplies copy/photos/translations) | client/judgement | 3–5 | 3–5 |
-| 12 | QA / a11y / perf / **RTL** / cross-browser / Lighthouse / launch | judgement/review | 4–7 | 4–6.5 |
-| | **Core subtotal** | | **≈ 40–66** | **≈ 27–49** |
-
-**Variable add-ons** (price separately, in or out per the client):
-
-| Add-on | Traditional | AI-adjusted |
-|---|---|---|
-| WhatsApp Business API + unified inbox | 4–8 | 3–6 |
-| Automated Facebook curation/import (vs. manual paste) | 4–6 | 3–5 |
+| Group | Package | Tag | Days |
+|---|---|---|---|
+| **A. Scaffold** | Next.js+TS+Tailwind, port `styles.css` tokens → theme | code | 0.5–1 |
+| | Vercel project, envs, preview deploys, domain | code | 0.5 |
+| **B. i18n/RTL** | `/{he\|en}` routing, locale middleware, hreflang/canonical | code | 1–1.5 |
+| | **RTL/bidi done right + pixel-match both directions** | judgement | 2–3 |
+| **C. Port UI** | 7 pages → components + global chrome | code | 2.5–4 |
+| | Re-wire interactions in React (drawer/selection/search/highlight/share/lightbox) | code | 1.5–2.5 |
+| **D. CMS** | **Bilingual content model design** (types, paired EN/HE fields, refs, meta/OG, slug≠id) | judgement | 2–3 |
+| | Schema → typed queries, image pipeline, render into components | code | 1.5–2.5 |
+| | **Draft → preview → publish** (bilingual preview) | judgement | 1–2 |
+| **E. URLs** | Slug rules (unique/auto-suffix), immutability + **301 on rename**, id≠slug | judgement | 1–1.5 |
+| | `/m/<id>` resolver → 301 → canonical#item | code | 0.5 |
+| **F. SEO/OG** | **Dynamic per-item OG images** (`opengraph-image.tsx`, per lang; +Hebrew font in OG runtime) | code | 1–1.5 |
+| | Per-page title/meta/OG/Twitter from CMS, per lang; alt | code | 0.5–1 |
+| | JSON-LD + per-language sitemap + robots | code | 0.5–1 |
+| **G. Lead delivery** | Form → API → **templated rep email** (Resend + react-email) + deep links + validation | code | 1–1.5 |
+| | `wa.me` hand-off (real number) | code | 0.25 |
+| | Email sender-domain / SPF-DKIM verification | wall-clock | ~0 dev / 1–3 cal-days |
+| **H. Search/states** | **Full-archive search** (whole published set, niqqud-normalized, AND chips) | judgement | 1.5–2.5 |
+| | Loading skeletons / empty states → real fetches | code | 0.5 |
+| **I. QA/launch** | **Design-fidelity + RTL/bidi QA** (pixel-match both dirs, real-device mobile) | judgement | 2–3 |
+| | a11y + cross-browser + perf (video hero, image sizing) | judgement | 1–1.5 |
+| | Launch: analytics, redirects, sitemap submit, deploy debugging | code | 0.5–1 |
+| **J. Content** | Load real bilingual copy/alt/meta into CMS (gated by client supplying copy/translations/photos) | content | 1–3 dev (supply-gated) |
 
 ## 3. The number
 
-- **Core build (AI-adjusted): ≈ 27–49 developer-days → roughly 6–10 working weeks → ~1.5–2.5 months** for one senior dev.
-- **With likely add-ons + normal coordination/revision overhead: ~2–3 months** (≈ 35–60 dev-days).
+- **Dev-effort: ≈ 25–37 developer-days → midpoint ~30 (≈ 6 weeks of pure dev).**
+- **Realistic calendar: ~7–10 weeks → quote the client ~8 weeks** to a production-ready bilingual site *with real content loaded*.
 
-Compared with the traditional estimate (~40–66 core dev-days, ~2–3 months), the AI adjustment **trims roughly a quarter to a third off the project**, concentrated in the code-generation phases. It does **not** halve the project — see §4 for why.
+The calendar exceeds the dev-effort because two things gate launch independent of coding speed: **email DNS verification** (1–3 wall-clock days) and, far more, **content supply + bilingual design-fidelity review loops** (the single most likely cause of slippage — see §4).
 
-## 4. Why "all Claude Code" does NOT mean "10× faster project" (the honest correction)
+> This supersedes the earlier ~27–49-day figure: a fresh, unanchored re-estimate against the actual mockup landed lower, because the conventional-coding line items (OG, email, metadata, resolver, JSON-LD) genuinely collapse to hours-to-a-day each, and the heavy UX is already built.
 
-A common instinct is that an all-Claude-Code shop should cut estimates by 80–90%. The 2025–2026 evidence says otherwise: **AI speedups are real but task-dependent, and the headline multipliers are measured on the slice of work that compresses, not on whole projects.**
+## 4. Where the cost actually is
 
-- **By task type** (Stanford "100k developers" study): **30–40%** faster on greenfield low-complexity (boilerplate/CRUD/UI), dropping to **0–10%** on legacy/complex work; blended average **~15–20%** *after* netting out rework. Practitioner decomposition (Wilkins): **~10× on scaffolding/boilerplate**, **~2× on complex logic/debugging**, **~1× on architecture/planning** — so a project that *looks* 12× faster weights down to **~3×** once you account for the real task mix, and lower still once non-coding work is included.
-- **The honest counter-weight** (METR RCT, 2025): experienced devs were **19% *slower*** with AI on tasks in codebases they knew deeply — while *believing* they were faster. The slowdown is concentrated in deep-expertise/legacy work, i.e. the opposite of this build. (Stanford and METR agree: gain is near-zero on familiar/complex work, positive on greenfield/simple work.)
-- **What does NOT speed up** (the human-time floor): architecture & data/CMS modelling, stakeholder/client review loops, third-party integration approvals (email-sender domain verification, WhatsApp Business API review — wall-clock waits), **design-fidelity QA and RTL/Hebrew/i18n edge cases** (exactly the "hallucination-prone" zone for models), and deployment/infra debugging (DORA 2025: AI raises throughput but *worsens* delivery stability — time shifts from writing to auditing).
-- **Rework tax:** GitClear finds AI-era code churn and duplication rising (copy-paste up ~48% relative; refactoring down); budget a ~10–15% rework buffer on the AI-generated portion.
+Conventional coding is cheap here, so the cost concentrates in **three buckets, none of which are "writing code":**
 
-**Applied to this project:** it sits in the most AI-favourable quadrant (greenfield + popular stack + design already done), so the *coding* layer genuinely collapses (~2× and locally much more). But coding is only ~half the work; the CMS modelling, RTL QA, integrations, content, and review loops — the other ~40–50% — barely move. Net realistic blended multiplier vs. a traditional senior-dev estimate: **~1.5–2.5× (≈2×) on the build**, which is why the project trims ~25–35%, not 90%.
+1. **CMS modelling + bilingual preview (D, ~4.5–7.5 d)** — paired-field strategy, references, slug/id invariants, working bilingual preview. Judgement; a wrong model means re-work after content loads.
+2. **RTL/bidi + design-fidelity QA (B-RTL + I, ~5–7.5 d)** — pixel-matching a finished mockup in *both* directions on real devices is iterative human review, not generation. (The mockup being done makes this *cheaper* — clear target — but it's still the biggest pure-effort bucket.)
+3. **Full-archive search (H, ~1.5–2.5 d)** — the one feature the mockup genuinely fakes (it filters rendered DOM); production needs a real index with Hebrew niqqud normalization.
 
-> **Estimation discipline:** estimate *per phase*, apply the aggressive multiplier only to scaffolding/CRUD/UI, keep ~1× on architecture/integration/QA/RTL/review, and add a rework buffer. Beware the "felt faster than it was" perception gap (METR) — estimating from felt speed systematically under-quotes.
+**The line a skeptical client should hear:** the expensive-looking interaction design is the cheap part *because the mockup did it*; the money is in CMS judgement and bilingual QA. And the calendar's outer bound is set by **content supply, not engineering.**
 
-## 5. The four decisions that move the number (instead of a spec)
+## 5. Why "all Claude Code" ≠ a 90% cut (the honest frame)
 
-You do **not** need a full tech spec to quote this — the mockup already removed the expensive ambiguity. The variance that remains is four *business* decisions, answerable in a 60–90 min call:
+The conventional coding genuinely collapses (Next.js has `opengraph-image.tsx`, react-email, `generateMetadata` built-in; the mockup ports near-1:1). But the 2025–26 evidence is consistent that AI compresses *code generation*, not *judgement/QA/integration*: Stanford's 100k-dev study measures 30–40% gains on greenfield-simple work dropping to ~0–10% on complex/legacy; METR's 2025 RCT even found experienced devs 19% *slower* on code they know deeply, while *feeling* faster. So the floors above (CMS modelling, RTL QA, content, DNS/approvals, review loops) stay roughly uncompressed. That's why this lands at ~30 dev-days, not ~5 — the cut is "the heavy UX was pre-built and conventional coding is hours," not "AI does everything in an afternoon."
+*(Sources: METR RCT 2025 / arXiv 2507.09089; Stanford "100k developers" (Denisov-Blanch); GitClear 2025; DORA 2025.)*
 
-1. **CMS** — managed SaaS (Sanity: faster, built-in preview + i18n, monthly fee) vs. self-hosted (Payload: no licence, in-repo, more build). *Biggest single swing.*
-2. **WhatsApp Business API + unified inbox** — Phase 1 or deferred? (API approval is calendar time.)
-3. **Hosting/runtime** — Vercel + Next.js assumed; confirm.
-4. **Who supplies content** — Hebrew + English copy, photography, translations. (Dev chasing content balloons the estimate.)
+## 6. The swing factors (worth more than a spec)
 
-## 6. Recommendation on the spec, and on pricing
+1. **CMS choice & getting the bilingual model right first time** (Sanity hosted vs Payload self-hosted) — swings group D by ±3–4 days; a wrong paired-field strategy forces a re-model after content loads.
+2. **Content & translation supply** — swings the *calendar* by weeks independent of dev. Prompt final HE+EN copy/alt/photos → ~8 weeks; trickling content or re-shoots → open-ended.
+3. **Search scope & RTL-QA tolerance** — "search the rendered set" (≈ the mockup, cheap) vs "full archive, niqqud-normalized" (+1.5–2.5 d, maybe a hosted-search dependency); and "good" vs "indistinguishable-from-mockup in Hebrew on a phone" swings QA by 2–3 days.
 
-- **Don't write a full tech spec before the client agrees** — it's days of unpaid work and the mockup + PRDs already de-risk the scope. A **ranged ballpark** (this document) is honest and standard for a proposal.
-- If the client wants a **fixed price** (not time-and-materials), propose a small **paid discovery sprint (3–5 days)** that produces a stack-decision memo + data model + a firm quote — but only once they're a yes-in-principle.
-- **Pricing model:** the 2025–2026 agency trend is *away from hourly billing*, because hourly literally "pays you for inefficiency" — if AI cuts a 20-hr task to 5, hourly billing hands the client a 75% discount for identical output. Price on **value / outcome / fixed-scope**, and let the internal day-count drop. Weight the visible price toward the phases that *don't* compress (discovery, content, integrations, QA).
+## 7. Recommendation on the spec & pricing
 
-## 7. Explicitly excluded (so the number isn't misread)
+- **Don't write a full tech spec before the client agrees** — the mockup + PRDs already removed the expensive ambiguity. The variance that remains is the three *decisions* in §6, answerable in a 60–90 min call, not a spec.
+- If the client wants a **fixed price**, propose a small **paid discovery sprint (2–3 days)** producing a stack-decision + data model + firm quote — only once they're a yes-in-principle.
+- **Pricing model:** price on value/outcome/fixed-scope, not hourly. When AI makes conventional coding hours-cheap, hourly billing hands the client the discount for identical output; weight the price toward the phases that don't compress (CMS modelling, bilingual QA, content ops).
 
-- Commerce: cart / checkout / payments / variant pricing (Phase 2).
-- Interactive sales-rep portal + WhatsApp-format rep view (Phase 2 / PRD 3 L-7).
-- Content creation: photography, copywriting, **translation** (client or separate vendor).
-- Hebrew/English SEO audit and ongoing marketing.
-- Third-party licence/hosting fees (CMS SaaS, email provider, hosting).
-- WhatsApp Business *account approval* lead time (calendar, not dev).
+## 8. Explicitly excluded (so the number isn't misread)
 
----
-
-### Sources for the §4 multipliers
-METR RCT (metr.org, 2025; arXiv 2507.09089) · Stanford "100k developers" (Denisov-Blanch; Proxify/Aviator summaries) · Wilkins, "The Claude Code Productivity Paradox" (2026) · GitClear AI Code Quality 2025 · DORA 2025 (Google Cloud) · DigitalApplied & Digital Agency Network, AI-era agency pricing 2026.
+- All Phase 2 commerce (cart/checkout/payments/pricing/SKU).
+- Sales-rep portal / interactive rep-receiving experience / WhatsApp-format rep view (PRD 3 L-7). Only the **static templated rep email** (G) is in.
+- **WhatsApp Business API** + unified inbox (the build uses the visitor's own `wa.me`, which needs no approval).
+- Live Facebook import/curation into the CMS (Marina curates manually).
+- Photo re-shoot / asset re-sourcing (real source images are thin, low-res 2018 phone photos — a client/production task).
+- Dedicated Hebrew/English **SEO audit** (PRD D-7 schedules it *after* content lands — budget separately).
+- Content creation (copywriting, translation, photography), CMS training for the editor, and ongoing maintenance.
