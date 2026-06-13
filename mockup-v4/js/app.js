@@ -194,6 +194,16 @@
         '<img src="' + IMG + lead + '" alt="' + titleEn + ' built from X-Board" loading="eager" />' +
         '<span class="hero__media-tag" data-en="From the Picpong archive" data-he="מארכיון Picpong">From the Picpong archive</span>' +
         mediaMoreBtn("proj-" + slug + "-hero", p.eyebrow.en, IMG + lead);
+      heroMedia.setAttribute("data-zoom", IMG + lead); // hero is lightbox-able too (PRD 3 §4.6)
+      heroMedia.setAttribute("role", "button");
+      heroMedia.setAttribute("tabindex", "0");
+    }
+
+    // wire the page-level share box to THIS project (PRD 3 §4.6)
+    var shareBox = document.querySelector("[data-share]");
+    if (shareBox) {
+      shareBox.setAttribute("data-share-id", "proj-" + slug);
+      shareBox.setAttribute("data-share-title", titleEn);
     }
 
     // compact thumbnail gallery; remaining images (or all if only one)
@@ -235,18 +245,29 @@
   })();
 
   /* ---------- lightbox (native <dialog>) ----------
-     thumbnail click/Enter → show larger image; Esc / backdrop / × → close. */
+     thumbnail click/Enter → show larger image; Esc / backdrop / × → close.
+     PRD 3: remembers the opened image's data-media-id so the in-lightbox
+     "copy link to this image" share (§4.6) can bake #item-<id> into the URL. */
   (function lightbox() {
     var dlg = document.getElementById("lightbox");
     if (!dlg || typeof dlg.showModal !== "function") return;
     var img = document.getElementById("lightboxImg");
     var closeBtn = document.getElementById("lightboxClose");
+    var shareBtn = dlg.querySelector("[data-lightbox-share]");
+    var currentId = null;
 
-    function open(src, alt) {
+    function open(src, alt, id) {
       img.src = src; img.alt = alt || "";
+      currentId = id || null;
+      if (shareBtn) shareBtn.hidden = !currentId; // only show when the frame is addressable
       dlg.showModal();
     }
     function close() { if (dlg.open) dlg.close(); }
+    function openFromZoom(zoom) {
+      var thumb = zoom.querySelector("img");
+      var more = zoom.querySelector(".media__more");
+      open(zoom.getAttribute("data-zoom"), thumb ? thumb.alt : "", more ? more.getAttribute("data-media-id") : null);
+    }
 
     // open on thumbnail click (but NOT when the "+" button is pressed)
     document.addEventListener("click", function (e) {
@@ -254,8 +275,7 @@
       var zoom = e.target.closest("[data-zoom]");
       if (!zoom) return;
       e.preventDefault();
-      var thumb = zoom.querySelector("img");
-      open(zoom.getAttribute("data-zoom"), thumb ? thumb.alt : "");
+      openFromZoom(zoom);
     });
     // keyboard open (Enter/Space on focused thumb)
     document.addEventListener("keydown", function (e) {
@@ -263,14 +283,60 @@
       var zoom = e.target.closest && e.target.closest("[data-zoom]");
       if (!zoom) return;
       e.preventDefault();
-      var thumb = zoom.querySelector("img");
-      open(zoom.getAttribute("data-zoom"), thumb ? thumb.alt : "");
+      openFromZoom(zoom);
+    });
+    if (shareBtn) shareBtn.addEventListener("click", function () {
+      if (currentId) copyShareLink(itemShareUrl(currentId)); // copy link to THIS frame
     });
     if (closeBtn) closeBtn.addEventListener("click", close);
     // backdrop click closes (click landing on the dialog element itself = backdrop)
     dlg.addEventListener("click", function (e) { if (e.target === dlg) close(); });
-    dlg.addEventListener("close", function () { img.src = ""; });
+    dlg.addEventListener("close", function () { img.src = ""; currentId = null; });
   })();
+
+  /* ---------- share affordances (PRD 3 §4.6) ----------
+     Page-level "Copy link" + "Share on WhatsApp" on project/product pages, and
+     the lightbox image-share above. Clipboard with an execCommand fallback +
+     toast — navigator.clipboard rejects on file://, exactly how the mockup
+     opens by double-click, so we never fail silently.
+     BUILD NOTE: real links use the durable resolver /m/<id> (PRD §4.4); the
+     mockup copies the direct ?p=<slug>#item-<id> form as a stand-in (§4.1). */
+  function pageShareUrl() { return location.origin + location.pathname + location.search; }
+  function itemShareUrl(id) { return pageShareUrl() + "#item-" + id; }
+  function waShareUrl(text) { return "https://wa.me/?text=" + encodeURIComponent(text); } // numberless = share to any contact
+
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.top = "-1000px"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+  function copyShareLink(text) {
+    function done(ok) {
+      toast(ok ? t("Link copied", "הקישור הועתק")
+               : t("Couldn't copy — select the address bar to copy the URL", "ההעתקה נכשלה — העתיקו את הכתובת מהדפדפן"));
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fallbackCopy(text)); });
+    } else { done(fallbackCopy(text)); }
+  }
+
+  document.querySelectorAll("[data-share]").forEach(function (box) {
+    function url() { var id = box.getAttribute("data-share-id"); return id ? itemShareUrl(id) : pageShareUrl(); }
+    function title() { return box.getAttribute("data-share-title") || document.title; }
+    var copyBtn = box.querySelector("[data-share-copy]");
+    var waBtn = box.querySelector("[data-share-wa]");
+    if (copyBtn) copyBtn.addEventListener("click", function () { copyShareLink(url()); });
+    if (waBtn) waBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.open(waShareUrl(title() + " — " + url()), "_blank", "noopener");
+    });
+  });
 
   /* ============================================================
      LEAD-CAPTURE MODULE (PRD 2)
