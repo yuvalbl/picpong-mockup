@@ -6,7 +6,7 @@
 
 The plans, one line each (open each file for the summary-first detail):
 
-- [ ] [design-completion.md](design-completion.md) - what design/spec work is left to finish Phase 1 (the interaction architecture is already done; assets + 2 design gaps + a few decisions remain)
+- [ ] [design-completion.md](design-completion.md) - what design/spec work is left to finish Phase 1 (the interaction architecture is already done; the two design gaps A1/A2 are now implemented in v5 pending D6/D4 confirmation; real assets + a few decisions remain)
 - [ ] [missing-ui-and-backoffice.md](missing-ui-and-backoffice.md) - client-facing gaps + the greenfield backoffice for 3 roles (Admin / Content Manager / Sales Manager)
 - [ ] [accessibility-il-5568.md](accessibility-il-5568.md) - IS 5568 / WCAG 2.0 AA audit; 4 blockers, 5 major, plus the legally-required accessibility statement page
 - [ ] [font-sizes.md](font-sizes.md) - font-size audit; one real iOS-zoom bug + a handful of sub-16px prose spots + a sub-12px cluster
@@ -23,34 +23,64 @@ The implementation sequencing, the master execution plan, and the client-blocked
 - **`styles.css` `:root` tokens + shared component rules** are edited by THREE plans: palette-refinement (demote `--pond`, cut `--coral`), accessibility M1 (darken `--orange` / `--kraft-deep` / `--orange-deep` for contrast), font-sizes (type scale + form-input sizes). The `.eyebrow`, `.btn--brand`, and the on-dark text alphas are each touched by more than one plan.
 - **Every page's `<html lang/dir>`** is changed by both accessibility (M4) and design-completion (B2). Do it once.
 - **Every page's footer** gains links from both accessibility (statement page) and missing-ui (privacy/legal). Do it once.
-- **`app.js`** is edited by design-completion (B1 toast, B4 cleanup) and accessibility (M2/M3 form aria, M5 live regions, un-nest buttons).
+- **`app.js`** is edited by design-completion (DC-B1 toast, DC-B4 cleanup) and accessibility (a11y-M2/M3 form aria, a11y-M5 live regions, un-nest buttons).
+
+**Label convention (avoid B* collisions).** Two of the audit docs use the label `B1..B4` for DIFFERENT things, so this README qualifies every reference:
+- `a11y-B*` = accessibility-il-5568.md: a11y-B1 accessibility statement page, a11y-B2 pause/stop auto-motion, a11y-B3 skip-link + `<main>`, a11y-B4 mobile menu.
+- `DC-B*` = design-completion.md / section B below: DC-B1 toast rule, DC-B2 Hebrew-RTL default, DC-B3 mobile fab, DC-B4 dev-menu / stale comments.
+
+Bare `B1`/`B3`/`B4` is ambiguous - always write the prefix.
 
 **Governing rule:** one owner per file at a time; batch overlapping concerns into a single pass; never run two agents on the same file concurrently. Partition by file/subsystem and sequence:
 
-- [ ] **Phase 0 - Decisions (unblock).** Resolve D1-D6 with Kuki. They gate: A2 wording (D4), form rule (D1), home layout (D3), WhatsApp number (D2), sustainability intensity (D6), audience (D5). Do not implement a gated item before its decision. *[no code]*
-- [ ] **Phase 1 - Styling pass** *(owner: `styles.css`, + one line in `projects.html`)*. ONE coordinated edit, in this internal order so shared rules are decided once: (a) palette-refinement sets the warm per-section accents (demote pond, cut coral) -> (b) accessibility M1 darkens those accents until they pass AA -> (c) font-sizes locks the type scale (eyebrow 11->12, prose spots ->16, form inputs unconditional 16px incl. `.proj-search input`). *Merges: palette-refinement + a11y-M1 + font-sizes.*
-- [ ] **Phase 2 - Structural HTML pass** *(owner: all `*.html` + small structural CSS)*. Touch each page once: default `lang="he" dir="rtl"` (a11y M4 / B2); skip-link + `<main>` landmark (a11y B3); footer links (a11y B1 + missing-ui A-1/A-2); optional dash-sweep of Hebrew copy (mechanical, same files). Then create the new static pages `accessibility.html`, `privacy.html`, `404.html` (missing-ui MVP). Mobile-menu markup/aria here; its behavior in Phase 3.
-- [ ] **Phase 3 - Behavior pass** *(owner: `app.js`, + fab rule in `styles.css`)*. After the DOM is settled: toast first-add-only (B1); form aria + required + live errors (a11y M2/M3); live regions on toast/success (M5); un-nest zoom buttons (a11y minor); mobile-menu focus trap + `aria-expanded` (a11y B4); mobile fab bottom-padding (B3); stale-comment fix + dev-menu gating (B4); form contact rule once D1 is set.
+- [ ] **Phase 0 - Decisions (unblock).** Resolve D1-D6 with Kuki. They gate: A2 wording (D4), form rule (D1), home layout (D3), WhatsApp number (D2), sustainability intensity (D6), audience (D5). Do not implement a gated item before its decision. NOTE: A1 (sustainability section) and A2 (taxonomy) were already implemented in v5 ahead of their gating decisions (D6 / D4) - a deliberate get-ahead-of-decision, not an error. They are flagged "implemented, pending confirmation" (see section A); D6/D4 may still adjust intensity / final wording. Also record here D1's chosen contact rule, since it must be applied to two surfaces (see D1). *[no code]*
+- [ ] **Phase 1 - Styling pass** *(owner: `css/styles.css`, + inline `style=""` contrast spots in `projects.html`, `project-detail.html`, `product.html`)*. ONE coordinated edit, in this internal order so shared rules are decided once: (a) palette-refinement sets the warm per-section accents (demote pond, cut coral) -> (b) accessibility a11y-M1 darkens those accents until they pass AA -> (c) font-sizes locks the type scale (eyebrow 11->12, prose spots ->16, form inputs unconditional 16px incl. `.proj-search input`). The inline-style contrast spots belong to THIS phase, not just `styles.css`: the white-on-`#2A9BD0` "Water-resistant" badge (`.tile__badge` inline `style` in `product.html`), and the on-dark `rgba(247,247,241,0.5/0.55)` meta/breadcrumb text (inline `style` on `.meta` / `.crumb` in `projects.html` and `project-detail.html`). *Merges: palette-refinement + a11y-M1 + font-sizes.*
+
+  **Authoritative shared end-states.** Three rules are touched by more than one plan (palette, a11y-M1, font-sizes each state a value). Decide them HERE, once; font-sizes / accessibility / palette all defer to these:
+  - **`--orange` (the accent):** KEEP the global `--orange` token at `#E67A2F` - it is THE page accent, do NOT darken it. Fix white-on-orange contrast at the button ONLY: either `.btn--brand` switches its text to ink, or introduce a scoped `--orange-btn: #C85A16` used by `.btn--brand` (and the `.btn--*:hover` states). Target: white text on the button field >= 4.5:1 (button labels are 15px/600 = normal text, so 4.5:1, not the 3:1 large-text allowance).
+  - **`.eyebrow`:** size `--t-eyebrow: 0.75rem` (12px). Change the base `.eyebrow` rule's color (currently `var(--kraft-deep)`) to `#8a5a2a` on cream, target >= 4.5:1 - but do NOT change the `--kraft-deep` token itself (it stays the cardboard neutral used by `.marquee--kraft`, `.lane__num`, `.tile__cat`, etc.). Re-verify each override still passes AA after the change: `.on-dark .eyebrow` (-> `--orange-bright`) and the `.panel--orange/ink/kraft/pond .eyebrow` colors.
+  - **on-dark muted text alphas:** raise the `rgba(247,247,241,0.5)` / `0.55` meta, breadcrumb, and `.proj-search input::placeholder` text to alpha >= 0.7 over `--gallery` `#2b2b2b` / `--ink`. Target >= 4.5:1.
+- [ ] **Phase 2 - Structural HTML pass** *(owner: all `*.html` + small structural CSS)*. Touch each page once: default `<html lang="he" dir="rtl">` (a11y-M4 / DC-B2) - NOTE this markup change alone reverts to English on load, because `initLang()` still defaults EN; HE-first is incomplete and visibly broken until the Phase 3 `initLang()` change ships with it; skip-link + `<main>` landmark (a11y-B3); footer links (a11y-B1 accessibility statement + missing-ui A-1/A-2 privacy/legal); MANDATORY site-wide dash-sweep (see below). Then create the new static pages `accessibility.html`, `privacy.html`, `404.html` (missing-ui MVP). Mobile-menu markup/aria here; its behavior in Phase 3.
+
+  **Dash-sweep (MANDATORY, not optional; site-wide, not Hebrew-only).** The global no-em-dash rule bans em/en dashes (`—` `–`) in all output. This is a required Phase 2 sweep across: English AND Hebrew HTML copy, `app.js` strings (e.g. the `"Added — "` toast, the share/copy strings, the rep-email demo strings), and CSS comments - roughly 115 lines in total (`styles.css` ~53, `app.js` ~24, the six HTML files ~38). Replace each with a plain hyphen (spaced when it joins clauses). Verification: `grep -rn "—\|–" mockup-v5/*.html mockup-v5/css/styles.css mockup-v5/js/app.js` returns zero.
+- [ ] **Phase 3 - Behavior pass** *(owner: `app.js`, + fab rule in `styles.css`)*. After the DOM is settled: toast first-add-only (DC-B1); form aria + required + live errors (a11y-M2/M3); live regions on toast/success (a11y-M5); pause/stop for auto-motion (a11y-B2, see below); un-nest zoom buttons (a11y minor); mobile-menu focus trap + `aria-expanded` (a11y-B4); mobile fab bottom-padding (DC-B3); stale-comment fix + dev-menu gating (DC-B4); change the `initLang()` default to Hebrew or geo-detect (currently `applyLang(stored === "he" ? "he" : "en")`) so HE-first actually holds on load - this completes DC-B2 / a11y-M4 begun in Phase 2; apply D1's chosen contact rule to BOTH the inline `#contact` form and the drawer once D1 is set.
+
+  **a11y-B2 - pause/stop auto-motion (WCAG 2.2.2).** This blocker was previously in no phase; it lands HERE. Touch points: the text marquee and logo marquee need pause on `:focus-within` (they pause on `:hover` only today); the hero slideshow `setInterval` (the `SLIDE_MS` loop, `app.js` ~line 969) and the rotating slogan `setInterval` (`app.js` ~line 1053) need a keyboard-reachable pause control (or auto-stop after 5s); the hero video needs a visible pause/`controls` toggle.
 - [ ] **Phase 4 - Content / assets** *(owner: `index.html` + `assets/`)*. Low-risk, anytime after Phase 2: wire logo SVGs (C1); swap real photos/video/galleries as Kuki delivers (C2-C4).
 - [ ] **Phase 5 - Backoffice** *(own application, file-isolated)*. The only track that shares no files with the marketing site, so it can run in parallel with Phases 1-4. Build the true-MVP subset only (daily journal editor + minimal leads inbox); buy auth/CRM off-the-shelf. See missing-ui PART B/C.
 
 **Parallelism:** Phases 1 -> 2 -> 3 are sequential (they chain through shared files; 4 follows 2). Phase 5 is the only safely-parallel track. Phase 0 runs alongside everything but blocks its gated items.
 
+### Per-phase verification (acceptance gate)
+
+No phase is "done" until its gate passes. One row per phase.
+
+| Phase | Acceptance gate |
+|---|---|
+| 0 | Each of D1-D6 has a recorded one-line answer in `docs/prd/open-questions.md` before any gated item is implemented. |
+| 1 | For each pair - `.btn--brand`/white, `.eyebrow`/cream, on-dark 0.5-alpha text, `--orange-deep` link, `.placeholder-cap`, the pond "Water-resistant" badge - compute and record the post-change contrast ratio and assert >= 4.5:1 (>= 3:1 for large text). `grep` proves the form-input 16px rule is unconditional (no longer inside `@media (max-width:600px)`) and includes `.proj-search input`. `grep` for `--coral` / `panel--pond` on the home flow returns zero. |
+| 2 | Each page has exactly one `<main>` and a skip link as the first focusable element. `grep -L 'lang="he" dir="rtl"' *.html` is empty. Every footer links the accessibility + privacy pages. `accessibility.html` / `privacy.html` / `404.html` exist and are linked. `grep` for em/en dashes returns zero. |
+| 3 | Toast fires on first add only. Closed mobile menu is `inert` (Tab skips it), traps focus when open, `aria-expanded` toggles, focus returns on close. Toast + success panel are `role="status" aria-live="polite"`. Keyboard pause stops ALL auto-motion. Invalid field announces its reason (`aria-describedby` + `role="alert"`). Dev menu gated behind `?dev`. `initLang()` default is Hebrew. |
+| 4 | `assets/video/hero.{webm,mp4}` exist. Catalog/product images are real `<img>`, not inline SVG. Logos are real SVGs. No social `href="#"` remains. |
+| 5 | Journal editor round-trips a HE+EN post: draft -> preview -> publish. Leads inbox lists a lead with item thumbnails + working deep link + status + rep assignment. Off-the-shelf auth wired. |
+
 ---
 
 ## The finish-the-design plan (A / B / C / D)
 
-Grounded in the three audits above. "A" is being implemented now in `mockup-v5`.
+Grounded in the three audits above. "A" is now implemented in `mockup-v5` (pending decision confirmation, see below); B/C/D remain.
 
-### A. Design gaps - executable now (IN PROGRESS)
-- [ ] A1 - Build a loud, primary sustainability section (nature imagery, CSR-manager framing, "no PVC / no vinyl / no single-use plastic"), replacing the modest `index.html` split. *In progress in v5.*
-- [ ] A2 - Fix the English service taxonomy: "Exhibitions" -> **Events / Conventions / Trade show booths** in `projects.html` chips + tile tags + filter logic. *In progress in v5.*
+### A. Design gaps - IMPLEMENTED in v5, pending decision confirmation
+Both A1 and A2 are DONE in the code, built ahead of their gating decisions (a deliberate get-ahead-of-decision, see Phase 0). They are flagged "implemented, pending confirmation" rather than final, because D6 / D4 may still adjust them.
+- [x] A1 - Loud, primary sustainability section (nature imagery, CSR-manager framing, "no PVC / no vinyl / no single-use plastic") replacing the modest `index.html` split: **implemented in v5. Pending confirmation of D6 (sustainability intensity) + the real nature-photo asset** (the section currently uses a placeholder image).
+- [x] A2 - English service taxonomy fixed: the `projects.html` filter chips + `data-cat` tags + filter logic now read **Conventions / Events / Trade show booths** (`data-cat="conventions|events|booths"`); the old "Exhibitions" taxonomy is gone (zero "Exhibition" remains in the chips/tags/filter). **Implemented in v5. Pending confirmation of D4 (final taxonomy wording).** (Note: "exhibition" still appears as a plain common noun in some body copy, e.g. "exhibition stands" - that is prose, not the taxonomy, and is out of A2's scope.)
 
 ### B. Behavior / polish - executable now
-- [ ] B1 - Flip the toast rule: confirm on the first add, then accumulate quietly (currently inverted, `app.js` ~L814).
-- [ ] B2 - Default the site to Hebrew RTL (pages hardcode `lang="en" dir="ltr"`; `initLang()` defaults EN).
-- [ ] B3 - Stop the floating quote pill obscuring content on mobile (reserve bottom scroll-padding, or shrink to an icon).
-- [ ] B4 - Make it a clean spec deliverable: fix the stale "inert / UI-only" comments in `app.js` (L1-10); gate the Dev menu behind `?dev`/env so it can't ship.
+Labelled `DC-B*` (design-completion) to avoid collision with the a11y doc's `B*` - see the Label convention in the sequencing section.
+- [ ] DC-B1 - Flip the toast rule: confirm on the first add, then accumulate quietly (currently inverted; the toast fires in the `.media__more` add handler, the `t("Added — ", ...)` call in `app.js`).
+- [ ] DC-B2 - Default the site to Hebrew RTL. Pages hardcode `<html lang="en" dir="ltr">` and `initLang()` defaults EN (`applyLang(stored === "he" ? "he" : "en")`). Two-part: the markup `lang/dir` flip is Phase 2, the `initLang()` default is Phase 3 - the markup change alone reverts on load, so both must ship together.
+- [ ] DC-B3 - Stop the floating quote pill obscuring content on mobile (reserve bottom scroll-padding, or shrink to an icon).
+- [ ] DC-B4 - Make it a clean spec deliverable: fix the stale "inert / UI-only" comments in the `app.js` file-header block; gate the Dev menu behind `?dev`/env so it can't ship.
 
 ### C. Assets to gather (drive from Kuki)
 - [ ] C1 - Quick self-serve win: wire the real client-logo SVGs already in `assets/brand/logos/` into the home marquee.
@@ -59,7 +89,7 @@ Grounded in the three audits above. "A" is being implemented now in `mockup-v5`.
 - [ ] C4 - From Kuki: full multi-image project galleries; eco certification docs; real social URLs.
 
 ### D. Decisions blocked on Kuki (get these before over-polishing)
-- [ ] D1 - Form contact rule: email-or-phone vs force both vs email-only (OQ-1).
+- [ ] D1 - Form contact rule: email-or-phone vs force both vs email-only (OQ-1). RECONCILIATION REQUIRED: the two lead surfaces disagree today - the inline `#contact` form marks its email input `required` (email mandatory, `#qe` in `index.html`), while the drawer JS `contactRuleOK` allows email OR phone (`return !!(v.email || v.phone)` in `app.js`). Whatever rule D1 picks MUST be applied to BOTH surfaces; add "update both `#contact` and the drawer" to D1's acceptance.
 - [ ] D2 - Real WhatsApp Business number (still the Twilio sandbox) (OQ-2).
 - [ ] D3 - Home layout: keep both journal strip + projects teaser, or move the teaser to the Projects page (OQ-3).
 - [ ] D4 - Final taxonomy wording (drives A2) (meeting Q-B).

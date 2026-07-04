@@ -10,7 +10,7 @@ Client-facing (MVP):
 - [ ] (MVP . legal) Accessibility statement page (הצהרת נגישות) - legally required in Israel
 - [ ] (MVP . legal) Privacy policy page
 - [ ] (MVP . client) 404 / not-found page (dead deep-links)
-- [ ] (MVP . client) Form send-failure state (retry / WhatsApp fallback)
+- [ ] (DEFERRED . client) Form send-failure state (retry / WhatsApp fallback) - real-build / post-mockup: it needs a live backend that can actually fail, so there is nothing to build in the UI-only mockup phase
 
 Backoffice - Sales Manager (MVP):
 - [ ] (MVP . Sales) Leads inbox / list (with selected-item thumbnails + deep links)
@@ -91,7 +91,7 @@ Backoffice: nothing exists. Zero auth, zero admin, zero CMS, zero leads DB. All 
 | A-5 | Dedicated About / company page | Real page, not just the home `#about` anchor (DM-6 kept it a section) | Producers + Czech partner want a "who are you, capability, factory" story; a home anchor is thin for that audience. | Later (MVP: home section acceptable) |
 | A-6 | 404 / not-found page | Branded page for bad URLs incl. dead deep-links | Reps forward deep links (FR-15); a slug rename or typo currently dies ungracefully. Needs "not found to search / talk to us." | MVP |
 | A-7 | Generic error / 500 page | Server-error fallback | Real build has a backend (email send, resolver `/m/<id>`); needs a non-blank failure page. | Later |
-| A-8 | Form send-failure state | Inline "couldn't send - retry / use WhatsApp" in the drawer | PRD 2 section 10 explicitly ships no network-error path ("nothing sends"). Real form can fail; the one conversion event must not dead-end silently. | MVP (real build) |
+| A-8 | Form send-failure state | Inline "couldn't send - retry / use WhatsApp" in the drawer | PRD 2 section 10 explicitly ships no network-error path ("nothing sends"). Real form can fail; the one conversion event must not dead-end silently. | Deferred (real build, post-mockup) - no failure path exists to handle while the form is UI-only |
 | A-9 | Offline / no-connection handling | Detect failed submit, preserve typed input + selection, offer retry | Mobile users (FR-39) on flaky connections; losing a typed lead = losing the only KPI. | Later |
 | A-10 | Standalone thank-you / confirmation | A confirmable post-submit screen (currently only an in-drawer panel that auto-closes) | Fine as-is for mockup; real build may want a persistent confirmation (esp. for WhatsApp hand-off round-trip + analytics conversion pixel). | Later |
 | A-11 | Loading / skeleton states for CMS-fed grids | Skeletons exist only on `latest.html`; catalog grid, projects collage, home Latest strip, featured works have none | Once these are CMS-fed (async), they need the same loading treatment PRD 3 section 9 mandates. | Later (MVP: journal only) |

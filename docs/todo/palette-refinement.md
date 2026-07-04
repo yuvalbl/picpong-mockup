@@ -4,16 +4,18 @@ Covers the home page of `mockup-v5` (`index.html` + `css/styles.css`), dated 202
 
 ## Executive summary
 
-- [ ] Hero headline tile: swap `panel--pond` (cyan) for `panel--orange` so the page opens on the warm brand color, not blue - `index.html:96`.
-- [ ] Rewire the headline CTAs for the orange field: primary CTA becomes ink (not orange-on-orange), ghost stays ink outline - `css/styles.css:753-758`.
-- [ ] Remove coral entirely: repoint the slogan's second marker from `mark--coral` to a warm in-family marker (`--orange-deep`) - `index.html:178`, `css/styles.css:1143`.
-- [ ] Dual-funnel lane 02: swap `panel--pond` for `panel--orange` so the primary lead lane reads as the warm "act now" color, ink lane 01 stays the neutral - `index.html:224`.
-- [ ] Update the pond lane hover rule to the new orange panel - `css/styles.css:979`.
-- [ ] Retire the coral tokens (`--coral`, `--coral-deep`) and delete the now-dead `panel--pond` eyebrow/lead rules to keep the token set honest - `css/styles.css:20-21, 714-716`.
-- [ ] Keep the sustainability ocean-to-forest gradient as the single sanctioned cool exception; optionally reduce the cyan glow so forest green leads - `css/styles.css:491-494`.
-- [ ] Confirm `--pond` now has exactly one home (the sustainability background) and comment it as such - `css/styles.css:19`.
+- [ ] Hero headline tile: swap `panel--pond` (cyan) for `panel--orange` so the page opens on the warm brand color, not blue - the `panel--pond` class on the `.ctile--headline` tile in `index.html`.
+- [ ] Rewire the headline CTAs for the orange field: primary CTA becomes ink (not orange-on-orange), ghost stays ink outline - the headline tile's `.btn--onDark` / `.btn--ghostDark` override rules in `styles.css`.
+- [ ] Remove coral entirely: repoint the slogan's second marker from `mark--coral` to a warm in-family marker (`--orange-deep`) - the `.mark--coral` spans in `index.html` (and the slogan phrases in `app.js`) + the `.slogan .mark--coral` rule in `styles.css`.
+- [ ] Dual-funnel lane 02: swap `panel--pond` for `panel--orange` so the primary lead lane reads as the warm "act now" color, ink lane 01 stays the neutral - the `panel--pond` class on the second `.lane--panel` (the `#contact` lane) in `index.html`.
+- [ ] Update the pond lane hover rule to the new orange panel - the `.panel--pond.lane--panel:hover` rule in `styles.css`.
+- [ ] Retire the coral tokens (`--coral`, `--coral-deep`) and delete the now-dead `panel--pond` eyebrow/lead rules to keep the token set honest - the `--coral` / `--coral-deep` `:root` tokens + the `.panel--pond` rules in `styles.css`.
+- [ ] Keep the sustainability ocean-to-forest gradient as the single sanctioned cool exception; optionally reduce the cyan glow so forest green leads - the sustainability-section `radial-gradient` + `linear-gradient` background rule in `styles.css`.
+- [ ] Confirm `--pond` is used only on the home page in the sustainability background, and comment the `--pond` `:root` token as such. Note: the literal `#2A9BD0` also appears off the home flow, in an inline product "Water-resistant" badge and in decorative board SVGs - that is fine and out of this pass's scope.
 
 ## Details
+
+> Line-number caveat: the `css/styles.css` line numbers below are close but not exact (minor drift of a line or two, e.g. `.slogan .mark--coral` is around line 1145, not 1143), and the `index.html` references below the hero have drifted about +3 (the hero headline tile is at `index.html:96`; the dual-funnel `#contact` lane and the slogan `mark--coral` span are a few lines lower than cited). Locate each target by its selector / class via `grep`, not by the raw line number.
 
 ### Token / accent inventory
 

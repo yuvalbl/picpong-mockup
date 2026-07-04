@@ -2,21 +2,23 @@
 
 Covers every text font-size in mockup-v5 (an identical fork of the audited mockup-v4): the type-scale tokens, all six page HTML files (including inline styles), and the shared CSS/JS. Verdicts against a >=16px floor for reading/form text and a >=12px floor for supporting text. Date: 2026-07-04.
 
+> Line-number caveat: this doc predates the v5 code edits. A ~47-line sustainability block was inserted in `styles.css` around line 485, so every `styles.css:###` below ~485 has drifted +47 (e.g. `.qf input` is now 549, `.placeholder-cap` 559). Locate rules by their selector via `grep`, not by the raw line number in the enumeration table. The `.eyebrow` size + color end-state is pinned authoritatively in README Phase 1 - apply that value.
+
 ## Executive summary
 
-- [ ] BUG: `.proj-search input` (projects.html:33) is a real `<input>` at 15px with NO mobile 16px override, so iOS Safari zooms on focus (every other form field got the fix, this one was missed).
-- [ ] Make the form-input 16px rule global, not gated behind `max-width:600px` (styles.css:644): tablets/narrow desktops are still WebKit and still zoom.
-- [ ] Prose below 16px: raise `.pdp__quote p` (styles.css:598) to >=16px.
-- [ ] Prose below 16px: raise `.lead-drawer__intro` (styles.css:1531) to >=16px.
-- [ ] Prose below 16px: raise `.feed-card__lines` (styles.css:1826, 14.72px) and `.feed-card--compact .feed-card__lines` (styles.css:1833, 13.76px) to >=16px.
-- [ ] Prose below 16px: raise `.repmail__contact` (styles.css:1699) and `.repmail__item-title` (styles.css:1714) to >=16px.
-- [ ] Prose below 16px: raise `.spec-table td` PDP spec values (styles.css:611) to 16px or explicitly re-scope as caption data.
-- [ ] Low-contrast + too-small: `.eyebrow` 11px in `--kraft-deep` on cream (approx 3.4:1, fails AA) is used site-wide; raise to >=12px and darken color.
+- [ ] BUG: `.proj-search input` (the inline `<style>` rule in `projects.html`) is a real `<input>` at 15px with NO mobile 16px override, so iOS Safari zooms on focus (every other form field got the fix, this one was missed).
+- [ ] Make the form-input 16px rule global, not gated behind the `@media (max-width:600px)` block (the `.field input, .qf input, .qf select, .qf textarea { font-size: 16px }` rule): tablets/narrow desktops are still WebKit and still zoom. Add `.proj-search input` to the selector list.
+- [ ] Prose below 16px: raise `.pdp__quote p` to >=16px.
+- [ ] Prose below 16px: raise `.lead-drawer__intro` to >=16px.
+- [ ] Prose below 16px: raise `.feed-card__lines` (14.72px) and `.feed-card--compact .feed-card__lines` (13.76px) to >=16px.
+- [ ] Prose below 16px: raise `.repmail__contact` and `.repmail__item-title` to >=16px.
+- [ ] Prose below 16px: raise `.spec-table td` PDP spec values to 16px or explicitly re-scope as caption data.
+- [ ] Low-contrast + too-small: `.eyebrow` 11px in `--kraft-deep` on cream (approx 3.4:1, fails AA) is used site-wide; raise to >=12px and darken color - use the pinned end-state in README Phase 1 (`--t-eyebrow: 0.75rem`, `.eyebrow` color `#8a5a2a`, `--kraft-deep` token unchanged).
 - [ ] Low-contrast + too-small: `.repmail__badge` 11.52px white-on-orange (approx 2.9:1, fails AA); bump size and/or use `--orange-deep`.
-- [ ] Sub-12px cluster to raise to a 12px floor: `.feed-card__date` 11.84px (styles.css:1814), `.spotlight-tag` 11.52px (1626), `.contact-fab__badge` 11.52px (1274), `.ribbon` 11px (208), `.tile__badge` 11px (388), `.project__client` 11px over photo (435), `.sticker text` 11px (760), `.feed-card__videotag` 10.88px (1852), `.slideshow .ctile__card-m` 10.56px (868).
-- [ ] Mobile collage title `.slideshow .ctile__card-k` shrinks to 13.76px (styles.css:867): it is a title, keep it near 15px, not caption size.
-- [ ] `.qf-error` 13px red (styles.css:1570): verify contrast; error text is high-stakes, consider 14-16px.
-- [ ] Optional conversion win: bump primary CTAs `.btn` (styles.css:172) and `.contact-fab` (1253) from 15px to 16px.
+- [ ] Sub-12px cluster to raise to a 12px floor: `.feed-card__date` 11.84px, `.spotlight-tag` 11.52px, `.contact-fab__badge` 11.52px, `.ribbon` 11px, `.tile__badge` 11px, `.project__client` 11px over photo, `.sticker text` 11px, `.feed-card__videotag` 10.88px, `.slideshow .ctile__card-m` 10.56px.
+- [ ] Mobile collage title `.slideshow .ctile__card-k` shrinks to 13.76px: it is a title, keep it near 15px, not caption size.
+- [ ] `.qf-error` 13px red: verify contrast; error text is high-stakes, consider 14-16px.
+- [ ] Optional conversion win: bump primary CTAs `.btn` and `.contact-fab` from 15px to 16px.
 
 ## Details
 
@@ -39,7 +41,7 @@ Covers every text font-size in mockup-v5 (an identical fork of the audited mocku
 | `--t-meta` | `0.8125rem` | 13px | comment "captions (was 12px)" |
 | `--t-eyebrow` | `0.6875rem` | 11px | comment "legit tiny eyebrow" |
 
-Mobile override at `max-width:600px` (styles.css:640-645): `--t-display` becomes `clamp(2.9rem,12vw,3.6rem)` (46.4-57.6px), `.lead` drops to `1.08rem` (17.28px, still >=16), and `.field input, .qf input, .qf select, .qf textarea` get forced to `16px` to stop iOS auto-zoom. That fix is narrower than the actual set of form fields in the codebase (see enumeration).
+Mobile override in the `@media (max-width:600px)` block: `--t-display` becomes `clamp(2.9rem,12vw,3.6rem)` (46.4-57.6px), `.lead` drops to `1.08rem` (17.28px, still >=16), and `.field input, .qf input, .qf select, .qf textarea` get forced to `16px` to stop iOS auto-zoom. That fix is narrower than the actual set of form fields in the codebase (see enumeration).
 
 Headings / display / lead are all fine by any standard. The real risk lives in `--t-ui` (15px) and everything smaller, wherever it lands on body/list/reading text or on a real `<input>`.
 
@@ -143,7 +145,7 @@ JS (`js/app.js`): no `font-size` occurrences at all (confirmed via grep). All si
 
 ### Headline problems (the ones that actually matter)
 
-1. Real bug, not just a floor violation: `.proj-search input` (projects.html:33) is a genuine `<input>` at 15px with no mobile 16px override. Every other form field in the codebase got the iOS-zoom fix at styles.css:644, but this one was missed. iOS Safari will zoom in on focus.
+1. Real bug, not just a floor violation: `.proj-search input` (the inline `<style>` rule in `projects.html`) is a genuine `<input>` at 15px with no mobile 16px override. Every other form field in the codebase got the iOS-zoom fix inside the `@media (max-width:600px)` block, but this one was missed. iOS Safari will zoom in on focus.
 2. Several places render actual paragraph/prose reading text at 14.7-15px instead of 16px: `.pdp__quote p`, `.lead-drawer__intro`, `.feed-card__lines`, `.repmail__contact`, `.repmail__item-title`.
 3. Two low-contrast plus too-small combinations: `.eyebrow` (kraft-deep on cream, approx 3.4:1) and `.repmail__badge` (white on orange, approx 2.9:1). Both fail WCAG AA for small text, compounding the size problem.
 4. A cluster of sub-12px badges/tags (`.eyebrow` 11px, `.ribbon` 11px, `.tile__badge` 11px, `.project__client` 11px, `.feed-card__videotag` 10.9px, `.slideshow .ctile__card-m` 10.6px). Individually minor, but they are the site's actual smallest live text and several sit on top of photography, which is a legibility risk regardless of the raw contrast math.

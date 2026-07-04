@@ -19,6 +19,8 @@ Top 10 changes to reach IS 5568 / WCAG 2.0 AA, ordered by severity (Blockers fir
 
 ## Details
 
+> Line-number caveat: this doc predates the v5 code edits, so raw `file:###` citations have drifted (a ~47-line sustainability block was inserted in `styles.css` around line 485, pushing later CSS lines +47; `index.html` lines below the hero shifted +3..+6; `.btn--brand` is now at `styles.css:187`). Locate code by the named selector / class / function via `grep`, not by the line number. The three shared token end-states (button orange, `.eyebrow`, on-dark alphas) are pinned authoritatively in README Phase 1 - apply those values, not any that may be restated here.
+
 General note - what is already done well: icon-only buttons are well-handled across the board. `media__more`, `menuBtn`/`menuClose`, `contact-fab`, share buttons, gallery thumbs, lightbox close, and lang buttons all have accessible names (`aria-label` or visible text), and they are bilingual via `data-*-aria`. Client-logo alt text and the decorative duplicate-set `aria-hidden` are done correctly. The lightbox uses a native `<dialog>` (real focus trap + Esc + focus return). The drawer also uses a native `<dialog>` and returns focus to its trigger. Those are the strong points; the findings below are what breaks compliance.
 
 IS 5568 adopts WCAG 2.0 Level AA. A few WCAG 2.1 criteria are flagged (marked "2.1") because Israeli enforcement increasingly expects them, but they are not strictly in-standard.
@@ -32,14 +34,14 @@ IS 5568 adopts WCAG 2.0 Level AA. A few WCAG 2.1 criteria are flagged (marked "2
 - Fix: add `accessibility.html` (bilingual), link it in every footer, name a coordinator + phone/email, state "IS 5568 / WCAG 2.0 AA" and last-review date.
 
 **B2. Auto-moving content cannot be paused - WCAG 2.2.2 Pause, Stop, Hide (Level A)**
-- Component: hero video, text marquee, logo marquee, hero slideshow, rotating slogan.
+- Component: hero video, text marquee, logo marquee, hero slideshow, rotating slogan. (Scheduled as a11y-B2 in README Phase 3.)
 - Multiple things auto-animate for >5s in parallel with content, with no keyboard-operable pause/stop. `prefers-reduced-motion` is honored (good for 2.3.3) but does not satisfy 2.2.2 for users who have not set that OS flag.
-- Evidence:
-  - Hero video: `index.html:156-162` - `muted autoplay loop`, no `controls`, no pause button; even with no video file the CSS Ken-Burns (`cinemagraph`, `styles.css:748`) loops forever.
-  - Marquee text: `index.html:466`; animation `styles.css:315`; pauses only on `:hover` (`styles.css:316`), unreachable by keyboard/touch.
-  - Client logo marquee: `styles.css:335`, hover-only pause `styles.css:336`.
-  - Hero slideshow: `app.js:969` `setInterval` every 4.2s; story bars.
-  - Rotating slogan: `app.js:1053` `setInterval` every 7s.
+- Evidence (locate by selector):
+  - Hero video: the hero `<video>` (`muted autoplay loop`, no `controls`, no pause button); even with no video file the CSS Ken-Burns (`.cinemagraph` -> `@keyframes kenburns` in `styles.css`) loops forever.
+  - Marquee text: the `.marquee__track` animation in `styles.css`; pauses only on `.marquee:hover`, unreachable by keyboard/touch.
+  - Client logo marquee: the `.logo-marquee__track` animation in `styles.css`, hover-only pause (`.logo-marquee:hover`).
+  - Hero slideshow: the `SLIDE_MS` `setInterval` in `app.js` (~line 969, every 4.2s); story bars.
+  - Rotating slogan: the slogan `setInterval` in `app.js` (~line 1053, every 7s).
 - Fix: add a single visible "pause motion" control (or auto-stop after 5s), and make marquee pause reachable via `:focus-within` too. Video: add `controls` or a pause toggle.
 
 **B3. No skip link + no `<main>` landmark - WCAG 2.4.1 Bypass Blocks (Level A) / 1.3.1**
@@ -59,13 +61,13 @@ IS 5568 adopts WCAG 2.0 Level AA. A few WCAG 2.1 criteria are flagged (marked "2
 
 **M1. Color contrast failures - WCAG 1.4.3 Contrast (Minimum)**
 - Component: buttons, eyebrow labels, on-dark text, orange links, captions.
-- Approximate ratios (needed: 4.5:1 normal text, 3:1 large text at 18.66px bold / 24px):
-  - Primary CTA buttons: white `#fff` on brand orange `--orange #E67A2F` - `.btn--brand` `styles.css:185`, also `.btn--primary:hover`/`--onDark:hover`. Approximately 3.1:1, FAILS (button text is 15px/600, not "large"). Every "Request a quote / Send message / Browse catalog" button. Fix: darken to about `#C85A16` or darker (approximately 4.6:1) for white text, or use ink text.
-  - Eyebrow labels (on nearly every section): `--kraft-deep #a87d4f` on cream - `styles.css:120`, 11px/600 uppercase. Approximately 3.4:1, FAILS. Fix: darken kraft-deep for this use (about `#8a5a2a`, approximately 4.7:1).
-  - On-dark muted text at `rgba(247,247,241,0.5)` over `--gallery #2b2b2b`: project/gallery meta (`projects.html:176`, `project-detail.html:98`) and breadcrumb links `0.55` (`projects.html:76`, `project-detail.html:66`). Approximately 4.2:1, FAILS (crumb about 4.6, borderline). Fix: raise to at least 0.7 alpha / lighter.
-  - Orange links on cream: `--orange-deep #E45C01` inline links, e.g. catalog facet "Request a quote" (`catalog.html:112`). Approximately 3.7:1, FAILS. Fix: darker, or add underline + darker.
-  - `.placeholder-cap` captions: `--muted-2 #8a8a80` on cream (`styles.css:511`), 13px. Approximately 3.2:1, FAILS.
-  - Minor/borderline: "Water-resistant" badge white on `--pond #2A9BD0` (`product.html:90`) approximately 3:1; on-dark search placeholder `rgba(247,247,241,0.5)` approximately 4.2:1.
+- The three shared token end-states (button orange, `.eyebrow`, on-dark alphas) are pinned in README Phase 1 - apply THOSE values. The notes below are the failing pairs + target ratios. Needed: 4.5:1 normal text, 3:1 large text (>= 18.66px bold / 24px).
+  - Primary CTA buttons: white `#fff` on brand orange `--orange #E67A2F` - the `.btn--brand` rule in `styles.css` (also the `.btn--primary:hover` / `.btn--onDark:hover` states). Approximately 3.1:1, FAILS (button text is 15px/600, not "large"). Every "Request a quote / Send message / Browse catalog" button. Fix per README Phase 1: keep the global `--orange`, fix white-on-orange at the button only (ink text, or a scoped `--orange-btn: #C85A16`); target >= 4.5:1.
+  - Eyebrow labels (on nearly every section): the `.eyebrow` rule's `color: var(--kraft-deep)` (`--kraft-deep #a87d4f`) on cream, 11px/600 uppercase. Approximately 3.4:1, FAILS. Fix per README Phase 1: change the `.eyebrow` base color to `#8a5a2a` (do NOT change the `--kraft-deep` token); target >= 4.5:1.
+  - On-dark muted text at `rgba(247,247,241,0.5)` over `--gallery #2b2b2b`: project/gallery meta (inline `style` on the `.meta` paragraphs in `projects.html` and `project-detail.html`) and breadcrumb links at `0.55` (inline `style` on the `.crumb` nav in both). Approximately 4.2:1, FAILS (crumb about 4.6, borderline). Fix per README Phase 1: raise alpha to >= 0.7; target >= 4.5:1.
+  - Orange links on cream: `--orange-deep #E45C01` inline links, e.g. the catalog facet "Request a quote" link (the `.meta` paragraph link in `catalog.html`). Approximately 3.7:1, FAILS. Fix: darker, or add underline + darker; target >= 4.5:1.
+  - `.placeholder-cap` captions: `--muted-2 #8a8a80` on cream (the `.placeholder-cap` rule in `styles.css`), 13px. Approximately 3.2:1, FAILS; target >= 4.5:1.
+  - Minor/borderline: "Water-resistant" badge, white on `--pond #2A9BD0` (the inline-`style` `.tile__badge` in `product.html`) approximately 3:1; on-dark search placeholder `.proj-search input::placeholder` `rgba(247,247,241,0.5)` approximately 4.2:1.
 
 **M2. Form errors not programmatically associated / not announced - WCAG 3.3.1 Error Identification**
 - Component: quote/lead forms (inline `#contact` + injected drawer).
