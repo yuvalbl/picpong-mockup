@@ -19,7 +19,7 @@ Almost every contradiction is **old-doc-vs-new-reality**, not new-vs-new. Scope 
 |---|--------|-------|--------|
 | D-1 | **"Phase 1/2" overloaded** — "Phase 1" = site-analysis step *and* the catalog mockup; "Phase 2" = client-meeting step *and* deferred commerce *and* the priced lead-gen build. Leaks into cost talk: `todo/README.md:88` "Phase-2 build price" = the work the estimate calls Phase 1. | `redesign-plan.md:12,21` §3/§4 titles; `estimate:4,84`; `todo/README.md:87-88`; `client-answers.md:41` | **Open — decision needed** (pick one vocabulary, sweep) |
 | D-2 | **Backoffice scope hole in the estimate** — Sales leads-inbox + auth + admin are **MVP** ("business cannot run without") in `todo/missing-ui-and-backoffice.md` (PART B/C), but the estimate neither costs nor excludes them, and it contradicts `prd/03` L-6/L-7 ("no rep-side portal in Phase 1"). | `todo/missing-ui-and-backoffice.md` PART B/C; `estimate §2,§8`; `prd/03` L-6/L-7 | **Open — decision needed** (in/out + cost) |
-| D-3 | **Typography: docs say Fraunces, v5 ships Rubik** — zero `Fraunces` hits in `mockup-v5/`; every heading is Rubik (`css/styles.css:92,240,…`). Defeats the signed-off anti-generic move (`visual-direction-final.md` §2.1/§11). Hebrew face `Assistant` specified but not loaded → Hebrew body falls back to system-ui on a Hebrew-first site. | `mockup-v5/index.html:27`, `css/styles.css`; `visual-direction-final.md` §4; `CLAUDE.md:29` | **Open — decision needed** (Fraunces vs Rubik) |
+| D-3 | **Typography: docs say Fraunces, v5 ships Rubik** — zero `Fraunces` hits in `mockup-v5/`; every heading is Rubik (`css/styles.css:92,240,…`). Hebrew face `Assistant` specified but not loaded → Hebrew body falls back to system-ui on a Hebrew-first site. | `mockup-v5/index.html:27`, `css/styles.css`; `visual-direction-final.md` §4; `CLAUDE.md` | ✅ **Decided 2026-07-05: keep Rubik** (Fraunces dropped); design docs updated. ⚠️ **Hebrew-body font still an open a11y gap** (Hanken has no Hebrew glyphs). |
 | D-4 | **`prd/03` self-contradicts on IDs** — §4.3 says `data-media-id` is **page-unique** ("cross-page repeats fine and intended"); §12 AC#2 demanded **globally-unique**. v5 ships per-page. | `prd/03` §4.3 vs §12 AC#2 | ✅ **Fixed** (AC#2 + the §6 handle line reworded to page-unique) |
 | D-5 | **`open-questions.md` wasn't canonical** — claimed to be the single home for pending decisions but listed only OQ-1/2/3, omitting the live Meeting-2 blockers D4/D5/D6 (and Q-C/D/E/G) that `todo/README.md` treats as gating. Undercounted open state. | `prd/open-questions.md` vs `todo/README.md:78-84`; `meeting2-analysis.md:123-135` | ✅ **Fixed** (D4/D5/D6 mirrored in as OQ-4/5/6 + Q-C/D/E/G noted) |
 
@@ -49,7 +49,7 @@ Scope boundaries · commerce phasing (reconciled, flagged) · the entire `todo/`
 ## Remaining decisions for Yuval (not mechanical)
 
 1. **Phase vocabulary** (D-1) — choose one naming and I'll sweep all docs.
-2. **Fraunces vs Rubik** (D-3) — keep Rubik (update the design docs) or restore Fraunces in v5 (code change).
+2. ~~**Fraunces vs Rubik** (D-3)~~ — **decided 2026-07-05: keep Rubik**, Fraunces dropped. Remaining: give Hebrew body a real Hebrew-glyph face (e.g. Assistant/Rubik) — an a11y task, not a branding one.
 3. **Backoffice** (D-2) — in Phase 1 or deferred, and re-scope/re-cost the estimate accordingly (also folds in the a11y + v5 delta).
 4. Minor: build vs drop `/catalogs/`; back-propagate `Latest` into sitemap/nav specs.
 
