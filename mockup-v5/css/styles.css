@@ -763,8 +763,12 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   z-index: 3; color: var(--ink);
   /* frosted-translucent so the photo reads through — the label recedes into the
      image rather than sitting on a heavy solid block. Same treatment on both the
-     slideshow and video captions so they read as one kind of label. */
-  background: rgba(247,247,241,0.66); backdrop-filter: blur(8px);
+     slideshow and video captions so they read as one kind of label.
+     Opacity is held at 0.87 (not lower): over the darkest patch of any project
+     photo behind the card, this keeps the ink title (~12-14:1) AND the meta
+     (~8-9:1, color #3a3a35) above WCAG 2.0 AA 4.5:1 — the contrast floor IS 5568
+     requires. The 8px blur + see-through still read as frosted over lighter photos. */
+  background: rgba(247,247,241,0.87); backdrop-filter: blur(8px);
   border-radius: 14px; padding: 0.6rem 0.75rem 0.62rem;
   max-width: min(95%, 360px); box-shadow: 0 6px 18px rgba(26,26,26,0.10);
   display: flex; flex-direction: column; gap: 0.15rem;
@@ -779,7 +783,10 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    max-width), and the copy is written to fit, so the full text is always shown.
    nowrap also keeps the JS width-measure meaningful (auto-width = widest line). */
 .ctile__card-k { font-family: "Rubik", system-ui, sans-serif; font-weight: 400; font-size: 0.98rem; line-height: 1.12; letter-spacing: -0.01em; white-space: nowrap; }
-.ctile__card-m { font-size: var(--t-meta); color: var(--muted); white-space: nowrap; }
+/* meta stays a step lighter than the ink title for hierarchy, but dark enough to
+   read easily over the frosted card AND clear WCAG AA on the darkest photo behind
+   it (a light muted gray failed both eyes and the 4.5:1 check). */
+.ctile__card-m { font-size: var(--t-meta); color: #3a3a35; white-space: nowrap; }
 
 /* gradient scrim so overlays read on photos */
 .ctile--media::after, .ctile--sticker::after {
