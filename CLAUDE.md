@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 > - **Single lead-gen funnel**, not dual. It's a browse-only catalog with quote/contact capture; **e-commerce (cart/checkout/pay) is deferred to Phase 2**. No live cart.
 > - **Hebrew-first + RTL is in Phase 1** (geo-detected in the real build).
 > - **Display face = `Rubik`** (decision 2026-07-05; the old `Fraunces` design spec was dropped). Note: Hebrew **body** still lacks a Hebrew-glyph face (`Hanken Grotesk` has none) — open a11y gap on a Hebrew-first site.
+> - **Phase vocabulary (canonical, 2026-07-05):** "Phase N" means the **product roadmap** only — **P1** = the lead-gen catalog site (the build now), **P2** = commerce (cart/checkout/pay), **P3** = backoffice/rep portal. `redesign-plan.md`'s process "Phases 0-6" are a *separate, retired* axis — don't cross-reference them as "Phase N".
 > - **Canonical planning now = `docs/prd/01|02|03`, `docs/prd/open-questions.md`, and `docs/todo/`** (the Meeting-2 absorption layer). `redesign-plan.md` / `build-plan.md` / the `design/` sign-off docs are pre-pivot history — read the PRDs + todo for current scope. See `docs/planning-consistency-audit.md` for the full drift list.
 
 ## What this repo is

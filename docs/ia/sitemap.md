@@ -25,7 +25,6 @@
 /sustainability/             Why cardboard / X-Board hero — FSC, recyclable, made-to-order proof
 /about/                      Studio story, founders, team, dated milestones
 /contact/                    Structured quote/enquiry form (cartonlab lacks this — we add it) + details  [†]
-/catalogs/                   Downloadable catalogs (email capture)
 /legal/                      privacy · terms · returns · cookies
 /he/...                      Hebrew + RTL mirror — Phase 1 (geo-detected default; manual switch)
 /blog/                       (optional — confirm with client)

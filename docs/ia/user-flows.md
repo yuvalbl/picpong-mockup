@@ -48,14 +48,9 @@ flowchart LR
   D -->|"Got an idea? Let's make it real"| Q[Quote/contact form]
 ```
 
-## (e) Download catalog → email capture
-
-```mermaid
-flowchart LR
-  Any[Any page] --> Cat[Catalogs page]
-  Cat -->|request download| E[Email capture / newsletter opt-in]
-  E --> PDF[Deliver catalog PDF + nurture]
-```
+<!-- (e) "Download catalog → email capture" dropped 2026-07-05 (owner decision):
+     no PDF-catalog download surface in scope; /catalogs/ removed from sitemap.
+     Reinstate here + add a PRD if a catalog lead-magnet is ever wanted. -->
 
 **Shared closing CTA** (cartonlab style): one consistent line — e.g. *"Got an idea? Let's make it real."* — on item pages, projects, and footer. A **floating contact form** is also present on every page.
 

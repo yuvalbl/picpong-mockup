@@ -12,14 +12,15 @@ Client-facing (MVP):
 - [ ] (MVP . client) 404 / not-found page (dead deep-links)
 - [ ] (DEFERRED . client) Form send-failure state (retry / WhatsApp fallback) - real-build / post-mockup: it needs a live backend that can actually fail, so there is nothing to build in the UI-only mockup phase
 
-Backoffice - Sales Manager (MVP):
-- [ ] (MVP . Sales) Leads inbox / list (with selected-item thumbnails + deep links)
-- [ ] (MVP . Sales) Lead detail
-- [ ] (MVP . Sales) Status / pipeline (new/contacted/quoted/won/lost)
-- [ ] (MVP . Sales) Assignment to field reps
-- [ ] (MVP . Sales) New-lead notifications
-- [ ] (MVP . Sales) Filters / search over leads (basic)
-- [ ] (MVP . Sales) Notes per lead
+Backoffice - Sales Manager (P3 - NOT in P1 MVP):
+> **Owner decision 2026-07-05:** no rep-side portal in the P1 lead-gen build. Leads are delivered as a **templated email + WhatsApp** to the sales rep (`../prd/03` L-6), landing in the inbox reps already use — no custom leads UI, auth, or CRM is built for P1. The whole Sales-backoffice block below moves to **P3**; buy auth/CRM off-the-shelf if/when it lands.
+- [ ] (P3 . Sales) Leads inbox / list (with selected-item thumbnails + deep links)
+- [ ] (P3 . Sales) Lead detail
+- [ ] (P3 . Sales) Status / pipeline (new/contacted/quoted/won/lost)
+- [ ] (P3 . Sales) Assignment to field reps
+- [ ] (P3 . Sales) New-lead notifications
+- [ ] (P3 . Sales) Filters / search over leads (basic)
+- [ ] (P3 . Sales) Notes per lead
 
 Backoffice - Content Manager (MVP):
 - [ ] (MVP . Content) Studio Journal post editor (1 photo + ~4 lines, HE/EN)
