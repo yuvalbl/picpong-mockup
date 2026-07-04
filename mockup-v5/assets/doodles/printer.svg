@@ -1,0 +1,17 @@
+<svg viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--printer" aria-hidden="true">
+  <g stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- large-format printer body -->
+    <path pathLength="1" d="M30 92 q 0 -10 10 -10 H200 q 10 0 10 10 V138 q 0 10 -10 10 H40 q -10 0 -10 -10 Z"/>
+    <!-- legs -->
+    <path pathLength="1" d="M52 148 L44 184"/>
+    <path pathLength="1" d="M188 148 L196 184"/>
+    <!-- feed sheet emerging (the print) -->
+    <path pathLength="1" d="M70 92 V44 q 0 -8 8 -8 H162 q 8 0 8 8 V92"/>
+    <!-- artwork lines on sheet -->
+    <path pathLength="1" d="M86 56 H154" stroke-width="2.6" opacity="0.7"/>
+    <path pathLength="1" d="M86 70 H140" stroke-width="2.6" opacity="0.7"/>
+    <!-- slot + control knob -->
+    <path pathLength="1" d="M62 116 H178" stroke-width="2.6"/>
+    <circle pathLength="1" cx="196" cy="116" r="6"/>
+  </g>
+</svg>
