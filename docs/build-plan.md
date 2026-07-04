@@ -1,5 +1,7 @@
 # Picpong Website — Build & Launch Plan (Phase 7–8)
 
+> 🛑 **SUPERSEDED / STALE (2026-07).** This file plans a **commerce** build (Stripe/headless cart/checkout/account) and puts **Hebrew/RTL in "phase 2"** — both reversed by the June 2026 pivot (commerce → deferred Phase 2; Hebrew/RTL → Phase 1). The current real-code build is the **lead-gen** build in [`implementation-plan/estimate-lead-gen-build.md`](./implementation-plan/estimate-lead-gen-build.md) + `docs/prd/01|02|03`. Keep this only as reference for the eventual commerce phase. See [`planning-consistency-audit.md`](./planning-consistency-audit.md).
+>
 > **Status:** PARKED. Future engagement. Do not start until the mockup track ([`redesign-plan.md`](./redesign-plan.md), Phases 0–6) is complete and the hi-fi mockups are signed off by the client.
 > **Scope:** This file holds the real-code build: tech-stack PoC, full production build, QA, launch. It was split out of `redesign-plan.md` to keep the design/mockup track separate from the build track.
 > **Owner:** Yuval

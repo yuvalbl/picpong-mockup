@@ -60,7 +60,7 @@ Turn the v4 catalog from a pretty gallery into something **discoverable, address
 The foundation already ships every slot this PRD activates:
 - **`[data-search]`** projects field exists and currently just toasts *"coming in PRD 3"* (`app.js` ~L922) — **this PRD replaces that with live filtering** (D-5).
 - **`[data-filterbar]` / `[data-filter]` / `[data-cat]`** filter logic exists (`app.js` ~L854) — search **composes with** it; do not fork a second visibility system.
-- **`data-media-id` / `data-media-title` / `data-media-thumb`** are on every media item (PRD 1 §6.1, used by PRD 2) — this PRD makes `data-media-id` the **globally-unique, addressable** handle (§4.3).
+- **`data-media-id` / `data-media-title` / `data-media-thumb`** are on every media item (PRD 1 §6.1, used by PRD 2) — this PRD makes `data-media-id` the **page-unique, addressable** handle (§4.3).
 - **`.nav__social` / `.footer__social`** exist with placeholder hrefs — finalize placement/labels (§5).
 - **`?p=<slug>`** deep-links already shape `project-detail.html` links — keep, and add the `#item-<id>` highlight layer (§4).
 - **i18n convention** (`data-en/-he`, `-ph`, `-aria`, `data-i18n-html`, `[data-lang-switch]`) and **`#toast`** are reused verbatim.
@@ -272,7 +272,7 @@ Ties the addressing system (§4) to PRD 2's capture, and shows what the rep rece
 ## 12. Acceptance criteria ("done")
 
 1. **Search:** typing in the projects field live-filters the tiles by title/H2/tag/client, **AND-composed** with the active chip; no matches shows the empty state; clearing restores the chip-filtered set; works in RTL.
-2. **Addressing:** every project/product/feed/logo item has a **globally-unique** `data-media-id` (no cross-page duplicates) mirrored to `id="item-<id>"`; gallery images use the emitted `…-hero` / `…-<n>` grammar (single-dash), not `__img-n`.
+2. **Addressing:** every project/product/feed/logo item has a **page-unique** `data-media-id` (no *within-page* duplicates; cross-page repeats of the same logical item are fine and intended — see §4.3) mirrored to `id="item-<id>"`; gallery images use the emitted `…-hero` / `…-<n>` grammar (single-dash), not `__img-n`.
 3. **Highlight:** opening a page with `#item-<id>` **first resets any active chip/search so the target is visible**, then scrolls to and **visibly spotlights + labels** it (label is prospect-facing, dim layer dismissable); an image-level id resolves to the **detail page** and opens the lightbox on that frame; on a listing page an image-level id falls back to highlighting the parent tile; an unknown id loads the page cleanly with no highlight and no error; reduced-motion respected.
 4. **Share:** project/product pages expose **"Copy link"** + **"Share on WhatsApp"**; the lightbox (detail/product only) exposes **"copy link to this image"** with the `#item-<slug>-<n>` hash baked in; **"Copy link" confirms with a toast and works on `file://`** (clipboard with `execCommand` fallback).
 5. **SEO markup:** each page has a unique per-language `<title>` + meta-description, one `<h1>` + an `<h2>`, keyword-aware `alt`, and **its own** static OG tags (not the shared cover).

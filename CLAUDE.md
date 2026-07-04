@@ -2,6 +2,13 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+> ⚠️ **Current state (2026-07, read first).** Parts of this file predate the June 2026 pivot. What's true now:
+> - **Live/deployed = `mockup-v5`** (`firebase.json` `public: "mockup-v5"`), forked from `mockup-v4`. `mockup-v3` is no longer the deployed copy.
+> - **Single lead-gen funnel**, not dual. It's a browse-only catalog with quote/contact capture; **e-commerce (cart/checkout/pay) is deferred to Phase 2**. No live cart.
+> - **Hebrew-first + RTL is in Phase 1** (geo-detected in the real build).
+> - **v5 ships `Rubik` for display, not `Fraunces`** (the Fraunces spec below is unimplemented in v5 — a known, unrecorded swap; decide before build).
+> - **Canonical planning now = `docs/prd/01|02|03`, `docs/prd/open-questions.md`, and `docs/todo/`** (the Meeting-2 absorption layer). `redesign-plan.md` / `build-plan.md` / the `design/` sign-off docs are pre-pivot history — read the PRDs + todo for current scope. See `docs/planning-consistency-audit.md` for the full drift list.
+
 ## What this repo is
 
 Static HTML/CSS/JS **mockups** for the **Picpong** website redesign — for client review, not a production app. Picpong is an Israeli printing house for conferences/events/exhibitions (booths, stands, displays) built from **X-Board** recycled cardboard. The redesign mirrors **cartonlab.com** (the client's "I want just like it" reference): warm-minimal editorial, eco/cardboard-led, with a dual funnel (e-commerce **and** project-enquiry). There is **no build step, no framework, no dependencies** — open the HTML directly or serve statically.
@@ -9,7 +16,7 @@ Static HTML/CSS/JS **mockups** for the **Picpong** website redesign — for clie
 ## Commands
 
 ```bash
-npm run serve            # Firebase Hosting emulator (serves the `mockup-v3` dir per firebase.json)
+npm run serve            # Firebase Hosting emulator (serves the `mockup-v5` dir per firebase.json)
 npm run deploy           # firebase deploy --only hosting  (project: picpong-mockup)
 npm run deploy:preview   # firebase hosting:channel:deploy preview
 ```

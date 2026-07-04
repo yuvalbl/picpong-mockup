@@ -10,6 +10,8 @@
 > **Locked decisions (client call, 2026-05-31):** (1) Full e-commerce — cart + checkout + online pay (note: cartonlab is quote-only, so commerce is *our* addition on top of its look). (2) Lead with eco/cardboard like cartonlab; X-Board is the hero story. (3) Cartonlab is primary, mediagarden demoted to secondary. (4) Product scope mirrors cartonlab's content set (cardboard products for conferences / events / exhibitions).
 >
 > ⚠️ **AMENDED at the 2026-06-03 concept-review meeting.** Scope shifted: the **Phase-1 deliverable is a UI-only lead-gen catalog mockup (`mockup-v4`)** — **commerce → Phase 2** (browse-only catalog, quote/contact only), and **Hebrew-first + RTL is in Phase 1** (was "English-first; Hebrew RTL phase 2"). Content is **colorful eco-only** (not cartonlab's brown), client prefers **pastels**. Source of truth: `docs/human-review/meeting1-analysis.md`; embodied in `docs/prd/01-foundation-structure.md`. This plan below is **not** fully rewritten — read those two docs for current scope.
+>
+> ⚠️ **Further drift (2026-07):** the Phase-5/6 **wireframe→hi-fi gate below was bypassed** — mockups v3→v4→v5 were built directly, and the live/deployed copy is now **`mockup-v5`**. The §5 IA/URL scheme still lists `/cart/`, `/checkout/`, `/account/` and the body still describes the brown/orange clone — both pre-pivot. **Canonical current scope = `docs/prd/01|02|03` + `docs/prd/open-questions.md` + `docs/todo/`.** Full drift list: `docs/planning-consistency-audit.md`.
 
 ---
 

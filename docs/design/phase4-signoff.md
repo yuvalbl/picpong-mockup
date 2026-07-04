@@ -1,5 +1,7 @@
 # Picpong — Phase 4 Visual Direction: Client Sign-Off Package
 
+> 🛑 **SUPERSEDED / HISTORY (2026-07).** Dated 2026-05-31, pre-pivot. Its page list (Cart · Checkout · Order confirmation · Account) and "full commerce + quote dual-funnel" scope were reversed by the June 2026 pivot (single lead-gen funnel; commerce → Phase 2), and the "no hi-fi mockups until this gate clears" gate was bypassed (v3→v4→v5 were built directly). Kept as a record of the visual sign-off only. Current scope: `docs/prd/01|02|03` + `docs/todo/`. See [`../planning-consistency-audit.md`](../planning-consistency-audit.md).
+>
 > **What this is:** the one-page approval doc for the visual direction. Approve the items in §5 and we unlock Phase 6 (hi-fi page mockups). No mockups are built until this gate clears.
 > **Read alongside:** `concept.html` (the rendered visual concept — open it in a browser) · `visual-direction-final.md` (the full token-level spec) · `moodboard.md` (the mood + reference screens).
 > **Last updated:** 2026-05-31

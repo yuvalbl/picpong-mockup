@@ -1,5 +1,7 @@
 # Picpong — Visual Direction (FINAL, for sign-off)
 
+> ⚠️ **PARTIALLY SUPERSEDED (2026-07).** Dated 2026-05-31, pre-pivot. Still authoritative on the *look* (warm-paper canvas, pufferfish, four ownable moves, orange `#E67A2F`), but three things are overtaken: (1) **§8 "Commerce-on-calm"** (cart/checkout/account) — commerce deferred to Phase 2, not in v5; (2) **§4 type** names **Fraunces** display + **Assistant** Hebrew — v5 actually ships **Rubik**, no Assistant loaded (decide before build); (3) the fixed px **type scale** is superseded by `../todo/font-sizes.md`. See [`../planning-consistency-audit.md`](../planning-consistency-audit.md).
+>
 > **Direction A — "Cardboard monograph": cartonlab's warm-minimal editorial system, made ownably Picpong.** Supersedes `visual-direction-v1.md`. Incorporates the `anti-generic-design` audit (scorecard §11). A more differentiated **Direction B** is offered as a real choice in §12.
 > **Reference:** cartonlab.com (structure/tone, client's "just like it") · brand extracted from picpong.biz.
 > **Companion docs:** `moodboard.md` (the mood) · `concept.html` (the rendered one-page visual concept) · `phase4-signoff.md` (client sign-off package).
