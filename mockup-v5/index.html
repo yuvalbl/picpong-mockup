@@ -165,7 +165,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
           </button>
         </div>
-        <span class="ctile__live" data-en="Microsoft · launch environment" data-he="Microsoft · סביבת השקה">Microsoft · launch environment</span>
+        <div class="ctile__card">
+          <span class="ctile__card-k" data-en="Microsoft" data-he="Microsoft">Microsoft</span>
+          <span class="ctile__card-m" data-en="launch environment" data-he="סביבת השקה">launch environment</span>
+        </div>
       </div>
 
       <!-- B-bottom · dynamic Rubik slogan panel -->
@@ -514,7 +517,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
           </button>
         </div>
-        <div class="project__scrim"></div><span class="project__tag">Exhibition</span>
+        <div class="project__scrim"></div><span class="project__tag">Convention</span>
         <div class="project__body"><span class="project__client">Landa · Digital Printing</span><h3 class="h4 project__title" data-en="Illuminated letters &amp; wall graphics" data-he="אותיות מוארות וגרפיקת קיר">Illuminated letters &amp; wall graphics</h3></div>
       </a>
     </div>
@@ -524,32 +527,35 @@
 
 <div class="edge edge--cream" aria-hidden="true"></div>
 
-<!-- SUSTAINABILITY -->
-<section class="band" id="sustainability">
-  <div class="wrap">
-    <div class="split">
-      <div class="reveal">
-        <p class="eyebrow" data-en="Why cardboard" data-he="למה קרטון">Why cardboard</p>
-        <h2 class="h2" data-en="Impact on the floor. None on the planet." data-he="אימפקט על רצפת התצוגה. אפס על כדור הארץ.">Impact on the floor. None on the planet.</h2>
-        <p class="lead" data-en="X-Board is a very dense, environmentally friendly panel made of 100% recycled cardboard. Picpong is its exclusive importer, and we take it from planning and design through printing and installation, all in-house." data-he="X-Board הוא פאנל צפוף וידידותי לסביבה העשוי מקרטון ממוחזר 100%. Picpong היא היבואנית הבלעדית שלו, ואנחנו מלווים מתכנון ועיצוב ועד הדפסה והתקנה, הכל בבית.">X-Board is a very dense, environmentally friendly panel made of 100% recycled cardboard. Picpong is its exclusive importer, and we take it from planning and design through printing and installation, all in-house.</p>
-        <ul class="checklist">
-          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> <span data-en="Print directly onto the panel: no laminates, no waste" data-he="הדפסה ישירה על הפאנל: בלי לימינציה, בלי פסולת">Print directly onto the panel: no laminates, no waste</span></li>
-          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> <span data-en="Lightweight to ship, fast to assemble on site" data-he="קל למשלוח, מהיר להרכבה באתר">Lightweight to ship, fast to assemble on site</span></li>
-          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> <span data-en="Disassemble, store flat, and reuse for the next event" data-he="לפרק, לאחסן שטוח, ולעשות שימוש חוזר באירוע הבא">Disassemble, store flat, and reuse for the next event</span></li>
-          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> <span data-en="Fully recyclable at end of life" data-he="ניתן למחזור מלא בסוף חייו">Fully recyclable at end of life</span></li>
-        </ul>
-        <div style="margin-top:1.8rem"><a class="btn btn--ghost" href="#contact" data-i18n-html data-en="Talk materials with us <span class=&quot;arrow&quot;>&rarr;</span>" data-he="דברו איתנו על חומרים <span class=&quot;arrow&quot;>&rarr;</span>">Talk materials with us <span class="arrow">&rarr;</span></a></div>
-        <p class="meta" style="margin-top:1rem" data-en="Eco claims drawn from Picpong's X-Board spec; certification documents to be attached before publication." data-he="טענות אקולוגיות מבוססות על מפרט X-Board של Picpong; מסמכי תקן יצורפו לפני הפרסום.">Eco claims drawn from Picpong's X-Board spec; certification documents to be attached before publication.</p>
-      </div>
-      <div class="split__media reveal d1">
-        <div class="media" data-media>
-          <img src="assets/projects/redefine-meat.jpg" alt="Redefine Meat rebranding environment built from recycled board" loading="lazy" data-parallax="0.06" data-parallax-scale="1.12" />
-          <button class="media__more" type="button" aria-label="Request a quote on a build like this"
-                  data-media-id="sus-redefine" data-media-title="Redefine Meat · Brand launch" data-media-thumb="assets/projects/redefine-meat.jpg">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-          </button>
-        </div>
-      </div>
+<!-- SUSTAINABILITY: full-bleed editorial statement (client: this is the site's primary reason to
+     exist, aimed at CSR/sustainability managers - must "scream", not whisper via a quiet split+checklist). -->
+<section class="band sustain on-dark" id="sustainability">
+  <div class="sustain__bg" aria-hidden="true">
+    <div class="sustain__canopy"></div>
+    <svg class="sustain__wave" viewBox="0 0 1600 400" preserveAspectRatio="none" focusable="false">
+      <path d="M0,150 C 220,230 380,60 620,135 S 1080,255 1330,140 S 1600,90 1600,90 L1600,400 L0,400 Z" fill="rgba(42,155,208,0.16)"/>
+      <path d="M0,230 C 260,150 460,290 760,215 S 1180,110 1600,215 L1600,400 L0,400 Z" fill="rgba(5,18,15,0.65)"/>
+    </svg>
+  </div>
+  <div class="wrap sustain__wrap">
+    <p class="eyebrow eyebrow--dark reveal" data-en="Sustainability" data-he="קיימות">Sustainability</p>
+    <h2 class="sustain__headline reveal" data-en="Your stage can be green. Actually green." data-he="הבמה שלכם יכולה להיות ירוקה. באמת ירוקה.">Your stage can be green. Actually green.</h2>
+    <p class="sustain__punch reveal d1" data-en="No PVC. No vinyl banners. No single-use plastic." data-he="בלי PVC. בלי שמשוניות. בלי פלסטיק חד-פעמי.">No PVC. No vinyl banners. No single-use plastic.</p>
+
+    <div class="sustain__row">
+      <p class="lead sustain__body reveal reveal--slide" style="--dir:-1" data-en="Every booth, counter and display we build is X-Board: 100% recycled cardboard, reusable, shipped flat, and recycled again when the event ends. If sustainability is your mandate, this is how you hit your green targets without compromising how the event looks." data-he="כל ביתן, דוכן ותצוגה שאנחנו בונים עשויים מ-X-Board: קרטון ממוחזר במאה אחוז, לשימוש חוזר, שנשלח שטוח וחוזר להתמחזר בסוף האירוע. אם אתם אחראים על קיימות בארגון, ככה מגיעים ליעדים הירוקים בלי להתפשר על איך שהאירוע נראה.">Every booth, counter and display we build is X-Board: 100% recycled cardboard, reusable, shipped flat, and recycled again when the event ends. If sustainability is your mandate, this is how you hit your green targets without compromising how the event looks.</p>
+
+      <ul class="sustain__pillars reveal reveal--slide" style="--dir:1;--i:1">
+        <li><span class="sustain__num" aria-hidden="true">01</span><span data-en="100% recycled" data-he="100% ממוחזר">100% recycled</span></li>
+        <li><span class="sustain__num" aria-hidden="true">02</span><span data-en="Reusable" data-he="לשימוש חוזר">Reusable</span></li>
+        <li><span class="sustain__num" aria-hidden="true">03</span><span data-en="No PVC or plastic" data-he="בלי PVC ופלסטיק">No PVC or plastic</span></li>
+        <li><span class="sustain__num" aria-hidden="true">04</span><span data-en="Ships flat, fewer shipping emissions" data-he="נשלח שטוח, פחות פליטות שינוע">Ships flat, fewer shipping emissions</span></li>
+      </ul>
+    </div>
+
+    <div class="sustain__cta reveal">
+      <a class="btn btn--brand" href="#contact" data-i18n-html data-en="Plan a zero-waste event <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בואו נתכנן אירוע ירוק <span class=&quot;arrow&quot;>&rarr;</span>">Plan a zero-waste event <span class="arrow">&rarr;</span></a>
+      <span class="placeholder-cap placeholder-cap--onDark" data-en="Nature photography (ocean / rainforest) to be sourced." data-he="צילומי טבע (אוקיינוס / יער גשם) יתווספו בהמשך.">Nature photography (ocean / rainforest) to be sourced.</span>
     </div>
   </div>
 </section>

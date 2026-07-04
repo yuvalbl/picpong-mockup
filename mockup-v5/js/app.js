@@ -78,7 +78,7 @@
   var IMG = "assets/projects/";
   var PROJECTS = {
     "king-solomon": {
-      tag: { en: "Exhibition", he: "תערוכה" },
+      tag: { en: "Convention", he: "כנס" },
       eyebrow: { en: "King Solomon · Expo", he: "קינג סולומון · אקספו" },
       title: { en: "Colourful booths, struck and re-staged", he: "ביתנים צבעוניים, מפורקים ומורכבים מחדש" },
       subtitle: { en: "A full set of vivid expo booths in 100% recycled X-Board, printed, installed, then struck down to be reused.", he: "סט מלא של ביתני אקספו צבעוניים ב-X-Board ממוחזר 100%, מודפסים, מותקנים, ואז מפורקים לשימוש חוזר." },
@@ -97,7 +97,7 @@
       images: ["google-cloud.jpg", "bluevine.jpg", "microsoft.jpg"]
     },
     "landa": {
-      tag: { en: "Exhibition", he: "תערוכה" },
+      tag: { en: "Convention", he: "כנס" },
       eyebrow: { en: "Landa · Digital Printing", he: "לנדא · דפוס דיגיטלי" },
       title: { en: "Illuminated letters & graphics", he: "אותיות מוארות וגרפיקה" },
       subtitle: { en: "Illuminated lettering and large-format graphics on recycled X-Board for Landa's show presence.", he: "אותיות מוארות וגרפיקה בפורמט גדול על X-Board ממוחזר לנוכחות התערוכה של לנדא." },
@@ -146,10 +146,10 @@
       images: ["priority-maccabi.jpg", "bluevine.jpg"]
     },
     "meetmind": {
-      tag: { en: "Exhibition", he: "תערוכה" },
-      eyebrow: { en: "Meet&Mind · Exhibition", he: "מיט אנד מיינד · תערוכה" },
-      title: { en: "Exhibition presence", he: "נוכחות בתערוכה" },
-      subtitle: { en: "A full exhibition presence built from recycled X-Board, designed, printed and installed in-house.", he: "נוכחות תערוכה מלאה הבנויה מ-X-Board ממוחזר, מעוצבת, מודפסת ומותקנת בבית." },
+      tag: { en: "Convention", he: "כנס" },
+      eyebrow: { en: "Meet&Mind · Convention", he: "מיט אנד מיינד · כנס" },
+      title: { en: "Convention presence", he: "נוכחות בכנס" },
+      subtitle: { en: "A full convention presence built from recycled X-Board, designed, printed and installed in-house.", he: "נוכחות כנס מלאה הבנויה מ-X-Board ממוחזר, מעוצבת, מודפסת ומותקנת בבית." },
       images: ["meetmind.jpg", "landa.jpg"]
     }
   };
