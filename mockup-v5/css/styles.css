@@ -16,9 +16,7 @@
   --orange:  #E67A2F;
   --orange-bright:#F58729;
   --orange-deep:#E45C01;
-  --pond:    #2A9BD0;
-  --coral:   #FF6F5E;   /* warm coral — second marker accent, harmonises with orange family */
-  --coral-deep:#F8523F;
+  --pond:    #2A9BD0;  /* water depiction only: hero pond + sustainability ocean; never a UI accent */
   --forest:  #123B33;   /* deep rainforest green - paired with --pond for the sustainability statement's ocean-to-canopy gradient */
   --forest-deep:#05120F;
   --muted:   #6b6b63;
@@ -978,7 +976,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    only lift + deepen the shadow (ink stays cream-on-ink, pond stays ink-on-pond) */
 .lane--panel:hover { transform: translateY(-0.5rem); box-shadow: 0 22px 48px rgba(26,26,26,0.22); }
 .panel--ink.lane--panel:hover { background: var(--ink); }
-.panel--pond.lane--panel:hover { background: var(--pond); }
+.panel--orange.lane--panel:hover { background: var(--orange); }
 /* text inherits each panel's own color (ink on pond, cream on ink) */
 .lane--panel .lane__num { color: inherit; opacity: 0.72; font-size: 1.4rem; }
 .lane--panel .lane__title { color: inherit; }
@@ -1142,7 +1140,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   transform: scaleX(0) skewX(-3.5deg); transform-origin: left center;
 }
 .slogan .mark--orange { --mk: var(--orange-bright); }
-.slogan .mark--coral  { --mk: var(--coral); }
+.slogan .mark--coral  { --mk: var(--orange-deep); }
 /* sweep fires just after its line has settled */
 .slogan.is-in .mark::before {
   animation: mark-sweep 0.5s cubic-bezier(0.22, 0.7, 0.25, 1) forwards;
