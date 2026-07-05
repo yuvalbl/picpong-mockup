@@ -192,7 +192,7 @@ instead of inventing new ones so screens stay consistent.
 - **Item thumbnails**: `.bo-thumbs` (overlapping avatars, use `.bo-thumbs__more`
   for the `+N`) for compact rows; `.bo-itemrow` (`img` + `.bo-itemrow__title` +
   `.bo-itemrow__id`) for a full list of a lead's selected items.
-- **Buttons**: `.bo-btn` (dark default), `.bo-btn--brand` (orange, AA-safe),
+- **Buttons**: `.bo-btn` (dark default), `.bo-btn--brand` (bright orange + ink text, AA-safe),
   `.bo-btn--ghost`, plus `.bo-btn--sm` / `.bo-btn--block`. Put a `BO.ICON.*` first.
 - **Forms**: `.bo-form` wrapper; `.bo-field` (`label` + control) with optional
   `.bo-field__hint`; controls `.bo-input`, `.bo-select`, `.bo-textarea` (all 16px);
@@ -203,12 +203,22 @@ instead of inventing new ones so screens stay consistent.
 - **Misc**: `.bo-empty` (empty state), `.bo-divider`.
 
 ### Colour + contrast rules (do not break)
-- The site `--orange` (`#E67A2F`) **fails AA with white text**. For white-on-orange
-  use `--bo-orange` (`#B14E0F`) - already what `.bo-btn--brand` and pills use. If you
-  want the bright orange, put **ink** text on it, never white.
+Orange has **two roles - never mix them**:
+- **CTA / badge FIELDS** (anything with an orange fill): use the bright brand
+  orange `--bo-cta` (`#E67A2F`) with **ink** text (`--ink`, ~5.96:1), matching the
+  marketing site. Hover/active fields darken to `--bo-cta-hover` (`#E45C01`), still
+  ink (~4.83:1). This is what `.bo-btn`, `.bo-btn--brand`, the nav-active item, the
+  notification dot, and the numbered/step badges use. **White text on orange is
+  banned** - it fails AA.
+- **Orange TEXT / icons / borders on light surfaces** (links, `.bo-card__more`,
+  `.bo-rolebadge`, stat numbers, tab labels): keep the dark `--bo-orange`
+  (`#B14E0F`). Bright orange as text on cream fails AA; dark orange clears it
+  (>= 4.6:1 on cream / bg / tint).
 - Inputs are `font-size: 16px` (stops iOS zoom, meets the floor). No text under 12px.
-- Reuse tokens: `--cream --ink --kraft --muted --line` from the site; `--bo-bg
-  --bo-surface --bo-orange --bo-orange-tint --bo-line` from this layer.
+- Reuse tokens: `--cream --ink --kraft --muted --line --orange --orange-deep` from
+  the site; `--bo-cta --bo-cta-hover` (bright CTA fills, ink text), `--bo-orange`
+  (dark orange text on light), `--bo-bg --bo-surface --bo-orange-tint --bo-line`
+  from this layer.
 
 ---
 

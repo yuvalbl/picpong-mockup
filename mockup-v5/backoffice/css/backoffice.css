@@ -5,14 +5,22 @@
    calm workspace shell: sidebar, cards, tables, status pills,
    forms, buttons. Quieter than the marketing site on purpose.
 
-   CONTRAST NOTE: the site orange (#E67A2F) fails AA with white
-   text, so white-on-orange here always uses a darkened accent
-   (--bo-orange, ~#B14E0F, >= 4.5:1). Bright orange only carries
-   ink text. No UI text below 12px. Inputs are 16px.
+   CONTRAST NOTE (two orange roles, never mix them):
+   1. CTA FIELDS (button / badge fills) use the bright brand orange
+      --bo-cta #E67A2F with INK text (#1A1A1A, ~4.9:1), matching the
+      marketing site. Hover/active fields go --bo-cta-hover #E45C01,
+      still ink (~4.8:1). White text on orange is banned (fails AA).
+   2. ORANGE TEXT / icons / borders on light surfaces use the dark
+      --bo-orange #B14E0F (bright orange as text on cream fails AA).
+   No UI text below 12px. Inputs are 16px.
    ============================================================ */
 
 :root {
-  --bo-orange: #B14E0F;          /* AA-safe orange for white text */
+  /* CTA fields: bright brand orange, ALWAYS paired with ink text. */
+  --bo-cta: var(--orange);       /* #E67A2F - button/badge fills */
+  --bo-cta-hover: var(--orange-deep); /* #E45C01 - hover/active fields */
+  /* Orange TEXT/borders/icons on light surfaces only (AA on cream). */
+  --bo-orange: #B14E0F;          /* dark orange - never a white-text fill */
   --bo-orange-tint: #FBEFE4;     /* soft orange wash for surfaces */
   --bo-bg: #F1F0E9;              /* app canvas, a touch deeper than cream */
   --bo-surface: #FDFDF7;         /* cards / panels (cream-2) */
@@ -74,7 +82,7 @@
 }
 .bo-brand__mark {
   width: 34px; height: 34px; border-radius: 9px;
-  background: var(--bo-orange); flex: none;
+  background: var(--bo-cta); flex: none;   /* logo tile, holds an image (no text) */
   display: grid; place-items: center;
 }
 .bo-brand__mark img { width: 22px; height: 22px; }
@@ -102,7 +110,7 @@
 }
 .bo-nav__link:hover { background: var(--bo-sidebar-2); color: var(--cream); }
 .bo-nav__link[aria-current="page"] {
-  background: var(--bo-orange); color: #fff;
+  background: var(--bo-cta); color: var(--ink);
 }
 .bo-nav__link svg { width: 18px; height: 18px; flex: none; opacity: 0.9; }
 .bo-nav__link .bo-nav__badge {
@@ -111,7 +119,7 @@
   font-size: 0.72rem; font-weight: 700; line-height: 1;
   padding: 0.22rem 0.42rem; border-radius: 999px;
 }
-.bo-nav__link[aria-current="page"] .bo-nav__badge { background: rgba(255,255,255,0.25); }
+.bo-nav__link[aria-current="page"] .bo-nav__badge { background: rgba(26,26,26,0.22); color: var(--ink); }
 .bo-sidebar__foot {
   margin-top: auto; padding-top: 1rem;
   font-size: 0.72rem; color: rgba(247,247,241,0.5);
@@ -149,7 +157,7 @@
 .bo-iconbtn__dot {
   position: absolute; top: 4px; inset-inline-end: 4px;
   min-width: 17px; height: 17px; padding: 0 4px;
-  background: var(--bo-orange); color: #fff;
+  background: var(--bo-cta); color: var(--ink);
   font-size: 0.68rem; font-weight: 700; line-height: 17px;
   border-radius: 999px; text-align: center;
 }
@@ -339,10 +347,10 @@
   cursor: pointer; text-decoration: none; line-height: 1;
   transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease;
 }
-.bo-btn:hover { background: var(--bo-orange); border-color: var(--bo-orange); color: #fff; }
+.bo-btn:hover { background: var(--bo-cta); border-color: var(--bo-cta); color: var(--ink); }
 .bo-btn svg { width: 17px; height: 17px; }
-.bo-btn--brand { background: var(--bo-orange); border-color: var(--bo-orange); color: #fff; }
-.bo-btn--brand:hover { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+.bo-btn--brand { background: var(--bo-cta); border-color: var(--bo-cta); color: var(--ink); }
+.bo-btn--brand:hover { background: var(--bo-cta-hover); border-color: var(--bo-cta-hover); color: var(--ink); }
 .bo-btn--ghost { background: transparent; color: var(--ink); border-color: var(--bo-line); }
 .bo-btn--ghost:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 .bo-btn--sm { padding: 0.45rem 0.8rem; font-size: 0.84rem; }

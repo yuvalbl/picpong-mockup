@@ -16,8 +16,7 @@
   --orange:  #E67A2F;
   --orange-bright:#F58729;
   --orange-deep:#E45C01;
-  --orange-btn:#B14E0F;  /* AA-passing dark orange for white text on an orange button/badge/link (button orange - not the page accent) */
-  --orange-btn-hover:#9F450B;  /* darker still, for hover states on --orange-btn surfaces - white text stays AA-passing */
+  --orange-btn:#B14E0F;  /* AA-passing dark orange for orange TEXT on a light (cream/white) background - link and inline-label use only, never a button fill */
   --pond:    #2A9BD0;  /* water depiction only: hero pond + sustainability ocean; never a UI accent */
   --forest:  #123B33;   /* deep rainforest green - paired with --pond for the sustainability statement's ocean-to-canopy gradient */
   --forest-deep:#05120F;
@@ -194,13 +193,13 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 .btn--sm { padding: 0.6rem 1.15rem; font-size: var(--t-meta); }
 .btn--primary { background: var(--ink); color: var(--cream); }
-.btn--primary:hover { background: var(--orange-btn); border-color: var(--orange-btn); color: #fff; }
-.btn--brand { background: var(--orange-btn); border-color: var(--orange-btn); color: #fff; }
+.btn--primary:hover { background: var(--orange-deep); border-color: var(--orange-deep); color: var(--ink); }
+.btn--brand { background: var(--orange); border-color: var(--orange); color: var(--ink); }
 .btn--brand:hover { background: var(--ink); border-color: var(--ink); color: var(--cream); }
 .btn--ghost { background: transparent; color: var(--ink); }
 .btn--ghost:hover { background: var(--ink); color: var(--cream); }
 .btn--onDark { background: var(--cream); color: var(--ink); border-color: var(--cream); }
-.btn--onDark:hover { background: var(--orange-btn); border-color: var(--orange-btn); color: #fff; }
+.btn--onDark:hover { background: var(--orange-deep); border-color: var(--orange-deep); color: var(--ink); }
 .btn--ghostDark { background: transparent; color: var(--cream); border-color: var(--line-on-dark); }
 .btn--ghostDark:hover { background: var(--cream); color: var(--ink); border-color: var(--cream); }
 .btn--block { width: 100%; justify-content: center; }
@@ -463,8 +462,8 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   letter-spacing: 0.08em;
   font-weight: 700;
   text-transform: uppercase;
-  background: var(--orange-btn);
-  color: #fff;
+  background: var(--orange);
+  color: var(--ink);
   padding: 0 0.8rem;
   border-radius: 999px;
   box-shadow: 0 2px 8px rgba(26,26,26,0.28);
@@ -476,7 +475,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   border: 1.5px solid var(--line-on-dark); background: transparent; color: inherit; cursor: pointer;
   transition: background var(--speed) var(--ease), color var(--speed) var(--ease), border-color var(--speed) var(--ease); }
 .chip:hover { border-color: var(--cream); }
-.chip[aria-pressed="true"] { background: var(--orange-btn); border-color: var(--orange-btn); color: #fff; }
+.chip[aria-pressed="true"] { background: var(--orange); border-color: var(--orange); color: var(--ink); }
 .band:not(.band--dark) .chip { border-color: var(--line); }
 .band:not(.band--dark) .chip:hover { border-color: var(--ink); }
 
@@ -527,13 +526,11 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .sustain__row { display: grid; grid-template-columns: 1fr; gap: clamp(2.25rem,4.5vw,3.5rem); align-items: start; }
 @media (min-width: 900px) { .sustain__row { grid-template-columns: 1.15fr 1fr; } }
 .sustain__body { color: rgba(247,247,241,0.82); max-width: 46ch; }
-/* editorial numbered list, not a row of leaf icons - alternating inline-start
-   offset breaks the grid into an asymmetric staircase */
+/* editorial numbered list, not a row of leaf icons - flush inline start, all four rows aligned */
 .sustain__pillars { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.35rem; }
 .sustain__pillars li { display: flex; align-items: baseline; gap: 1.1rem;
   padding-bottom: 1.15rem; border-bottom: 1px solid rgba(247,247,241,0.18);
   font-size: var(--t-lead); font-weight: 500; }
-.sustain__pillars li:nth-child(2), .sustain__pillars li:nth-child(4) { margin-inline-start: clamp(1.1rem, 5vw, 2.75rem); }
 .sustain__num { font-family: "Rubik", system-ui, sans-serif; font-weight: 300;
   font-size: clamp(1.5rem, 2.8vw, 2.1rem); color: var(--orange-bright); line-height: 1; flex-shrink: 0; }
 .sustain__cta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
@@ -769,8 +766,8 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .ctile--headline .lead { max-width: 34ch; }
 .ctile__cta { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 0.4rem; }
 /* CTAs on the bright pond panel (ink text). Match the dark-text panel pattern
-   used by orange/kraft tiles: solid = orange/white, ghost = ink outline. */
-.ctile--headline .btn--onDark { background: var(--orange-btn); color: #fff; border-color: var(--orange-btn); }
+   used by orange/kraft tiles: solid = orange field/ink text, ghost = ink outline. */
+.ctile--headline .btn--onDark { background: var(--orange); color: var(--ink); border-color: var(--orange); }
 .ctile--headline .btn--onDark:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 .ctile--headline .btn--ghostDark { background: transparent; color: var(--ink); border-color: var(--ink); }
 .ctile--headline .btn--ghostDark:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
@@ -1296,6 +1293,7 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
   width: auto;
   background: var(--orange);
   border-color: var(--orange);
+  color: var(--ink);
 }
 .media__more svg { width: 1.1rem; height: 1.1rem; flex-shrink: 0; pointer-events: none; }
 .media__more__label {
@@ -1361,9 +1359,9 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
   gap: 0.55rem;
   padding: 0.7rem 1.1rem 0.7rem 0.9rem;
   border-radius: 999px;
-  border: 1.5px solid var(--orange-btn);
-  background: var(--orange-btn);
-  color: #fff;
+  border: 1.5px solid var(--orange);
+  background: var(--orange);
+  color: var(--ink);
   font: inherit;
   font-weight: 600;
   font-size: 1rem;
@@ -1371,7 +1369,7 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
   box-shadow: 0 8px 24px rgba(26,26,26,0.22);
   transition: transform var(--speed) var(--ease), background var(--speed) var(--ease);
 }
-.contact-fab:hover { transform: translateY(-2px); background: var(--orange-btn-hover); border-color: var(--orange-btn-hover); }
+.contact-fab:hover { transform: translateY(-2px); background: var(--orange-deep); border-color: var(--orange-deep); }
 .contact-fab svg { width: 1.15rem; height: 1.15rem; flex-shrink: 0; }
 .contact-fab__label { white-space: nowrap; }
 /* live item-count badge (replaces the old separate minimized pill) */
@@ -1425,7 +1423,7 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
   line-height: 1;
 }
 .nav--dark .lang-switch [data-lang] { color: rgba(247,247,241,0.6); }
-.lang-switch [data-lang][aria-pressed="true"] { background: var(--orange-btn); color: #fff; }
+.lang-switch [data-lang][aria-pressed="true"] { background: var(--orange); color: var(--ink); }
 
 .nav__social { display: none; align-items: center; gap: 0.15rem; }
 @media (min-width: 920px) { .nav__social { display: inline-flex; } }
@@ -1557,7 +1555,7 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
   display: inline-grid; place-items: center; cursor: pointer;
   transition: background var(--speed) var(--ease), transform var(--speed) var(--ease);
 }
-.lightbox__close:hover { background: var(--orange); border-color: var(--orange); transform: scale(1.08); }
+.lightbox__close:hover { background: var(--orange); border-color: var(--orange); color: var(--ink); transform: scale(1.08); }
 .lightbox__close svg { width: 1.2rem; height: 1.2rem; }
 
 /* ============================================================
@@ -1739,7 +1737,7 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
 
 .spotlight-tag {
   position: absolute; top: 0.55rem; inset-inline-start: 0.55rem; z-index: 1260;
-  background: var(--orange-btn); color: #fff;
+  background: var(--orange); color: var(--ink);
   font-size: 0.75rem; font-weight: 700; line-height: 1;
   padding: 0.34rem 0.56rem; border-radius: 999px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.28); pointer-events: none; white-space: nowrap;
@@ -1799,7 +1797,7 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
 }
 .repmail__badge {
   font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em;
-  color: #fff; background: var(--orange-btn); padding: 0.28rem 0.6rem; border-radius: 999px;
+  color: var(--ink); background: var(--orange); padding: 0.28rem 0.6rem; border-radius: 999px;
 }
 .repmail__close { position: static; flex: none; }
 .repmail__meta {
@@ -1960,7 +1958,7 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
   display: grid; place-items: center; color: #fff;
   pointer-events: none; transition: transform .25s ease, background .25s ease;
 }
-.feed-card:hover .feed-card__play { transform: translate(-50%, -50%) scale(1.08); background: var(--orange); }
+.feed-card:hover .feed-card__play { transform: translate(-50%, -50%) scale(1.08); background: var(--orange); color: var(--ink); }
 .feed-card__play svg { inline-size: 22px; block-size: 22px; margin-inline-start: 3px; }
 .feed-card__videotag {
   position: absolute; inset-block-start: 0.6rem; inset-inline-start: 0.6rem;
