@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Users - Picpong Backoffice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/backoffice.css" />
+  <style>
+    /* Bespoke to this page only - reuses the site's status-hue tokens
+       rather than the lead/post pill modifiers (which don't cover
+       active/inactive). */
+    .bo-pill--u-active { background: var(--st-won-bg); color: var(--st-won-fg); }
+    .bo-pill--u-inactive { background: var(--st-lost-bg); color: var(--st-lost-fg); }
+    .bo-table .bo-select { width: auto; min-width: 150px; padding: 0.4rem 0.6rem; font-size: 0.88rem; }
+    .bo-table td.u-actions { white-space: nowrap; }
+    .u-self-hint { display: block; font-size: 0.76rem; color: var(--muted); margin-top: 0.25rem; }
+    #add-user-form.bo-form { margin-bottom: 0; }
+    .u-add-head { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; }
+    .u-add-head h2 { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="js/bo.js"></script>
+  <script>
+    (function () {
+      var session = BO.requireRole(["Admin"]);
+      if (!session) return;
+      var main = BO.mountShell({ active: "users.html", title: "Users" });
+      var esc = BO.esc;
+
+      main.innerHTML =
+        '<div class="bo-pagehead">' +
+          '<h1>Staff accounts</h1>' +
+          '<p>Manage who has access to the backoffice, and what role they sign in as.</p>' +
+        '</div>' +
+        '<section class="bo-card" style="margin-bottom:1.4rem">' +
+          '<div class="bo-card__head"><h2>Add user</h2></div>' +
+          '<form class="bo-form" id="add-user-form" novalidate>' +
+            '<div class="bo-field--row">' +
+              '<div class="bo-field">' +
+                '<label for="u-name">Name</label>' +
+                '<input class="bo-input" type="text" id="u-name" name="name" placeholder="Full name" />' +
+                '<span class="bo-field__hint" id="u-name-hint" hidden style="color:#8A3B08">Enter a name.</span>' +
+              '</div>' +
+              '<div class="bo-field">' +
+                '<label for="u-email">Email</label>' +
+                '<input class="bo-input" type="email" id="u-email" name="email" placeholder="name@picpong.biz" />' +
+                '<span class="bo-field__hint" id="u-email-hint" hidden style="color:#8A3B08">Enter a valid email address.</span>' +
+              '</div>' +
+              '<div class="bo-field">' +
+                '<label for="u-role">Role</label>' +
+                '<select class="bo-select" id="u-role" name="role">' +
+                  '<option value="Sales">Sales</option>' +
+                  '<option value="Content">Content</option>' +
+                  '<option value="Admin">Admin</option>' +
+                '</select>' +
+              '</div>' +
+            '</div>' +
+            '<button class="bo-btn bo-btn--brand" type="submit">' + BO.ICON.users + '<span>Add user</span></button>' +
+          '</form>' +
+        '</section>' +
+        '<section class="bo-card">' +
+          '<div class="bo-card__head"><h2>All staff</h2></div>' +
+          '<div class="bo-tablewrap"><table class="bo-table">' +
+            '<thead><tr><th>Name</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead>' +
+            '<tbody id="users-tbody"></tbody>' +
+          '</table></div>' +
+        '</section>';
+
+      var tbody = document.getElementById("users-tbody");
+      var nameInput = document.getElementById("u-name");
+      var emailInput = document.getElementById("u-email");
+      var roleSelect = document.getElementById("u-role");
+      var nameHint = document.getElementById("u-name-hint");
+      var emailHint = document.getElementById("u-email-hint");
+
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function nextId(users) {
+        var max = 0;
+        users.forEach(function (u) {
+          var n = parseInt(String(u.id).replace(/[^\d]/g, ""), 10);
+          if (!isNaN(n) && n > max) max = n;
+        });
+        return "U-" + (max + 1);
+      }
+
+      function render() {
+        var users = BO.getUsers();
+        if (!users.length) {
+          tbody.innerHTML = '<tr><td colspan="4"><div class="bo-empty">No staff accounts yet.</div></td></tr>';
+          return;
+        }
+        tbody.innerHTML = users.map(function (u) {
+          var isSelf = session.email && u.email && session.email.toLowerCase() === u.email.toLowerCase();
+          var statusPill = u.active
+            ? '<span class="bo-pill bo-pill--u-active">Active</span>'
+            : '<span class="bo-pill bo-pill--u-inactive">Inactive</span>';
+          var actionBtn = isSelf
+            ? '<button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" disabled title="You cannot deactivate your own signed-in account.">' +
+                (u.active ? 'Deactivate' : 'Reactivate') + '</button><span class="u-self-hint">This is you</span>'
+            : '<button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" data-toggle="' + esc(u.id) + '">' +
+                (u.active ? 'Deactivate' : 'Reactivate') + '</button>';
+          return '<tr data-row="' + esc(u.id) + '">' +
+            '<td><div class="bo-cellname">' + esc(u.name) + '<small>' + esc(u.email) + '</small></div></td>' +
+            '<td><select class="bo-select" data-role="' + esc(u.id) + '">' +
+              ['Admin', 'Content', 'Sales'].map(function (r) {
+                return '<option value="' + r + '"' + (u.role === r ? ' selected' : '') + '>' + r + '</option>';
+              }).join('') +
+            '</select></td>' +
+            '<td>' + statusPill + '</td>' +
+            '<td class="u-actions">' + actionBtn + '</td>' +
+          '</tr>';
+        }).join('');
+      }
+
+      tbody.addEventListener("change", function (e) {
+        var t = e.target;
+        if (t.matches("select[data-role]")) {
+          var id = t.getAttribute("data-role");
+          var users = BO.getUsers();
+          var u = users.filter(function (x) { return x.id === id; })[0];
+          if (!u) return;
+          u.role = t.value;
+          BO.saveUsers(users);
+          BO.toast("Role updated for <b>" + esc(u.name) + "</b>.");
+        }
+      });
+
+      tbody.addEventListener("click", function (e) {
+        var btn = e.target.closest("button[data-toggle]");
+        if (!btn) return;
+        var id = btn.getAttribute("data-toggle");
+        var users = BO.getUsers();
+        var u = users.filter(function (x) { return x.id === id; })[0];
+        if (!u) return;
+        u.active = !u.active;
+        BO.saveUsers(users);
+        BO.toast(u.active ? "<b>" + esc(u.name) + "</b> reactivated." : "<b>" + esc(u.name) + "</b> deactivated.");
+        render();
+      });
+
+      document.getElementById("add-user-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = nameInput.value.trim();
+        var email = emailInput.value.trim();
+        var role = roleSelect.value;
+        var nameOk = name.length > 0;
+        var emailOk = EMAIL_RE.test(email);
+        nameHint.hidden = nameOk;
+        emailHint.hidden = emailOk;
+        if (!nameOk || !emailOk) return;
+
+        var users = BO.getUsers();
+        var id = nextId(users);
+        users.push({ id: id, name: name, email: email, role: role, active: true });
+        BO.saveUsers(users);
+        BO.toast("<b>" + esc(name) + "</b> added as " + esc(role) + ".");
+        nameInput.value = "";
+        emailInput.value = "";
+        roleSelect.value = "Sales";
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

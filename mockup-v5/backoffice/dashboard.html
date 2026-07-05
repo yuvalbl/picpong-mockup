@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Dashboard - Picpong Backoffice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/backoffice.css" />
+</head>
+<body>
+  <script src="js/bo.js"></script>
+  <script>
+    (function () {
+      var session = BO.requireRole(["Admin", "Sales", "Content"]);
+      if (!session) return;
+      var main = BO.mountShell({ active: "dashboard.html", title: "Dashboard" });
+      var role = session.role;
+      var esc = BO.esc;
+
+      var leads = BO.getLeads();
+      var posts = BO.getPosts();
+
+      // ---- shared metrics ----
+      var newLeads = leads.filter(function (l) { return l.status === "new"; });
+      var newToday = leads.filter(function (l) { return l.status === "new" && BO.isToday(l.createdAt); });
+      var unassigned = leads.filter(function (l) { return !l.assigned && l.status !== "won" && l.status !== "lost"; });
+      var awaitingReply = leads.filter(function (l) { return l.status === "new" || l.status === "contacted"; });
+      var drafts = posts.filter(function (p) { return p.status === "draft"; });
+      var published = posts.filter(function (p) { return p.status === "published"; });
+      var lastPublished = published.slice().sort(function (a, b) { return b.date < a.date ? -1 : 1; })[0];
+
+      function tile(label, num, foot, accent) {
+        return '<div class="bo-stat' + (accent ? ' bo-stat--accent' : '') + '">' +
+          '<span class="bo-stat__label">' + esc(label) + '</span>' +
+          '<span class="bo-stat__num">' + num + '</span>' +
+          (foot ? '<span class="bo-stat__foot">' + esc(foot) + '</span>' : '') +
+          '</div>';
+      }
+
+      function leadRow(l) {
+        var thumbs = (l.items || []).slice(0, 3).map(function (it) {
+          return '<img src="' + esc(it.thumb) + '" alt="" title="' + esc(it.title) + '" />';
+        }).join("");
+        var more = (l.items || []).length > 3 ? '<span class="bo-thumbs__more">+' + ((l.items.length) - 3) + '</span>' : '';
+        return '<a class="bo-list__row" href="lead-detail.html?id=' + encodeURIComponent(l.id) + '">' +
+          '<span class="bo-thumbs">' + thumbs + more + '</span>' +
+          '<span><span class="bo-list__name">' + esc(l.name) + '</span><br>' +
+          '<span class="bo-list__meta">' + esc(l.company) + ' · ' + BO.timeAgo(l.createdAt) + '</span></span>' +
+          '<span class="bo-list__spacer"></span>' +
+          '<span class="' + BO.pillClass(l.status) + '">' + esc(l.status) + '</span></a>';
+      }
+
+      function postRow(p) {
+        return '<a class="bo-list__row" href="journal-editor.html?id=' + encodeURIComponent(p.id) + '">' +
+          '<img src="' + esc(p.image) + '" alt="" style="width:44px;height:44px;border-radius:7px;object-fit:cover" />' +
+          '<span><span class="bo-list__name">' + esc(p.en.title) + '</span><br>' +
+          '<span class="bo-list__meta">' + BO.fmtDate(p.date) + (p.isVideo ? ' · Video' : '') + '</span></span>' +
+          '<span class="bo-list__spacer"></span>' +
+          '<span class="' + BO.pillClass(p.status) + '">' + esc(p.status) + '</span></a>';
+      }
+
+      // ---- SALES panel ----
+      function salesBlock() {
+        var tiles =
+          tile("New today", newToday.length, "leads landed today", true) +
+          tile("Unassigned", unassigned.length, "no rep yet") +
+          tile("Awaiting reply", awaitingReply.length, "new + contacted");
+        var list = newLeads.length
+          ? newLeads.slice(0, 6).map(leadRow).join("")
+          : '<div class="bo-empty">No new leads right now.</div>';
+        return '<section class="bo-grid bo-grid--3" style="margin-bottom:1.4rem">' + tiles + '</section>' +
+          '<section class="bo-card">' +
+            '<div class="bo-card__head"><h2>Newest leads</h2><a class="bo-card__more" href="leads.html">All leads</a></div>' +
+            '<div class="bo-list">' + list + '</div>' +
+          '</section>';
+      }
+
+      // ---- CONTENT panel ----
+      function contentBlock() {
+        var tiles =
+          tile("Drafts", drafts.length, "waiting to publish", drafts.length > 0) +
+          tile("Published", published.length, "live on the journal") +
+          tile("Last published", lastPublished ? BO.fmtDate(lastPublished.date) : "-", lastPublished ? lastPublished.en.title : "");
+        var draftList = drafts.length
+          ? drafts.slice(0, 5).map(postRow).join("")
+          : '<div class="bo-empty">No drafts - all caught up.</div>';
+        return '<section class="bo-grid bo-grid--3" style="margin-bottom:1.4rem">' + tiles + '</section>' +
+          '<section class="bo-card" style="margin-bottom:1.4rem">' +
+            '<div class="bo-card__head"><h2>Publish queue</h2>' +
+              '<a class="bo-btn bo-btn--brand bo-btn--sm bo-card__more" href="journal-editor.html">' + BO.ICON.journal + ' New journal post</a></div>' +
+            '<div class="bo-list">' + draftList + '</div>' +
+          '</section>';
+      }
+
+      // ---- ADMIN links strip ----
+      function adminLinks() {
+        return '<section class="bo-card">' +
+          '<div class="bo-card__head"><h2>Admin</h2></div>' +
+          '<div class="bo-grid bo-grid--2">' +
+            '<a class="bo-list__row" href="users.html"><span class="bo-avatar" style="background:var(--bo-orange-tint);color:var(--bo-orange)">' + BO.ICON.users + '</span><span><span class="bo-list__name">Users</span><br><span class="bo-list__meta">' + BO.getUsers().length + ' staff accounts</span></span></a>' +
+            '<a class="bo-list__row" href="settings.html"><span class="bo-avatar" style="background:var(--bo-orange-tint);color:var(--bo-orange)">' + BO.ICON.settings + '</span><span><span class="bo-list__name">Settings</span><br><span class="bo-list__meta">WhatsApp, routing, social</span></span></a>' +
+          '</div></section>';
+      }
+
+      var greeting = '<div class="bo-pagehead"><h1>' + greetLine(session.name) + '</h1><p>' + subLine(role) + '</p></div>';
+
+      function greetLine(name) {
+        var h = new Date().getHours();
+        var g = h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
+        return esc(g) + ', ' + esc((name || "").split(" ")[0]) + '.';
+      }
+      function subLine(r) {
+        if (r === "Sales") return "Here is what has come in and what needs a reply.";
+        if (r === "Content") return "Your publish queue and what is live on the site.";
+        return "A full view across leads and content.";
+      }
+
+      var html = greeting;
+      if (role === "Sales") {
+        html += salesBlock();
+      } else if (role === "Content") {
+        html += contentBlock();
+      } else { // Admin - both summaries + admin links
+        html += salesBlock() + '<div style="height:1.4rem"></div>' + contentBlock() + adminLinks();
+      }
+
+      main.innerHTML = html;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Settings - Picpong Backoffice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/backoffice.css" />
+  <style>
+    /* Bespoke to this page only. */
+    .s-danger-card { border-color: #d8b9a8; }
+    .s-danger-card .bo-card__head h2 { color: #8A3B08; }
+    .s-danger-warn { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.9rem; max-width: 60ch; }
+    .bo-btn--danger { background: var(--bo-surface); border-color: #d8b9a8; color: #8A3B08; }
+    .bo-btn--danger:hover { background: #8A3B08; border-color: #8A3B08; color: #fff; }
+    .s-error { color: #8A3B08; }
+    .bo-grid--settings { display: grid; gap: 1.4rem; grid-template-columns: 1fr; max-width: 720px; }
+  </style>
+</head>
+<body>
+  <script src="js/bo.js"></script>
+  <script>
+    (function () {
+      var session = BO.requireRole(["Admin"]);
+      if (!session) return;
+      var main = BO.mountShell({ active: "settings.html", title: "Settings" });
+      var esc = BO.esc;
+      var settings = BO.getSettings();
+
+      main.innerHTML =
+        '<div class="bo-pagehead">' +
+          '<h1>Settings</h1>' +
+          '<p>Global configuration for lead routing, socials and demo data. Each card saves independently.</p>' +
+        '</div>' +
+        '<div class="bo-grid--settings">' +
+
+        '<section class="bo-card">' +
+          '<div class="bo-card__head"><h2>Communications</h2></div>' +
+          '<form class="bo-form" id="comms-form" novalidate>' +
+            '<div class="bo-field">' +
+              '<label for="s-whatsapp">WhatsApp Business number</label>' +
+              '<input class="bo-input" type="text" id="s-whatsapp" name="whatsapp" value="' + esc(settings.whatsappNumber) + '" />' +
+              '<span class="bo-field__hint"><b>Sandbox placeholder</b> - replace with the real WhatsApp Business number before launch (decision OQ-2).</span>' +
+              '<span class="bo-field__hint s-error" id="s-whatsapp-err" hidden>Digits only, no spaces or symbols.</span>' +
+            '</div>' +
+            '<div class="bo-field">' +
+              '<label for="s-routing">Lead routing email</label>' +
+              '<input class="bo-input" type="email" id="s-routing" name="routing" value="' + esc(settings.routingEmail) + '" />' +
+            '</div>' +
+            '<button class="bo-btn bo-btn--brand" type="submit">Save</button>' +
+          '</form>' +
+        '</section>' +
+
+        '<section class="bo-card">' +
+          '<div class="bo-card__head"><h2>Site</h2></div>' +
+          '<form class="bo-form" id="site-form" novalidate>' +
+            '<div class="bo-field">' +
+              '<label for="s-instagram">Instagram URL</label>' +
+              '<input class="bo-input" type="url" id="s-instagram" name="instagram" value="' + esc(settings.social.instagram) + '" />' +
+              '<span class="bo-field__hint s-error" id="s-instagram-err" hidden>Must start with http:// or https://.</span>' +
+            '</div>' +
+            '<div class="bo-field">' +
+              '<label for="s-facebook">Facebook URL</label>' +
+              '<input class="bo-input" type="url" id="s-facebook" name="facebook" value="' + esc(settings.social.facebook) + '" />' +
+              '<span class="bo-field__hint s-error" id="s-facebook-err" hidden>Must start with http:// or https://.</span>' +
+            '</div>' +
+            '<div class="bo-field">' +
+              '<label for="s-linkedin">LinkedIn URL</label>' +
+              '<input class="bo-input" type="url" id="s-linkedin" name="linkedin" value="' + esc(settings.social.linkedin) + '" />' +
+              '<span class="bo-field__hint s-error" id="s-linkedin-err" hidden>Must start with http:// or https://.</span>' +
+            '</div>' +
+            '<div class="bo-field">' +
+              '<label id="s-lang-label">Default language</label>' +
+              '<div class="bo-segment" role="radiogroup" aria-labelledby="s-lang-label">' +
+                '<input type="radio" name="deflang" id="s-lang-he" value="he"' + (settings.defaultLanguage === "he" ? " checked" : "") + ' />' +
+                '<label for="s-lang-he"><span class="bo-segment__title">עברית (he)</span></label>' +
+                '<input type="radio" name="deflang" id="s-lang-en" value="en"' + (settings.defaultLanguage === "en" ? " checked" : "") + ' />' +
+                '<label for="s-lang-en"><span class="bo-segment__title">English (en)</span></label>' +
+              '</div>' +
+              '<span class="bo-field__hint">The live site geo-detects the visitor\'s language; this is the fallback when detection is inconclusive.</span>' +
+            '</div>' +
+            '<button class="bo-btn bo-btn--brand" type="submit">Save</button>' +
+          '</form>' +
+        '</section>' +
+
+        '<section class="bo-card s-danger-card">' +
+          '<div class="bo-card__head"><h2>Demo data</h2></div>' +
+          '<p class="s-danger-warn">Resetting restores the original seeded leads, journal posts and staff users, and discards anything added or edited in this browser.</p>' +
+          '<button class="bo-btn bo-btn--danger" type="button" id="reset-demo-btn">Reset demo data</button>' +
+        '</section>' +
+
+        '</div>';
+
+      function currentSettings() { return BO.getSettings(); }
+
+      document.getElementById("comms-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var whatsappRaw = document.getElementById("s-whatsapp").value.trim();
+        var routing = document.getElementById("s-routing").value.trim();
+        var whatsappOk = /^\d+$/.test(whatsappRaw);
+        document.getElementById("s-whatsapp-err").hidden = whatsappOk;
+        if (!whatsappOk) return;
+
+        var s = currentSettings();
+        s.whatsappNumber = whatsappRaw;
+        s.routingEmail = routing;
+        BO.saveSettings(s);
+        BO.toast("Communications settings saved.");
+      });
+
+      document.getElementById("site-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var ig = document.getElementById("s-instagram").value.trim();
+        var fb = document.getElementById("s-facebook").value.trim();
+        var li = document.getElementById("s-linkedin").value.trim();
+        var lang = (document.querySelector('input[name="deflang"]:checked') || {}).value || "he";
+
+        var urlOk = function (v) { return /^https?:\/\//i.test(v); };
+        var igOk = urlOk(ig), fbOk = urlOk(fb), liOk = urlOk(li);
+        document.getElementById("s-instagram-err").hidden = igOk;
+        document.getElementById("s-facebook-err").hidden = fbOk;
+        document.getElementById("s-linkedin-err").hidden = liOk;
+        if (!igOk || !fbOk || !liOk) return;
+
+        var s = currentSettings();
+        s.social = { instagram: ig, facebook: fb, linkedin: li };
+        s.defaultLanguage = lang;
+        BO.saveSettings(s);
+        BO.toast("Site settings saved.");
+      });
+
+      document.getElementById("reset-demo-btn").addEventListener("click", function () {
+        BO.resetDemo();
+        location.reload();
+      });
+    })();
+  </script>
+</body>
+</html>

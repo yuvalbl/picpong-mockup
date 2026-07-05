@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Catalog - Picpong Backoffice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/backoffice.css" />
+  <style>
+    /* catalog manager */
+    .cm-head-actions { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .cm-head-actions .sp { margin-inline-start: auto; }
+    .cm-badges { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+    .cm-badge { display: inline-flex; align-items: center; font-size: 0.7rem; font-weight: 700; padding: 0.14rem 0.45rem; border-radius: 999px; background: var(--st-new-bg); color: var(--st-new-fg); white-space: nowrap; }
+    .cm-catchip { display: inline-block; font-size: 0.74rem; font-weight: 600; padding: 0.16rem 0.5rem; border-radius: 999px; background: var(--bo-bg); color: var(--muted); border: 1px solid var(--bo-line-soft); white-space: nowrap; }
+    .cm-photo { font-size: 0.76rem; color: var(--muted); display: inline-flex; align-items: center; gap: 0.35rem; }
+    .cm-photo::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: var(--kraft); flex: none; }
+    .cm-price { font-weight: 700; white-space: nowrap; }
+    /* inline editor panel */
+    .cm-editor { background: var(--bo-bg); border-top: 1px solid var(--bo-line); }
+    .cm-editor td { padding: 1.1rem 1rem !important; }
+    .cm-editor-inner { display: grid; gap: 1.1rem; max-width: 780px; }
+    .cm-toggle-chip {
+      font: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+      padding: 0.4rem 0.75rem; border-radius: 999px; border: 1.5px solid var(--bo-line);
+      background: var(--bo-surface); color: var(--ink);
+    }
+    .cm-toggle-chip:hover { border-color: var(--ink); }
+    .cm-toggle-chip[aria-pressed="true"] { background: var(--st-new-bg); border-color: var(--st-new-fg); color: var(--st-new-fg); }
+    .cm-chipset { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .cm-opt { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 600; padding: 0.3rem 0.3rem 0.3rem 0.6rem; border-radius: 999px; background: var(--bo-surface); border: 1.5px solid var(--bo-line); }
+    .cm-opt button { width: 18px; height: 18px; border-radius: 999px; border: none; background: var(--bo-line); color: var(--ink); cursor: pointer; display: grid; place-items: center; font-size: 0.7rem; line-height: 1; }
+    .cm-opt button:hover { background: var(--bo-orange); color: #fff; }
+    .cm-addopt { display: flex; gap: 0.5rem; margin-top: 0.5rem; max-width: 360px; }
+    .cm-addopt .bo-input { padding: 0.45rem 0.65rem; }
+  </style>
+</head>
+<body>
+  <script src="js/bo.js"></script>
+  <script>
+    (function () {
+      var session = BO.requireRole(["Admin", "Content"]);
+      if (!session) return;
+      var main = BO.mountShell({ active: "catalog-manager.html", title: "Catalog" });
+      var esc = BO.esc;
+
+      var CATS = ["Counters", "Stands", "Shelving", "Photocall walls", "Gates & arches"];
+      var ALL_BADGES = ["100% recycled", "Reusable", "Ships flat", "Water-resistant"];
+
+      // seeded from the real catalog.html / product.html content (indicative prices; the live site is quote-led)
+      var ITEMS = [
+        { id: "prod-demo-counter", en: "Demo Counter", he: "דלפק הדגמה", cat: "Counters", price: "1,290",
+          material: "X-Board · 100% recycled corrugated", thickness: "4 cm (ships flat)", assembly: "Tool-free · ~5 minutes",
+          badges: ["100% recycled", "Ships flat", "Water-resistant"], opts: ["Natural kraft", "Full-colour print", "White-faced", "Standard 95cm", "Bar 110cm"] },
+        { id: "prod-totem", en: "Free-Standing Totem", he: "טוטם עצמאי", cat: "Stands", price: "890",
+          material: "X-Board · 100% recycled corrugated", thickness: "4 cm (ships flat)", assembly: "Tool-free · ~5 minutes",
+          badges: ["Ships flat"], opts: ["Natural kraft", "Full-colour print"] },
+        { id: "prod-shelf", en: "Modular Shelf Unit", he: "יחידת מדף מודולרית", cat: "Shelving", price: "1,450",
+          material: "X-Board · 100% recycled corrugated", thickness: "4 cm (ships flat)", assembly: "Tool-free · ~10 minutes",
+          badges: ["Reusable"], opts: ["3 shelves", "5 shelves"] },
+        { id: "prod-photocall-wall", en: "Photocall Wall 2×2.4m", he: "קיר פוטוקול 2×2.4 מ'", cat: "Photocall walls", price: "1,900",
+          material: "X-Board · 100% recycled corrugated", thickness: "4 cm (ships flat)", assembly: "Tool-free · ~15 minutes",
+          badges: ["100% recycled"], opts: ["Full-colour print"] },
+        { id: "arch-welcome", en: "Welcome Arch", he: "שער קבלת פנים", cat: "Gates & arches", price: "2,400",
+          material: "X-Board · 100% recycled corrugated", thickness: "4 cm (ships flat)", assembly: "Tool-free · ~20 minutes",
+          badges: ["Reusable"], opts: ["Natural kraft", "Full-colour print"] },
+        { id: "riser-tiered", en: "Tiered Riser Set", he: "סט הגבהה מדורג", cat: "Stands", price: "760",
+          material: "X-Board · 100% recycled corrugated", thickness: "4 cm (ships flat)", assembly: "Tool-free · ~5 minutes",
+          badges: ["Ships flat"], opts: ["3-tier", "4-tier"] }
+      ];
+      function itemById(id) { return ITEMS.filter(function (x) { return x.id === id; })[0]; }
+
+      var openId = null;
+
+      function render() {
+        var head = '<div class="bo-pagehead"><h1>Catalog</h1>' +
+          '<p>The browse-only product range. Every piece is quote-led on the site; edit specs, eco badges and option chips here.</p></div>';
+
+        var actions = '<div class="cm-head-actions">' +
+          '<span style="color:var(--muted);font-weight:600;font-size:0.9rem">' + ITEMS.length + ' items</span>' +
+          '<span class="sp"></span>' +
+          '<button class="bo-btn bo-btn--brand" type="button" id="cm-new">' + BO.ICON.catalog + ' New item</button>' +
+        '</div>';
+
+        var note = '<div style="margin-bottom:1.2rem;padding:0.7rem 0.95rem;border-radius:var(--bo-radius-sm);background:var(--bo-orange-tint);border:1px dashed var(--bo-orange);font-size:0.83rem;color:#6b3a13">' +
+          '<b style="color:var(--bo-orange)">Photography.</b> Every item currently shows an illustrated placeholder. Real studio photos are commissioned in the build phase.</div>';
+
+        var rows = ITEMS.map(function (it) {
+          var badges = it.badges.map(function (b) { return '<span class="cm-badge">' + esc(b) + '</span>'; }).join("");
+          var row = '<tr>' +
+            '<td><div style="display:flex;flex-direction:column;gap:0.15rem">' +
+              '<span style="font-weight:600">' + esc(it.en) + '</span>' +
+              '<span style="font-size:0.85rem;color:var(--muted)" dir="rtl">' + esc(it.he) + '</span></div></td>' +
+            '<td><span class="cm-catchip">' + esc(it.cat) + '</span></td>' +
+            '<td class="cm-price">₪ ' + esc(it.price) + '</td>' +
+            '<td><div class="cm-badges">' + (badges || '<span style="color:var(--muted);font-size:0.8rem">-</span>') + '</div></td>' +
+            '<td><span class="cm-photo">Illustrated placeholder</span></td>' +
+            '<td style="text-align:end"><button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" data-edit="' + esc(it.id) + '">' +
+              (openId === it.id ? "Close" : "Edit") + '</button></td>' +
+          '</tr>';
+          if (openId === it.id) row += editorRow(it);
+          return row;
+        }).join("");
+
+        var table = '<div class="bo-tablewrap"><table class="bo-table">' +
+          '<thead><tr><th>Item</th><th>Category</th><th>Price</th><th>Eco badges</th><th>Photo</th><th></th></tr></thead>' +
+          '<tbody>' + rows + '</tbody></table></div>';
+
+        main.innerHTML = head + actions + note + table;
+        wire();
+      }
+
+      function editorRow(it) {
+        var badgeChips = ALL_BADGES.map(function (b) {
+          return '<button type="button" class="cm-toggle-chip" data-badge="' + esc(b) + '" aria-pressed="' + (it.badges.indexOf(b) !== -1) + '">' + esc(b) + '</button>';
+        }).join("");
+        var optChips = it.opts.map(function (o, i) {
+          return '<span class="cm-opt">' + esc(o) + '<button type="button" data-delopt="' + i + '" aria-label="Remove option ' + esc(o) + '">×</button></span>';
+        }).join("") || '<span style="color:var(--muted);font-size:0.82rem">No options yet</span>';
+
+        return '<tr class="cm-editor"><td colspan="6"><div class="cm-editor-inner">' +
+          '<div class="bo-field--row">' +
+            '<div class="bo-field"><label for="cm-en">Name (English)</label>' +
+              '<input class="bo-input" id="cm-en" value="' + esc(it.en) + '" /></div>' +
+            '<div class="bo-field"><label for="cm-he">Name (Hebrew)</label>' +
+              '<input class="bo-input" id="cm-he" dir="rtl" value="' + esc(it.he) + '" /></div>' +
+          '</div>' +
+          '<div class="bo-field--row">' +
+            '<div class="bo-field"><label for="cm-cat">Category</label>' +
+              '<select class="bo-select" id="cm-cat">' +
+                CATS.map(function (c) { return '<option value="' + esc(c) + '"' + (it.cat === c ? " selected" : "") + '>' + esc(c) + '</option>'; }).join("") +
+              '</select></div>' +
+            '<div class="bo-field"><label for="cm-price">Price (indicative, ₪)</label>' +
+              '<input class="bo-input" id="cm-price" value="' + esc(it.price) + '" /></div>' +
+          '</div>' +
+          '<div class="bo-field--row">' +
+            '<div class="bo-field"><label for="cm-material">Material</label>' +
+              '<input class="bo-input" id="cm-material" value="' + esc(it.material) + '" /></div>' +
+            '<div class="bo-field"><label for="cm-thick">Thickness</label>' +
+              '<input class="bo-input" id="cm-thick" value="' + esc(it.thickness) + '" /></div>' +
+            '<div class="bo-field"><label for="cm-assembly">Assembly</label>' +
+              '<input class="bo-input" id="cm-assembly" value="' + esc(it.assembly) + '" /></div>' +
+          '</div>' +
+          '<div class="bo-field"><label>Eco badges</label>' +
+            '<div class="cm-chipset" id="cm-badges">' + badgeChips + '</div></div>' +
+          '<div class="bo-field"><label>Option chips</label>' +
+            '<div class="cm-chipset" id="cm-opts">' + optChips + '</div>' +
+            '<div class="cm-addopt"><input class="bo-input" id="cm-newopt" placeholder="Add an option" aria-label="New option label" />' +
+              '<button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" id="cm-addopt">Add</button></div>' +
+          '</div>' +
+          '<div style="display:flex;gap:0.6rem;flex-wrap:wrap"><button class="bo-btn bo-btn--brand" type="button" id="cm-save">Save item</button>' +
+            '<button class="bo-btn bo-btn--ghost" type="button" data-edit="' + esc(it.id) + '">Cancel</button></div>' +
+        '</div></td></tr>';
+      }
+
+      function wire() {
+        Array.prototype.forEach.call(main.querySelectorAll("[data-edit]"), function (b) {
+          b.addEventListener("click", function () {
+            var wanted = b.getAttribute("data-edit");
+            openId = (openId === wanted) ? null : wanted;
+            render();
+          });
+        });
+        var newBtn = document.getElementById("cm-new");
+        if (newBtn) newBtn.addEventListener("click", function () {
+          BO.toast("New catalog item - full create form comes in the build");
+        });
+
+        if (!openId) return;
+        var it = itemById(openId);
+        if (!it) return;
+
+        Array.prototype.forEach.call(main.querySelectorAll("[data-badge]"), function (b) {
+          b.addEventListener("click", function () {
+            var pressed = b.getAttribute("aria-pressed") === "true";
+            b.setAttribute("aria-pressed", pressed ? "false" : "true");
+            var name = b.getAttribute("data-badge");
+            if (pressed) it.badges = it.badges.filter(function (x) { return x !== name; });
+            else if (it.badges.indexOf(name) === -1) it.badges.push(name);
+          });
+        });
+        Array.prototype.forEach.call(main.querySelectorAll("[data-delopt]"), function (b) {
+          b.addEventListener("click", function () {
+            it.opts.splice(parseInt(b.getAttribute("data-delopt"), 10), 1);
+            render();
+          });
+        });
+        var addOpt = document.getElementById("cm-addopt");
+        if (addOpt) addOpt.addEventListener("click", function () {
+          var input = document.getElementById("cm-newopt");
+          var v = input.value.trim();
+          if (!v) return;
+          it.opts.push(v);
+          render();
+        });
+        document.getElementById("cm-save").addEventListener("click", function () {
+          it.en = document.getElementById("cm-en").value.trim();
+          it.he = document.getElementById("cm-he").value.trim();
+          it.cat = document.getElementById("cm-cat").value;
+          it.price = document.getElementById("cm-price").value.trim();
+          it.material = document.getElementById("cm-material").value.trim();
+          it.thickness = document.getElementById("cm-thick").value.trim();
+          it.assembly = document.getElementById("cm-assembly").value.trim();
+          BO.toast("Saved <b>" + esc(it.en || "item") + "</b>");
+          openId = null;
+          render();
+        });
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>

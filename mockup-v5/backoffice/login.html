@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Sign in - Picpong Backoffice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/backoffice.css" />
+</head>
+<body class="bo-body">
+  <a class="bo-skip" href="#bo-main">Skip to content</a>
+  <div class="bo-auth">
+    <main class="bo-auth__card" id="bo-main">
+      <div class="bo-auth__brand">
+        <span class="bo-brand__mark"><img src="../assets/brand/puffer.svg" alt="" onerror="this.src='../assets/brand/puffer.png'" /></span>
+        <div>
+          <div class="bo-brand__name" style="font-size:1.15rem">Picpong</div>
+          <div class="bo-brand__sub" style="color:var(--muted)">Backoffice</div>
+        </div>
+      </div>
+
+      <h1>Sign in</h1>
+      <p class="bo-auth__sub">Staff workspace for leads, journal and site content.</p>
+
+      <form class="bo-form" id="login-form" novalidate>
+        <div class="bo-field">
+          <label for="email">Email</label>
+          <input class="bo-input" type="email" id="email" name="email" autocomplete="username" placeholder="you@picpong.biz" required />
+        </div>
+        <div class="bo-field">
+          <label for="password">Password</label>
+          <input class="bo-input" type="password" id="password" name="password" autocomplete="current-password" placeholder="Your password" required />
+        </div>
+
+        <div class="bo-field">
+          <label id="role-label">Sign in as</label>
+          <div class="bo-segment" role="radiogroup" aria-labelledby="role-label">
+            <input type="radio" name="role" id="role-admin" value="Admin" />
+            <label for="role-admin">
+              <span class="bo-segment__title">Admin</span>
+              <span class="bo-segment__desc">Everything - leads, content, users, settings</span>
+            </label>
+            <input type="radio" name="role" id="role-content" value="Content" />
+            <label for="role-content">
+              <span class="bo-segment__title">Content Manager</span>
+              <span class="bo-segment__desc">Journal, featured, projects, catalog, media</span>
+            </label>
+            <input type="radio" name="role" id="role-sales" value="Sales" checked />
+            <label for="role-sales">
+              <span class="bo-segment__title">Sales Manager</span>
+              <span class="bo-segment__desc">Incoming leads and follow-up</span>
+            </label>
+          </div>
+          <span class="bo-field__hint">Role picker is a mockup convenience - it decides which screens you see.</span>
+        </div>
+
+        <button class="bo-btn bo-btn--brand bo-btn--block" type="submit">Sign in</button>
+
+        <div class="bo-auth__foot">
+          <a href="forgot-password.html">Forgot password?</a>
+        </div>
+      </form>
+
+      <div class="bo-mocknote">
+        <b>UI mockup.</b> This is a design prototype with demo data in your browser. Any email and password are accepted - no real account, no server.
+      </div>
+    </main>
+  </div>
+
+  <script src="js/bo.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById("login-form");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var email = document.getElementById("email").value.trim();
+        var role = (form.querySelector('input[name="role"]:checked') || {}).value || "Sales";
+        // Mock: any credentials accepted. Derive a display name from the email.
+        var namePart = email.split("@")[0].replace(/[._-]+/g, " ").trim();
+        var name = namePart
+          ? namePart.replace(/\b\w/g, function (c) { return c.toUpperCase(); })
+          : (role === "Admin" ? "Eitan Golan" : role === "Content" ? "Maya Cohen" : "Noa Bar-Levi");
+        BO.setSession({ name: name, role: role, email: email || "demo@picpong.biz" });
+        location.href = "dashboard.html";
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Lead - Picpong Backoffice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/backoffice.css" />
+  <style>
+    /* Scoped to this page only. */
+    .ld-layout { display: grid; grid-template-columns: 1fr 320px; gap: 1.4rem; align-items: start; }
+    @media (max-width: 900px) { .ld-layout { grid-template-columns: 1fr; } }
+    .ld-header {
+      display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+    .ld-back { color: var(--muted); font-size: 0.88rem; text-decoration: none; font-weight: 600; }
+    .ld-back:hover { color: var(--bo-orange); }
+    .ld-id { font-family: "Rubik", system-ui, sans-serif; font-size: 1.3rem; font-weight: 500; }
+    .ld-stack { display: flex; flex-direction: column; gap: 1.2rem; }
+    .ld-contact-row { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin-top: 0.4rem; color: var(--muted); font-size: 0.92rem; }
+    .ld-contact-row a { color: var(--ink); font-weight: 600; text-decoration: none; }
+    .ld-contact-row a:hover { color: var(--bo-orange); }
+    .ld-message { line-height: 1.6; margin: 0; }
+    .ld-note { padding: 0.6rem 0; border-bottom: 1px solid var(--bo-line-soft); }
+    .ld-note:last-child { border-bottom: none; }
+    .ld-note__meta { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.2rem; }
+    .ld-note__meta b { color: var(--ink); }
+    .ld-hint {
+      margin-top: 0.9rem; padding: 0.6rem 0.75rem; font-size: 0.84rem;
+      background: var(--bo-orange-tint); border-radius: var(--bo-radius-sm); color: #6b3a13;
+    }
+  </style>
+</head>
+<body>
+  <script src="js/bo.js"></script>
+  <script>
+    (function () {
+      var session = BO.requireRole(["Admin", "Sales"]);
+      if (!session) return;
+      var main = BO.mountShell({ active: "leads.html", title: "Lead detail" });
+      var esc = BO.esc;
+
+      var params = new URLSearchParams(location.search);
+      var id = params.get("id");
+      var lead = id ? BO.getLead(id) : null;
+
+      if (!lead) {
+        main.innerHTML = '<div class="bo-empty">Lead not found.<br><br>' +
+          '<a class="bo-btn bo-btn--ghost bo-btn--sm" href="leads.html">Back to leads</a></div>';
+        return;
+      }
+
+      var REPS = BO.getReps();
+
+      /* id -> marketing-site deep link. Matches the resolver shim in
+         ../js/app.js (repEmailDemo -> resolveHref) so links land on the
+         same pages that shim would produce. */
+      var DEEP_LINKS = {
+        "feed-microsoft-teardown": "../latest.html",
+        "feed-landa-letters": "../latest.html",
+        "feed-king-solomon-floor": "../latest.html",
+        "feed-google-cloud-welcome": "../latest.html",
+        "feed-synamedia-lounge": "../latest.html",
+        "feed-deep-instinct-launch": "../latest.html",
+        "feed-bluevine-brand": "../latest.html",
+        "feed-redefine-meat-rebrand": "../latest.html",
+        "proj-priority": "../projects.html",
+        "proj-meetmind": "../projects.html",
+        "prod-demo-counter": "../product.html",
+        "prod-totem": "../catalog.html",
+        "prod-shelf": "../catalog.html"
+      };
+      function deepLink(itemId) {
+        if (DEEP_LINKS[itemId]) return DEEP_LINKS[itemId] + "#item-" + encodeURIComponent(itemId);
+        if (itemId.indexOf("prod-") === 0) return "../catalog.html#item-" + encodeURIComponent(itemId);
+        if (itemId.indexOf("proj-") === 0) return "../projects.html#item-" + encodeURIComponent(itemId);
+        return "../index.html#item-" + encodeURIComponent(itemId);
+      }
+
+      function telHref(phone) { return "tel:" + String(phone || "").replace(/[^\d+]/g, ""); }
+
+      function headerHtml() {
+        return '<div class="ld-header">' +
+          '<a class="ld-back" href="leads.html">&larr; Back to leads</a>' +
+          '<span class="ld-id">' + esc(lead.id) + '</span>' +
+          '<span id="ld-status-pill" class="' + BO.pillClass(lead.status) + '">' + esc(lead.status) + '</span>' +
+        '</div>';
+      }
+
+      function contactCardHtml() {
+        return '<section class="bo-card">' +
+          '<div class="bo-card__head"><h2>' + esc(lead.name) + '</h2></div>' +
+          '<div>' + esc(lead.company) + '</div>' +
+          '<div class="ld-contact-row">' +
+            '<a href="mailto:' + esc(lead.email) + '">' + esc(lead.email) + '</a>' +
+            '<a href="' + esc(telHref(lead.phone)) + '">' + esc(lead.phone) + '</a>' +
+            '<span class="bo-chip">' + (lead.channel === "whatsapp" ? BO.ICON.whatsapp : BO.ICON.email) +
+              '<span>' + esc(lead.channel === "whatsapp" ? "WhatsApp" : "Email") + '</span></span>' +
+            '<span>Language: ' + esc((lead.language || "").toUpperCase()) + '</span>' +
+            '<span>Received ' + esc(BO.fmtDateTime(lead.createdAt)) + '</span>' +
+          '</div>' +
+        '</section>';
+      }
+
+      function messageCardHtml() {
+        var dir = lead.language === "en" ? "ltr" : "rtl";
+        return '<section class="bo-card">' +
+          '<div class="bo-card__head"><h3>Message</h3></div>' +
+          '<p class="ld-message"><span dir="' + dir + '">' + esc(lead.message) + '</span></p>' +
+        '</section>';
+      }
+
+      function itemsCardHtml() {
+        var rows = (lead.items || []).map(function (it) {
+          return '<div class="bo-itemrow">' +
+            '<img src="' + esc(it.thumb) + '" alt="" />' +
+            '<div style="flex:1"><div class="bo-itemrow__title">' + esc(it.title) + '</div>' +
+              '<div class="bo-itemrow__id">' + esc(it.id) + '</div></div>' +
+            '<a class="bo-btn bo-btn--ghost bo-btn--sm" href="' + esc(deepLink(it.id)) + '" target="_blank" rel="noopener">View on site</a>' +
+          '</div>';
+        }).join("");
+        return '<section class="bo-card">' +
+          '<div class="bo-card__head"><h3>Requested items</h3></div>' +
+          (rows || '<div class="bo-empty">No items attached.</div>') +
+        '</section>';
+      }
+
+      function statusOptions(current) {
+        var stages = ["new", "contacted", "quoted", "won", "lost"];
+        return stages.map(function (s) {
+          return '<option value="' + s + '"' + (s === current ? " selected" : "") + '>' +
+            s.charAt(0).toUpperCase() + s.slice(1) + '</option>';
+        }).join("");
+      }
+
+      function repOptions(current) {
+        var html = '<option value=""' + (!current ? " selected" : "") + '>Unassigned</option>';
+        REPS.forEach(function (r) {
+          html += '<option value="' + esc(r) + '"' + (r === current ? " selected" : "") + '>' + esc(r) + '</option>';
+        });
+        return html;
+      }
+
+      function nextStepHint(status) {
+        var map = {
+          "new": "Reach out within 24h.",
+          "contacted": "Follow up with a quote.",
+          "quoted": "Confirm details and try to close.",
+          "won": "Closed - keep for reference.",
+          "lost": "Closed - consider a re-approach later."
+        };
+        return map[status] || "";
+      }
+
+      function workflowCardHtml() {
+        var hint = nextStepHint(lead.status);
+        return '<section class="bo-card">' +
+          '<div class="bo-card__head"><h3>Workflow</h3></div>' +
+          '<div class="bo-form">' +
+            '<div class="bo-field">' +
+              '<label for="ld-status">Status</label>' +
+              '<select class="bo-select" id="ld-status">' + statusOptions(lead.status) + '</select>' +
+            '</div>' +
+            '<div class="bo-field">' +
+              '<label for="ld-assigned">Assigned rep</label>' +
+              '<select class="bo-select" id="ld-assigned">' + repOptions(lead.assigned) + '</select>' +
+            '</div>' +
+          '</div>' +
+          (hint ? '<div class="ld-hint" id="ld-hint">' + esc(hint) + '</div>' : '<div id="ld-hint"></div>') +
+        '</section>';
+      }
+
+      function noteHtml(n) {
+        return '<div class="ld-note">' +
+          '<div class="ld-note__meta"><b>' + esc(n.by) + '</b> &middot; ' + esc(BO.fmtDateTime(n.at)) + '</div>' +
+          '<div dir="auto">' + esc(n.text) + '</div>' +
+        '</div>';
+      }
+
+      function notesCardHtml() {
+        var list = (lead.notes || []).map(noteHtml).join("");
+        return '<section class="bo-card">' +
+          '<div class="bo-card__head"><h3>Notes</h3></div>' +
+          '<div id="ld-notes-list">' + (list || '<div class="bo-empty">No notes yet.</div>') + '</div>' +
+          '<div class="bo-form" style="margin-top:0.9rem">' +
+            '<div class="bo-field">' +
+              '<label for="ld-note-text">Add a note</label>' +
+              '<textarea class="bo-textarea" id="ld-note-text" placeholder="Called - discussed timeline..."></textarea>' +
+            '</div>' +
+            '<button type="button" class="bo-btn bo-btn--brand bo-btn--sm" id="ld-note-add">Add note</button>' +
+          '</div>' +
+        '</section>';
+      }
+
+      main.innerHTML =
+        headerHtml() +
+        '<div class="ld-layout">' +
+          '<div class="ld-stack">' + contactCardHtml() + messageCardHtml() + itemsCardHtml() + '</div>' +
+          '<div class="ld-stack">' + workflowCardHtml() + notesCardHtml() + '</div>' +
+        '</div>';
+
+      function refreshStatusPill() {
+        var pill = document.getElementById("ld-status-pill");
+        pill.className = BO.pillClass(lead.status);
+        pill.textContent = lead.status;
+        var hintBox = document.getElementById("ld-hint");
+        var hint = nextStepHint(lead.status);
+        hintBox.className = hint ? "ld-hint" : "";
+        hintBox.textContent = hint;
+      }
+
+      document.getElementById("ld-status").addEventListener("change", function (e) {
+        lead.status = e.target.value;
+        BO.saveLead(lead);
+        refreshStatusPill();
+        BO.toast('Status updated to <b>' + esc(lead.status) + '</b>');
+      });
+
+      document.getElementById("ld-assigned").addEventListener("change", function (e) {
+        lead.assigned = e.target.value || null;
+        BO.saveLead(lead);
+        BO.toast(lead.assigned ? 'Assigned to <b>' + esc(lead.assigned) + '</b>' : 'Lead unassigned');
+      });
+
+      document.getElementById("ld-note-add").addEventListener("click", function () {
+        var textarea = document.getElementById("ld-note-text");
+        var text = textarea.value.trim();
+        if (!text) return;
+        lead.notes = lead.notes || [];
+        lead.notes.push({ at: new Date().toISOString(), by: session.name, text: text });
+        BO.saveLead(lead);
+        document.getElementById("ld-notes-list").innerHTML = lead.notes.map(noteHtml).join("");
+        textarea.value = "";
+        BO.toast("Note added");
+      });
+    })();
+  </script>
+</body>
+</html>
