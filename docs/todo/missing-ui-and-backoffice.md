@@ -7,13 +7,14 @@ This covers the client-facing screen/state gaps and the greenfield backoffice (t
 Skim layer. Each line is exactly one missing screen/state, tagged `(priority . role)`. Client-facing MVP first, then backoffice MVP by role (Sales, Content, Admin), then everything deferred.
 
 Client-facing (MVP):
-- [ ] (MVP . legal) Accessibility statement page (הצהרת נגישות) - legally required in Israel
-- [ ] (MVP . legal) Privacy policy page
-- [ ] (MVP . client) 404 / not-found page (dead deep-links)
+- [x] (MVP . legal) Accessibility statement page (הצהרת נגישות) - legally required in Israel - **Done 2026-07-05.**
+- [x] (MVP . legal) Privacy policy page - **Done 2026-07-05 (draft for legal review).**
+- [x] (MVP . client) 404 / not-found page (dead deep-links) - **Done 2026-07-05.**
 - [ ] (DEFERRED . client) Form send-failure state (retry / WhatsApp fallback) - real-build / post-mockup: it needs a live backend that can actually fail, so there is nothing to build in the UI-only mockup phase
 
 Backoffice - Sales Manager (P3 - NOT in P1 MVP):
 > **Owner decision 2026-07-05:** no rep-side portal in the P1 lead-gen build. Leads are delivered as a **templated email + WhatsApp** to the sales rep (`../prd/03` L-6), landing in the inbox reps already use — no custom leads UI, auth, or CRM is built for P1. The whole Sales-backoffice block below moves to **P3**; buy auth/CRM off-the-shelf if/when it lands.
+> **Built as UI mockup 2026-07-05** (P3/real-build status above unchanged): this block is now visualized at `mockup-v5/backoffice/` (leads inbox with filters/search, lead detail with status pipeline + rep assignment + notes + deep links) as a sales-support/spec artifact, not a real P1 or P3 build.
 - [ ] (P3 . Sales) Leads inbox / list (with selected-item thumbnails + deep links)
 - [ ] (P3 . Sales) Lead detail
 - [ ] (P3 . Sales) Status / pipeline (new/contacted/quoted/won/lost)
@@ -23,6 +24,7 @@ Backoffice - Sales Manager (P3 - NOT in P1 MVP):
 - [ ] (P3 . Sales) Notes per lead
 
 Backoffice - Content Manager (MVP):
+> **Built as UI mockup 2026-07-05** (P3/real-build status unchanged): visualized at `mockup-v5/backoffice/` - journal manager + bilingual HE/EN editor with parity enforcement and draft-preview-publish (verified round-trip), featured-works curation, projects + catalog managers, media library with poster tooling.
 - [ ] (MVP . Content) Studio Journal post editor (1 photo + ~4 lines, HE/EN)
 - [ ] (MVP . Content) Journal feed manager
 - [ ] (MVP . Content) Draft to Preview to Publish flow
@@ -34,12 +36,14 @@ Backoffice - Content Manager (MVP):
 - [ ] (MVP . Content) Video upload / poster tooling
 
 Backoffice - Admin (MVP):
+> **Built as UI mockup 2026-07-05** (P3/real-build status unchanged): visualized at `mockup-v5/backoffice/` - users/roles management, settings (WhatsApp number with OQ-2 hint, routing email, socials, default language, demo reset).
 - [ ] (MVP . Admin) User management
 - [ ] (MVP . Admin) Role management (Admin/Content/Sales)
 - [ ] (MVP . Admin) Global settings: comms (WhatsApp Business number, routing email)
 - [ ] (MVP . Admin) Site settings: social URLs + default/geo language
 
 Backoffice - Shared (MVP):
+> **Built as UI mockup 2026-07-05** (P3/real-build status unchanged): visualized at `mockup-v5/backoffice/` - mock login/forgot/session (any credentials, role picker), role-aware shell, role-appropriate dashboard per role.
 - [ ] (MVP . Shared) Login (email+password / SSO)
 - [ ] (MVP . Shared) Password reset / forgot
 - [ ] (MVP . Shared) Session / logout

@@ -6,13 +6,15 @@ Covers the home page of `mockup-v5` (`index.html` + `css/styles.css`), dated 202
 
 ## Executive summary
 
-- [ ] KEEP the hero headline tile's `panel--pond` (and its orange CTA, ink underline, fish, and bubbles) - no change. It is the top half of a deliberate two-touch water motif, not an intrusion. Rationale below.
-- [ ] Remove coral entirely: repoint the slogan's second marker from `mark--coral` to a warm in-family marker (`--orange-deep`) - the `.mark--coral` spans in `index.html` (and the slogan phrases in `app.js`) + the `.slogan .mark--coral` rule in `styles.css`.
-- [ ] Dual-funnel lane 02: swap `panel--pond` for `panel--orange` so the primary lead lane reads as the warm "act now" color, ink lane 01 stays the neutral - the `panel--pond` class on the second `.lane--panel` (the `#contact` lane) in `index.html`. **This is the change that keeps the hero pond coherent**: it pulls blue out of its one non-nature home, so blue lands in exactly two water-depiction spots (hero pond + sustainability ocean) instead of scattered across three.
-- [ ] Update the lane-02 pond hover rule to the new orange panel - the `.panel--pond.lane--panel:hover` rule in `styles.css`.
-- [ ] Retire the coral tokens (`--coral`, `--coral-deep`) to keep the token set honest - the `--coral` / `--coral-deep` `:root` tokens in `styles.css`. KEEP the `panel--pond` rules (the hero still uses them).
-- [ ] Keep the sustainability ocean-to-forest gradient exactly as is, and use the **same** `--pond` token there and in the hero so the two blues visibly rhyme as bookends. Do NOT dial the ocean glow down (the earlier draft's optional tightening is reversed - it only made sense when the hero pond was being removed).
-- [ ] Recomment the `--pond` `:root` token as "water depiction only - hero pond + sustainability ocean; never a UI accent." Note: the literal `#2A9BD0` also appears off the home flow, in an inline product "Water-resistant" badge and in decorative board SVGs - that is fine and out of this pass's scope.
+**All items below done, gate passed 2026-07-05** (see `../todo/README.md` Phase 1 gate). Note: the `mark--coral` -> `mark--deep` repoint was implemented as a class rename rather than an in-place color swap, and the lane-02 pond->orange recolor landed a day earlier in `a03e742` (this pass's own commit `901e9f4` did the token retirement + recomment):
+
+- [x] KEEP the hero headline tile's `panel--pond` (and its orange CTA, ink underline, fish, and bubbles) - no change. It is the top half of a deliberate two-touch water motif, not an intrusion. Rationale below.
+- [x] Remove coral entirely: repoint the slogan's second marker from `mark--coral` to a warm in-family marker (`--orange-deep`) - the `.mark--coral` spans in `index.html` (and the slogan phrases in `app.js`) + the `.slogan .mark--coral` rule in `styles.css`.
+- [x] Dual-funnel lane 02: swap `panel--pond` for `panel--orange` so the primary lead lane reads as the warm "act now" color, ink lane 01 stays the neutral - the `panel--pond` class on the second `.lane--panel` (the `#contact` lane) in `index.html`. **This is the change that keeps the hero pond coherent**: it pulls blue out of its one non-nature home, so blue lands in exactly two water-depiction spots (hero pond + sustainability ocean) instead of scattered across three.
+- [x] Update the lane-02 pond hover rule to the new orange panel - the `.panel--pond.lane--panel:hover` rule in `styles.css`.
+- [x] Retire the coral tokens (`--coral`, `--coral-deep`) to keep the token set honest - the `--coral` / `--coral-deep` `:root` tokens in `styles.css`. KEEP the `panel--pond` rules (the hero still uses them).
+- [x] Keep the sustainability ocean-to-forest gradient exactly as is, and use the **same** `--pond` token there and in the hero so the two blues visibly rhyme as bookends. Do NOT dial the ocean glow down (the earlier draft's optional tightening is reversed - it only made sense when the hero pond was being removed).
+- [x] Recomment the `--pond` `:root` token as "water depiction only - hero pond + sustainability ocean; never a UI accent." Note: the literal `#2A9BD0` also appears off the home flow, in an inline product "Water-resistant" badge and in decorative board SVGs - that is fine and out of this pass's scope.
 
 ## Details
 

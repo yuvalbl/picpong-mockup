@@ -11,10 +11,10 @@ Skim layer. The interaction architecture is essentially complete and higher-fide
 - [ ] TODO: Hero video - `assets/video/hero.webm|mp4` do not exist; `assets/video/` dir is absent; currently falls back to a still poster.
 - [ ] TODO: Journal video post - static poster + play icon only, no real clip.
 - [ ] TODO: Social profile URLs - all `href="#"` placeholders across nav and footer on every page.
-- [ ] TODO: Client logos - low-res 2018 PNGs; re-source as SVG (clean SVGs already sit unused in `assets/brand/logos/`).
+- [ ] TODO: Client logos - low-res 2018 PNGs; re-source as SVG (clean SVGs already sit unused in `assets/brand/logos/`). **2026-07-05: attempted, blocked - the "clean" SVGs in `assets/brand/logos/` turned out to be corrupt/fake (7 of 8 have wrong letterforms); wiring them was reverted. Also surfaced a roster mismatch between the home marquee and the footer "Trusted by" list. Needs Kuki's canonical roster + real logo assets; see `../prd/open-questions.md` OQ-7.**
 - [ ] TODO: Project galleries - only one real hero per project; galleries reuse other projects' images as stand-ins; re-shoot/curate.
 - [ ] TODO: Eco certification documents - to be attached before publication.
-- [ ] TODO: WhatsApp Business number - Twilio sandbox placeholder still in place (OQ-2).
+- [ ] TODO: WhatsApp Business number - Twilio sandbox placeholder still in place (OQ-2). Still open; owner decision 2026-07-05 kept the sandbox for now (also now editable in the backoffice mockup's Admin settings).
 
 ### Design gaps
 - [x] IMPLEMENTED (A1): Loud, CSR-targeted sustainability section with nature imagery, replacing the old quiet two-column split. Implemented in v5; **pending confirmation of D6 (sustainability intensity) + the real nature-photo asset** (a placeholder image is in place). Built ahead of its gating decision (D6) - see README Phase 0.
@@ -22,21 +22,21 @@ Skim layer. The interaction architecture is essentially complete and higher-fide
 - [ ] DEFERRED: Products eco module - no dedicated "Recycle / Resistance" paired-pillar block; eco messaging is scattered across badges + spec strip + sustainability split. Deferred (nice-to-have, not a Phase-1 blocker); revisit post-Phase-1 or fold into Phase 4 content.
 
 ### Behavior decisions (TODO)
-- [ ] TODO: Add-to-selection toast rule is inverted vs the ask - fix so confirmation shows on FIRST add only, then quiet accumulation (currently silent-first, toast-on-every-subsequent).
-- [ ] TODO: Hebrew-first defaulting - every page hardcodes `lang="en" dir="ltr"` and the engine defaults to EN; a Hebrew-first product should default HE (or geo-detect).
-- [ ] TODO: WhatsApp message enrichment - carries item titles only; decide whether to add per-item `/m/<id>` links (thumbnails not possible via wa.me text).
-- [ ] TODO: Confirm display font - v5 uses Rubik, not the Fraunces named in CLAUDE.md (Rubik covers Hebrew; confirm intentional).
+- [x] TODO: Add-to-selection toast rule is inverted vs the ask - fix so confirmation shows on FIRST add only, then quiet accumulation (currently silent-first, toast-on-every-subsequent). **Done 2026-07-05.**
+- [x] TODO: Hebrew-first defaulting - every page hardcodes `lang="en" dir="ltr"` and the engine defaults to EN; a Hebrew-first product should default HE (or geo-detect). **Done 2026-07-05: `initLang()` now defaults Hebrew.**
+- [ ] TODO: WhatsApp message enrichment - carries item titles only; decide whether to add per-item `/m/<id>` links (thumbnails not possible via wa.me text). Still open.
+- [ ] TODO: Confirm display font - v5 uses Rubik, not the Fraunces named in CLAUDE.md (Rubik covers Hebrew; confirm intentional). Resolved separately: root CLAUDE.md now names Rubik as the decided display face (2026-07-05).
 
 ### Housekeeping (TODO, found during audit)
-- [ ] TODO: Remove/gate the Dev menu so it does not ship in production markup (currently injected on every page).
-- [ ] TODO: Fix stale code comments in `app.js` that call the "+" and fab "inert / reserved for PRD 2" when they are fully live.
-- [ ] TODO: Reserve bottom scroll-padding on mobile so the always-expanded contact-fab does not float over page-bottom content.
-- [ ] TODO: Derive catalog filter counts instead of hardcoding them (drift risk).
+- [x] TODO: Remove/gate the Dev menu so it does not ship in production markup (currently injected on every page). **Done 2026-07-05: gated behind `?dev` / `localStorage picpong:dev`.**
+- [x] TODO: Fix stale code comments in `app.js` that call the "+" and fab "inert / reserved for PRD 2" when they are fully live. **Done 2026-07-05.**
+- [x] TODO: Reserve bottom scroll-padding on mobile so the always-expanded contact-fab does not float over page-bottom content. **Done 2026-07-05.**
+- [x] TODO: Derive catalog filter counts instead of hardcoding them (drift risk). **Done 2026-07-05: facet counts now derived from the DOM.**
 
 ### Open questions (need Yuval + Kuki)
-- [ ] OPEN (OQ-1): Form contact requirement - at-least-one Email/Phone (current) vs force-both vs Email-only.
-- [ ] OPEN (OQ-2): Real WhatsApp Business number for launch (sandbox set).
-- [ ] OPEN (OQ-3): Home has three "our work" surfaces; keep both the journal strip and the projects teaser, or move the teaser to the Projects page.
+- [ ] OPEN (OQ-1): Form contact requirement - at-least-one Email/Phone (current) vs force-both vs Email-only. **2026-07-05: owner decision to skip for now - both surfaces keep their current, distinct rules, each now visibly stating its own rule. Still open pending Kuki.**
+- [ ] OPEN (OQ-2): Real WhatsApp Business number for launch (sandbox set). **2026-07-05: owner decision to keep the sandbox for now, now editable in the backoffice mockup's Admin settings. Still open pending Kuki.**
+- [ ] OPEN (OQ-3): Home has three "our work" surfaces; keep both the journal strip and the projects teaser, or move the teaser to the Projects page. **2026-07-05: owner decision to leave the home layout as-is for now, for Kuki to review. Still open.**
 
 ### Baseline that is already DONE (no action)
 - [x] DONE-baseline: Per-media "+ / I want this" affordance on every image across all pages.

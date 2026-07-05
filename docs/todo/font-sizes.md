@@ -6,19 +6,21 @@ Covers every text font-size in mockup-v5 (an identical fork of the audited mocku
 
 ## Executive summary
 
-- [ ] BUG: `.proj-search input` (the inline `<style>` rule in `projects.html`) is a real `<input>` at 15px with NO mobile 16px override, so iOS Safari zooms on focus (every other form field got the fix, this one was missed).
-- [ ] Make the form-input 16px rule global, not gated behind the `@media (max-width:600px)` block (the `.field input, .qf input, .qf select, .qf textarea { font-size: 16px }` rule): tablets/narrow desktops are still WebKit and still zoom. Add `.proj-search input` to the selector list.
-- [ ] Prose below 16px: raise `.pdp__quote p` to >=16px.
-- [ ] Prose below 16px: raise `.lead-drawer__intro` to >=16px.
-- [ ] Prose below 16px: raise `.feed-card__lines` (14.72px) and `.feed-card--compact .feed-card__lines` (13.76px) to >=16px.
-- [ ] Prose below 16px: raise `.repmail__contact` and `.repmail__item-title` to >=16px.
-- [ ] Prose below 16px: raise `.spec-table td` PDP spec values to 16px or explicitly re-scope as caption data.
-- [ ] Low-contrast + too-small: `.eyebrow` 11px in `--kraft-deep` on cream (approx 3.4:1, fails AA) is used site-wide; raise to >=12px and darken color - use the pinned end-state in README Phase 1 (`--t-eyebrow: 0.75rem`, `.eyebrow` color `#8a5a2a`, `--kraft-deep` token unchanged).
-- [ ] Low-contrast + too-small: `.repmail__badge` 11.52px white-on-orange (approx 2.9:1, fails AA); bump size and/or use `--orange-deep`.
-- [ ] Sub-12px cluster to raise to a 12px floor: `.feed-card__date` 11.84px, `.spotlight-tag` 11.52px, `.contact-fab__badge` 11.52px, `.ribbon` 11px, `.tile__badge` 11px, `.project__client` 11px over photo, `.sticker text` 11px, `.feed-card__videotag` 10.88px, `.slideshow .ctile__card-m` 10.56px.
-- [ ] Mobile collage title `.slideshow .ctile__card-k` shrinks to 13.76px: it is a title, keep it near 15px, not caption size.
-- [ ] `.qf-error` 13px red: verify contrast; error text is high-stakes, consider 14-16px.
-- [ ] Optional conversion win: bump primary CTAs `.btn` and `.contact-fab` from 15px to 16px.
+**All items below done, gate passed 2026-07-05** (see `../todo/README.md` Phase 1 gate):
+
+- [x] BUG: `.proj-search input` (the inline `<style>` rule in `projects.html`) is a real `<input>` at 15px with NO mobile 16px override, so iOS Safari zooms on focus (every other form field got the fix, this one was missed).
+- [x] Make the form-input 16px rule global, not gated behind the `@media (max-width:600px)` block (the `.field input, .qf input, .qf select, .qf textarea { font-size: 16px }` rule): tablets/narrow desktops are still WebKit and still zoom. Add `.proj-search input` to the selector list.
+- [x] Prose below 16px: raise `.pdp__quote p` to >=16px.
+- [x] Prose below 16px: raise `.lead-drawer__intro` to >=16px.
+- [x] Prose below 16px: raise `.feed-card__lines` (14.72px) and `.feed-card--compact .feed-card__lines` (13.76px) to >=16px.
+- [x] Prose below 16px: raise `.repmail__contact` and `.repmail__item-title` to >=16px.
+- [x] Prose below 16px: raise `.spec-table td` PDP spec values to 16px or explicitly re-scope as caption data.
+- [x] Low-contrast + too-small: `.eyebrow` 11px in `--kraft-deep` on cream (approx 3.4:1, fails AA) is used site-wide; raise to >=12px and darken color - use the pinned end-state in README Phase 1 (`--t-eyebrow: 0.75rem`, `.eyebrow` color `#8a5a2a`, `--kraft-deep` token unchanged).
+- [x] Low-contrast + too-small: `.repmail__badge` 11.52px white-on-orange (approx 2.9:1, fails AA); bump size and/or use `--orange-deep`.
+- [x] Sub-12px cluster to raise to a 12px floor: `.feed-card__date` 11.84px, `.spotlight-tag` 11.52px, `.contact-fab__badge` 11.52px, `.ribbon` 11px, `.tile__badge` 11px, `.project__client` 11px over photo, `.sticker text` 11px, `.feed-card__videotag` 10.88px, `.slideshow .ctile__card-m` 10.56px.
+- [x] Mobile collage title `.slideshow .ctile__card-k` shrinks to 13.76px: it is a title, keep it near 15px, not caption size.
+- [x] `.qf-error` 13px red: verify contrast; error text is high-stakes, consider 14-16px.
+- [x] Optional conversion win: bump primary CTAs `.btn` and `.contact-fab` from 15px to 16px.
 
 ## Details
 

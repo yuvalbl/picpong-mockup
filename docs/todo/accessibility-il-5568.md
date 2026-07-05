@@ -4,18 +4,18 @@ This covers an accessibility audit of the bilingual (Hebrew-first RTL / English 
 
 ## Executive summary
 
-Top 10 changes to reach IS 5568 / WCAG 2.0 AA, ordered by severity (Blockers first):
+Top 10 changes to reach IS 5568 / WCAG 2.0 AA, ordered by severity (Blockers first). **All 10 done, gate passed 2026-07-05** (see `../todo/README.md` Phase 2/3 gates):
 
-- [ ] B1 - Publish an accessibility statement page (הצהרת נגישות) with a named accessibility coordinator + contact, linked in every footer.
-- [ ] B4 - Fix the mobile menu: make it inert/hidden when closed so off-screen links leave the tab order; add focus-in, focus-trap, focus-return, and aria-expanded on the hamburger.
-- [ ] B3 - Add a skip-to-content link and wrap page content in `<main>` on all six pages.
-- [ ] B2 - Provide a keyboard-reachable pause for the marquees, slideshow, slogan, and hero video (or auto-stop after 5s); do not rely on hover or reduced-motion alone.
-- [ ] M1 - Raise contrast on brand orange: darken button orange for white text (~4.6:1), darken eyebrow kraft-deep and orange-deep links, and lighten on-dark 0.5-alpha meta/breadcrumb text.
-- [ ] M2 - Associate and announce form errors: aria-describedby from input to its error span + role="alert".
-- [ ] M3 - Indicate required fields and the email-or-phone rule in-form, with aria-required.
-- [ ] M4 - Default the page to Hebrew RTL (or make `<html lang>` match the Hebrew `<title>`/content at first load).
-- [ ] M5 - Make toast and success panels live regions (role="status" aria-live="polite").
-- [ ] Minor cluster - Un-nest interactive controls (zoom role=button must not contain the `+` button, and every zoom trigger needs an accessible name); normalize heading levels and aria-hidden decorative SVGs.
+- [x] B1 - Publish an accessibility statement page (הצהרת נגישות) with a named accessibility coordinator + contact, linked in every footer.
+- [x] B4 - Fix the mobile menu: make it inert/hidden when closed so off-screen links leave the tab order; add focus-in, focus-trap, focus-return, and aria-expanded on the hamburger.
+- [x] B3 - Add a skip-to-content link and wrap page content in `<main>` on all six pages.
+- [x] B2 - Provide a keyboard-reachable pause for the marquees, slideshow, slogan, and hero video (or auto-stop after 5s); do not rely on hover or reduced-motion alone.
+- [x] M1 - Raise contrast on brand orange: darken button orange for white text (~4.6:1), darken eyebrow kraft-deep and orange-deep links, and lighten on-dark 0.5-alpha meta/breadcrumb text.
+- [x] M2 - Associate and announce form errors: aria-describedby from input to its error span + role="alert".
+- [x] M3 - Indicate required fields and the email-or-phone rule in-form, with aria-required.
+- [x] M4 - Default the page to Hebrew RTL (or make `<html lang>` match the Hebrew `<title>`/content at first load).
+- [x] M5 - Make toast and success panels live regions (role="status" aria-live="polite").
+- [x] Minor cluster - Un-nest interactive controls (zoom role=button must not contain the `+` button, and every zoom trigger needs an accessible name); normalize heading levels and aria-hidden decorative SVGs.
 
 ## Details
 
