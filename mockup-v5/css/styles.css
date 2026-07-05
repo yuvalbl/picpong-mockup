@@ -22,7 +22,6 @@
   --forest:  #123B33;   /* deep rainforest green - paired with --pond for the sustainability statement's ocean-to-canopy gradient */
   --forest-deep:#05120F;
   --muted:   #6b6b63;
-  --muted-2: #8a8a80;
   --stone:   #B7B7AD;
   --line:    rgba(26,26,26,0.12);
   --line-soft: rgba(26,26,26,0.07);
@@ -477,7 +476,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   border: 1.5px solid var(--line-on-dark); background: transparent; color: inherit; cursor: pointer;
   transition: background var(--speed) var(--ease), color var(--speed) var(--ease), border-color var(--speed) var(--ease); }
 .chip:hover { border-color: var(--cream); }
-.chip[aria-pressed="true"] { background: var(--orange); border-color: var(--orange); color: #fff; }
+.chip[aria-pressed="true"] { background: var(--orange-btn); border-color: var(--orange-btn); color: #fff; }
 .band:not(.band--dark) .chip { border-color: var(--line); }
 .band:not(.band--dark) .chip:hover { border-color: var(--ink); }
 
@@ -1425,7 +1424,7 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
   line-height: 1;
 }
 .nav--dark .lang-switch [data-lang] { color: rgba(247,247,241,0.6); }
-.lang-switch [data-lang][aria-pressed="true"] { background: var(--orange); color: #fff; }
+.lang-switch [data-lang][aria-pressed="true"] { background: var(--orange-btn); color: #fff; }
 
 .nav__social { display: none; align-items: center; gap: 0.15rem; }
 @media (min-width: 920px) { .nav__social { display: inline-flex; } }

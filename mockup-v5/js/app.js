@@ -160,6 +160,7 @@
 
   function mediaMoreBtn(id, title, thumb) {
     return '<button class="media__more" type="button" aria-label="Request a quote on a build like this"' +
+      ' data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה"' +
       ' data-media-id="' + id + '" data-media-title="' + title.replace(/"/g, "&quot;") + '"' +
       ' data-media-thumb="' + thumb + '">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>';
@@ -801,7 +802,7 @@
       var a = document.createElement("a");
       a.className = "lead-wa"; a.setAttribute("data-lead-wa", ""); a.href = "#"; a.target = "_blank"; a.rel = "noopener";
       a.setAttribute("data-en", "or message us on WhatsApp"); a.setAttribute("data-he", "או שלחו לנו הודעה בוואטסאפ");
-      a.textContent = "or message us on WhatsApp";
+      a.textContent = t("or message us on WhatsApp", "או שלחו לנו הודעה בוואטסאפ");
       form.appendChild(a);
     }
     if (!form.parentNode.querySelector("[data-lead-success]")) {
