@@ -1001,19 +1001,19 @@
     if (!slogan) return;
 
     // 3 bilingual slogans, each 4 lines, two highlight spans (orange = the bold/
-    // standing word, coral = the vanishing word). Hebrew is native marketing copy,
+    // standing word, deep = the vanishing word). Hebrew is native marketing copy,
     // not a literal translation; it carries the same "striking presence, no trace"
     // paradox in idiomatic, denser Hebrew that rhymes/parallels for a native ear.
     var PHRASES = {
       en: [
-        ['<span class="mark mark--orange">Remarkable</span>', 'events, made', 'to impact.', '<span class="mark mark--coral">no trace.</span>'],
-        ['Built to', 'be <span class="mark mark--orange">seen</span>,', 'designed', 'to <span class="mark mark--coral">vanish.</span>'],
-        ['Loud at', 'the <span class="mark mark--orange">show.</span>', 'Light on', 'the <span class="mark mark--coral">earth.</span>']
+        ['<span class="mark mark--orange">Remarkable</span>', 'events, made', 'to impact.', '<span class="mark mark--deep">no trace.</span>'],
+        ['Built to', 'be <span class="mark mark--orange">seen</span>,', 'designed', 'to <span class="mark mark--deep">vanish.</span>'],
+        ['Loud at', 'the <span class="mark mark--orange">show.</span>', 'Light on', 'the <span class="mark mark--deep">earth.</span>']
       ],
       he: [
-        ['<span class="mark mark--orange">חותם</span>', 'שנשאר', 'גם כשהכל', '<span class="mark mark--coral">כבר נעלם.</span>'],
-        ['נבנה', '<span class="mark mark--orange">לבלוט</span>,', 'ונועד', '<span class="mark mark--coral">להיעלם.</span>'],
-        ['רועשת', '<span class="mark mark--orange">באולם.</span>', 'נעלמת', 'בלי <span class="mark mark--coral">חתימה.</span>']
+        ['<span class="mark mark--orange">חותם</span>', 'שנשאר', 'גם כשהכל', '<span class="mark mark--deep">כבר נעלם.</span>'],
+        ['נבנה', '<span class="mark mark--orange">לבלוט</span>,', 'ונועד', '<span class="mark mark--deep">להיעלם.</span>'],
+        ['רועשת', '<span class="mark mark--orange">באולם.</span>', 'נעלמת', 'בלי <span class="mark mark--deep">חתימה.</span>']
       ]
     };
     function phrases() {
