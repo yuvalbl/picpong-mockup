@@ -155,18 +155,19 @@
       </div>
 
       <!-- C-top · REAL VIDEO tile (video-first hero) -->
-      <!-- BUILD NOTE: no production video clip exists in assets/ yet. The <video> is
-           wired correctly (muted/autoplay/loop/playsinline) so it plays the instant a
-           real file is dropped at assets/video/hero.mp4 (+ .webm). Until then the
-           poster (an existing project still) shows; the cinemagraph Ken-Burns keeps the
-           tile alive. Swap poster for a real loop before launch. -->
+      <!-- BUILD NOTE: no production video clip exists in assets/ yet, so the <source>
+           tags are omitted (a <source> pointing at a missing file 404s in every browser
+           on every load). The <video> is wired correctly (muted/autoplay/loop/playsinline)
+           so it plays the instant real files are dropped back in as:
+           <source src="assets/video/hero.webm" type="video/webm" />
+           <source src="assets/video/hero.mp4" type="video/mp4" />
+           Until then the poster (an existing project still) shows; the cinemagraph
+           Ken-Burns keeps the tile alive. Swap poster for a real loop before launch. -->
       <div class="ctile ctile--video reveal" data-parallax="0.09" style="--i:2;--dir:1">
         <div class="media" data-media>
           <video class="hero-video cinemagraph" muted autoplay loop playsinline preload="metadata"
                  poster="assets/projects/microsoft.jpg"
                  aria-label="Microsoft launch environment built from X-Board, on the show floor">
-            <source src="assets/video/hero.webm" type="video/webm" />
-            <source src="assets/video/hero.mp4" type="video/mp4" />
             <img src="assets/projects/microsoft.jpg" alt="Microsoft launch environment built from X-Board, on the show floor" />
           </video>
           <button class="media__more" type="button" aria-label="Request a quote on this build" data-en-aria="Request a quote on this build" data-he-aria="בקשת הצעת מחיר על הפרויקט הזה"
@@ -641,8 +642,9 @@
         </div>
       </div>
       <div class="footer__col reveal reveal--slide" style="--i:1"><p class="footer__col-h" data-en="Catalog" data-he="קטלוג">Catalog</p><ul><li><a href="catalog.html" data-en="Counters" data-he="דלפקים">Counters</a></li><li><a href="catalog.html" data-en="Stands &amp; totems" data-he="סטנדים וטוטמים">Stands &amp; totems</a></li><li><a href="catalog.html" data-en="Shelving" data-he="מדפים">Shelving</a></li><li><a href="catalog.html" data-en="Photocall walls" data-he="קירות פוטוקול">Photocall walls</a></li><li><a href="catalog.html" data-en="Custom builds" data-he="בנייה מותאמת">Custom builds</a></li></ul></div>
-      <div class="footer__col reveal reveal--slide" style="--i:2"><p class="footer__col-h" data-en="Studio" data-he="סטודיו">Studio</p><ul><li><a href="#about" data-en="Our story" data-he="הסיפור שלנו">Our story</a></li><li><a href="projects.html" data-en="Projects" data-he="פרויקטים">Projects</a></li><li><a href="#sustainability" data-en="Sustainability" data-he="קיימות">Sustainability</a></li><li><a href="#contact" data-en="Contact" data-he="צור קשר">Contact</a></li><li><a href="accessibility.html" data-en="Accessibility statement" data-he="הצהרת נגישות">Accessibility statement</a></li><li><a href="privacy.html" data-en="Privacy policy" data-he="מדיניות פרטיות">Privacy policy</a></li></ul></div>
+      <div class="footer__col reveal reveal--slide" style="--i:2"><p class="footer__col-h" data-en="Studio" data-he="סטודיו">Studio</p><ul><li><a href="#about" data-en="Our story" data-he="הסיפור שלנו">Our story</a></li><li><a href="projects.html" data-en="Projects" data-he="פרויקטים">Projects</a></li><li><a href="latest.html" data-en="Latest" data-he="יומן">Latest</a></li><li><a href="#sustainability" data-en="Sustainability" data-he="קיימות">Sustainability</a></li><li><a href="#contact" data-en="Contact" data-he="צור קשר">Contact</a></li></ul></div>
       <div class="footer__col reveal reveal--slide" style="--i:3"><p class="footer__col-h" data-en="Trusted by" data-he="סומכים עלינו">Trusted by</p><ul><li><a href="projects.html">Microsoft · Intel</a></li><li><a href="projects.html">Google · IBM</a></li><li><a href="projects.html">Landa · Amdocs</a></li><li><a href="projects.html">Wix · Maccabi</a></li></ul></div>
+      <div class="footer__col reveal reveal--slide" style="--i:4"><p class="footer__col-h" data-en="Legal" data-he="מידע ומשפט">Legal</p><ul><li><a href="accessibility.html" data-en="Accessibility statement" data-he="הצהרת נגישות">Accessibility statement</a></li><li><a href="privacy.html" data-en="Privacy policy" data-he="מדיניות פרטיות">Privacy policy</a></li><li><a href="#contact" data-en="Contact" data-he="צור קשר">Contact</a></li></ul></div>
     </div>
     <div class="footer__bottom">
       <span data-en="© 2026 PicPong · Sustainable display systems" data-he="© 2026 PicPong · מערכות תצוגה בנות קיימא">© 2026 PicPong · Sustainable display systems</span>
