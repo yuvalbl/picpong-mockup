@@ -1,5 +1,5 @@
 /* ============================================================
-   PICPONG — mockup-v1 — shared design system
+   PICPONG - mockup-v1 - shared design system
    "Cardboard monograph": cartonlab warm-minimal editorial,
    made ownably Picpong. Tokens per docs/design/visual-direction-final.md
    ============================================================ */
@@ -35,7 +35,7 @@
   --t-h3:      clamp(1.4rem, 2.6vw, 2.125rem);
   --t-h4:      clamp(1.15rem, 1.8vw, 1.5rem);
   --t-lead:    1.125rem;
-  --t-body:    1rem;        /* 16px — comfortable reading floor (was 15px) */
+  --t-body:    1rem;        /* 16px - comfortable reading floor (was 15px) */
   --t-ui:      0.9375rem;   /* 15px (was 14px) */
   --t-meta:    0.8125rem;   /* 13px captions (was 12px) */
   --t-eyebrow: 0.75rem;     /* 12px - AA floor for the eyebrow's normal-weight tiny caps */
@@ -71,7 +71,7 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 
-/* corrugated kraft texture for warm bands — real flute shading (valley + highlight) */
+/* corrugated kraft texture for warm bands - real flute shading (valley + highlight) */
 .kraft-grain {
   background-image:
     repeating-linear-gradient(90deg, rgba(0,0,0,0.09) 0 1px, transparent 1px 4px, rgba(0,0,0,0.09) 7px 8px, transparent 8px 14px),
@@ -92,7 +92,7 @@ a { color: inherit; }
   font-family: "Rubik", system-ui, sans-serif;
   font-weight: 300;
   font-optical-sizing: auto;
-  /* engraved-monograph axes — the spec's #1 anti-generic fix (avoid default Rubik) */
+  /* engraved-monograph axes - the spec's #1 anti-generic fix (avoid default Rubik) */
   /* font-variation-settings removed for Rubik */
   margin: 0;
 }
@@ -102,7 +102,7 @@ a { color: inherit; }
 .h2 { font-size: var(--t-h2); line-height: 1.05; letter-spacing: -0.02em; }
 .h3 { font-size: var(--t-h3); line-height: 1.1; letter-spacing: -0.012em; font-weight: 400; }
 .h4 { font-size: var(--t-h4); line-height: 1.15; letter-spacing: -0.01em; font-weight: 400; }
-/* orange-on-cream fails WCAG as text — express accent as ink + orange underline mark */
+/* orange-on-cream fails WCAG as text - express accent as ink + orange underline mark */
 .accent { color: inherit; position: relative; white-space: nowrap;
   background-image: linear-gradient(var(--orange), var(--orange));
   background-size: 100% 0.09em; background-position: 0 92%; background-repeat: no-repeat;
@@ -137,11 +137,11 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .section-head { max-width: 60ch; margin-bottom: clamp(2rem,4vw,3rem); }
 .section-head .lead { margin-top: 1.1rem; }
 
-/* corrugated divider — legacy inline-SVG version (kept for any remaining uses) */
+/* corrugated divider - legacy inline-SVG version (kept for any remaining uses) */
 .corrugate { line-height: 0; display: block; }
 .corrugate svg { display: block; width: 100%; height: 24px; }
 
-/* corrugated-edge divider — true flute cross-section via mask, single source of truth.
+/* corrugated-edge divider - true flute cross-section via mask, single source of truth.
    Tooth points up into the band above; fill = the band it introduces below. */
 .edge {
   height: 22px; display: block; border: 0;
@@ -157,7 +157,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .edge--ink    { background: var(--ink); }
 .edge--orange { background: var(--orange); }
 
-/* ---------- focus-visible (keyboard) — was entirely missing ---------- */
+/* ---------- focus-visible (keyboard) - was entirely missing ---------- */
 :where(a, button, input, [tabindex]):focus-visible {
   outline: 2.5px solid var(--orange);
   outline-offset: 3px; border-radius: 4px;
@@ -165,6 +165,18 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .on-dark :where(a, button, input, [tabindex]):focus-visible,
 .nav--dark :where(a, button):focus-visible,
 .band--dark :where(a, button):focus-visible { outline-color: var(--orange-bright); }
+
+/* skip link (WCAG 2.4.1) - offscreen until keyboard focus, then pinned top of viewport */
+.skip-link {
+  position: fixed; top: 0; inset-inline-start: 0; z-index: 1000;
+  transform: translateY(-120%);
+  background: var(--cream); color: var(--ink);
+  font-size: 1rem; font-weight: 600;
+  padding: 0.85rem 1.4rem;
+  border-end-end-radius: var(--radius);
+  transition: transform var(--speed) var(--ease);
+}
+.skip-link:focus { transform: translateY(0); outline: 2.5px solid var(--orange); outline-offset: -3px; }
 
 /* ============================================================
    BUTTONS
@@ -275,7 +287,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .mobile-menu__foot { margin-top: auto; }
 
 /* ============================================================
-   HERO — dual funnel
+   HERO - dual funnel
    ============================================================ */
 .hero { padding-top: clamp(2.5rem, 5vw, 4.5rem); padding-bottom: 0; }
 .hero__eyebrow { color: var(--muted); }
@@ -326,7 +338,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    ============================================================ */
 .trust__label { display: flex; justify-content: center; margin: 0 0 clamp(1.5rem, 3vw, 2.25rem); }
 
-/* client logo marquee — matches the original site (Slick carousel): 120×90 slides that
+/* client logo marquee - matches the original site (Slick carousel): 120×90 slides that
    advance ONE cell at a time with a short eased move, then hold/pause, then step again.
    8 unique logos are duplicated (16 items); -50% = exactly one set, so the loop is seamless.
    Per-item margin (not flex gap) keeps each step exactly one cell wide. */
@@ -370,7 +382,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .tile { background: #fff; border-radius: var(--radius); overflow: hidden; text-decoration: none; color: var(--ink);
   display: flex; flex-direction: column; position: relative; transition: transform var(--speed) var(--ease); }
 .tile:hover { transform: translateY(-0.75rem); }
-/* die-cut crease — dashed perforation inset, reads as cut-from-board */
+/* die-cut crease - dashed perforation inset, reads as cut-from-board */
 .tile::after { content: ""; position: absolute; inset: 7px; border: 1px dashed rgba(26,26,26,0.16);
   border-radius: 8px; pointer-events: none; opacity: 0; transition: opacity var(--speed) var(--ease); }
 .tile:hover::after { opacity: 1; }
@@ -394,7 +406,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .tile__cat { color: var(--kraft-deep); margin: 0; }
 .tile__title { margin: 0; }
 .tile__foot { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: auto; padding-top: 0.6rem; }
-/* .tile__price / .icon-btn (add-to-cart) removed in v4 — browse-only cards. */
+/* .tile__price / .icon-btn (add-to-cart) removed in v4 - browse-only cards. */
 
 /* cardboard SVG illustration inside tiles */
 .board-illu { width: 100%; height: 100%; }
@@ -406,7 +418,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   border: 1px solid var(--line-on-dark); border-radius: var(--radius); overflow: hidden; }
 @media (min-width: 760px) { .specs { grid-template-columns: repeat(5, 1fr); } }
 .spec { background: var(--gallery); padding: clamp(1.5rem,3vw,2.6rem) clamp(1.1rem,2.5vw,1.7rem); }
-/* numbers as personality — louder than cartonlab's quiet spec tabs (spec §2.4/§4) */
+/* numbers as personality - louder than cartonlab's quiet spec tabs (spec §2.4/§4) */
 .spec__num { font-family: "Rubik", system-ui, sans-serif; font-weight: 300; font-size: clamp(2.8rem,6vw,4.5rem);
   letter-spacing: -0.04em; line-height: 0.95; color: var(--cream);
   font-variant-numeric: tabular-nums; font-feature-settings: "tnum";
@@ -495,7 +507,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 .sustain__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .sustain__wave { position: absolute; left: 0; right: 0; bottom: -2%; width: 100%; height: 46%; opacity: 0.85; }
-/* dappled-canopy texture: a soft dot grid, masked to a glow in the upper-left —
+/* dappled-canopy texture: a soft dot grid, masked to a glow in the upper-left -
    reads as light through leaves without a literal (stock-photo) leaf icon */
 .sustain__canopy {
   position: absolute; inset: 0;
@@ -571,7 +583,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .footer__brand .display { font-size: clamp(2rem,5vw,2.75rem); color: var(--cream); }
 .footer__brand .display b { color: var(--orange); font-weight: 400; }
 .footer__story { font-size: var(--t-body); color: rgba(247,247,241,0.6); max-width: 38ch; margin: 1rem 0 1.6rem; }
-.footer__col h4 { font-family: "Rubik", system-ui, sans-serif; font-weight: 400; font-size: 1rem; margin: 0 0 1rem; }
+.footer__col h4, .footer__col-h { font-family: "Rubik", system-ui, sans-serif; font-weight: 400; font-size: 1rem; margin: 0 0 1rem; }
 .footer__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
 .footer__col a { color: rgba(247,247,241,0.7); text-decoration: none; font-size: var(--t-ui);
   transition: color var(--speed) var(--ease); }
@@ -639,7 +651,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .swatch-opt[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--cream), 0 0 0 4px var(--ink); border-color: transparent; }
 
 .pdp__actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 2rem; align-items: center; }
-/* .stepper (quantity) removed in v4 — no add-to-cart. */
+/* .stepper (quantity) removed in v4 - no add-to-cart. */
 
 .pdp__quote { margin-top: 1.4rem; padding: 1.1rem 1.25rem; border: 1px solid var(--line); border-radius: var(--radius);
   background: var(--cream-2); display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
@@ -667,7 +679,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 @media (min-width: 900px) { .shop { grid-template-columns: 232px 1fr; } }
 .facets { display: flex; flex-direction: column; gap: 1.8rem; }
 @media (min-width: 900px) { .facets { position: sticky; top: calc(var(--nav-h) + 1.5rem); } }
-.facet h4 { font-size: var(--t-meta); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 0.8rem; }
+.facet h4, .facet-h { font-size: var(--t-meta); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 0.8rem; }
 .facet ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
 .facet button { background: none; border: none; cursor: pointer; font: inherit; font-size: var(--t-ui);
   color: var(--ink); padding: 0.2rem 0; opacity: 0.75; transition: opacity var(--speed) var(--ease); display: flex; justify-content: space-between; width: 100%; }
@@ -701,13 +713,13 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 
 /* ============================================================
-   V3 — "ALIVE" COLLAGE + MOTION SYSTEM
+   V3 - "ALIVE" COLLAGE + MOTION SYSTEM
    Cartonlab mixed-media language on Picpong's own palette.
    ============================================================ */
 
 /* ---- bold full-bleed color panels ---- */
 /* bright color panels carry DARK text (white on orange/pond fails WCAG ~3:1;
-   ink on orange ≈5.2:1, ink on pond ≈5.7:1 — readable + still vibrant) */
+   ink on orange ≈5.2:1, ink on pond ≈5.7:1 - readable + still vibrant) */
 .panel--orange { background: var(--orange); color: var(--ink); }
 .panel--orange .eyebrow { color: rgba(26,26,26,0.85); }
 .panel--orange .lead { color: rgba(26,26,26,0.84); }
@@ -716,7 +728,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .panel--pond .lead { color: rgba(26,26,26,0.88); }
 .panel--ink  { background: var(--ink); color: var(--cream); }
 .panel--ink .eyebrow { color: var(--orange-bright); }
-/* kraft / corrugated-board panel — warm tan, ink text (≈5:1). Breaks the blue
+/* kraft / corrugated-board panel - warm tan, ink text (≈5:1). Breaks the blue
    stack and ties the slogan to the actual X-Board product. */
 .panel--kraft { background: var(--kraft); color: var(--ink); }
 .panel--kraft .eyebrow { color: rgba(26,26,26,0.8); }
@@ -761,12 +773,12 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .ctile__card {
   position: absolute; left: clamp(0.8rem,2vw,1.3rem); bottom: clamp(0.8rem,2vw,1.3rem);
   z-index: 3; color: var(--ink);
-  /* frosted-translucent so the photo reads through — the label recedes into the
+  /* frosted-translucent so the photo reads through - the label recedes into the
      image rather than sitting on a heavy solid block. Same treatment on both the
      slideshow and video captions so they read as one kind of label.
      Opacity is held at 0.87 (not lower): over the darkest patch of any project
      photo behind the card, this keeps the ink title (~12-14:1) AND the meta
-     (~8-9:1, color #3a3a35) above WCAG 2.0 AA 4.5:1 — the contrast floor IS 5568
+     (~8-9:1, color #3a3a35) above WCAG 2.0 AA 4.5:1 - the contrast floor IS 5568
      requires. The 8px blur + see-through still read as frosted over lighter photos. */
   background: rgba(247,247,241,0.87); backdrop-filter: blur(8px);
   border-radius: 14px; padding: 0.6rem 0.75rem 0.62rem;
@@ -779,7 +791,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 /* the card always reads as exactly two lines (title + meta): each line is held
    to a single line via `nowrap`, so a long meta can't wrap into a 3rd line.
-   NO ellipsis/clip — the card's auto-width grows to its widest line (capped at
+   NO ellipsis/clip - the card's auto-width grows to its widest line (capped at
    max-width), and the copy is written to fit, so the full text is always shown.
    nowrap also keeps the JS width-measure meaningful (auto-width = widest line). */
 .ctile__card-k { font-family: "Rubik", system-ui, sans-serif; font-weight: 400; font-size: 0.98rem; line-height: 1.12; letter-spacing: -0.01em; white-space: nowrap; }
@@ -794,7 +806,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   background: linear-gradient(180deg, rgba(26,26,26,0.18) 0%, transparent 32%, transparent 55%, rgba(26,26,26,0.32) 100%);
 }
 
-/* cinemagraph — fakes a looping video from a still */
+/* cinemagraph - fakes a looping video from a still */
 .cinemagraph { animation: kenburns 20s var(--ease) infinite alternate; will-change: transform; }
 @keyframes kenburns { 0%{ transform: scale(1.06) translate(0,0) } 100%{ transform: scale(1.2) translate(-2.5%, 1.5%) } }
 .ctile--video::after {
@@ -843,7 +855,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 .collage .reveal.in { transform: none; }
 
-/* reusable body variant of the collage's directional reveal — gentler 40px
+/* reusable body variant of the collage's directional reveal - gentler 40px
    travel (vs 90px) so the sideways pre-position can't trip a horizontal
    scrollbar inside full-width bands. Stagger via --i, side via --dir. */
 .reveal--slide {
@@ -871,7 +883,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 #material > .wrap { position: relative; z-index: 1; }
 
 /* MOBILE (≤759.98): editorial asymmetric masonry that mirrors cartonlab's
-   mobile banner block — a featured-large tile + standard tiles of VARIED
+   mobile banner block - a featured-large tile + standard tiles of VARIED
    heights, full-bleed rounded cover photos, with the kraft/pond TEXT panels
    woven IN AMONG the photos so type breaks up the imagery (not a flat uniform
    2-up grid). Visual order via `order`; DOM order stays headline, media,
@@ -881,8 +893,8 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   /* cartonlab `.bloque-5-banners` mobile rhythm: a full-bleed editorial lead,
      then a two-column STAGGERED mosaic. Both media columns span the same row
      band (rows 2-10 = 8 units) so they're equal height with NO empty gaps, but
-     their interior seam falls on different rows — col-1 is TALL→short, col-2 is
-     short→TALL — so the seam zig-zags (woven masonry), never a flat stack. A
+     their interior seam falls on different rows - col-1 is TALL→short, col-2 is
+     short→TALL - so the seam zig-zags (woven masonry), never a flat stack. A
      fine row unit + grid-row spans drive the tile heights; align-items:stretch
      (grid default) makes each tile fill its span, so the columns interlock. */
   .collage {
@@ -893,7 +905,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   }
   .ctile { min-height: 0; }
 
-  /* A · headline pond panel — full-bleed editorial anchor across the top.
+  /* A · headline pond panel - full-bleed editorial anchor across the top.
      Auto-height (row 1 sizes to content) so the H1 + both CTAs never clip. */
   .ctile--headline { grid-column: 1 / -1; grid-row: 1; }
 
@@ -901,7 +913,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   .ctile--media  { grid-column: 1; grid-row: 2 / span 5; aspect-ratio: auto; }
   .ctile--slogan { grid-column: 1; grid-row: 7 / span 3; aspect-ratio: auto; min-height: 0; }
 
-  /* col-2 : video short → sticker TALL  (rows 2-10) — mirror rhythm, so the
+  /* col-2 : video short → sticker TALL  (rows 2-10) - mirror rhythm, so the
      seam between the two columns staggers against col-1's. */
   .ctile--video   { grid-column: 2; grid-row: 2 / span 3; aspect-ratio: auto; }
   .ctile--sticker { grid-column: 2; grid-row: 5 / span 5; aspect-ratio: auto; }
@@ -936,7 +948,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   }
 }
 
-/* DESKTOP (≥760): cartonlab interlock — 3 columns 2:1:1, equal height,
+/* DESKTOP (≥760): cartonlab interlock - 3 columns 2:1:1, equal height,
    staggered interior seams (mid col 66/34, right col 33/67). */
 @media (min-width: 760px) {
   .collage {
@@ -950,7 +962,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   .ctile--media    { grid-column: 7 / 10; grid-row: 1 / 5; aspect-ratio: auto; }
   .ctile--slogan   { grid-column: 7 / 10; grid-row: 5 / 7; aspect-ratio: auto; min-height: 0; }
   /* slogan type/align overrides for the narrow column live AFTER the base
-     slogan rules (below) so they actually win — see the slogan section. */
+     slogan rules (below) so they actually win - see the slogan section. */
   .ctile--video    { grid-column: 10 / 13; grid-row: 1 / 3; aspect-ratio: auto; }
   .ctile--sticker  { grid-column: 10 / 13; grid-row: 3 / 7; aspect-ratio: auto; }
 }
@@ -974,7 +986,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   padding: clamp(2rem, 3.6vw, 3rem) clamp(1.75rem, 3.2vw, 2.75rem);
   box-shadow: 0 6px 18px rgba(26,26,26,0.08);
   transition: transform var(--speed-slow) var(--ease), box-shadow var(--speed-slow) var(--ease); }
-/* keep each panel's own background on hover so text contrast never drops —
+/* keep each panel's own background on hover so text contrast never drops -
    only lift + deepen the shadow (ink stays cream-on-ink, pond stays ink-on-pond) */
 .lane--panel:hover { transform: translateY(-0.5rem); box-shadow: 0 22px 48px rgba(26,26,26,0.22); }
 .panel--ink.lane--panel:hover { background: var(--ink); }
@@ -996,7 +1008,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    continuous push for the rest of its turn. Reads like a premium title card. */
 /* the zoom lives on ONE shared stage, not on each slide. A slide leaving
    `is-active` used to drop its zoom animation and snap back to base scale while
-   still visible under the wipe — that snap was the stutter. With the scale on
+   still visible under the wipe - that snap was the stutter. With the scale on
    the persistent stage, every frame shares the same live scale, so nothing ever
    resets at a cut. The drift is a slow ease-in-out that ping-pongs forever. */
 .slideshow__stage { position: absolute; inset: 0; z-index: 0; }
@@ -1012,7 +1024,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 /* Resting visibility is driven by OPACITY, not clip-path. Mobile WebKit/iOS
    Safari intermittently drops an `animation-fill-mode` HELD clip-path value
    once the keyframes end (especially under a transformed ancestor + a
-   mix-blend pseudo) — which made the just-revealed slide vanish ~1s after the
+   mix-blend pseudo) - which made the just-revealed slide vanish ~1s after the
    wipe. With opacity owning show/hide, the active frame stays painted even if
    the clip value is dropped; clip-path is now a decorative entrance only. */
 .slideshow .slide { position: absolute; inset: 0; opacity: 0; z-index: 0; }
@@ -1083,7 +1095,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
    narrow interlock column) overrides both below. */
 .ctile--slogan { display: flex; align-items: center; padding: clamp(1.25rem, 5vw, 1.7rem);
   overflow: hidden;
-  /* subtle corrugated-board fluting — vertical ridges, very low contrast */
+  /* subtle corrugated-board fluting - vertical ridges, very low contrast */
   background-image:
     repeating-linear-gradient(90deg, rgba(0,0,0,0.045) 0 1px, rgba(255,255,255,0.05) 1px 2px, transparent 2px 9px);
 }
@@ -1091,7 +1103,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 /* clean sans = max legibility; weight + marker carry the accent (no italic axis loaded) */
 .slogan .line { display: block; font-size: clamp(1.7rem, 5.4vw, 2.15rem); line-height: 1.16;
   letter-spacing: -0.018em; font-weight: 500; opacity: 0; transform: translateY(0.5em); }
-/* mobile: slogan now lives in a narrow half-column — step the type down and
+/* mobile: slogan now lives in a narrow half-column - step the type down and
    tighten padding so the longest single-word line ("Remarkable") fits the panel */
 @media (max-width: 759px) {
   .ctile--slogan { padding: clamp(1rem, 4vw, 1.4rem); }
@@ -1100,7 +1112,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   .slogan .line { font-size: clamp(1.15rem, 5vw, 1.7rem); }
 }
 
-/* lines settle in (staggered) and then HOLD — no infinite breathe, so nothing
+/* lines settle in (staggered) and then HOLD - no infinite breathe, so nothing
    competes with the marker moment. The only post-settle motion is the one-shot
    weight bump on the marked word below. */
 .slogan.is-in .line {
@@ -1124,7 +1136,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   /* padding sets the band's inner breathing room; margin keeps the band (which
      overhangs by 0.12em each side) clear of neighbouring unmarked words */
   padding: 0 0.12em; margin: 0 0.26em; }
-/* as the marker lands, the word settles heavier — a single deliberate emphasis */
+/* as the marker lands, the word settles heavier - a single deliberate emphasis */
 .slogan.is-in .mark {
   animation: mark-bold 0.5s var(--ease) forwards;
   animation-delay: calc(var(--l, 0) * 120ms + 0.6s);
@@ -1155,7 +1167,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 
 /* Desktop slogan fit: on ≥760 the box is the narrow interlock column, not a
-   full-width panel — bottom-align it and shrink the type so it never clips.
+   full-width panel - bottom-align it and shrink the type so it never clips.
    Placed AFTER the base slogan rules so it wins at equal specificity. */
 @media (min-width: 760px) {
   .ctile--slogan { align-items: flex-end; padding: clamp(1rem, 1.6vw, 1.6rem); }
@@ -1203,8 +1215,8 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 
 /* ============================================================
-   V4 — FOUNDATION ADDITIONS (PRD 1)
-   Structure only — palette/type/motion design is deferred.
+   V4 - FOUNDATION ADDITIONS (PRD 1)
+   Structure only - palette/type/motion design is deferred.
    Media component · contact FAB · language switch · social slot ·
    projects variable collage · video hero · RTL-safe override layer.
    ============================================================ */
@@ -1225,7 +1237,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   height: 100%;
   object-fit: cover;
 }
-/* the reserved "+"/"more info" button — consistent corner on EVERY media item.
+/* the reserved "+"/"more info" button - consistent corner on EVERY media item.
    inset-inline-end keeps it RTL-safe (flips to the left side under dir=rtl). */
 .media__more {
   position: absolute;
@@ -1269,7 +1281,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   opacity: 1;
   margin-inline-start: 0.4rem;
 }
-/* selected state — light pastel green so an added item is obvious at a glance */
+/* selected state - light pastel green so an added item is obvious at a glance */
 .media__more.is-added,
 .media__more.is-added:hover,
 .media__more.is-added:focus-visible {
@@ -1287,7 +1299,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .hero-video { width: 100%; height: 100%; object-fit: cover; }
 
 /* ---- floating contact trigger (every page) ---- */
-/* anchored to the inline-END bottom corner — the SAME edge the quote drawer
+/* anchored to the inline-END bottom corner - the SAME edge the quote drawer
    slides from and where the per-tile "+" buttons sit, so trigger and panel
    share a side (auto-mirrors under RTL). Carries the live item-count badge. */
 .contact-fab {
@@ -1423,7 +1435,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 @media (min-width: 620px) { .collage-projects { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 980px) { .collage-projects { grid-template-columns: repeat(3, 1fr); } }
-/* every tile is the same size — uniform aspect-ratio, no spans */
+/* every tile is the same size - uniform aspect-ratio, no spans */
 .collage-projects .project { aspect-ratio: 4 / 3; }
 /* the media component fills the project tile; "+" floats over the photo */
 .project .media { position: absolute; inset: 0; border-radius: inherit; }
@@ -1432,7 +1444,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .gallery__main.media { aspect-ratio: 1 / 1; }
 .gallery__main.media > img,
 .gallery__main.media > video { width: 100%; height: 100%; object-fit: cover; }
-/* inner art node — JS swaps THIS on thumb click, so the "+" button (a sibling)
+/* inner art node - JS swaps THIS on thumb click, so the "+" button (a sibling)
    survives the swap. Fills the frame; holds img/svg at cover. */
 .gallery__main-art { position: absolute; inset: 0; }
 .gallery__main-art > img,
@@ -1508,7 +1520,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 [dir="rtl"] .ctile__card { left: auto; inset-inline-start: clamp(0.8rem,2vw,1.3rem); }
 [dir="rtl"] .ctile--headline .fish { right: auto; inset-inline-end: clamp(1rem, 3vw, 1.9rem); }
 [dir="rtl"] .bubbles { right: auto; inset-inline-end: 8%; }
-/* sticker stays bottom-RIGHT in RTL too — mirroring it left collides with the
+/* sticker stays bottom-RIGHT in RTL too - mirroring it left collides with the
    bottom-left printer doodle (.doodle--pin-bl). Keep physical right in both dirs. */
 [dir="rtl"] .slideshow__bars { left: 0.6rem; right: 0.6rem; }
 [dir="rtl"] .tile__badge { left: auto; inset-inline-start: 0.8rem; }
@@ -1520,11 +1532,11 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 
 /* directional "forward" arrows must point the reading direction. In RTL the
    literal → reads backwards, so mirror the glyph (and the enquiry lane's big
-   arrow numeral). Only these explicitly-directional marks flip — nothing else. */
+   arrow numeral). Only these explicitly-directional marks flip - nothing else. */
 [dir="rtl"] .arrow,
 [dir="rtl"] .lane__num { display: inline-block; transform: scaleX(-1); }
 
-/* Hebrew typography: Rubik lacks Hebrew glyphs — fall back to a Hebrew-capable
+/* Hebrew typography: Rubik lacks Hebrew glyphs - fall back to a Hebrew-capable
    stack so RTL copy renders cleanly (browser default Hebrew face). */
 [dir="rtl"] body { font-family: "Hanken Grotesk", "Arial Hebrew", "Heebo", system-ui, sans-serif; }
 [dir="rtl"] .display, [dir="rtl"] .h1, [dir="rtl"] .h2, [dir="rtl"] .h3, [dir="rtl"] .h4,
@@ -1636,13 +1648,13 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 
 @media (max-width: 560px) { .lead-drawer { width: 100vw; } }
 
-/* reduced motion: never park the panel off-screen — show it in place, no slide */
+/* reduced motion: never park the panel off-screen - show it in place, no slide */
 @media (prefers-reduced-motion: reduce) {
   .lead-drawer__panel, [dir="rtl"] .lead-drawer__panel { transform: none; }
 }
 
 /* ============================================================
-   PRD 3 — DISCOVERY & CHROME
+   PRD 3 - DISCOVERY & CHROME
    Live-search empty state + on-arrival highlight (spotlight). */
 
 /* search empty state (projects collage, on a dark band) */
@@ -1820,7 +1832,7 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 }
 
 /* ============================================================
-   PRD 3 §8.2 — Daily-publish: Home "Latest" strip + feed page
+   PRD 3 §8.2 - Daily-publish: Home "Latest" strip + feed page
    RTL-safe (logical props only); reduced-motion handled below.
    ============================================================ */
 

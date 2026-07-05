@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-en="Accessibility statement | PicPong.biz" data-he="הצהרת נגישות | PicPong.biz">הצהרת נגישות | PicPong.biz</title>
+<meta name="description" content="הצהרת הנגישות של PicPong - המחויבות שלנו לאתר נגיש לפי תקן ישראלי 5568 (WCAG 2.0 רמה AA), מה שיושם, מגבלות ידועות, ורכז הנגישות." />
+<link rel="icon" type="image/png" sizes="256x256" href="assets/brand/favicon.png" />
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+<link rel="canonical" href="https://picpong-mockup.web.app/accessibility.html" />
+<meta name="robots" content="index,follow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css?v=14" />
+<style>
+  /* Skip link (no shared class in styles.css) + focused legal-document typography.
+     Scoped to this page; does not touch the shared stylesheet. */
+  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 300;
+    background: var(--ink); color: var(--cream); padding: 0.7rem 1.1rem;
+    border-radius: 0 0 8px 0; font-weight: 600; text-decoration: none; }
+  .skip-link:focus { left: 0; }
+  [dir="rtl"] .skip-link { left: auto; right: -9999px; border-radius: 0 0 0 8px; }
+  [dir="rtl"] .skip-link:focus { right: 0; left: auto; }
+  main#main:focus { outline: none; }
+  .legal { max-width: 68ch; }
+  .legal h2 { font-size: clamp(1.2rem, 2.2vw, 1.5rem); line-height: 1.2; margin: 2.6rem 0 0.7rem; }
+  .legal h2:first-of-type { margin-top: 1rem; }
+  .legal h3 { font-size: 1.06rem; margin: 1.5rem 0 0.4rem; }
+  .legal p, .legal li { font-size: 1rem; line-height: 1.72; color: #45453f; }
+  .legal p { margin: 0 0 0.9rem; }
+  .legal ul { margin: 0.4rem 0 1.1rem; padding-inline-start: 1.25rem; }
+  .legal li { margin: 0.3rem 0; }
+  .legal a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+  .legal a:hover { color: var(--orange-btn); }
+  .legal-meta { border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.3rem;
+    margin: 1.4rem 0 0.4rem; display: grid; gap: 0.5rem; background: var(--cream-2); }
+  .legal-meta div { display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.95rem; }
+  .legal-meta dt { font-weight: 600; color: var(--ink); margin: 0; }
+  .legal-meta dd { margin: 0; color: var(--muted); }
+  .coord { border-inline-start: 3px solid var(--orange); background: var(--cream-2);
+    border-radius: 0 12px 12px 0; padding: 1.1rem 1.3rem; margin: 1rem 0 1.2rem; }
+  [dir="rtl"] .coord { border-radius: 12px 0 0 12px; }
+  .coord p { margin: 0 0 0.4rem; }
+  .coord .coord__role { font-weight: 600; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-en="Skip to content" data-he="דלג לתוכן">דלג לתוכן</a>
+
+<div class="ribbon">Design mockup <b>v5</b> · concept for client review, not the live site</div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="index.html" aria-label="PicPong home" data-en-aria="PicPong home" data-he-aria="PicPong בית">
+      <img class="brand__mark" src="assets/brand/puffer.png" alt="PicPong" />
+      <span class="brand__word">PicPong<b>.biz</b></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="catalog.html" data-en="Catalog" data-he="קטלוג">קטלוג</a>
+      <a href="projects.html" data-en="Projects" data-he="פרויקטים">פרויקטים</a>
+      <a href="latest.html" data-en="Latest" data-he="יומן">יומן</a>
+      <a href="index.html#sustainability" data-en="Sustainability" data-he="קיימות">קיימות</a>
+      <a href="index.html#about" data-en="About" data-he="אודות">אודות</a>
+      <a href="index.html#contact" data-en="Contact" data-he="צור קשר">צור קשר</a>
+    </nav>
+    <div class="nav__actions">
+      <div class="nav__social" aria-label="Social links">
+        <!-- BUILD NOTE: real profile URL is content (§5/D-6) -->
+        <a href="#" aria-label="PicPong on Facebook" data-en-aria="PicPong on Facebook" data-he-aria="PicPong בפייסבוק"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l.5-3H13V5.5c0-.9.3-1.5 1.6-1.5H17V1.4C16.6 1.3 15.5 1.2 14.3 1.2 11.7 1.2 10 2.7 10 5.2V7H7v3h3v9h3z"/></svg></a>
+        <a href="#" aria-label="PicPong on Instagram" data-en-aria="PicPong on Instagram" data-he-aria="PicPong באינסטגרם"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="PicPong on LinkedIn" data-en-aria="PicPong on LinkedIn" data-he-aria="PicPong בלינקדאין"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9.5h4V21H3zM9 9.5h3.8v1.6h.05c.53-.95 1.83-1.95 3.77-1.95 4 0 4.75 2.5 4.75 5.8V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.78 0-2.05 1.38-2.05 2.8V21H9z"/></svg></a>
+      </div>
+      <div class="lang-switch" data-lang-switch role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="he" aria-pressed="true">HE</button>
+      </div>
+      <button class="iconbtn nav__menu-btn" id="menuBtn" aria-label="Open menu" data-en-aria="Open menu" data-he-aria="פתח תפריט"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__top"><span class="brand__word">PicPong<b>.biz</b></span><button class="iconbtn" id="menuClose" aria-label="Close menu" data-en-aria="Close menu" data-he-aria="סגור תפריט"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <nav>
+    <a href="catalog.html" data-en="Catalog" data-he="קטלוג">קטלוג</a><a href="projects.html" data-en="Projects" data-he="פרויקטים">פרויקטים</a><a href="latest.html" data-en="Latest" data-he="יומן">יומן</a><a href="index.html#sustainability" data-en="Sustainability" data-he="קיימות">קיימות</a><a href="index.html#about" data-en="About" data-he="אודות">אודות</a><a href="index.html#contact" data-en="Contact" data-he="צור קשר">צור קשר</a>
+  </nav>
+  <div class="mobile-menu__foot"><a class="btn btn--brand btn--block" href="index.html#contact" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">בקשת הצעת מחיר <span class="arrow">&rarr;</span></a></div>
+</div>
+
+<main id="main" tabindex="-1">
+
+<section class="band band--tight">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="index.html" data-en="Home" data-he="בית">בית</a> / <span data-en="Accessibility statement" data-he="הצהרת נגישות">הצהרת נגישות</span></nav>
+    <div class="section-head" style="margin-top:1rem;margin-bottom:0.5rem">
+      <p class="eyebrow" data-en="Accessibility · Our commitment" data-he="נגישות · המחויבות שלנו">נגישות · המחויבות שלנו</p>
+      <h1 class="h1" style="max-width:20ch" data-en="Accessibility statement" data-he="הצהרת נגישות">הצהרת נגישות</h1>
+      <h2 class="lead" data-en="We want everyone to be able to browse the catalogue, read a project, and reach us - using a keyboard, a screen reader, or any device. This page says how we work toward that, and how to tell us where we fall short." data-he="אנחנו רוצים שכל אחת ואחד יוכלו לעיין בקטלוג, לקרוא על פרויקט וליצור איתנו קשר - עם מקלדת, עם קורא מסך, ומכל מכשיר. הדף הזה מסביר איך אנחנו פועלים כדי להגיע לשם, ואיך לספר לנו היכן עוד לא הגענו.">אנחנו רוצים שכל אחת ואחד יוכלו לעיין בקטלוג, לקרוא על פרויקט וליצור איתנו קשר - עם מקלדת, עם קורא מסך, ומכל מכשיר. הדף הזה מסביר איך אנחנו פועלים כדי להגיע לשם, ואיך לספר לנו היכן עוד לא הגענו.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="legal">
+
+      <h2 data-en="Our commitment" data-he="המחויבות שלנו">המחויבות שלנו</h2>
+      <p data-en="PicPong is a family workshop, and we treat access the way we treat the work: as something to get right, not to tick off. We see accessibility as making the site usable for people with a wide range of abilities - including people who use assistive technology - and we keep improving it as the site grows." data-he="PicPong היא סדנה משפחתית, ואנחנו מתייחסים לנגישות כמו שאנחנו מתייחסים לעבודה עצמה: משהו לעשות נכון, לא סעיף לסמן. עבורנו נגישות היא הפיכת האתר לשמיש עבור אנשים עם מגוון רחב של יכולות - כולל אנשים שמשתמשים בטכנולוגיה מסייעת - ואנחנו ממשיכים לשפר אותו ככל שהאתר גדל.">PicPong היא סדנה משפחתית, ואנחנו מתייחסים לנגישות כמו שאנחנו מתייחסים לעבודה עצמה: משהו לעשות נכון, לא סעיף לסמן. עבורנו נגישות היא הפיכת האתר לשמיש עבור אנשים עם מגוון רחב של יכולות - כולל אנשים שמשתמשים בטכנולוגיה מסייעת - ואנחנו ממשיכים לשפר אותו ככל שהאתר גדל.</p>
+
+      <h2 data-en="Conformance" data-he="רמת ההנגשה">רמת ההנגשה</h2>
+      <p data-en="This site is built to meet Israeli Standard IS 5568, which adopts the international WCAG 2.0 guidelines at Level AA. We use that standard as our working target across the pages." data-he="האתר נבנה לעמידה בתקן הישראלי ת&quot;י 5568, המאמץ את הנחיות WCAG 2.0 הבינלאומיות ברמה AA. אנחנו משתמשים בתקן הזה כיעד העבודה שלנו לאורך כל הדפים.">האתר נבנה לעמידה בתקן הישראלי ת"י 5568, המאמץ את הנחיות WCAG 2.0 הבינלאומיות ברמה AA. אנחנו משתמשים בתקן הזה כיעד העבודה שלנו לאורך כל הדפים.</p>
+      <dl class="legal-meta">
+        <div><dt data-en="Standard:" data-he="תקן:">תקן:</dt><dd data-en="IS 5568, adopting WCAG 2.0 Level AA" data-he="ת&quot;י 5568, המאמץ את WCAG 2.0 ברמה AA">ת"י 5568, המאמץ את WCAG 2.0 ברמה AA</dd></div>
+        <div><dt data-en="Statement date:" data-he="תאריך ההצהרה:">תאריך ההצהרה:</dt><dd data-en="5 July 2026" data-he="5 ביולי 2026">5 ביולי 2026</dd></div>
+        <div><dt data-en="Last reviewed:" data-he="נבדק לאחרונה:">נבדק לאחרונה:</dt><dd data-en="5 July 2026" data-he="5 ביולי 2026">5 ביולי 2026</dd></div>
+      </dl>
+
+      <h2 data-en="What we have put in place" data-he="מה יישמנו">מה יישמנו</h2>
+      <ul>
+        <li data-en="Full keyboard navigation - every menu, link, button and form control is reachable and operable with the keyboard alone, and a skip-to-content link lets you jump past the header." data-he="ניווט מלא במקלדת - כל תפריט, קישור, כפתור ושדה טופס נגישים וניתנים להפעלה במקלדת בלבד, וקישור דילוג-לתוכן מאפשר לדלג מעל הכותרת העליונה.">ניווט מלא במקלדת - כל תפריט, קישור, כפתור ושדה טופס נגישים וניתנים להפעלה במקלדת בלבד, וקישור דילוג-לתוכן מאפשר לדלג מעל הכותרת העליונה.</li>
+        <li data-en="Screen-reader support - landmark regions, meaningful headings, image alt text, and status messages that are announced (for example when an item is added to your quote)." data-he="תמיכה בקוראי מסך - אזורי ניווט מוגדרים, כותרות בעלות משמעות, טקסט חלופי לתמונות, והודעות מצב שמוכרזות (למשל כשמוסיפים פריט לבקשת ההצעה).">תמיכה בקוראי מסך - אזורי ניווט מוגדרים, כותרות בעלות משמעות, טקסט חלופי לתמונות, והודעות מצב שמוכרזות (למשל כשמוסיפים פריט לבקשת ההצעה).</li>
+        <li data-en="Colour contrast at Level AA - body and interface text meet the AA contrast ratio against their background, and we avoid low-contrast light text on the brand orange." data-he="ניגודיות צבע ברמה AA - טקסט הגוף וטקסט הממשק עומדים ביחס הניגודיות של רמה AA מול הרקע, ואנחנו נמנעים מטקסט בהיר בניגודיות נמוכה על הכתום של המותג.">ניגודיות צבע ברמה AA - טקסט הגוף וטקסט הממשק עומדים ביחס הניגודיות של רמה AA מול הרקע, ואנחנו נמנעים מטקסט בהיר בניגודיות נמוכה על הכתום של המותג.</li>
+        <li data-en="Readable text sizes - body copy is set at a comfortable base size and scales when you zoom, without breaking the layout." data-he="גדלי טקסט קריאים - טקסט הגוף מוגדר בגודל בסיס נוח וגדל כשמגדילים תצוגה, בלי לשבור את המבנה.">גדלי טקסט קריאים - טקסט הגוף מוגדר בגודל בסיס נוח וגדל כשמגדילים תצוגה, בלי לשבור את המבנה.</li>
+        <li data-en="Respect for reduced motion - if your system asks for less motion, our animations and transitions stand down." data-he="כיבוד העדפת תנועה מופחתת - אם המערכת שלכם מבקשת פחות תנועה, האנימציות והמעברים שלנו נעצרים.">כיבוד העדפת תנועה מופחתת - אם המערכת שלכם מבקשת פחות תנועה, האנימציות והמעברים שלנו נעצרים.</li>
+        <li data-en="Controls for moving content - anything that moves on its own can be paused, so nothing scrolls or plays out of your control." data-he="שליטה בתוכן נע - כל דבר שזז מעצמו ניתן לעצירה, כך ששום דבר לא נגלל או מתנגן בלי שליטתכם.">שליטה בתוכן נע - כל דבר שזז מעצמו ניתן לעצירה, כך ששום דבר לא נגלל או מתנגן בלי שליטתכם.</li>
+        <li data-en="Bilingual, correctly marked up - the site works in Hebrew and English, and switching language sets the correct text direction (right-to-left for Hebrew) and language attributes so assistive tech reads it right." data-he="דו-לשוני, עם תיוג נכון - האתר עובד בעברית ובאנגלית, והחלפת שפה מגדירה את כיוון הטקסט הנכון (מימין לשמאל בעברית) ואת מאפייני השפה, כך שטכנולוגיה מסייעת מקריאה אותו כראוי.">דו-לשוני, עם תיוג נכון - האתר עובד בעברית ובאנגלית, והחלפת שפה מגדירה את כיוון הטקסט הנכון (מימין לשמאל בעברית) ואת מאפייני השפה, כך שטכנולוגיה מסייעת מקריאה אותו כראוי.</li>
+      </ul>
+
+      <h2 data-en="Known limitations" data-he="מגבלות ידועות">מגבלות ידועות</h2>
+      <p data-en="We would rather name the gaps than hide them. As of the statement date:" data-he="אנחנו מעדיפים לנקוב במגבלות מאשר להסתיר אותן. נכון לתאריך ההצהרה:">אנחנו מעדיפים לנקוב במגבלות מאשר להסתיר אותן. נכון לתאריך ההצהרה:</p>
+      <ul>
+        <li data-en="Some imagery is placeholder photography, pending a proper studio shoot; its alt text will be finalised alongside the real photos." data-he="חלק מהתמונות הן תצלומי מקום זמניים, בהמתנה לצילום סטודיו מסודר; הטקסט החלופי שלהן יושלם יחד עם התמונות האמיתיות.">חלק מהתמונות הן תצלומי מקום זמניים, בהמתנה לצילום סטודיו מסודר; הטקסט החלופי שלהן יושלם יחד עם התמונות האמיתיות.</li>
+        <li data-en="A few images in the project archive are older phone photos at lower resolution; they remain readable but are not up to the standard of the rest of the gallery." data-he="כמה תמונות בארכיון הפרויקטים הן צילומי טלפון ישנים ברזולוציה נמוכה; הן קריאות, אך לא ברמת שאר הגלריה.">כמה תמונות בארכיון הפרויקטים הן צילומי טלפון ישנים ברזולוציה נמוכה; הן קריאות, אך לא ברמת שאר הגלריה.</li>
+        <li data-en="This site is currently a design mockup for review, ahead of the production build; the accessibility work above will be re-tested on the live site before launch." data-he="האתר הזה הוא כרגע מוקאפ עיצובי לבחינה, לפני בניית הגרסה הסופית; עבודת הנגישות שלמעלה תיבדק מחדש באתר החי לפני ההשקה.">האתר הזה הוא כרגע מוקאפ עיצובי לבחינה, לפני בניית הגרסה הסופית; עבודת הנגישות שלמעלה תיבדק מחדש באתר החי לפני ההשקה.</li>
+      </ul>
+
+      <h2 data-en="Accessibility coordinator" data-he="רכז הנגישות">רכז הנגישות</h2>
+      <!-- BUILD NOTE: replace with the real named coordinator + direct phone/email before launch; legally required (IS 5568) -->
+      <div class="coord">
+        <p class="coord__role" data-en="Accessibility coordinator: To be appointed before launch" data-he="רכז/ת נגישות: ימונה לקראת ההשקה">רכז/ת נגישות: ימונה לקראת ההשקה</p>
+        <p data-en="Until the named coordinator is in place, please use our main channels and we will route your message to the right person:" data-he="עד למינוי הרכז/ת בשמו/ה, אנא פנו אלינו בערוצים הראשיים ואנחנו ננתב את פנייתכם לגורם המתאים:">עד למינוי הרכז/ת בשמו/ה, אנא פנו אלינו בערוצים הראשיים ואנחנו ננתב את פנייתכם לגורם המתאים:</p>
+        <p data-en="Phone: 1-700-501-508 · Email: access@picpong.biz · 40 Ha Hagana St, Rishon LeZion" data-he="טלפון: 1-700-501-508 · דוא&quot;ל: access@picpong.biz · רחוב ההגנה 40, ראשון לציון">טלפון: 1-700-501-508 · דוא"ל: access@picpong.biz · רחוב ההגנה 40, ראשון לציון</p>
+      </div>
+
+      <h2 data-en="Found a problem? Tell us" data-he="נתקלתם בבעיה? ספרו לנו">נתקלתם בבעיה? ספרו לנו</h2>
+      <p data-en="If you hit a wall anywhere on the site - a control you could not reach, text you could not read, an image with no description - we want to hear about it. Please tell us which page you were on, what you were trying to do, and the browser or assistive technology you use, so we can reproduce it quickly." data-he="אם נתקלתם בקיר כלשהו באתר - פקד שלא הצלחתם להגיע אליו, טקסט שלא הצלחתם לקרוא, תמונה בלי תיאור - אנחנו רוצים לשמוע. אנא ציינו באיזה דף הייתם, מה ניסיתם לעשות, ובאיזה דפדפן או טכנולוגיה מסייעת אתם משתמשים, כדי שנוכל לשחזר את זה מהר.">אם נתקלתם בקיר כלשהו באתר - פקד שלא הצלחתם להגיע אליו, טקסט שלא הצלחתם לקרוא, תמונה בלי תיאור - אנחנו רוצים לשמוע. אנא ציינו באיזה דף הייתם, מה ניסיתם לעשות, ובאיזה דפדפן או טכנולוגיה מסייעת אתם משתמשים, כדי שנוכל לשחזר את זה מהר.</p>
+      <p data-en="Write to us at access@picpong.biz or call 1-700-501-508. We aim to reply within about two business days." data-he="כתבו לנו ל-access@picpong.biz או התקשרו ל-1-700-501-508. אנחנו שואפים להשיב בתוך כשני ימי עסקים.">כתבו לנו ל-access@picpong.biz או התקשרו ל-1-700-501-508. אנחנו שואפים להשיב בתוך כשני ימי עסקים.</p>
+      <p style="margin-top:1.4rem">
+        <a class="btn btn--brand" href="index.html#contact" data-i18n-html data-en="Contact us <span class=&quot;arrow&quot;>&rarr;</span>" data-he="צרו קשר <span class=&quot;arrow&quot;>&rarr;</span>">צרו קשר <span class="arrow">&rarr;</span></a>
+      </p>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <h2 class="display">PicPong<b>.biz</b></h2>
+        <p class="footer__story" data-en="A family workshop turning recycled corrugated board into displays worth keeping, since 2004." data-he="סדנה משפחתית שהופכת קרטון גלי ממוחזר לתצוגות ששווה לשמור, משנת 2004.">סדנה משפחתית שהופכת קרטון גלי ממוחזר לתצוגות ששווה לשמור, משנת 2004.</p>
+        <a class="btn btn--onDark" href="index.html#contact" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">בקשת הצעת מחיר <span class="arrow">&rarr;</span></a>
+        <!-- BUILD NOTE: real profile URL is content (§5/D-6) -->
+        <div class="footer__social" aria-label="Social links">
+          <a href="#" aria-label="PicPong on Facebook" data-en-aria="PicPong on Facebook" data-he-aria="PicPong בפייסבוק"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l.5-3H13V5.5c0-.9.3-1.5 1.6-1.5H17V1.4C16.6 1.3 15.5 1.2 14.3 1.2 11.7 1.2 10 2.7 10 5.2V7H7v3h3v9h3z"/></svg></a>
+          <a href="#" aria-label="PicPong on Instagram" data-en-aria="PicPong on Instagram" data-he-aria="PicPong באינסטגרם"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="PicPong on LinkedIn" data-en-aria="PicPong on LinkedIn" data-he-aria="PicPong בלינקדאין"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9.5h4V21H3zM9 9.5h3.8v1.6h.05c.53-.95 1.83-1.95 3.77-1.95 4 0 4.75 2.5 4.75 5.8V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.78 0-2.05 1.38-2.05 2.8V21H9z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col"><h4 data-en="Catalog" data-he="קטלוג">קטלוג</h4><ul><li><a href="catalog.html" data-en="Counters" data-he="דלפקים">דלפקים</a></li><li><a href="catalog.html" data-en="Stands &amp; totems" data-he="סטנדים וטוטמים">סטנדים וטוטמים</a></li><li><a href="catalog.html" data-en="Shelving" data-he="מדפים">מדפים</a></li><li><a href="catalog.html" data-en="Photocall walls" data-he="קירות פוטוקול">קירות פוטוקול</a></li><li><a href="catalog.html" data-en="Custom builds" data-he="בנייה מותאמת">בנייה מותאמת</a></li></ul></div>
+      <div class="footer__col"><h4 data-en="Studio" data-he="סטודיו">סטודיו</h4><ul><li><a href="index.html#about" data-en="Our story" data-he="הסיפור שלנו">הסיפור שלנו</a></li><li><a href="projects.html" data-en="Projects" data-he="פרויקטים">פרויקטים</a></li><li><a href="latest.html" data-en="Latest" data-he="יומן">יומן</a></li><li><a href="index.html#sustainability" data-en="Sustainability" data-he="קיימות">קיימות</a></li><li><a href="index.html#contact" data-en="Contact" data-he="צור קשר">צור קשר</a></li></ul></div>
+      <div class="footer__col"><h4 data-en="Legal" data-he="מידע ומשפט">מידע ומשפט</h4><ul><li><a href="accessibility.html" aria-current="page" data-en="Accessibility statement" data-he="הצהרת נגישות">הצהרת נגישות</a></li><li><a href="privacy.html" data-en="Privacy policy" data-he="מדיניות פרטיות">מדיניות פרטיות</a></li><li><a href="index.html#contact" data-en="Contact" data-he="צור קשר">צור קשר</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span data-en="© 2026 PicPong · Sustainable display systems" data-he="© 2026 PicPong · מערכות תצוגה בנות קיימא">© 2026 PicPong · מערכות תצוגה בנות קיימא</span><span data-en="Mockup v5: concept, not final" data-he="מוקאפ v5: קונספט, לא סופי">מוקאפ v5: קונספט, לא סופי</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<button class="contact-fab" type="button" aria-label="Request a quote" data-en-aria="Request a quote" data-he-aria="בקשת הצעת מחיר">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <span class="contact-fab__label" data-en="Request a quote" data-he="בקשת הצעת מחיר">בקשת הצעת מחיר</span>
+</button>
+
+<script src="js/app.js?v=14"></script>
+</body>
+</html>

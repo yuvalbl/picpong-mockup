@@ -297,7 +297,7 @@
   /* ---------- share affordances (PRD 3 §4.6) ----------
      Page-level "Copy link" + "Share on WhatsApp" on project/product pages, and
      the lightbox image-share above. Clipboard with an execCommand fallback +
-     toast — navigator.clipboard rejects on file://, exactly how the mockup
+     toast - navigator.clipboard rejects on file://, exactly how the mockup
      opens by double-click, so we never fail silently.
      BUILD NOTE: real links use the durable resolver /m/<id> (PRD §4.4); the
      mockup copies the direct ?p=<slug>#item-<id> form as a stand-in (§4.1). */
@@ -319,7 +319,7 @@
   function copyShareLink(text) {
     function done(ok) {
       toast(ok ? t("Link copied", "הקישור הועתק")
-               : t("Couldn't copy — select the address bar to copy the URL", "ההעתקה נכשלה — העתיקו את הכתובת מהדפדפן"));
+               : t("Couldn't copy - select the address bar to copy the URL", "ההעתקה נכשלה - העתיקו את הכתובת מהדפדפן"));
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fallbackCopy(text)); });
@@ -334,7 +334,7 @@
     if (copyBtn) copyBtn.addEventListener("click", function () { copyShareLink(url()); });
     if (waBtn) waBtn.addEventListener("click", function (e) {
       e.preventDefault();
-      window.open(waShareUrl(title() + " — " + url()), "_blank", "noopener");
+      window.open(waShareUrl(title() + " - " + url()), "_blank", "noopener");
     });
   });
 
@@ -370,13 +370,13 @@
     var SAMPLE = {
       data: {
         name: "Dana Cohen", email: "dana@bewell.co.il", phone: "054-123-4567",
-        message: { en: "Hi — we have a launch event in March, ~120 sqm. Loved these three. Can you quote?",
-                   he: "היי — יש לנו אירוע השקה במרץ, בערך 120 מ\"ר. אהבנו את שלושת אלה. אפשר הצעת מחיר?" }
+        message: { en: "Hi - we have a launch event in March, ~120 sqm. Loved these three. Can you quote?",
+                   he: "היי - יש לנו אירוע השקה במרץ, בערך 120 מ\"ר. אהבנו את שלושת אלה. אפשר הצעת מחיר?" }
       },
       items: [
-        { id: "proj-microsoft-1", title: "Microsoft · New-office launch — detail", thumb: IMG + "microsoft.jpg" },
+        { id: "proj-microsoft-1", title: "Microsoft · New-office launch - detail", thumb: IMG + "microsoft.jpg" },
         { id: "proj-landa-hero",  title: "Landa · Illuminated letters", thumb: IMG + "landa.jpg" },
-        { id: "prod-demo-counter", title: "Demo Counter — recycled X-Board", thumb: "" }
+        { id: "prod-demo-counter", title: "Demo Counter - recycled X-Board", thumb: "" }
       ]
     };
 
@@ -423,15 +423,15 @@
 
       dlg.innerHTML =
         '<div class="repmail__head">'
-        + '<span class="repmail__badge" data-en="Demo — nothing is actually sent" data-he="הדמיה — לא נשלח דבר">Demo — nothing is actually sent</span>'
+        + '<span class="repmail__badge" data-en="Demo - nothing is actually sent" data-he="הדמיה - לא נשלח דבר">Demo - nothing is actually sent</span>'
         + '<button class="repmail__close lead-drawer__close" type="button" data-repmail-close aria-label="Close" data-en-aria="Close" data-he-aria="סגור"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'
         + '</div>'
         + '<div class="repmail__meta">'
         + '<div><span class="repmail__k">' + (he ? "מאת" : "From") + '</span> PicPong.biz &lt;leads@picpong.biz&gt;</div>'
         + '<div><span class="repmail__k">' + (he ? "אל" : "To") + '</span> ' + (he ? "צוות מכירות" : "Sales team") + ' &lt;sales@picpong.biz&gt;</div>'
         + '<div><span class="repmail__k">' + (he ? "נושא" : "Subject") + '</span> '
-          + (he ? ("ליד חדש — " + esc(d.name) + " · " + s.items.length + " פריטים")
-                : ("New lead — " + esc(d.name) + " · " + s.items.length + " item" + (s.items.length === 1 ? "" : "s"))) + '</div>'
+          + (he ? ("ליד חדש - " + esc(d.name) + " · " + s.items.length + " פריטים")
+                : ("New lead - " + esc(d.name) + " · " + s.items.length + " item" + (s.items.length === 1 ? "" : "s"))) + '</div>'
         + '</div>'
         + '<div class="repmail__body">'
         + '<p class="repmail__hello">' + (he ? ("התקבלה פנייה חדשה מ-" + esc(first) + ".") : ("New enquiry from " + esc(first) + ".")) + '</p>'
@@ -443,7 +443,7 @@
         + '<p class="repmail__items-h">' + (he ? ("הפריטים שסומנו (" + s.items.length + "):") : ("Items they flagged (" + s.items.length + "):")) + '</p>'
         + '<ul class="repmail__items">' + s.items.map(rowHtml).join("") + '</ul>'
         + '<p class="repmail__note" data-en="Each link opens the exact piece, highlighted on the page. Real emails use the durable picpong.biz/m/&lt;id&gt; resolver." data-he="כל קישור פותח את הפריט המדויק, מודגש בעמוד. במיילים האמיתיים נשתמש ב-picpong.biz/m/&lt;id&gt; הקבוע.">Each link opens the exact piece, highlighted on the page. Real emails use the durable picpong.biz/m/&lt;id&gt; resolver.</p>'
-        + (s.live ? '' : '<p class="repmail__seed" data-en="(sample lead — submit the quote form to see a real one)" data-he="(ליד לדוגמה — שלחו את טופס ההצעה כדי לראות אמיתי)">(sample lead — submit the quote form to see a real one)</p>')
+        + (s.live ? '' : '<p class="repmail__seed" data-en="(sample lead - submit the quote form to see a real one)" data-he="(ליד לדוגמה - שלחו את טופס ההצעה כדי לראות אמיתי)">(sample lead - submit the quote form to see a real one)</p>')
         + '</div>';
       dlg.querySelector("[data-repmail-close]").addEventListener("click", function () { dlg.close(); });
       // links navigate the same tab → close the modal first so nav isn't trapped
@@ -481,11 +481,11 @@
 
   /* ============================================================
      LEAD-CAPTURE MODULE (PRD 2)
-     The site's core job: "I liked this — get back to me" in one click, with
+     The site's core job: "I liked this - get back to me" in one click, with
      the item's thumbnail carried into a quote form. One JS-injected side
      drawer hosts a shared four-field form; three triggers feed it (the media
      "+", the floating fab, the minimized pill); a running selection of
-     thumbnail chips travels with the visitor. UI-only/mock — nothing sends;
+     thumbnail chips travels with the visitor. UI-only/mock - nothing sends;
      real routing + a unified WhatsApp/email inbox stay BUILD NOTES. */
 
   function currentLang() { return document.documentElement.getAttribute("lang") === "he" ? "he" : "en"; }
@@ -687,7 +687,7 @@
     if (!v.name) firstBad = setError(form, "name", t("Please add your name", "נא להזין שם"));
     if (v.email && !isEmail(v.email)) { var e1 = setError(form, "email", t("Check the email format", "בדקו את כתובת האימייל")); firstBad = firstBad || e1; }
     if (!contactRuleOK(v)) {
-      // mark ONE field (email) with the shared message — a second red field with
+      // mark ONE field (email) with the shared message - a second red field with
       // no message of its own reads as a glitch, so phone is left unmarked.
       var e2 = setError(form, "email", t("Add an email or phone so we can reply", "הוסיפו אימייל או טלפון כדי שנחזור אליכם"));
       firstBad = firstBad || e2;
@@ -703,8 +703,8 @@
     var on = selection.length ? selection.map(function (s) { return s.title; }).join(", ") : "";
     if (msg) {
       msg.textContent = currentLang() === "he"
-        ? ("תודה " + first + " — הבקשה התקבלה" + (on ? (" על " + on) : "") + ". נחזור אליכם תוך יום עסקים.")
-        : ("Thanks " + first + " — your request is in" + (on ? (" for " + on) : "") + ". We'll reply within a working day.");
+        ? ("תודה " + first + " - הבקשה התקבלה" + (on ? (" על " + on) : "") + ". נחזור אליכם תוך יום עסקים.")
+        : ("Thanks " + first + " - your request is in" + (on ? (" for " + on) : "") + ". We'll reply within a working day.");
     }
     form.hidden = true;
     box.hidden = false;
@@ -816,7 +816,7 @@
           openDrawer(more);                  // first item → reveal the drawer
         } else {
           syncBadge();
-          toast('<span class="toast__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>' + t("Added — ", "נוסף — ") + itemsLabel(selection.length));
+          toast('<span class="toast__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>' + t("Added - ", "נוסף - ") + itemsLabel(selection.length));
         }
       } else {
         syncBadge();
@@ -1063,8 +1063,8 @@
   /* ---------- projects + catalog filter + live search: ONE visibility system ----------
      A [data-cat] card is visible IFF it passes BOTH the active filter chip AND
      the search query (projects only). The chip handler and the search input
-     both funnel through applyVisibility() — never writing style.display
-     independently — so they can't fight (PRD 3 §11). Matches any element
+     both funnel through applyVisibility() - never writing style.display
+     independently - so they can't fight (PRD 3 §11). Matches any element
      carrying data-filter (projects .chip; catalog facet sidebar). */
   var activeFilter = "all";
   function applyVisibility(card) {
@@ -1135,7 +1135,7 @@
   });
 
   /* quote-form behaviour now lives in the LEAD-CAPTURE MODULE above
-     (validateLead / submitLead / bindLeadForm) — shared by the inline #contact
+     (validateLead / submitLead / bindLeadForm) - shared by the inline #contact
      form and the injected drawer form. */
 
   /* ---------- live project search (PRD 3 §7) ----------
@@ -1174,11 +1174,11 @@
   /* ---------- on-arrival highlight (PRD 3 §4.5) ----------
      A shared link lands as <page>#item-<id>. Find the item, FORCE it visible
      (reset chips + search so a filtered-out target can't silently no-op),
-     scroll it to centre, spotlight + label it, and — for an image-level id on a
-     page that owns the lightbox — open that frame. Unknown id = clean no-op. */
+     scroll it to centre, spotlight + label it, and - for an image-level id on a
+     page that owns the lightbox - open that frame. Unknown id = clean no-op. */
   (function arrivalHighlight() {
     var PREFIX = "#item-";
-    var handled = null;     // last hash acted on — idempotent across load/hashchange
+    var handled = null;     // last hash acted on - idempotent across load/hashchange
     var activeClear = null; // tears down the current spotlight before a new one
 
     function findNode(id) {
@@ -1190,7 +1190,7 @@
     }
 
     function run() {
-      // read the hash FRESH each call — capturing it at script-eval time races
+      // read the hash FRESH each call - capturing it at script-eval time races
       // the navigation commit on data-driven pages (detail gallery injected late).
       var hash = location.hash || "";
       if (hash.indexOf(PREFIX) !== 0) return;
