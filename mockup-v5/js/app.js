@@ -1,11 +1,13 @@
 /* ============================================================
-   PICPONG · mockup-v4 · shared behaviour
+   PICPONG · mockup-v5 · shared behaviour
    Commerce REMOVED (cart/localStorage/drawer/stepper/PDP price-sync).
    Kept: mobile menu · scroll reveal · count-up · toast · slideshow ·
    parallax · slogan rotation · filter bar · accordion · gallery ·
    doodle draw.
-   Added (structural): language switch (lang/dir flip + copy swap),
-   inert media "+" and contact-fab triggers (real behaviour = PRD 2).
+   Language switch (lang/dir flip + copy swap, Hebrew default).
+   Lead capture is LIVE: the media "+" and the contact-fab open the quote
+   drawer and carry the selected item into it (mock submit, sends nothing).
+   Pause-motion toggle halts every auto-moving element (WCAG 2.2.2).
    No dependencies. Respects prefers-reduced-motion via CSS.
    ============================================================ */
 (function () {
@@ -60,7 +62,8 @@
     var stored = null;
     try { stored = localStorage.getItem(LANG_KEY); } catch (e) {}
     // BUILD NOTE: production should geo-detect (IL → he) on first visit; not mocked here.
-    applyLang(stored === "he" ? "he" : "en");
+    // Hebrew-first: a stored preference wins, otherwise default to Hebrew.
+    applyLang(stored === "en" ? "en" : "he");
     document.querySelectorAll("[data-lang-switch]").forEach(function (sw) {
       sw.addEventListener("click", function (e) {
         var opt = e.target.closest("[data-lang]");
@@ -162,6 +165,14 @@
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>';
   }
 
+  // dedicated keyboard-reachable zoom trigger; a real <button> so it never has to
+  // wrap (or be wrapped by) the "+" - the two controls sit side by side in .media.
+  function mediaZoomBtn() {
+    return '<button class="media__zoom" type="button" aria-label="Enlarge image"' +
+      ' data-en-aria="Enlarge image" data-he-aria="הגדלת תמונה">' +
+      '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>';
+  }
+
   (function renderProjectDetail() {
     var gallery = document.querySelector("[data-project-gallery]");
     if (!gallery) return; // not the detail page
@@ -193,10 +204,9 @@
       heroMedia.innerHTML =
         '<img src="' + IMG + lead + '" alt="' + titleEn + ' built from X-Board" loading="eager" />' +
         '<span class="hero__media-tag" data-en="From the Picpong archive" data-he="מארכיון Picpong">From the Picpong archive</span>' +
+        mediaZoomBtn() +
         mediaMoreBtn("proj-" + slug + "-hero", p.eyebrow.en, IMG + lead);
       heroMedia.setAttribute("data-zoom", IMG + lead); // hero is lightbox-able too (PRD 3 §4.6)
-      heroMedia.setAttribute("role", "button");
-      heroMedia.setAttribute("tabindex", "0");
     }
 
     // wire the page-level share box to THIS project (PRD 3 §4.6)
@@ -211,9 +221,9 @@
     var html = "";
     galleryImgs.forEach(function (file, i) {
       html +=
-        '<div class="media" data-media data-zoom="' + IMG + file + '" role="button" tabindex="0"' +
-        ' aria-label="Enlarge image">' +
+        '<div class="media" data-media data-zoom="' + IMG + file + '">' +
         '<img src="' + IMG + file + '" alt="' + titleEn + ', detail ' + (i + 1) + '" loading="lazy" />' +
+        mediaZoomBtn() +
         mediaMoreBtn("proj-" + slug + "-" + (i + 1), p.eyebrow.en + " · detail", IMG + file) +
         '</div>';
     });
@@ -257,6 +267,7 @@
     var currentId = null;
 
     function open(src, alt, id) {
+      if (dlg.open) return; // guard: real zoom buttons fire click natively; never double-open
       img.src = src; img.alt = alt || "";
       currentId = id || null;
       if (shareBtn) shareBtn.hidden = !currentId; // only show when the frame is addressable
@@ -269,18 +280,12 @@
       open(zoom.getAttribute("data-zoom"), thumb ? thumb.alt : "", more ? more.getAttribute("data-media-id") : null);
     }
 
-    // open on thumbnail click (but NOT when the "+" button is pressed)
+    // open on thumbnail click (but NOT when the "+" button is pressed). The
+    // dedicated .media__zoom <button> handles keyboard natively (Enter/Space →
+    // click), so no separate keydown branch is needed.
     document.addEventListener("click", function (e) {
       if (e.target.closest(".media__more")) return;
       var zoom = e.target.closest("[data-zoom]");
-      if (!zoom) return;
-      e.preventDefault();
-      openFromZoom(zoom);
-    });
-    // keyboard open (Enter/Space on focused thumb)
-    document.addEventListener("keydown", function (e) {
-      if (e.key !== "Enter" && e.key !== " ") return;
-      var zoom = e.target.closest && e.target.closest("[data-zoom]");
       if (!zoom) return;
       e.preventDefault();
       openFromZoom(zoom);
@@ -455,6 +460,12 @@
 
     function openEmail() { if (!dlg) build(); render(); if (!dlg.open) dlg.showModal(); }
 
+    // gate the whole Dev affordance: normal visitors never see it. Opt in with
+    // ?dev in the URL or a localStorage flag (picpong:dev) set once in devtools.
+    var devEnabled = /[?&]dev\b/.test(location.search);
+    try { devEnabled = devEnabled || localStorage.getItem("picpong:dev") != null; } catch (e) {}
+    if (!devEnabled) return;
+
     /* ---- Dev launcher: subtle fixed button → small menu ---- */
     var dev = document.createElement("div");
     dev.className = "devmenu";
@@ -511,17 +522,21 @@
   function drawerIsOpen() { var d = drawerEl(); return !!(d && d.open); }
 
   /* ---- shared four-field form markup (Name / Email / Phone / Message) ---- */
+  // a visible "*" required marker (aria-hidden) + an sr-only "(required)" so it is
+  // conveyed both ways; the input also carries aria-required="true".
+  var REQ_MARK = ' <span class="req" aria-hidden="true">*</span>'
+    + '<span class="sr-only" data-en=" (required)" data-he=" (חובה)"> (required)</span>';
   function fieldRows(sfx) {
     return '<div class="quote-grid">'
-      + '<div class="qf qf--full"><label for="qn' + sfx + '" data-en="Name" data-he="שם">Name</label>'
-      + '<input id="qn' + sfx + '" name="name" autocomplete="name" placeholder="Your name" data-en-ph="Your name" data-he-ph="השם שלך" />'
-      + '<span class="qf-error" data-qf-error></span></div>'
+      + '<div class="qf qf--full"><label for="qn' + sfx + '"><span data-en="Name" data-he="שם">Name</span>' + REQ_MARK + '</label>'
+      + '<input id="qn' + sfx + '" name="name" autocomplete="name" aria-required="true" placeholder="Your name" data-en-ph="Your name" data-he-ph="השם שלך" />'
+      + '<span class="qf-error" id="qn' + sfx + '-err" role="alert" data-qf-error></span></div>'
       + '<div class="qf"><label for="qe' + sfx + '" data-en="Email" data-he="אימייל">Email</label>'
       + '<input id="qe' + sfx + '" type="email" name="email" autocomplete="email" placeholder="you@company.com" data-en-ph="you@company.com" data-he-ph="you@company.com" />'
-      + '<span class="qf-error" data-qf-error></span></div>'
+      + '<span class="qf-error" id="qe' + sfx + '-err" role="alert" data-qf-error></span></div>'
       + '<div class="qf"><label for="qp' + sfx + '" data-en="Phone" data-he="טלפון">Phone</label>'
       + '<input id="qp' + sfx + '" type="tel" name="phone" autocomplete="tel" placeholder="Phone number" data-en-ph="Phone number" data-he-ph="מספר טלפון" />'
-      + '<span class="qf-error" data-qf-error></span></div>'
+      + '<span class="qf-error" id="qp' + sfx + '-err" role="alert" data-qf-error></span></div>'
       + '<div class="qf qf--full"><label for="qm' + sfx + '" data-en="Message" data-he="הודעה">Message</label>'
       + '<textarea id="qm' + sfx + '" name="message" placeholder="Tell us what you need…" data-en-ph="Tell us what you need…" data-he-ph="ספרו לנו מה אתם צריכים…"></textarea></div>'
       + '</div>';
@@ -545,7 +560,8 @@
       + '</div>'
       + '<p class="lead-drawer__intro" data-en="Tell us how to reach you and we\'ll reply within a working day." data-he="ספרו לנו איך ליצור איתכם קשר ונחזור אליכם תוך יום עסקים.">Tell us how to reach you and we\'ll reply within a working day.</p>'
       + '<div class="lead-chiprow" data-lead-chiprow hidden></div>'
-      + '<form class="quote-form" data-quote data-lead-form novalidate aria-label="Quote request">'
+      + '<form class="quote-form" data-quote data-lead-form novalidate aria-label="Quote request" aria-describedby="leadRule-d">'
+      + '<p class="form-rule" id="leadRule-d" data-en="Name is required. Add an email or a phone so we can reply." data-he="יש להזין שם. הוסיפו אימייל או טלפון כדי שנוכל לחזור אליכם.">Name is required. Add an email or a phone so we can reply.</p>'
       + fieldRows("-d")
       + '<div class="lead-actions">'
       + '<button class="btn btn--brand" type="submit" data-i18n-html data-en="Send request <span class=&quot;arrow&quot;>&rarr;</span>" data-he="שליחת בקשה <span class=&quot;arrow&quot;>&rarr;</span>">Send request <span class="arrow">&rarr;</span></button>'
@@ -554,7 +570,7 @@
       + '<a class="lead-wa" data-lead-wa href="#" target="_blank" rel="noopener" data-en="or message us on WhatsApp" data-he="או שלחו לנו הודעה בוואטסאפ">or message us on WhatsApp</a>'
       + '<p class="placeholder-cap" data-en="Mockup form: validates &amp; confirms, sends nothing" data-he="טופס הדגמה: מאמת ומאשר, לא שולח דבר">Mockup form: validates &amp; confirms, sends nothing</p>'
       + '</form>'
-      + '<div class="lead-success" data-lead-success hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><p class="lead-success__msg" data-lead-success-msg></p></div>'
+      + '<div class="lead-success" data-lead-success role="status" aria-live="polite" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><p class="lead-success__msg" data-lead-success-msg></p></div>'
       + '</div>';
     document.body.appendChild(dlg);
 
@@ -671,22 +687,36 @@
 
   function clearErrors(form) {
     form.querySelectorAll("[data-qf-error]").forEach(function (s) { s.textContent = ""; });
-    form.querySelectorAll('[aria-invalid="true"]').forEach(function (i) { i.removeAttribute("aria-invalid"); });
+    form.querySelectorAll('[aria-invalid="true"]').forEach(function (i) {
+      i.removeAttribute("aria-invalid"); i.removeAttribute("aria-describedby");
+    });
   }
   function setError(form, name, msg) {
     var input = form.querySelector('[name="' + name + '"]');
     if (!input) return null;
     input.setAttribute("aria-invalid", "true");
     var slot = input.parentNode.querySelector("[data-qf-error]");
-    if (slot && msg) slot.textContent = msg;
+    if (slot) {
+      if (msg) slot.textContent = msg;
+      // point the field at its live error span only while invalid (WCAG 3.3.1)
+      if (slot.id) input.setAttribute("aria-describedby", slot.id);
+    }
     return input;
   }
   function validateLead(form) {
     clearErrors(form);
     var v = readForm(form), firstBad = null;
+    // The two lead surfaces keep DIFFERENT contact rules on purpose (OQ-1 pending):
+    // the inline #contact form requires an email; the drawer accepts email OR phone.
+    var inline = !form.closest(".lead-drawer");
     if (!v.name) firstBad = setError(form, "name", t("Please add your name", "נא להזין שם"));
     if (v.email && !isEmail(v.email)) { var e1 = setError(form, "email", t("Check the email format", "בדקו את כתובת האימייל")); firstBad = firstBad || e1; }
-    if (!contactRuleOK(v)) {
+    if (inline) {
+      if (!v.email) {
+        var e3 = setError(form, "email", t("Add your email so we can reply", "הוסיפו אימייל כדי שנחזור אליכם"));
+        firstBad = firstBad || e3;
+      }
+    } else if (!contactRuleOK(v)) {
       // mark ONE field (email) with the shared message - a second red field with
       // no message of its own reads as a glitch, so phone is left unmarked.
       var e2 = setError(form, "email", t("Add an email or phone so we can reply", "הוסיפו אימייל או טלפון כדי שנחזור אליכם"));
@@ -760,7 +790,11 @@
     if (form.closest(".lead-drawer")) return; // drawer markup already has these
     form.querySelectorAll(".qf").forEach(function (qf) {
       if (!qf.querySelector("[data-qf-error]")) {
-        var s = document.createElement("span"); s.className = "qf-error"; s.setAttribute("data-qf-error", ""); qf.appendChild(s);
+        var s = document.createElement("span"); s.className = "qf-error";
+        s.setAttribute("data-qf-error", ""); s.setAttribute("role", "alert");
+        var inp = qf.querySelector("[name]");
+        if (inp && inp.id) s.id = inp.id + "-err";
+        qf.appendChild(s);
       }
     });
     if (!form.querySelector("[data-lead-wa]")) {
@@ -773,6 +807,7 @@
     if (!form.parentNode.querySelector("[data-lead-success]")) {
       var box = document.createElement("div");
       box.className = "lead-success"; box.setAttribute("data-lead-success", ""); box.hidden = true;
+      box.setAttribute("role", "status"); box.setAttribute("aria-live", "polite");
       box.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><p class="lead-success__msg" data-lead-success-msg></p>';
       form.parentNode.insertBefore(box, form.nextSibling);
     }
@@ -786,6 +821,7 @@
       var el = e.target;
       if (el && el.name) {
         el.removeAttribute("aria-invalid");
+        el.removeAttribute("aria-describedby");
         var slot = el.parentNode && el.parentNode.querySelector && el.parentNode.querySelector("[data-qf-error]");
         if (slot) slot.textContent = "";
       }
@@ -812,14 +848,14 @@
       var nowOn = selToggle(item);
       syncTiles(); renderChips(); syncBadge(); refreshWa();
       if (nowOn) {
-        if (selection.length === 1 && !drawerIsOpen()) {
-          openDrawer(more);                  // first item → reveal the drawer
-        } else {
-          syncBadge();
-          toast('<span class="toast__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>' + t("Added - ", "נוסף - ") + itemsLabel(selection.length));
+        // FIRST add (0 → 1) confirms with a toast; the drawer also opens. Every
+        // later add is silent - the fab count badge is the running feedback.
+        if (selection.length === 1) {
+          if (!drawerIsOpen()) openDrawer(more);
+          // fires only on the FIRST add, so the copy is singular (no count/plural)
+          toast('<span class="toast__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>' + t("Added to your quote list", "הפריט נוסף לרשימת ההצעה"));
         }
       } else {
-        syncBadge();
         toast(t("Removed", "הוסר"));
       }
       return;
@@ -841,15 +877,102 @@
 
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeMenu(); } });
 
-  /* ---------- mobile menu ---------- */
-  function openMenu() { var m = document.getElementById("mobileMenu"); if (m) { m.classList.add("open"); document.body.style.overflow = "hidden"; } }
-  function closeMenu() { var m = document.getElementById("mobileMenu"); if (m) { m.classList.remove("open"); document.body.style.overflow = ""; } }
-  var mb = document.getElementById("menuBtn"); if (mb) mb.addEventListener("click", openMenu);
+  /* ---------- mobile menu (with focus management, WCAG 2.4.3 / 4.1.2) ----------
+     Closed: the panel is `inert` so it leaves the tab order entirely. Open: focus
+     moves inside, Tab is trapped, aria-expanded on the hamburger is synced, and
+     focus returns to the hamburger on close (Esc / link / × all route here). */
+  var mobileMenu = document.getElementById("mobileMenu");
+  var menuBtnEl = document.getElementById("menuBtn");
+  if (mobileMenu) mobileMenu.setAttribute("inert", ""); // start out of the tab order
+  function menuFocusables() {
+    return mobileMenu ? mobileMenu.querySelectorAll('a[href], button:not([disabled])') : [];
+  }
+  function openMenu() {
+    if (!mobileMenu) return;
+    // remove inert BEFORE focusing, so the target is focusable in the same tick
+    mobileMenu.removeAttribute("inert");
+    mobileMenu.classList.add("open");
+    document.body.style.overflow = "hidden";
+    if (menuBtnEl) menuBtnEl.setAttribute("aria-expanded", "true");
+    var closeEl = document.getElementById("menuClose");
+    var f = menuFocusables();
+    var first = closeEl || (f.length ? f[0] : null);
+    if (first) {
+      // focus synchronously (beats the pointer's focus-on-click on the hamburger);
+      // a 0ms backup covers the case where inert removal needs a reflow first
+      try { first.focus(); } catch (e) {}
+      if (document.activeElement !== first) {
+        setTimeout(function () { try { first.focus(); } catch (e) {} }, 0);
+      }
+    }
+  }
+  function closeMenu() {
+    if (!mobileMenu) return;
+    var wasOpen = mobileMenu.classList.contains("open");
+    mobileMenu.classList.remove("open");
+    document.body.style.overflow = "";
+    if (menuBtnEl) menuBtnEl.setAttribute("aria-expanded", "false");
+    // move focus back to the trigger BEFORE re-inerting: if focus were still inside
+    // the menu when inert is set, the browser would drop it to <body> instead.
+    if (wasOpen && menuBtnEl) { try { menuBtnEl.focus(); } catch (e) {} }
+    mobileMenu.setAttribute("inert", "");
+  }
+  if (menuBtnEl) menuBtnEl.addEventListener("click", openMenu);
   var mc = document.getElementById("menuClose"); if (mc) mc.addEventListener("click", closeMenu);
   document.querySelectorAll("#mobileMenu a").forEach(function (a) { a.addEventListener("click", closeMenu); });
+  if (mobileMenu) mobileMenu.addEventListener("keydown", function (e) {
+    if (e.key !== "Tab") return;
+    var f = Array.prototype.slice.call(menuFocusables());
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); try { last.focus(); } catch (er) {} }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); try { first.focus(); } catch (er) {} }
+  });
 
   /* ---------- motion preference ---------- */
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- pause auto-motion (WCAG 2.2.2) ----------
+     One toggle halts everything that moves on its own: the CSS marquees + Ken-
+     Burns + decorative loops (via body.motion-paused), the hero <video>, and the
+     JS-driven slideshow + slogan intervals (which listen for picpong:motion).
+     State persists for the session so it survives the language re-render. Runs
+     before the slideshow/slogan initialisers so they can read the class on init. */
+  var MOTION_KEY = "picpong_motion_v5";
+  var motionPaused = false;
+  try { motionPaused = sessionStorage.getItem(MOTION_KEY) === "paused"; } catch (e) {}
+  function applyMotionState() {
+    document.body.classList.toggle("motion-paused", motionPaused);
+    document.querySelectorAll("video.hero-video").forEach(function (v) {
+      try {
+        if (motionPaused) { v.pause(); }
+        else { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+      } catch (e) {}
+    });
+    document.querySelectorAll("[data-motion-toggle]").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", motionPaused ? "true" : "false");
+      var en = motionPaused ? "Resume motion" : "Pause motion";
+      var he = motionPaused ? "הפעלת תנועה" : "השהיית תנועה";
+      // keep the i18n source attrs current so a later language flip stays correct
+      btn.setAttribute("data-en-aria", en); btn.setAttribute("data-he-aria", he);
+      btn.setAttribute("aria-label", currentLang() === "he" ? he : en);
+      var lbl = btn.querySelector(".motion-toggle__label");
+      if (lbl) {
+        lbl.setAttribute("data-en", en); lbl.setAttribute("data-he", he);
+        lbl.textContent = currentLang() === "he" ? he : en;
+      }
+    });
+    document.dispatchEvent(new CustomEvent("picpong:motion", { detail: { paused: motionPaused } }));
+  }
+  function setMotionPaused(p) {
+    motionPaused = !!p;
+    try { sessionStorage.setItem(MOTION_KEY, motionPaused ? "paused" : "playing"); } catch (e) {}
+    applyMotionState();
+  }
+  document.querySelectorAll("[data-motion-toggle]").forEach(function (btn) {
+    btn.addEventListener("click", function () { setMotionPaused(!motionPaused); });
+  });
+  applyMotionState(); // reflect stored state (and set body.motion-paused) before init below
 
   /* draw-on: stroke the SVG doodles inside a revealed .draw tile. */
   var DRAW_EASE = "cubic-bezier(0.62,0.37,0.1,0.95)";
@@ -964,9 +1087,8 @@
       bars.forEach(function (b) { b.classList.add("is-done"); });
       return;
     }
-    runBar(0);
 
-    setInterval(function () {
+    function step() {
       var prev = i;
       i = (i + 1) % slides.length;
       slides.forEach(function (s) { s.classList.remove("is-prev"); });
@@ -992,7 +1114,20 @@
           }, 300);
         });
       }
-    }, SLIDE_MS);
+    }
+
+    // pause-aware player: the pause toggle (picpong:motion) stops/restarts it
+    var ssTimer = null;
+    function startSS() {
+      if (ssTimer || document.body.classList.contains("motion-paused")) return;
+      runBar(i);
+      ssTimer = setInterval(step, SLIDE_MS);
+    }
+    function stopSS() { if (ssTimer) { clearInterval(ssTimer); ssTimer = null; } }
+    startSS();
+    document.addEventListener("picpong:motion", function (e) {
+      if (e.detail && e.detail.paused) stopSS(); else startSS();
+    });
   });
 
   /* ---------- dynamic slogan: rotating phrases + highlighter sweep ---------- */
@@ -1050,12 +1185,19 @@
         settle();
       }, 480);
     }
-    function start() { if (timer) return; settle(); timer = setInterval(advance, 7000); }
+    // rotate only while in view AND motion isn't paused (pause toggle → picpong:motion)
+    var inView = false;
+    var paused = document.body.classList.contains("motion-paused");
+    function start() { if (timer || paused) return; settle(); timer = setInterval(advance, 7000); }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    document.addEventListener("picpong:motion", function (e) {
+      paused = !!(e.detail && e.detail.paused);
+      if (paused) stop(); else if (inView) start();
+    });
 
-    if (!("IntersectionObserver" in window)) { start(); return; }
+    if (!("IntersectionObserver" in window)) { inView = true; start(); return; }
     var sio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { start(); } else { stop(); } });
+      entries.forEach(function (en) { inView = en.isIntersecting; if (inView && !paused) start(); else stop(); });
     }, { threshold: 0.35 });
     sio.observe(slogan);
   })();
@@ -1082,6 +1224,16 @@
       chip.setAttribute("aria-pressed", "true");
       activeFilter = chip.getAttribute("data-filter");
       applyVisibilityAll();
+    });
+    // derive each facet's item count from the real tiles so the numbers can't
+    // drift from the grid (only facet buttons that carry a .ct badge, e.g. catalog).
+    var tiles = document.querySelectorAll("[data-cat]");
+    bar.querySelectorAll("[data-filter]").forEach(function (btn) {
+      var ct = btn.querySelector(".ct");
+      if (!ct) return;
+      var f = btn.getAttribute("data-filter"), n = 0;
+      tiles.forEach(function (tl) { if (f === "all" || tl.getAttribute("data-cat") === f) n++; });
+      ct.textContent = n;
     });
   });
 

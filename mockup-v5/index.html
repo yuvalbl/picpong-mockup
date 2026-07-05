@@ -104,6 +104,12 @@
           <a class="btn btn--onDark" href="catalog.html" data-i18n-html data-en="Browse the catalog <span class=&quot;arrow&quot;>&rarr;</span>" data-he="עיון בקטלוג <span class=&quot;arrow&quot;>&rarr;</span>">Browse the catalog <span class="arrow">&rarr;</span></a>
           <a class="btn btn--ghostDark" href="#contact" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">Request a quote <span class="arrow">&rarr;</span></a>
         </div>
+        <!-- pause every auto-moving element on the page (WCAG 2.2.2) -->
+        <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false" aria-label="Pause motion" data-en-aria="Pause motion" data-he-aria="השהיית תנועה">
+          <svg class="i-pause" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+          <svg class="i-play" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5l12 7-12 7z"/></svg>
+          <span class="motion-toggle__label" data-en="Pause motion" data-he="השהיית תנועה">Pause motion</span>
+        </button>
         <div class="bubbles" aria-hidden="true">
           <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
           <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
@@ -137,7 +143,7 @@
             <img src="assets/projects/synamedia.jpg" alt="Synamedia conference booth built from X-Board" loading="lazy" />
           </div>
         </div>
-        <!-- media "+" reserved for PRD 2 quote capture -->
+        <!-- media "+" opens the quote drawer with this build attached (live) -->
         <button class="media__more" type="button" aria-label="Request a quote on this build"
                 data-media-id="slideshow-feature" data-media-title="Featured X-Board build" data-media-thumb="assets/projects/king-solomon.jpg">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -590,10 +596,11 @@
         <p class="meta" style="margin-top:1.4rem">40 Ha&nbsp;Hagana St, Rishon&nbsp;LeZion · <a href="tel:1700501508" style="color:var(--ink)">1-700-501-508</a> · <a href="mailto:info@picpong.biz" style="color:var(--ink)">info@picpong.biz</a></p>
       </div>
 
-      <form class="quote-form reveal reveal--slide" data-quote aria-label="Project enquiry" style="--i:1;--dir:1">
+      <form class="quote-form reveal reveal--slide" data-quote aria-label="Project enquiry" aria-describedby="contactRule" style="--i:1;--dir:1">
+        <p class="form-rule" id="contactRule" data-en="Name and email are required." data-he="יש להזין שם ואימייל.">Name and email are required.</p>
         <div class="quote-grid">
-          <div class="qf qf--full"><label for="qn" data-en="Name" data-he="שם">Name</label><input id="qn" name="name" autocomplete="name" required placeholder="Your name" data-en-ph="Your name" data-he-ph="השם שלך" /></div>
-          <div class="qf"><label for="qe" data-en="Email" data-he="אימייל">Email</label><input id="qe" type="email" name="email" autocomplete="email" required placeholder="you@company.com" data-en-ph="you@company.com" data-he-ph="you@company.com" /></div>
+          <div class="qf qf--full"><label for="qn"><span data-en="Name" data-he="שם">Name</span> <span class="req" aria-hidden="true">*</span><span class="sr-only" data-en=" (required)" data-he=" (חובה)"> (required)</span></label><input id="qn" name="name" autocomplete="name" required aria-required="true" placeholder="Your name" data-en-ph="Your name" data-he-ph="השם שלך" /></div>
+          <div class="qf"><label for="qe"><span data-en="Email" data-he="אימייל">Email</span> <span class="req" aria-hidden="true">*</span><span class="sr-only" data-en=" (required)" data-he=" (חובה)"> (required)</span></label><input id="qe" type="email" name="email" autocomplete="email" required aria-required="true" placeholder="you@company.com" data-en-ph="you@company.com" data-he-ph="you@company.com" /></div>
           <div class="qf"><label for="qp" data-en="Phone" data-he="טלפון">Phone</label><input id="qp" type="tel" name="phone" autocomplete="tel" placeholder="Phone number" data-en-ph="Phone number" data-he-ph="מספר טלפון" /></div>
           <div class="qf qf--full"><label for="qm" data-en="Message" data-he="הודעה">Message</label><textarea id="qm" name="message" placeholder="Tell us what you need…" data-en-ph="Tell us what you need…" data-he-ph="ספרו לנו מה אתם צריכים…"></textarea></div>
         </div>
@@ -644,9 +651,9 @@
   </div>
 </footer>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<!-- floating contact trigger; every page (inert; behaviour = PRD 2) -->
+<!-- floating contact trigger; every page - opens the quote drawer (live) -->
 <button class="contact-fab" type="button" aria-label="Request a quote" data-en-aria="Request a quote" data-he-aria="בקשת הצעת מחיר">
   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
   <span class="contact-fab__label" data-en="Request a quote" data-he="בקשת הצעת מחיר">Request a quote</span>

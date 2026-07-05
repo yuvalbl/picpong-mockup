@@ -264,7 +264,7 @@
   </div>
 </footer>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <button class="contact-fab" type="button" aria-label="Request a quote" data-en-aria="Request a quote" data-he-aria="בקשת הצעת מחיר">
   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -278,15 +278,20 @@
   (function(){
     var grid=document.getElementById('shopGrid'), out=document.getElementById('shopCount');
     if(!grid) return;
-    var bar=document.querySelector('[data-filterbar]');
-    bar.addEventListener('click',function(){ setTimeout(function(){
-      var n=[].slice.call(grid.querySelectorAll('[data-cat]')).filter(function(c){return c.style.display!=='none';}).length;
+    function paint(n){
       var he=document.documentElement.getAttribute('lang')==='he';
       out.textContent = he ? (n+' פריטים') : (n+(n===1?' piece':' pieces'));
       // keep the i18n source attrs in sync so a later language flip stays correct
       out.setAttribute('data-en', n+(n===1?' piece':' pieces'));
       out.setAttribute('data-he', n+' פריטים');
-    },0);});
+    }
+    function visibleCount(){
+      return [].slice.call(grid.querySelectorAll('[data-cat]')).filter(function(c){return c.style.display!=='none';}).length;
+    }
+    // derive the initial total from the real grid (no hardcoded number)
+    paint(grid.querySelectorAll('[data-cat]').length);
+    var bar=document.querySelector('[data-filterbar]');
+    bar.addEventListener('click',function(){ setTimeout(function(){ paint(visibleCount()); },0);});
   })();
 </script>
 </body>

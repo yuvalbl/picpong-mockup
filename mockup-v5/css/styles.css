@@ -327,7 +327,8 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .marquee--kraft .marquee__item { color: #2e2113; }
 .marquee--kraft .marquee__item::after { color: var(--ink); }
 .marquee__track { display: flex; gap: 3rem; width: max-content; animation: marquee 38s linear infinite; }
-.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track { animation-play-state: paused; }
 .marquee__item { font-family: "Rubik", system-ui, sans-serif; font-weight: 300; font-size: clamp(1.25rem,2.6vw,1.9rem);
   letter-spacing: -0.01em; color: var(--ink); display: inline-flex; align-items: center; gap: 3rem; }
 .marquee__item::after { content:"✦"; color: var(--orange); font-size: 0.7em; }
@@ -347,7 +348,8 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
           mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
 .logo-marquee__track { display: flex; align-items: center; width: max-content;
   animation: logo-step 20s ease infinite; }
-.logo-marquee:hover .logo-marquee__track { animation-play-state: paused; }
+.logo-marquee:hover .logo-marquee__track,
+.logo-marquee:focus-within .logo-marquee__track { animation-play-state: paused; }
 .logo-marquee__item { flex: 0 0 auto; width: 120px; height: 90px; margin-right: clamp(2rem, 5vw, 4.5rem);
   display: flex; align-items: center; justify-content: center; }
 .logo-marquee__item img { max-width: 120px; max-height: 90px; width: auto; height: auto;
@@ -553,6 +555,10 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 
 /* ---------- quote form (the real custom-project funnel) ---------- */
 .quote-form { display: grid; gap: 1rem; }
+/* per-form required-field rule (associated via aria-describedby on the <form>) */
+.form-rule { margin: 0; font-size: var(--t-meta); color: var(--muted); }
+/* required marker: red "*" next to the label, sr text carries "(required)" */
+.qf label .req { color: #c0392b; font-weight: 700; }
 .quote-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 @media (min-width: 620px) { .quote-grid { grid-template-columns: 1fr 1fr; } }
 .qf { display: flex; flex-direction: column; gap: 0.4rem; }
@@ -981,6 +987,32 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   .collage .reveal { transform: none; }
 }
 
+/* pause-motion toggle (WCAG 2.2.2): body.motion-paused freezes every looping
+   decorative animation at once; the JS halts the slideshow/slogan intervals + video. */
+body.motion-paused .marquee__track,
+body.motion-paused .logo-marquee__track,
+body.motion-paused .cinemagraph,
+body.motion-paused .slideshow__stage,
+body.motion-paused .sticker svg,
+body.motion-paused .fish,
+body.motion-paused .bubble { animation-play-state: paused !important; }
+
+/* the toggle itself - lives on the dark hero panel, so white on translucent (AA) */
+.motion-toggle {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  margin-top: 1.1rem; padding: 0.42rem 0.85rem;
+  font: inherit; font-size: var(--t-ui); font-weight: 600; line-height: 1;
+  color: #fff; background: rgba(255,255,255,0.14);
+  border: 1.5px solid rgba(255,255,255,0.55); border-radius: 999px;
+  cursor: pointer; transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease);
+}
+.motion-toggle:hover,
+.motion-toggle:focus-visible { background: rgba(255,255,255,0.26); border-color: #fff; }
+.motion-toggle svg { width: 0.95rem; height: 0.95rem; flex-shrink: 0; }
+.motion-toggle .i-play { display: none; }
+.motion-toggle[aria-pressed="true"] .i-pause { display: none; }
+.motion-toggle[aria-pressed="true"] .i-play { display: inline; }
+
 /* dual-path chooser as bold panels */
 .lane--panel { display: block; text-decoration: none; border-radius: var(--radius-lg);
   padding: clamp(2rem, 3.6vw, 3rem) clamp(1.75rem, 3.2vw, 2.75rem);
@@ -1289,6 +1321,23 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   border-color: #8FCBA6;
   color: #1F5134;
 }
+/* dedicated zoom trigger: an overlay <button> covering the image (below the "+"),
+   so the container needs no role=button and the two controls never nest. Mouse
+   users click the image to zoom; keyboard users tab to this button. */
+.media__zoom {
+  position: absolute; inset: 0; z-index: 2;
+  border: 0; padding: 0; margin: 0; background: transparent;
+  color: #fff; cursor: zoom-in;
+  display: flex; align-items: flex-start; justify-content: flex-start;
+}
+.media__zoom svg {
+  width: 1.35rem; height: 1.35rem; margin: 0.7rem; opacity: 0;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.55));
+  transition: opacity var(--speed) var(--ease);
+}
+.media:hover .media__zoom svg,
+.media__zoom:focus-visible svg { opacity: 1; }
+.media__zoom:focus-visible { outline: 2px solid #fff; outline-offset: -3px; }
 
 /* ---- video hero tile ---- */
 /* the home hero "video" tile reuses .ctile--video framing; the <video> fills it.
@@ -1350,6 +1399,8 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 @media (max-width: 520px) {
   /* keep the label on small screens but tighten the padding */
   .contact-fab { padding: 0.65rem 0.85rem; font-size: var(--t-meta); }
+  /* reserve room so the fixed fab never covers page-bottom content (DC-B3) */
+  body { padding-bottom: 5.5rem; }
 }
 
 /* ---- language switch + social slot in nav ---- */
