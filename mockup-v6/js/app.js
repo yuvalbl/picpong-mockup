@@ -196,7 +196,14 @@
     setI18n("[data-project-eyebrow]", p.eyebrow.en, p.eyebrow.he);
     setI18n("[data-project-title]", titleEn, p.title.he);
     setI18n("[data-project-subtitle]", p.subtitle.en, p.subtitle.he);
-    document.title = titleEn + ": X-Board build | PicPong.biz Projects";
+    function setDocTitle() {
+      var he = document.documentElement.getAttribute("lang") === "he";
+      document.title = he
+        ? p.title.he + " | פרויקטים · PicPong.biz"
+        : titleEn + ": X-Board build | PicPong.biz Projects";
+    }
+    setDocTitle();
+    document.addEventListener("picpong:langchange", setDocTitle);
 
     // lead image (hero, two-column); first image
     var heroMedia = document.querySelector("[data-project-hero-media]");
@@ -838,9 +845,11 @@
     var more = e.target.closest(".media__more");
     if (more) {
       e.preventDefault();
+      var titleHe = more.getAttribute("data-media-title-he");
+      var isHe = document.documentElement.getAttribute("lang") === "he";
       var item = {
         id: more.getAttribute("data-media-id"),
-        title: more.getAttribute("data-media-title") || "",
+        title: (isHe && titleHe ? titleHe : more.getAttribute("data-media-title")) || "",
         thumb: more.getAttribute("data-media-thumb") || ""
       };
       var nowOn = selToggle(item);
@@ -1411,5 +1420,42 @@
     if (document.readyState === "complete") run();
     else window.addEventListener("load", run);
     window.addEventListener("hashchange", function () { handled = null; run(); });
+  })();
+
+  /* ---------- Latest strip: mobile "swipe for more" cue ----------
+     Auto-hides after the first scroll (or if the strip doesn't overflow).
+     Tapping it advances ~one card, direction-aware for LTR/RTL. */
+  (function () {
+    var scroller = document.querySelector(".latest-strip__scroller");
+    if (!scroller) return;
+    var row = scroller.querySelector(".latest-strip__row");
+    var cue = scroller.querySelector("[data-strip-cue]");
+    if (!row || !cue) return;
+
+    var retired = false;
+    function retire() { retired = true; scroller.classList.add("is-scrolled"); }
+
+    // Nothing to scroll (wide screens / few cards) -> no cue.
+    function syncOverflow() {
+      if (row.scrollWidth - row.clientWidth <= 8) retire();
+    }
+    syncOverflow();
+    window.addEventListener("resize", syncOverflow);
+
+    // Retire on a real user scroll. Measure distance from the resting position,
+    // NOT absolute scrollLeft: in RTL (and with scroll-snap) the row rests at a
+    // non-zero scrollLeft and fires a scroll event on load, which must not count.
+    var restLeft = row.scrollLeft;
+    row.addEventListener("scroll", function () {
+      if (retired) return;
+      if (Math.abs(row.scrollLeft - restLeft) > 48) retire();
+    }, { passive: true });
+
+    cue.addEventListener("click", function () {
+      var rtl = document.documentElement.getAttribute("dir") === "rtl";
+      var amt = Math.round(row.clientWidth * 0.85);
+      row.scrollBy({ left: rtl ? -amt : amt, behavior: "smooth" });
+      retire();
+    });
   })();
 })();

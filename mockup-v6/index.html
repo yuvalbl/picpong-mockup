@@ -283,6 +283,7 @@
       <a class="link-arrow" href="projects.html" data-i18n-html data-en="All projects <span class=&quot;arrow&quot;>&rarr;</span>" data-he="לכל הפרויקטים <span class=&quot;arrow&quot;>&rarr;</span>">All projects <span class="arrow">&rarr;</span></a>
     </div>
 
+    <div class="latest-strip__scroller">
     <div class="latest-strip__row reveal" role="list">
 
       <!-- 1 · Microsoft -->
@@ -335,7 +336,14 @@
         <div class="project__body"><span class="project__client">Synamedia</span><h3 class="h4 project__title" data-en="Conference booth &amp; lounge" data-he="ביתן כנס וטרקלין">Conference booth &amp; lounge</h3></div>
       </a>
 
-    </div>
+    </div><!-- /.latest-strip__row -->
+
+    <!-- Mobile-only "swipe for more" affordance; auto-hides after first scroll (js/app.js).
+         Direction-aware: points toward inline-end (right in EN / left in HE-RTL). -->
+    <button class="strip-cue" type="button" aria-hidden="true" tabindex="-1" data-strip-cue>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    </div><!-- /.latest-strip__scroller -->
   </div>
 </section>
 
