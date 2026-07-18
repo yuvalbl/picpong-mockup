@@ -269,6 +269,18 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   .nav__links { display: flex; }
   .nav__menu-btn { display: none; }
 }
+/* On narrow phones (<=420px) the bar's fixed 24px gap + brand type + actions
+   cluster (lang-switch + motion toggle + menu) overflow the viewport, pushing
+   the menu button off-screen (badly in RTL) and forcing a page-wide horizontal
+   scroll. Reclaim the slack here without shrinking the 44px tap targets. */
+@media (max-width: 420px) {
+  .nav__inner { gap: 0.5rem; }
+  .brand { gap: 0.4rem; }
+  .brand__mark { height: 26px; }
+  .brand__word { font-size: 1.15rem; }
+  .nav__actions { gap: 0.1rem; }
+  .lang-switch [data-lang] { padding: 0.35rem 0.45rem; }
+}
 
 /* mobile menu */
 .mobile-menu {
@@ -921,8 +933,9 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
   /* cartonlab `.bloque-5-banners` mobile rhythm: a full-bleed editorial lead,
      then a two-column STAGGERED mosaic. Both media columns span the same row
      band (rows 2-10 = 8 units) so they're equal height with NO empty gaps, but
-     their interior seam falls on different rows - col-1 is TALL→short, col-2 is
-     short→TALL - so the seam zig-zags (woven masonry), never a flat stack. A
+     their interior seam falls on different rows - col-1 is short→TALL (quote
+     over slides, like desktop), col-2 is TALL→short (video over sticker) - so
+     the seam zig-zags (woven masonry), never a flat stack. A
      fine row unit + grid-row spans drive the tile heights; align-items:stretch
      (grid default) makes each tile fill its span, so the columns interlock. */
   .collage {
@@ -937,14 +950,17 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
      Auto-height (row 1 sizes to content) so the H1 + both CTAs never clip. */
   .ctile--headline { grid-column: 1 / -1; grid-row: 1; }
 
-  /* col-1 : slideshow TALL feature → slogan short  (rows 2-10) */
-  .ctile--media  { grid-column: 1; grid-row: 2 / span 5; aspect-ratio: auto; }
-  .ctile--slogan { grid-column: 1; grid-row: 7 / span 3; aspect-ratio: auto; min-height: 0; }
+  /* col-1 : slogan quote short → slideshow TALL below it (rows 2-9). Mirrors the
+     desktop mid column, where the kraft quote panel sits ON TOP and the slides
+     tile drops BELOW it. Slogan splits at row 5, video (col-2) at row 7, so the
+     two interior seams fall on different rows - a woven stagger, never two tall
+     tiles side by side. */
+  .ctile--slogan { grid-column: 1; grid-row: 2 / span 3; aspect-ratio: auto; min-height: 0; }
+  .ctile--media  { grid-column: 1; grid-row: 5 / span 5; aspect-ratio: auto; }
 
-  /* col-2 : video TALL → sticker short  (rows 2-10). The portrait clip wants the
-     height, so it's the tall feature here too; its seam still staggers against
-     col-1 (video splits at row 7, slideshow/slogan at row 7 as well but col-1's
-     media is the tall one on the opposite side, keeping the woven rhythm). */
+  /* col-2 : video TALL → sticker short (rows 2-9), matching the desktop far
+     column (portrait clip on top, sticker below). Its seam at row 7 zig-zags
+     against col-1's seam at row 5, keeping the masonry rhythm. */
   .ctile--video   { grid-column: 2; grid-row: 2 / span 5; aspect-ratio: auto; }
   .ctile--sticker { grid-column: 2; grid-row: 7 / span 3; aspect-ratio: auto; }
 
