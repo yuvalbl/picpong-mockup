@@ -1056,7 +1056,7 @@
 
   /* ---------- collage slideshow: reel player (zoom-cut + story bars) ---------- */
   document.querySelectorAll("[data-slideshow]").forEach(function (box) {
-    var SLIDE_MS = 4200;
+    var SLIDE_MS = 8400;
     var slides = box.querySelectorAll(".slide");
     if (slides.length < 2) return;
     var cardK = box.querySelector("[data-card-k]");
@@ -1203,7 +1203,7 @@
     // rotate only while in view AND motion isn't paused (pause toggle → picpong:motion)
     var inView = false;
     var paused = document.body.classList.contains("motion-paused");
-    function start() { if (timer || paused) return; settle(); timer = setInterval(advance, 7000); }
+    function start() { if (timer || paused) return; settle(); timer = setInterval(advance, 17500); }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
     document.addEventListener("picpong:motion", function (e) {
       paused = !!(e.detail && e.detail.paused);

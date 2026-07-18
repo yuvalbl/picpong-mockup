@@ -484,7 +484,7 @@
     var addTile = images.length >= max ? "" :
       '<button type="button" class="im-add" data-imadd aria-label="' + esc(addLabel) + '">' + IMG_ICON.plus + '<span>' + esc(addLabel) + '</span></button>';
     return '<div class="im-strip">' + thumbs + addTile + '</div>' +
-      (images.length ? "" : '<span class="im-empty">No images yet - add one</span>');
+      (images.length ? "" : '<span class="im-empty">' + esc(opts.emptyLabel || "No images yet - add one") + '</span>');
   }
 
   // Wire the strip inside `scope` (a DOM element). onChange fires after each edit.

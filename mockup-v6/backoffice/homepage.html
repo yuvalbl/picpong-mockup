@@ -131,7 +131,7 @@
         var videoCard = '<div class="bo-card hp-card">' +
           '<div class="bo-card__head"><h2>Hero video</h2></div>' +
           '<div class="bo-field"><label>Poster image</label>' +
-            '<div id="hp-video-poster">' + BO.imageStrip.html(video.poster, { max: 1, addLabel: "Replace poster" }) + '</div>' +
+            '<div id="hp-video-poster">' + BO.imageStrip.html(video.poster, { max: 1, addLabel: "Replace poster", emptyLabel: "No video yet - add one" }) + '</div>' +
           '</div>' +
           '<div class="bo-field--row" style="margin-top:1rem">' +
             '<div class="bo-field"><label for="hp-video-capen">Caption (English)</label>' +
@@ -145,7 +145,7 @@
         var featureCard = '<div class="bo-card hp-card">' +
           '<div class="bo-card__head"><h2>Feature image</h2></div>' +
           '<div class="bo-field"><label>Image</label>' +
-            '<div id="hp-feature-img">' + BO.imageStrip.html(feature.img, { max: 1, addLabel: "Replace image" }) + '</div>' +
+            '<div id="hp-feature-img">' + BO.imageStrip.html(feature.img, { max: 1, addLabel: "Replace image", emptyLabel: "No image yet - add one" }) + '</div>' +
           '</div>' +
           '<div class="bo-field--row" style="margin-top:1rem">' +
             '<div class="bo-field"><label for="hp-feature-alten">Alt text (English)</label>' +

@@ -27,6 +27,8 @@ There are no tests, linters, or bundlers. To view a mockup without Firebase, ope
 
 **Verifying mobile/responsive + RTL:** use Playwright MCP (`browser_resize` genuinely emulates the viewport); claude-in-chrome `resize_window` resizes the OS window but not the page viewport, so `@media` breakpoints never engage. Note the site is Hebrew-first RTL, where horizontal scroll containers rest at a non-zero `scrollLeft` and fire a load-time scroll event.
 
+**RTL bidi (Hebrew):** LTR runs joined by neutral separators (`×`, `·`, `/`) or led by a number get their segments mirrored inside an RTL block (e.g. `120 × 50 cm` → `cm 50 × 120`). Wrap such values (dimensions, addresses, phone/email) in `dir="ltr"`, or translate so numbers sit in natural Hebrew flow. Plain hyphen ranges (`5-7`) are safe.
+
 ## Architecture
 
 **Three mockup generations**, each fully self-contained (no shared code between them — they are iterations, not modules):

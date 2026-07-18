@@ -20,6 +20,7 @@
   --pond:    #2A9BD0;  /* water depiction only: hero pond + sustainability ocean; never a UI accent */
   --forest:  #123B33;   /* deep rainforest green - paired with --pond for the sustainability statement's ocean-to-canopy gradient */
   --forest-deep:#05120F;
+  --leaf-bright:#8FCB3F; /* eco highlighter for the hero "100% recycled" marker - ink on it ≈ 10:1 (AAA); the one non-orange marker on the site */
   --muted:   #6b6b63;
   --stone:   #B7B7AD;
   --line:    rgba(26,26,26,0.12);
@@ -124,6 +125,52 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .eyebrow::before { content:""; width: 1.6rem; height: 1px; background: currentColor; opacity: 0.8; }
 .eyebrow--plain::before { display: none; }
 .on-dark .eyebrow, .eyebrow--dark { color: var(--orange-bright); }
+
+/* Eco tag - the hero's "100% recycled" claim, sitting just under the headline.
+   The site's signature highlighter marker (see .slogan .mark) sweeps in leaf-green
+   under "100% recycled" so the client's #1 message is the eye's second stop after
+   the headline. Ink on --leaf-bright ≈ 10:1; cream on the forest field ≈ 9:1. */
+.ecotag {
+  margin: 0; align-self: flex-start;                 /* logical start: right in RTL, left in LTR */
+  font-family: "Rubik", system-ui, sans-serif; line-height: 1.1;
+}
+/* the marker band holds the whole claim - recycle icon + 100% + recycled, one ink
+   colour. Ink on --leaf-bright ≈ 10:1; before the band sweeps in the text sits on
+   the ocean field, so it starts cream and flips to ink exactly as the band lands. */
+.ecotag__mark {
+  position: relative; isolation: isolate; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 0.36em; padding: 0.1em 0.42em;
+  color: var(--ink);                                 /* resting + reduced-motion */
+}
+.ecotag__icon { flex: none; width: 1.5em; height: 1.5em; transform: rotate(-3deg); }
+.ecotag__icon svg { width: 100%; height: 100%; display: block; }
+.ecotag__pct  { font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 800; letter-spacing: -0.01em; }
+.ecotag__word { font-size: clamp(1.1rem, 1.7vw, 1.4rem); font-weight: 600; }
+/* the highlighter band - same hand-drawn geometry as .slogan .mark::before, leaf green */
+.ecotag__mark::before {
+  content: ""; position: absolute; z-index: -1;
+  left: -0.12em; right: -0.12em; top: 0.06em; bottom: 0;
+  background: var(--leaf-bright);
+  border-radius: 0.55em 0.7em 0.5em 0.75em / 0.85em 0.6em 0.9em 0.65em;
+  transform: scaleX(0) skewX(-3.5deg); transform-origin: left center;
+}
+[dir="rtl"] .ecotag__mark::before { transform-origin: right center; }
+/* choreography keys off the hero tile's reveal .in (scroll observer), reusing the
+   global mark-sweep keyframes. The icon rides the same currentColor handoff. */
+@media (prefers-reduced-motion: no-preference) {
+  .ecotag__mark { color: var(--cream); transition: color 0.16s linear 0.78s; }
+  .ctile--headline.reveal.in .ecotag__mark { color: var(--ink); }
+  .ctile--headline.reveal.in .ecotag__mark::before {
+    animation: mark-sweep 0.5s cubic-bezier(0.22, 0.7, 0.25, 1) 0.55s forwards;
+  }
+  .ctile--headline.reveal.in .ecotag__icon { animation: ecotag-wink 0.4s var(--ease) 0.9s both; }
+}
+/* a small settle on the recycle mark - the vestige of a "stamp", a wink not a thunk */
+@keyframes ecotag-wink {
+  0%   { transform: scale(1.18) rotate(-9deg); }
+  60%  { transform: scale(0.96) rotate(-1deg); }
+  100% { transform: scale(1)    rotate(-3deg); }
+}
 
 /* ---------- section scaffolding ---------- */
 .band { padding: clamp(3.5rem, 8vw, 7rem) 0; position: relative; overflow-x: clip; }
@@ -780,16 +827,19 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .ctile .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .ctile--media, .ctile--video, .ctile--sticker, .ctile--detail { background: var(--stone); }
 
-/* headline panel content */
+/* headline panel content. Headline + eco tag lock together at the top; the CTAs
+   sink to the bottom (margin-top:auto) so a generous gap opens between the two
+   groups - the taller min-height gives that gap room to breathe. */
 .ctile--headline {
-  display: flex; flex-direction: column; justify-content: center;
-  gap: 1rem; padding: clamp(1.6rem, 3.4vw, 2.8rem);
-  min-height: 300px;
+  display: flex; flex-direction: column; justify-content: flex-start;
+  gap: 0.9rem; padding: clamp(1.6rem, 3.4vw, 2.8rem);
+  min-height: clamp(340px, 42vw, 440px);
 }
 .ctile--headline .display { font-size: clamp(2.3rem, 5.2vw, 3.9rem); }
 .ctile--headline .display .accent { background-image: linear-gradient(var(--ink),var(--ink)); }
 .ctile--headline .lead { max-width: 34ch; }
 .ctile__cta { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 0.4rem; }
+.ctile--headline .ctile__cta { margin-top: auto; }   /* push buttons to the tile floor */
 /* CTAs on the bright pond panel (ink text). Match the dark-text panel pattern
    used by orange/kraft tiles: solid = orange field/ink text, ghost = ink outline. */
 .ctile--headline .btn--onDark { background: var(--orange); color: var(--ink); border-color: var(--orange); }
@@ -797,14 +847,12 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .ctile--headline .btn--ghostDark { background: transparent; color: var(--ink); border-color: var(--ink); }
 .ctile--headline .btn--ghostDark:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 
-/* forest headline tile: ocean-to-canopy field with a --pond glow in the corner
-   where the fish swims + bubbles rise, so the water motif survives the recolor.
-   Fewer words (lead dropped) let the display type run larger = punchier. */
 .ctile--headline.panel--forest {
   /* clean deep-ocean water: a teal-blue base (not olive-green, which muddied
      against the blue glow) deepening to ocean blue near the fish, with a
      slightly brighter pond glow for clear-water light. Reads as "deep ocean"
-     while the .sustain band stays green - hero=ocean, band=canopy. */
+     while the .sustain band stays green - hero=ocean, band=canopy. The leaf-green
+     "100% recycled" marker under the headline carries the eco message here. */
   background:
     radial-gradient(ellipse 82% 62% at 84% 90%, rgba(42,155,208,0.42), transparent 62%),
     linear-gradient(158deg, #0E3A40 0%, #06232E 100%);
@@ -1093,7 +1141,7 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
    it composites reliably; mobile keeps a static stage (image always visible)
    with the diagonal wipe as its motion. */
 @media (min-width: 760px) {
-  .slideshow__stage { animation: stage-drift 17s ease-in-out infinite alternate; will-change: transform; }
+  .slideshow__stage { animation: stage-drift 34s ease-in-out infinite alternate; will-change: transform; }
 }
 /* Resting visibility is driven by OPACITY, not clip-path. Mobile WebKit/iOS
    Safari intermittently drops an `animation-fill-mode` HELD clip-path value
@@ -1151,7 +1199,7 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
   background: #fff; box-shadow: 0 0 6px rgba(255,255,255,0.7);
   transform: scaleX(0); transform-origin: left center; }
 .slideshow__bars .bar.is-done i { transform: scaleX(1); }
-.slideshow__bars .bar.is-running i { animation: barfill var(--slide-ms, 4200ms) linear forwards; }
+.slideshow__bars .bar.is-running i { animation: barfill var(--slide-ms, 8400ms) linear forwards; }
 @keyframes barfill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 /* caption swaps with a little lift instead of a flat fade */
@@ -1245,7 +1293,9 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
    Placed AFTER the base slogan rules so it wins at equal specificity. */
 @media (min-width: 760px) {
   .ctile--slogan { align-items: flex-end; padding: clamp(1rem, 1.6vw, 1.6rem); }
-  .slogan .line  { font-size: clamp(1.1rem, 1.7vw, 1.7rem); line-height: 1.12; }
+  /* larger, fully fluid quote text (~100-150% of the old size) - vw-driven so it
+     scales with the narrow interlock column and never clips "Remarkable" */
+  .slogan .line  { font-size: clamp(1.5rem, 2.4vw, 2.5rem); line-height: 1.14; }
 }
 
 /* screen-reader-only static promise (visible phrases rotate + are aria-hidden) */
@@ -1285,6 +1335,9 @@ body.motion-paused .bubble { animation-play-state: paused !important; }
   .slogan .line { opacity: 1 !important; transform: none !important; animation: none !important; }
   .slogan .mark::before { animation: none !important; transform: scaleX(1) skewX(-2deg) !important; }
   .slogan .mark { animation: none !important; font-weight: 700 !important; }
+  /* eco tag: hold the leaf band fully drawn (ink text on it stays AA) and skip the wink */
+  .ecotag__mark::before { animation: none !important; transform: scaleX(1) skewX(-2deg) !important; }
+  .ecotag__icon { animation: none !important; }
   .ctile--headline .fish, .bubble { animation: none !important; }
 }
 
