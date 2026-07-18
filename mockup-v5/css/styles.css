@@ -417,6 +417,13 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-on-dark);
   border: 1px solid var(--line-on-dark); border-radius: var(--radius); overflow: hidden; }
 @media (min-width: 760px) { .specs { grid-template-columns: repeat(5, 1fr); } }
+/* mobile: the 5th tile is an orphan in a 2-col grid - span it full-width as a
+   horizontal summary bar (the reusable/recyclable spec is the closing statement) */
+@media (max-width: 759px) {
+  .specs .spec:last-child { grid-column: 1 / -1; display: flex; align-items: center; gap: 1.2rem; }
+  .specs .spec:last-child .spec__num { line-height: 1; flex: none; }
+  .specs .spec:last-child .spec__label { margin-top: 0; }
+}
 .spec { background: var(--gallery); padding: clamp(1.5rem,3vw,2.6rem) clamp(1.1rem,2.5vw,1.7rem); }
 /* numbers as personality - louder than cartonlab's quiet spec tabs (spec §2.4/§4) */
 .spec__num { font-family: "Rubik", system-ui, sans-serif; font-weight: 300; font-size: clamp(2.8rem,6vw,4.5rem);
