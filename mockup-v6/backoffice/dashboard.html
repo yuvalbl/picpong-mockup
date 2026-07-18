@@ -22,16 +22,12 @@
       var esc = BO.esc;
 
       var leads = BO.getLeads();
-      var posts = BO.getPosts();
 
       // ---- shared metrics ----
       var newLeads = leads.filter(function (l) { return l.status === "new"; });
       var newToday = leads.filter(function (l) { return l.status === "new" && BO.isToday(l.createdAt); });
       var unassigned = leads.filter(function (l) { return !l.assigned && l.status !== "won" && l.status !== "lost"; });
       var awaitingReply = leads.filter(function (l) { return l.status === "new" || l.status === "contacted"; });
-      var drafts = posts.filter(function (p) { return p.status === "draft"; });
-      var published = posts.filter(function (p) { return p.status === "published"; });
-      var lastPublished = published.slice().sort(function (a, b) { return b.date < a.date ? -1 : 1; })[0];
 
       function tile(label, num, foot, accent) {
         return '<div class="bo-stat' + (accent ? ' bo-stat--accent' : '') + '">' +
@@ -54,15 +50,6 @@
           '<span class="' + BO.pillClass(l.status) + '">' + esc(l.status) + '</span></a>';
       }
 
-      function postRow(p) {
-        return '<a class="bo-list__row" href="journal-editor.html?id=' + encodeURIComponent(p.id) + '">' +
-          '<img src="' + esc(p.image) + '" alt="" style="width:44px;height:44px;border-radius:7px;object-fit:cover" />' +
-          '<span><span class="bo-list__name">' + esc(p.en.title) + '</span><br>' +
-          '<span class="bo-list__meta">' + BO.fmtDate(p.date) + (p.isVideo ? ' · Video' : '') + '</span></span>' +
-          '<span class="bo-list__spacer"></span>' +
-          '<span class="' + BO.pillClass(p.status) + '">' + esc(p.status) + '</span></a>';
-      }
-
       // ---- SALES panel ----
       function salesBlock() {
         var tiles =
@@ -76,23 +63,6 @@
           '<section class="bo-card">' +
             '<div class="bo-card__head"><h2>Newest leads</h2><a class="bo-card__more" href="leads.html">All leads</a></div>' +
             '<div class="bo-list">' + list + '</div>' +
-          '</section>';
-      }
-
-      // ---- CONTENT panel ----
-      function contentBlock() {
-        var tiles =
-          tile("Drafts", drafts.length, "waiting to publish", drafts.length > 0) +
-          tile("Published", published.length, "live on the journal") +
-          tile("Last published", lastPublished ? BO.fmtDate(lastPublished.date) : "-", lastPublished ? lastPublished.en.title : "");
-        var draftList = drafts.length
-          ? drafts.slice(0, 5).map(postRow).join("")
-          : '<div class="bo-empty">No drafts - all caught up.</div>';
-        return '<section class="bo-grid bo-grid--3" style="margin-bottom:1.4rem">' + tiles + '</section>' +
-          '<section class="bo-card" style="margin-bottom:1.4rem">' +
-            '<div class="bo-card__head"><h2>Publish queue</h2>' +
-              '<a class="bo-btn bo-btn--brand bo-btn--sm bo-card__more" href="journal-editor.html">' + BO.ICON.journal + ' New journal post</a></div>' +
-            '<div class="bo-list">' + draftList + '</div>' +
           '</section>';
       }
 
@@ -115,18 +85,18 @@
       }
       function subLine(r) {
         if (r === "Sales") return "Here is what has come in and what needs a reply.";
-        if (r === "Content") return "Your publish queue and what is live on the site.";
+        if (r === "Content") return "Your content workspace.";
         return "A full view across leads and content.";
       }
 
       var html = greeting;
       if (role === "Sales") {
         html += salesBlock();
-      } else if (role === "Content") {
-        html += contentBlock();
-      } else { // Admin - both summaries + admin links
-        html += salesBlock() + '<div style="height:1.4rem"></div>' + contentBlock() + adminLinks();
+      } else if (role === "Admin") {
+        html += salesBlock() + '<div style="height:1.4rem"></div>' + adminLinks();
       }
+      // Content role: no content-specific summary to show here (see nav for
+      // Featured / Projects / Catalog / Media).
 
       main.innerHTML = html;
     })();

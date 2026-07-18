@@ -17,7 +17,7 @@ every page shares one shell, one data layer, and one visual register.
 ## Page skeleton (copy this for every new screen)
 
 Every backoffice page is English-only chrome: `lang="en" dir="ltr"`. Content
-FIELDS inside editors (journal title/lines, etc.) are **bilingual** - each record
+FIELDS inside editors (project title/lines, etc.) are **bilingual** - each record
 carries `he` and `en` objects; render both in the editors.
 
 ```html
@@ -66,8 +66,6 @@ Build your screens at exactly these paths (the sidebar + deep links expect them)
 | `dashboard.html` | all | role home (built) |
 | `leads.html` | Admin, Sales | leads table/list |
 | `lead-detail.html?id=L-xxxx` | Admin, Sales | single lead + notes + status |
-| `journal.html` | Admin, Content | Studio Journal list |
-| `journal-editor.html?id=P-xxx` | Admin, Content | create/edit a journal post (bilingual) |
 | `featured.html` | Admin, Content | pick homepage-featured items |
 | `projects.html` | Admin, Content | projects manager |
 | `project-editor.html?id=...` | Admin, Content | edit a project |
@@ -76,8 +74,8 @@ Build your screens at exactly these paths (the sidebar + deep links expect them)
 | `users.html` | Admin | staff accounts |
 | `settings.html` | Admin | WhatsApp / routing / social / language |
 
-Deep links from the dashboard already point at `leads.html`,
-`lead-detail.html?id=`, and `journal-editor.html` - keep those query params.
+Deep links from the dashboard already point at `leads.html` and
+`lead-detail.html?id=` - keep those query params.
 
 ---
 
@@ -95,9 +93,6 @@ Deep links from the dashboard already point at `leads.html`,
 - `BO.getLeads()` -> `Lead[]` (newest first).
 - `BO.getLead(id)` -> `Lead | null`.
 - `BO.saveLead(lead)` - upserts by `id`, persists.
-- `BO.getPosts()` -> `Post[]`.
-- `BO.getPost(id)` -> `Post | null`.
-- `BO.savePost(post)` - upserts by `id`.
 - `BO.getUsers()` -> `User[]`.
 - `BO.saveUsers(users)` - replaces the whole array.
 - `BO.getSettings()` -> `Settings`.
@@ -113,10 +108,10 @@ Deep links from the dashboard already point at `leads.html`,
 - `BO.timeAgo(iso)` -> `"3h ago"`.
 - `BO.isToday(iso)` -> boolean.
 - `BO.initials(name)` -> `"NB"`.
-- `BO.pillClass(status)` -> e.g. `"bo-pill bo-pill--new"` (works for lead AND post statuses).
+- `BO.pillClass(status)` -> e.g. `"bo-pill bo-pill--new"` (works for lead statuses).
 - `BO.esc(str)` - HTML-escape before injecting into innerHTML. **Always escape user/demo strings.**
 - `BO.toast(html)` - bottom toast; pass a short message, `<b>` allowed.
-- `BO.ICON` - map of inline SVG strings: `dashboard, leads, journal, featured, projects, catalog, media, users, settings, bell, menu, whatsapp, email`.
+- `BO.ICON` - map of inline SVG strings: `dashboard, leads, featured, projects, catalog, media, users, settings, bell, menu, whatsapp, email`.
 
 ---
 
@@ -140,19 +135,6 @@ Deep links from the dashboard already point at `leads.html`,
   assigned: null,               // rep name string, or null
   createdAt: "2026-07-05T08:20:00.000Z",  // ISO
   notes: [ { at: "<iso>", by: "Noa Bar-Levi", text: "Called - …" } ]
-}
-```
-
-### Post (Studio Journal)
-```js
-{
-  id: "P-208",
-  status: "published",          // "published" | "draft"
-  isVideo: false,
-  date: "2026-06-08",           // YYYY-MM-DD
-  image: "../assets/projects/microsoft.jpg",
-  he: { title: "…", lines: ["…", "…"] },   // Hebrew content field
-  en: { title: "…", lines: ["…", "…"] }    // English content field
 }
 ```
 
@@ -184,7 +166,7 @@ instead of inventing new ones so screens stay consistent.
 - **Stat tiles**: `.bo-stat` (`.bo-stat__label`, `.bo-stat__num`, `.bo-stat__foot`),
   `.bo-stat--accent` for the highlighted one.
 - **Status pills**: `.bo-pill` + a modifier - `--new --contacted --quoted --won
-  --lost` (leads) and `--draft --published` (posts). Use `BO.pillClass(status)`.
+  --lost` (leads). Use `BO.pillClass(status)`.
 - **Channel / meta chips**: `.bo-chip` (put `BO.ICON.whatsapp` / `.email` inside).
 - **Role badge**: `.bo-rolebadge`.
 - **Tables**: wrap in `.bo-tablewrap` (handles horizontal scroll), then

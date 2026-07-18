@@ -12,7 +12,6 @@
   var NS = "bo:";
   var K = {
     leads: NS + "leads",
-    posts: NS + "posts",
     users: NS + "users",
     settings: NS + "settings",
     session: NS + "session",
@@ -133,75 +132,6 @@
     ];
   }
 
-  function seedPosts() {
-    return [
-      {
-        id: "P-208", status: "published", isVideo: false,
-        date: "2026-06-08", image: "../assets/projects/microsoft.jpg",
-        he: { title: "השקת Microsoft - פורק ב-40 דקות",
-              lines: ["דוכן מקרטון ממוחזר, נארז שטוח.", "ללא ברגים, ללא פסולת."] },
-        en: { title: "Microsoft launch - struck in 40 minutes",
-              lines: ["Recycled cardboard build, packed flat.", "No bolts, no leftover waste."] }
-      },
-      {
-        id: "P-207", status: "published", isVideo: false,
-        date: "2026-06-02", image: "../assets/projects/landa.jpg",
-        he: { title: "חותכים אותיות בגובה 1.4 מטר ל-Landa",
-              lines: ["אותיות תלת-מימד מוארות.", "גמירת קראפט טבעית."] },
-        en: { title: "Cutting 1.4-metre letters for Landa",
-              lines: ["Illuminated 3D letters.", "Natural kraft finish."] }
-      },
-      {
-        id: "P-206", status: "published", isVideo: true,
-        date: "2026-05-26", image: "../assets/projects/king-solomon.jpg",
-        he: { title: "סיור: תערוכת בלוקים צבעוניים, מהרצפה לתקרה",
-              lines: ["וידאו מרצפת התערוכה.", "ביתני קרטון צבעוניים."] },
-        en: { title: "Walkthrough: a colour-block expo, floor to ceiling",
-              lines: ["Video from the show floor.", "Colour-block cardboard booths."] }
-      },
-      {
-        id: "P-205", status: "published", isVideo: false,
-        date: "2026-05-19", image: "../assets/projects/google-cloud.jpg",
-        he: { title: "שער קבלת פנים שהגיע ארוז שטוח",
-              lines: ["למסיבת האביב של Google Cloud."] },
-        en: { title: "A welcome arch that arrived flat-packed",
-              lines: ["For the Google Cloud spring party."] }
-      },
-      {
-        id: "P-204", status: "published", isVideo: false,
-        date: "2026-05-11", image: "../assets/projects/synamedia.jpg",
-        he: { title: "פינת ישיבה, כולה מקרטון",
-              lines: ["טרקלין וביתן ל-Synamedia."] },
-        en: { title: "A seating lounge, entirely from board",
-              lines: ["Lounge and booth for Synamedia."] }
-      },
-      {
-        id: "P-203", status: "draft", isVideo: false,
-        date: "2026-06-11", image: "../assets/projects/redefine-meat.jpg",
-        he: { title: "טיוטה: דוכן מיתוג ל-Redefine Meat",
-              lines: ["טיוטה - מחכה לתמונות סופיות."] },
-        en: { title: "Draft: Redefine Meat rebrand booth",
-              lines: ["Draft - waiting on final photos."] }
-      },
-      {
-        id: "P-202", status: "draft", isVideo: false,
-        date: "2026-06-14", image: "../assets/projects/deep-instinct.jpg",
-        he: { title: "טיוטה: חנוכת משרדי Deep Instinct",
-              lines: ["קיר קבלת פנים ודלפק."] },
-        en: { title: "Draft: Deep Instinct office opening",
-              lines: ["Welcome wall and reception counter."] }
-      },
-      {
-        id: "P-201", status: "published", isVideo: false,
-        date: "2026-05-04", image: "../assets/projects/bluevine.jpg",
-        he: { title: "קיר צילום לאירוע מותג של BlueVine",
-              lines: ["שילוט וקיר צילום מקרטון."] },
-        en: { title: "A photocall wall for BlueVine's brand event",
-              lines: ["Signage and a cardboard photocall wall."] }
-      }
-    ];
-  }
-
   function seedUsers() {
     return [
       { id: "U-1", name: "Noa Bar-Levi",  email: "noa@picpong.biz",    role: "Sales",   active: true },
@@ -241,7 +171,6 @@
   function seed(force) {
     if (!force && localStorage.getItem(K.seeded)) return;
     write(K.leads, seedLeads());
-    write(K.posts, seedPosts());
     write(K.users, seedUsers());
     write(K.settings, seedSettings());
     localStorage.setItem(K.seeded, "1");
@@ -263,19 +192,6 @@
     all.forEach(function (x, idx) { if (x.id === l.id) i = idx; });
     if (i >= 0) all[i] = l; else all.unshift(l);
     write(K.leads, all); return l;
-  }
-  // Newest-first by date desc (same defensive posture as getLeads).
-  function getPosts()    {
-    return read(K.posts, []).slice().sort(function (a, b) {
-      return (b.date < a.date) ? -1 : (b.date > a.date) ? 1 : 0;
-    });
-  }
-  function getPost(id)   { return getPosts().filter(function (p) { return p.id === id; })[0] || null; }
-  function savePost(p)   {
-    var all = getPosts(), i = -1;
-    all.forEach(function (x, idx) { if (x.id === p.id) i = idx; });
-    if (i >= 0) all[i] = p; else all.unshift(p);
-    write(K.posts, all); return p;
   }
   function getUsers()    { return read(K.users, []); }
   function saveUsers(u)  { write(K.users, u); return u; }
@@ -360,7 +276,6 @@
   var ICON = {
     dashboard: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>',
     leads: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-    journal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
     featured: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.5 5.5 21 7.5 13.5 2 9 9 9"/></svg>',
     projects: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>',
     catalog: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
@@ -385,7 +300,6 @@
       { href: "leads.html", label: "Leads", icon: "leads", roles: ["Admin", "Sales"], badge: "unreadLeads" }
     ]},
     { group: "Content", items: [
-      { href: "journal.html", label: "Studio Journal", icon: "journal", roles: ["Admin", "Content"] },
       { href: "featured.html", label: "Featured", icon: "featured", roles: ["Admin", "Content"] },
       { href: "projects.html", label: "Projects", icon: "projects", roles: ["Admin", "Content"] },
       { href: "catalog-manager.html", label: "Catalog", icon: "catalog", roles: ["Admin", "Content"] },
@@ -541,7 +455,6 @@
     getSession: getSession, setSession: setSession, logout: logout, requireRole: requireRole,
     // data
     getLeads: getLeads, getLead: getLead, saveLead: saveLead,
-    getPosts: getPosts, getPost: getPost, savePost: savePost,
     getUsers: getUsers, saveUsers: saveUsers,
     getSettings: getSettings, saveSettings: saveSettings,
     getReps: getReps, getMedia: getMedia,

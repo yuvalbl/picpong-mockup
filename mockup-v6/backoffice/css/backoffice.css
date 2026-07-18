@@ -249,7 +249,7 @@
 }
 /* .bo-card__more pushes a trailing link/button to the end of the head.
    Its orange link colour must only apply to plain links - when the element
-   is ALSO a .bo-btn (e.g. .bo-btn--brand "New journal post") the button's
+   is ALSO a .bo-btn (e.g. a .bo-btn--brand action button) the button's
    own colour has to win, or white-on-orange text becomes orange-on-orange
    and invisible. Layout applies to both; colour is scoped to non-buttons. */
 .bo-card__head .bo-card__more { margin-inline-start: auto; }
