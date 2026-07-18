@@ -485,3 +485,81 @@
   * { scroll-behavior: auto !important; }
   .bo-sidebar, .bo-toast, .bo-scrim { transition: none !important; }
 }
+
+/* ---- shared mock image manager (catalog + homepage) ---- */
+.im-strip { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.15rem; }
+.im-thumb {
+  position: relative; width: 96px; height: 96px; flex: none;
+  border-radius: var(--bo-radius-sm); overflow: hidden;
+  border: 1.5px solid var(--bo-line); background: var(--kraft, #e8dcc4);
+}
+.im-thumb.is-cover { border-color: var(--bo-orange); }
+.im-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.im-coverbadge {
+  position: absolute; top: 4px; inset-inline-start: 4px;
+  background: var(--bo-orange); color: #fff; font-size: 0.62rem; font-weight: 700;
+  padding: 1px 6px; border-radius: 999px; letter-spacing: 0.02em;
+}
+.im-thumbactions {
+  position: absolute; inset-inline: 0; bottom: 0; display: flex; gap: 2px;
+  justify-content: center; padding: 3px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  opacity: 0; transition: opacity 0.14s;
+}
+.im-thumb:hover .im-thumbactions, .im-thumb:focus-within .im-thumbactions { opacity: 1; }
+.im-iconbtn {
+  width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center;
+  border: none; background: rgba(255,255,255,0.92); color: var(--ink, #1a1a1a); cursor: pointer;
+}
+.im-iconbtn:hover:not(:disabled) { background: #fff; }
+.im-iconbtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.im-iconbtn svg { width: 13px; height: 13px; }
+.im-iconbtn--danger:hover { background: #d9534f; color: #fff; }
+.im-add {
+  width: 96px; height: 96px; flex: none; border-radius: var(--bo-radius-sm);
+  border: 1.5px dashed var(--bo-line); background: var(--bo-surface, #fff); color: var(--muted);
+  cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.25rem; font-size: 0.72rem; font-weight: 600;
+}
+.im-add:hover { border-color: var(--bo-orange); color: var(--bo-orange); }
+.im-add svg { width: 20px; height: 20px; }
+.im-empty { display: inline-block; margin-top: 0.4rem; color: var(--muted); font-size: 0.82rem; }
+.cm-coverimg {
+  width: 44px; height: 44px; border-radius: 6px; object-fit: cover;
+  vertical-align: middle; border: 1px solid var(--bo-line);
+}
+
+/* ---- homepage content editor: slogan blocks ---- */
+.hp-slogan { padding: 1.1rem 0; border-top: 1px solid var(--bo-line-soft); }
+.hp-slogan:first-of-type { border-top: none; padding-top: 0.6rem; }
+.hp-slogan__head { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.9rem; }
+.hp-slogan__head .sp { margin-inline-start: auto; }
+.hp-langs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; }
+@media (max-width: 760px) {
+  .hp-langs { grid-template-columns: 1fr; }
+}
+.hp-lang { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.hp-lang__label {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--muted);
+}
+.hp-lineinputs { display: flex; flex-direction: column; gap: 0.4rem; }
+.hp-lineinputs .bo-input { padding: 0.5rem 0.65rem; font-size: 0.9rem; }
+.hp-chips { display: flex; flex-direction: column; gap: 0.3rem; }
+.hp-wordrow { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.hp-w {
+  font: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+  padding: 0.28rem 0.65rem; border-radius: 999px;
+  border: 1.5px solid var(--bo-line); background: var(--bo-surface); color: var(--ink);
+  transition: border-color 0.14s ease, background 0.14s ease, color 0.14s ease;
+}
+.hp-w:hover { border-color: var(--ink); }
+.hp-w--orange { background: var(--bo-orange-tint); border-color: var(--orange-bright, var(--bo-cta)); color: var(--bo-orange); }
+.hp-w--deep { background: rgba(228, 92, 1, 0.16); border-color: var(--orange-deep, var(--bo-cta-hover)); color: var(--bo-orange); }
+.hp-preview {
+  margin: 0.4rem 0 0; padding: 1rem 1.1rem; border-radius: var(--bo-radius-sm);
+  background: var(--bo-bg); border: 1px solid var(--bo-line-soft);
+}
+
+/* homepage cards use the same spacing rhythm as other backoffice pages */
+.hp-card + .hp-card { margin-top: 1.2rem; }

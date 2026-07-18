@@ -25,6 +25,8 @@ npm run deploy:preview   # firebase hosting:channel:deploy preview
 
 There are no tests, linters, or bundlers. To view a mockup without Firebase, open any `mockup-v*/index.html` in a browser.
 
+**Verifying mobile/responsive + RTL:** use Playwright MCP (`browser_resize` genuinely emulates the viewport); claude-in-chrome `resize_window` resizes the OS window but not the page viewport, so `@media` breakpoints never engage. Note the site is Hebrew-first RTL, where horizontal scroll containers rest at a non-zero `scrollLeft` and fire a load-time scroll event.
+
 ## Architecture
 
 **Three mockup generations**, each fully self-contained (no shared code between them — they are iterations, not modules):

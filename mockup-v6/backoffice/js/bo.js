@@ -278,6 +278,7 @@
     leads: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
     projects: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>',
     catalog: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+    homepage: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>',
     users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
     settings: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
     bell: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>',
@@ -298,6 +299,7 @@
       { href: "leads.html", label: "Leads", icon: "leads", roles: ["Admin", "Operator"], badge: "unreadLeads" }
     ]},
     { group: "Content", items: [
+      { href: "homepage.html", label: "Homepage", icon: "homepage", roles: ["Admin", "Operator"] },
       { href: "projects.html", label: "Projects", icon: "projects", roles: ["Admin", "Operator"] },
       { href: "catalog-manager.html", label: "Catalog", icon: "catalog", roles: ["Admin", "Operator"] }
       /* Media library destination removed - becomes an in-editor asset-picker in Phase-2 */
@@ -444,6 +446,79 @@
   }
 
   /* -------------------------------------------------- *
+   *  SHARED MOCK IMAGE MANAGER  (catalog + homepage)
+   *  Gallery strip: first item = cover, rest = views. "Add"
+   *  opens a file picker; the picked file is shown via an
+   *  object URL - preview only, session-only, no real upload
+   *  or persistence (serverless mock). Mutates the passed
+   *  images array IN PLACE and calls onChange() to re-render.
+   *  images: [{ src, label }]
+   * -------------------------------------------------- */
+  var IMG_ICON = {
+    star:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.5 5.5 21 7.5 13.5 2 9 9 9"/></svg>',
+    left:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
+    right: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>',
+    x:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    plus:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>'
+  };
+
+  function imageStripHtml(images, opts) {
+    opts = opts || {};
+    images = images || [];
+    var addLabel = opts.addLabel || "Add image";
+    var coverLabel = opts.coverLabel || "Cover";   // e.g. "Main" for projects
+    var max = opts.max || Infinity;   // single-image slots pass max:1
+    var thumbs = images.map(function (im, i) {
+      var isCover = i === 0;
+      return '<div class="im-thumb' + (isCover ? " is-cover" : "") + '">' +
+        '<img src="' + esc(im.src) + '" alt="' + esc(im.label || "") + '" />' +
+        (isCover ? '<span class="im-coverbadge">' + esc(coverLabel) + '</span>' : "") +
+        '<div class="im-thumbactions">' +
+          (isCover ? "" : '<button type="button" class="im-iconbtn" data-imcover="' + i + '" aria-label="Set as cover" title="Set as cover">' + IMG_ICON.star + '</button>') +
+          '<button type="button" class="im-iconbtn" data-imleft="' + i + '" aria-label="Move earlier"' + (i === 0 ? " disabled" : "") + '>' + IMG_ICON.left + '</button>' +
+          '<button type="button" class="im-iconbtn" data-imright="' + i + '" aria-label="Move later"' + (i === images.length - 1 ? " disabled" : "") + '>' + IMG_ICON.right + '</button>' +
+          '<button type="button" class="im-iconbtn im-iconbtn--danger" data-imremove="' + i + '" aria-label="Remove image">' + IMG_ICON.x + '</button>' +
+        '</div>' +
+      '</div>';
+    }).join("");
+    var addTile = images.length >= max ? "" :
+      '<button type="button" class="im-add" data-imadd aria-label="' + esc(addLabel) + '">' + IMG_ICON.plus + '<span>' + esc(addLabel) + '</span></button>';
+    return '<div class="im-strip">' + thumbs + addTile + '</div>' +
+      (images.length ? "" : '<span class="im-empty">No images yet - add one</span>');
+  }
+
+  // Wire the strip inside `scope` (a DOM element). onChange fires after each edit.
+  function imageStripWire(scope, images, onChange) {
+    function fire() { if (onChange) onChange(); }
+    function idx(b, attr) { return parseInt(b.getAttribute(attr), 10); }
+    Array.prototype.forEach.call(scope.querySelectorAll("[data-imcover]"), function (b) {
+      b.addEventListener("click", function () { images.unshift(images.splice(idx(b, "data-imcover"), 1)[0]); fire(); });
+    });
+    Array.prototype.forEach.call(scope.querySelectorAll("[data-imleft]"), function (b) {
+      b.addEventListener("click", function () { var i = idx(b, "data-imleft"); if (i <= 0) return; var t = images[i]; images[i] = images[i - 1]; images[i - 1] = t; fire(); });
+    });
+    Array.prototype.forEach.call(scope.querySelectorAll("[data-imright]"), function (b) {
+      b.addEventListener("click", function () { var i = idx(b, "data-imright"); if (i >= images.length - 1) return; var t = images[i]; images[i] = images[i + 1]; images[i + 1] = t; fire(); });
+    });
+    Array.prototype.forEach.call(scope.querySelectorAll("[data-imremove]"), function (b) {
+      b.addEventListener("click", function () { images.splice(idx(b, "data-imremove"), 1); fire(); });
+    });
+    var add = scope.querySelector("[data-imadd]");
+    if (add) add.addEventListener("click", function () {
+      var input = document.createElement("input");
+      input.type = "file"; input.accept = "image/*";
+      input.addEventListener("change", function () {
+        var f = input.files && input.files[0];
+        if (!f) return;
+        images.push({ src: URL.createObjectURL(f), label: f.name });
+        toast("Added <b>" + esc(f.name) + "</b> - preview only, not saved");
+        fire();
+      });
+      input.click();
+    });
+  }
+
+  /* -------------------------------------------------- *
    *  EXPORT
    * -------------------------------------------------- */
   var BO = {
@@ -458,6 +533,8 @@
     unreadLeadCount: unreadLeadCount,
     // shell
     mountShell: mountShell, ICON: ICON,
+    // shared mock image manager
+    imageStrip: { html: imageStripHtml, wire: imageStripWire },
     // utils
     initials: initials, fmtDate: fmtDate, fmtDateTime: fmtDateTime, timeAgo: timeAgo,
     isToday: isToday, pillClass: pillClass, esc: esc, toast: toast

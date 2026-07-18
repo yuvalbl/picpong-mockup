@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Homepage - Picpong Backoffice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/backoffice.css" />
+  <style>
+    /* homepage content editor (page-specific; shared .hp-* rules live in backoffice.css) */
+    .hp-hint { font-size: 0.8rem; color: var(--muted); margin: 0.5rem 0 0; }
+    .hp-slogans-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.2rem; }
+    .hp-slogans-head .sp { margin-inline-start: auto; }
+    .hp-save-row { display: flex; justify-content: flex-end; margin-top: 1.4rem; }
+    /* static preview: the public CSS animates .mark::before via .slogan.is-in with a
+       timed delay; force the settled end-state here so it always reads immediately. */
+    .hp-preview .line { opacity: 1 !important; transform: none !important; }
+    .hp-preview .mark { font-weight: 700 !important; }
+    .hp-preview .mark::before { transform: scaleX(1) skewX(-2deg) !important; opacity: 1 !important; }
+  </style>
+</head>
+<body>
+  <script src="js/bo.js"></script>
+  <script>
+    (function () {
+      var session = BO.requireRole(["Admin", "Operator"]);
+      if (!session) return;
+      var main = BO.mountShell({ active: "homepage.html", title: "Homepage" });
+      var esc = BO.esc;
+
+      /* ---- state: seeded from the live homepage, session-only (mock) ---- */
+      var video = {
+        poster: [{ src: "../assets/video/hero-poster.jpg", label: "hero-poster.jpg" }],
+        capEn: "On the show floor",
+        capHe: "על רצפת התצוגה"
+      };
+      var feature = {
+        img: [{ src: "../assets/projects/landa.jpg", label: "landa.jpg" }],
+        altEn: "Landa Digital Printing branded environment",
+        altHe: "סביבת מיתוג ממותגת של Landa Digital Printing"
+      };
+      // slogans: word/mark model. m: 0 none, 1 orange (standing word), 2 deep (vanishing word).
+      // Mirrors app.js PHRASES - one orange + one deep word per slogan.
+      var slogans = [
+        { en: [[{ t: "Remarkable", m: 1 }], [{ t: "events,", m: 0 }, { t: "made", m: 0 }], [{ t: "to", m: 0 }, { t: "impact.", m: 0 }], [{ t: "no", m: 2 }, { t: "trace.", m: 2 }]],
+          he: [[{ t: "חותם", m: 1 }], [{ t: "שנשאר", m: 0 }], [{ t: "גם", m: 0 }, { t: "כשהכל", m: 0 }], [{ t: "כבר", m: 2 }, { t: "נעלם.", m: 2 }]] },
+        { en: [[{ t: "Built", m: 0 }, { t: "to", m: 0 }], [{ t: "be", m: 0 }, { t: "seen,", m: 1 }], [{ t: "designed", m: 0 }], [{ t: "to", m: 0 }, { t: "vanish.", m: 2 }]],
+          he: [[{ t: "נבנה", m: 0 }], [{ t: "לבלוט,", m: 1 }], [{ t: "ונועד", m: 0 }], [{ t: "להיעלם.", m: 2 }]] },
+        { en: [[{ t: "Loud", m: 0 }, { t: "at", m: 0 }], [{ t: "the", m: 0 }, { t: "show.", m: 1 }], [{ t: "Light", m: 0 }, { t: "on", m: 0 }], [{ t: "the", m: 0 }, { t: "earth.", m: 2 }]],
+          he: [[{ t: "רועשת", m: 0 }], [{ t: "באולם.", m: 1 }], [{ t: "נעלמת", m: 0 }], [{ t: "בלי", m: 0 }, { t: "חתימה.", m: 2 }]] }
+      ];
+
+      /* ---- helpers ---- */
+      function markClass(m) { return m === 1 ? " hp-w--orange" : m === 2 ? " hp-w--deep" : ""; }
+      function cycleMark(m) { return m === 0 ? 1 : m === 1 ? 2 : 0; }
+
+      // Merge consecutive words sharing the same m > 0 into one .mark span, so
+      // "no trace." renders as a single highlighter run, matching the public site.
+      function renderLine(words, n) {
+        var out = [];
+        var i = 0;
+        while (i < words.length) {
+          var w = words[i];
+          if (w.m > 0) {
+            var run = [w.t];
+            var j = i + 1;
+            while (j < words.length && words[j].m === w.m) { run.push(words[j].t); j++; }
+            var cls = w.m === 1 ? "mark--orange" : "mark--deep";
+            out.push('<span class="mark ' + cls + '">' + esc(run.join(" ")) + '</span>');
+            i = j;
+          } else {
+            out.push(esc(w.t));
+            i++;
+          }
+        }
+        return '<span class="line" style="--l:' + n + '">' + out.join(" ") + '</span>';
+      }
+
+      function renderPreview(lines, dir) {
+        var html = lines.map(function (l, n) { return renderLine(l, n); }).join("");
+        return '<p class="slogan is-in hp-preview" dir="' + dir + '">' + html + '</p>';
+      }
+
+      function langBlock(s, sIdx, lang, dir, label) {
+        var lines = s[lang];
+        var lineInputs = lines.map(function (line, li) {
+          var val = line.map(function (w) { return w.t; }).join(" ");
+          return '<input class="bo-input" dir="' + dir + '" data-sline="' + sIdx + '" data-lang="' + lang + '" data-li="' + li + '" value="' + esc(val) + '" />';
+        }).join("");
+        var chips = lines.map(function (line, li) {
+          return '<div class="hp-wordrow">' + line.map(function (w, wi) {
+            return '<button type="button" class="hp-w' + markClass(w.m) + '" data-m="' + w.m + '" data-sword="' + sIdx + '" data-lang="' + lang + '" data-li="' + li + '" data-wi="' + wi + '">' + esc(w.t) + '</button>';
+          }).join("") + '</div>';
+        }).join("");
+        return '<div class="hp-lang" dir="' + dir + '">' +
+          '<div class="hp-lang__label">' + label + '</div>' +
+          '<div class="hp-lineinputs">' + lineInputs + '</div>' +
+          '<div class="hp-chips">' + chips + '</div>' +
+          '<p class="hp-hint">Click a word to mark it (once = orange, twice = deep). One orange + one deep per slogan.</p>' +
+          renderPreview(lines, dir) +
+        '</div>';
+      }
+
+      function sloganBlock(s, sIdx, total) {
+        return '<div class="hp-slogan" data-sblock="' + sIdx + '">' +
+          '<div class="hp-slogan__head">' +
+            '<b>Slogan ' + (sIdx + 1) + '</b>' +
+            '<span class="sp"></span>' +
+            '<button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" data-sup="' + sIdx + '"' + (sIdx === 0 ? " disabled" : "") + ' aria-label="Move up">&uarr;</button>' +
+            '<button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" data-sdown="' + sIdx + '"' + (sIdx === total - 1 ? " disabled" : "") + ' aria-label="Move down">&darr;</button>' +
+            '<button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" data-sremove="' + sIdx + '" aria-label="Remove slogan">Remove</button>' +
+          '</div>' +
+          '<div class="hp-langs">' +
+            langBlock(s, sIdx, "en", "ltr", "English") +
+            langBlock(s, sIdx, "he", "rtl", "Hebrew") +
+          '</div>' +
+        '</div>';
+      }
+
+      function render() {
+        var head = '<div class="bo-pagehead"><h1>Homepage</h1>' +
+          '<p>The hero collage content: the video, the feature image and the rotating slogans.</p></div>';
+
+        var note = '<div style="margin-bottom:1.2rem;padding:0.7rem 0.95rem;border-radius:var(--bo-radius-sm);background:var(--bo-orange-tint);border:1px dashed var(--bo-orange);font-size:0.83rem;color:#6b3a13">' +
+          '<b style="color:var(--bo-orange)">Demo.</b> Changes are held in this browser only. Wiring them into the live homepage is Phase-2 build work.</div>';
+
+        var videoCard = '<div class="bo-card hp-card">' +
+          '<div class="bo-card__head"><h2>Hero video</h2></div>' +
+          '<div class="bo-field"><label>Poster image</label>' +
+            '<div id="hp-video-poster">' + BO.imageStrip.html(video.poster, { max: 1, addLabel: "Replace poster" }) + '</div>' +
+          '</div>' +
+          '<div class="bo-field--row" style="margin-top:1rem">' +
+            '<div class="bo-field"><label for="hp-video-capen">Caption (English)</label>' +
+              '<input class="bo-input" id="hp-video-capen" value="' + esc(video.capEn) + '" /></div>' +
+            '<div class="bo-field"><label for="hp-video-caphe">Caption (Hebrew)</label>' +
+              '<input class="bo-input" id="hp-video-caphe" dir="rtl" value="' + esc(video.capHe) + '" /></div>' +
+          '</div>' +
+          '<p class="hp-hint">MP4, ~9:16, muted autoplay loop. The poster shows before play. Real video upload is build-phase.</p>' +
+        '</div>';
+
+        var featureCard = '<div class="bo-card hp-card">' +
+          '<div class="bo-card__head"><h2>Feature image</h2></div>' +
+          '<div class="bo-field"><label>Image</label>' +
+            '<div id="hp-feature-img">' + BO.imageStrip.html(feature.img, { max: 1, addLabel: "Replace image" }) + '</div>' +
+          '</div>' +
+          '<div class="bo-field--row" style="margin-top:1rem">' +
+            '<div class="bo-field"><label for="hp-feature-alten">Alt text (English)</label>' +
+              '<input class="bo-input" id="hp-feature-alten" value="' + esc(feature.altEn) + '" /></div>' +
+            '<div class="bo-field"><label for="hp-feature-althe">Alt text (Hebrew)</label>' +
+              '<input class="bo-input" id="hp-feature-althe" dir="rtl" value="' + esc(feature.altHe) + '" /></div>' +
+          '</div>' +
+          '<p class="hp-hint">The &quot;sticker&quot; photo in the hero collage. Replace opens a file picker - preview only in this mock.</p>' +
+        '</div>';
+
+        var sloganCard = '<div class="bo-card hp-card">' +
+          '<div class="hp-slogans-head"><h2 style="font-family:Rubik,system-ui,sans-serif;font-weight:500;font-size:1.1rem;margin:0">Slogans</h2>' +
+            '<span style="color:var(--muted);font-weight:600;font-size:0.85rem">' + slogans.length + '</span>' +
+            '<span class="sp"></span>' +
+            '<button class="bo-btn bo-btn--brand bo-btn--sm" type="button" id="hp-addslogan">&#65291; Add slogan</button>' +
+          '</div>' +
+          slogans.map(function (s, i) { return sloganBlock(s, i, slogans.length); }).join("") +
+        '</div>';
+
+        var saveRow = '<div class="hp-save-row"><button class="bo-btn bo-btn--brand" type="button" id="hp-save">Save homepage content</button></div>';
+
+        main.innerHTML = head + note + videoCard + featureCard + sloganCard + saveRow;
+        wire();
+      }
+
+      /* Re-tokenize a line from its input value, preserving each surviving word's
+         mark BY WORD INDEX. Fewer words -> extras dropped. New words -> m:0. */
+      function retokenize(oldLine, value) {
+        var words = value.split(/\s+/).filter(function (w) { return w.length; });
+        return words.map(function (t, i) { return { t: t, m: oldLine[i] ? oldLine[i].m : 0 }; });
+      }
+
+      function wire() {
+        var posterEl = document.getElementById("hp-video-poster");
+        if (posterEl) BO.imageStrip.wire(posterEl, video.poster, render);
+        var featureEl = document.getElementById("hp-feature-img");
+        if (featureEl) BO.imageStrip.wire(featureEl, feature.img, render);
+
+        Array.prototype.forEach.call(main.querySelectorAll("[data-sline]"), function (input) {
+          function commit() {
+            var s = slogans[parseInt(input.getAttribute("data-sline"), 10)];
+            var lang = input.getAttribute("data-lang");
+            var li = parseInt(input.getAttribute("data-li"), 10);
+            s[lang][li] = retokenize(s[lang][li], input.value);
+            render();
+          }
+          input.addEventListener("change", commit);
+        });
+
+        Array.prototype.forEach.call(main.querySelectorAll("[data-sword]"), function (b) {
+          b.addEventListener("click", function () {
+            var s = slogans[parseInt(b.getAttribute("data-sword"), 10)];
+            var lang = b.getAttribute("data-lang");
+            var li = parseInt(b.getAttribute("data-li"), 10);
+            var wi = parseInt(b.getAttribute("data-wi"), 10);
+            var w = s[lang][li][wi];
+            w.m = cycleMark(w.m);
+            render();
+          });
+        });
+
+        Array.prototype.forEach.call(main.querySelectorAll("[data-sup]"), function (b) {
+          b.addEventListener("click", function () {
+            var i = parseInt(b.getAttribute("data-sup"), 10);
+            if (i <= 0) return;
+            var t = slogans[i]; slogans[i] = slogans[i - 1]; slogans[i - 1] = t;
+            render();
+          });
+        });
+        Array.prototype.forEach.call(main.querySelectorAll("[data-sdown]"), function (b) {
+          b.addEventListener("click", function () {
+            var i = parseInt(b.getAttribute("data-sdown"), 10);
+            if (i >= slogans.length - 1) return;
+            var t = slogans[i]; slogans[i] = slogans[i + 1]; slogans[i + 1] = t;
+            render();
+          });
+        });
+        Array.prototype.forEach.call(main.querySelectorAll("[data-sremove]"), function (b) {
+          b.addEventListener("click", function () {
+            slogans.splice(parseInt(b.getAttribute("data-sremove"), 10), 1);
+            render();
+          });
+        });
+
+        var addBtn = document.getElementById("hp-addslogan");
+        if (addBtn) addBtn.addEventListener("click", function () {
+          slogans.push({ en: [[{ t: "New", m: 0 }]], he: [[{ t: "חדש", m: 0 }]] });
+          render();
+        });
+
+        document.getElementById("hp-save").addEventListener("click", function () {
+          video.capEn = document.getElementById("hp-video-capen").value.trim();
+          video.capHe = document.getElementById("hp-video-caphe").value.trim();
+          feature.altEn = document.getElementById("hp-feature-alten").value.trim();
+          feature.altHe = document.getElementById("hp-feature-althe").value.trim();
+          BO.toast("Homepage content saved");
+        });
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>

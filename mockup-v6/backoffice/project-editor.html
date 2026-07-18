@@ -16,22 +16,6 @@
     .pe-back { color: var(--bo-orange); font-weight: 600; text-decoration: none; font-size: 0.9rem; }
     .pe-back:hover { text-decoration: underline; }
     .pe-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
-    .pe-mainimg { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-    .pe-mainimg img { width: 160px; height: 110px; object-fit: cover; border-radius: 9px; flex: none; background: var(--kraft); border: 1.5px solid var(--bo-line); }
-    /* supporting media rows */
-    .pe-media { display: flex; flex-direction: column; }
-    .pe-mediarow { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.8rem 0; border-bottom: 1px solid var(--bo-line-soft); }
-    .pe-mediarow:last-child { border-bottom: none; }
-    .pe-mediarow img { width: 72px; height: 56px; object-fit: cover; border-radius: 7px; flex: none; background: var(--kraft); }
-    .pe-media-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.35rem; }
-    .pe-media-id { font-size: 0.76rem; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .pe-media-note { font-size: 0.76rem; color: var(--muted); }
-    .pe-mediarow .bo-input { padding: 0.5rem 0.65rem; }
-    .pe-imgpick { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 0.5rem; }
-    .pe-imgopt { border: 2px solid var(--bo-line); border-radius: 8px; overflow: hidden; cursor: pointer; padding: 0; background: none; aspect-ratio: 4/3; }
-    .pe-imgopt img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .pe-imgopt:hover { border-color: var(--ink); }
-    .pe-imgopt[aria-pressed="true"] { border-color: var(--bo-orange); box-shadow: 0 0 0 3px rgba(177,78,15,0.18); }
   </style>
 </head>
 <body>
@@ -56,7 +40,6 @@
         "priority-maccabi":{ en: "VIP room build-out",                     he: "בניית חדר VIP",                     client: "Priority",      cat: "Event",      imgs: ["priority-maccabi.jpg","bluevine.jpg"] },
         "meetmind":        { en: "Convention presence",                    he: "נוכחות בכנס",                       client: "Meet&Mind",     cat: "Convention", imgs: ["meetmind.jpg","landa.jpg"] }
       };
-      var ALL_ASSETS = ["king-solomon.jpg","microsoft.jpg","google-cloud.jpg","landa.jpg","synamedia.jpg","deep-instinct.jpg","bluevine.jpg","redefine-meat.jpg","priority-maccabi.jpg","meetmind.jpg"];
       var CATS = ["Convention", "Event", "Booth"];
       var IMG = "../assets/projects/";
 
@@ -66,18 +49,16 @@
       var proj;
 
       if (isNew) {
-        proj = { slug: "", en: "", he: "", client: "", cat: "Convention", imgs: [] };
+        proj = { slug: "", en: "", he: "", client: "", cat: "Convention", images: [] };
       } else if (DATA[slug]) {
         var d = DATA[slug];
-        proj = { slug: slug, en: d.en, he: d.he, client: d.client, cat: d.cat, imgs: d.imgs.slice() };
+        proj = { slug: slug, en: d.en, he: d.he, client: d.client, cat: d.cat, images: d.imgs.map(function (f) { return { src: IMG + f, label: f.replace(".jpg", "") }; }) };
       } else {
         main.innerHTML = '<div class="bo-pagehead"><h1>Project not found</h1></div>' +
           '<div class="bo-card"><div class="bo-empty">No project with slug "' + esc(slug) + '".' +
           '<div style="margin-top:1rem"><a class="bo-btn bo-btn--ghost" href="projects.html">Back to Projects</a></div></div></div>';
         return;
       }
-
-      function mediaId(i) { return "proj-" + (proj.slug || "new") + "-" + (i === 0 ? "hero" : i); }
 
       function render() {
         var head = '<div class="pe-topline"><a class="pe-back" href="projects.html">&larr; Projects</a></div>' +
@@ -105,69 +86,23 @@
               '<span class="bo-field__hint">Lowercase, hyphens between words. Keep it stable once published - it is the project\'s permanent link.</span></div>' +
           '</div></div>';
 
-        var mainImg = '<div class="bo-card"><div class="bo-card__head"><h2>Main image</h2></div>' +
-          '<div class="pe-mainimg">' +
-            '<img id="pe-mainimg-prev" src="' + esc(IMG + (proj.imgs[0] || "microsoft.jpg")) + '" alt="Current main image" />' +
-            '<div style="flex:1;min-width:220px"><span class="bo-field__hint" style="display:block;margin-bottom:0.5rem">Pick the lead image from the site library.</span>' +
-              '<div class="pe-imgpick" id="pe-mainpick">' +
-                ALL_ASSETS.map(function (a) {
-                  return '<button type="button" class="pe-imgopt" data-mainimg="' + esc(a) + '" aria-pressed="' + (proj.imgs[0] === a) + '">' +
-                    '<img src="' + esc(IMG + a) + '" alt="' + esc(a.replace(".jpg", "")) + '" /></button>';
-                }).join("") +
-              '</div></div>' +
-          '</div></div>';
-
-        var mediaRows = proj.imgs.length ? proj.imgs.map(function (a, i) {
-          var id = mediaId(i);
-          return '<div class="pe-mediarow">' +
-            '<img src="' + esc(IMG + a) + '" alt="" />' +
-            '<div class="pe-media-body">' +
-              '<span class="pe-media-id">' + esc(id) + (i === 0 ? "  (hero)" : "") + '</span>' +
-              '<label for="pe-alt-' + i + '" style="font-size:0.8rem;font-weight:600">Alt text</label>' +
-              '<input class="bo-input" id="pe-alt-' + i + '" value="" placeholder="Describe this image" />' +
-              '<span class="pe-media-note">Independently shareable and quotable on the site.</span>' +
-            '</div>' +
-            '<button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" data-delmedia="' + i + '">Remove</button>' +
-          '</div>';
-        }).join("") : '<div class="bo-empty">No images yet - add one below.</div>';
-
-        var media = '<div class="bo-card"><div class="bo-card__head"><h2>Gallery media</h2>' +
-          '<span style="margin-inline-start:auto;color:var(--muted);font-size:0.85rem;font-weight:600">' + proj.imgs.length + ' image' + (proj.imgs.length === 1 ? "" : "s") + '</span></div>' +
-          '<div class="pe-media">' + mediaRows + '</div>' +
-          '<div style="margin-top:0.9rem"><button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" id="pe-addmedia">' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> Add media</button></div>' +
+        var images = '<div class="bo-card" id="pe-images"><div class="bo-card__head"><h2>Project images</h2>' +
+          '<span style="margin-inline-start:auto;color:var(--muted);font-size:0.85rem;font-weight:600">' + proj.images.length + ' image' + (proj.images.length === 1 ? "" : "s") + '</span></div>' +
+          BO.imageStrip.html(proj.images, { coverLabel: "Main", addLabel: "Add image" }) +
+          '<span class="bo-field__hint">First image is the main image. Set-main, reorder and remove on hover. Add opens a file picker - preview only in this mock; real uploads are build-phase.</span>' +
           '</div>';
 
         var actions = '<div style="display:flex;gap:0.7rem;flex-wrap:wrap">' +
           '<a class="bo-btn bo-btn--ghost" href="projects.html">Cancel</a>' +
           '<button class="bo-btn bo-btn--brand" type="button" id="pe-save">Save project</button></div>';
 
-        main.innerHTML = head + '<div class="pe-grid">' + details + mainImg + media + actions + '</div>';
+        main.innerHTML = head + '<div class="pe-grid">' + details + images + actions + '</div>';
         wire();
       }
 
       function wire() {
-        Array.prototype.forEach.call(main.querySelectorAll("[data-mainimg]"), function (b) {
-          b.addEventListener("click", function () {
-            var a = b.getAttribute("data-mainimg");
-            // move chosen asset to front of imgs (becomes hero)
-            proj.imgs = [a].concat(proj.imgs.filter(function (x) { return x !== a; }));
-            render();
-          });
-        });
-        Array.prototype.forEach.call(main.querySelectorAll("[data-delmedia]"), function (b) {
-          b.addEventListener("click", function () {
-            proj.imgs.splice(parseInt(b.getAttribute("data-delmedia"), 10), 1);
-            render();
-          });
-        });
-        var add = document.getElementById("pe-addmedia");
-        if (add) add.addEventListener("click", function () {
-          var next = ALL_ASSETS.filter(function (a) { return proj.imgs.indexOf(a) === -1; })[0] || ALL_ASSETS[0];
-          proj.imgs.push(next);
-          BO.toast("Media added - real upload comes in the build");
-          render();
-        });
+        var imgCard = document.getElementById("pe-images");
+        if (imgCard) BO.imageStrip.wire(imgCard, proj.images, render);
         document.getElementById("pe-save").addEventListener("click", function () {
           proj.en = document.getElementById("pe-en").value.trim();
           proj.he = document.getElementById("pe-he").value.trim();

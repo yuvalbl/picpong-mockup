@@ -38,16 +38,16 @@
 
       // seeded from the real site (projects.html tiles + app.js PROJECTS data)
       var PROJECTS = [
-        { slug: "king-solomon",    en: "Colourful booths, struck and re-staged", he: "ביתנים צבעוניים, מפורקים ומורכבים מחדש", client: "King Solomon",  cat: "Convention", year: 2022, imgs: 10, image: "../assets/projects/king-solomon.jpg", status: "published" },
-        { slug: "microsoft",       en: "New-office launch environment",          he: "סביבת השקה למשרד חדש",               client: "Microsoft",     cat: "Event",      year: 2022, imgs: 3,  image: "../assets/projects/microsoft.jpg", status: "published" },
-        { slug: "google-cloud",    en: "Spring-party welcome build",             he: "מבנה קבלת פנים למסיבת אביב",         client: "Google Cloud",  cat: "Event",      year: 2022, imgs: 3,  image: "../assets/projects/google-cloud.jpg", status: "published" },
-        { slug: "landa",           en: "Illuminated letters & graphics",         he: "אותיות מוארות וגרפיקה",              client: "Landa",         cat: "Convention", year: 2021, imgs: 2,  image: "../assets/projects/landa.jpg", status: "published" },
-        { slug: "synamedia",       en: "Conference booth & lounge",              he: "ביתן כנס וטרקלין",                   client: "Synamedia",     cat: "Booth",      year: 2021, imgs: 2,  image: "../assets/projects/synamedia.jpg", status: "published" },
-        { slug: "deep-instinct",   en: "Office inauguration",                    he: "חנוכת משרד",                        client: "Deep Instinct", cat: "Event",      year: 2021, imgs: 2,  image: "../assets/projects/deep-instinct.jpg", status: "published" },
-        { slug: "redefine-meat",   en: "Rebranding showcase",                    he: "תצוגת מיתוג מחדש",                   client: "Redefine Meat", cat: "Booth",      year: 2021, imgs: 2,  image: "../assets/projects/redefine-meat.jpg", status: "published" },
-        { slug: "bluevine",        en: "Branding event environment",             he: "סביבת אירוע מיתוג",                  client: "BlueVine",      cat: "Event",      year: 2020, imgs: 2,  image: "../assets/projects/bluevine.jpg", status: "published" },
-        { slug: "priority-maccabi",en: "VIP room build-out",                     he: "בניית חדר VIP",                     client: "Priority",      cat: "Event",      year: 2020, imgs: 2,  image: "../assets/projects/priority-maccabi.jpg", status: "published" },
-        { slug: "meetmind",        en: "Convention presence",                    he: "נוכחות בכנס",                       client: "Meet&Mind",     cat: "Convention", year: 2019, imgs: 2,  image: "../assets/projects/meetmind.jpg", status: "draft" }
+        { slug: "king-solomon",    en: "Colourful booths, struck and re-staged", he: "ביתנים צבעוניים, מפורקים ומורכבים מחדש", client: "King Solomon",  cat: "Convention", year: 2022, imgs: 10, image: "../assets/projects/king-solomon.jpg", published: true },
+        { slug: "microsoft",       en: "New-office launch environment",          he: "סביבת השקה למשרד חדש",               client: "Microsoft",     cat: "Event",      year: 2022, imgs: 3,  image: "../assets/projects/microsoft.jpg", published: true },
+        { slug: "google-cloud",    en: "Spring-party welcome build",             he: "מבנה קבלת פנים למסיבת אביב",         client: "Google Cloud",  cat: "Event",      year: 2022, imgs: 3,  image: "../assets/projects/google-cloud.jpg", published: true },
+        { slug: "landa",           en: "Illuminated letters & graphics",         he: "אותיות מוארות וגרפיקה",              client: "Landa",         cat: "Convention", year: 2021, imgs: 2,  image: "../assets/projects/landa.jpg", published: true },
+        { slug: "synamedia",       en: "Conference booth & lounge",              he: "ביתן כנס וטרקלין",                   client: "Synamedia",     cat: "Booth",      year: 2021, imgs: 2,  image: "../assets/projects/synamedia.jpg", published: true },
+        { slug: "deep-instinct",   en: "Office inauguration",                    he: "חנוכת משרד",                        client: "Deep Instinct", cat: "Event",      year: 2021, imgs: 2,  image: "../assets/projects/deep-instinct.jpg", published: true },
+        { slug: "redefine-meat",   en: "Rebranding showcase",                    he: "תצוגת מיתוג מחדש",                   client: "Redefine Meat", cat: "Booth",      year: 2021, imgs: 2,  image: "../assets/projects/redefine-meat.jpg", published: false },
+        { slug: "bluevine",        en: "Branding event environment",             he: "סביבת אירוע מיתוג",                  client: "BlueVine",      cat: "Event",      year: 2020, imgs: 2,  image: "../assets/projects/bluevine.jpg", published: true },
+        { slug: "priority-maccabi",en: "VIP room build-out",                     he: "בניית חדר VIP",                     client: "Priority",      cat: "Event",      year: 2020, imgs: 2,  image: "../assets/projects/priority-maccabi.jpg", published: true },
+        { slug: "meetmind",        en: "Convention presence",                    he: "נוכחות בכנס",                       client: "Meet&Mind",     cat: "Convention", year: 2019, imgs: 2,  image: "../assets/projects/meetmind.jpg", published: false }
       ];
 
       var CATS = ["all", "Convention", "Event", "Booth"];
@@ -76,6 +76,9 @@
           body = '<div class="bo-card"><div class="bo-empty">No projects in this category.</div></div>';
         } else {
           var rows = list.map(function (p) {
+            var statusKey = p.published ? "published" : "draft";
+            var statusLabel = p.published ? "Published" : "Draft";
+            var toggleLabel = p.published ? "Unpublish" : "Publish";
             return '<tr>' +
               '<td><img class="pj-thumb" src="' + esc(p.image) + '" alt="" /></td>' +
               '<td><div class="pj-titles"><span class="pj-title-en">' + esc(p.en) + '</span>' +
@@ -84,8 +87,9 @@
               '<td><span class="pj-catchip">' + esc(p.cat) + '</span></td>' +
               '<td>' + esc(p.year) + '</td>' +
               '<td class="pj-imgcount">' + p.imgs + ' image' + (p.imgs === 1 ? "" : "s") + '</td>' +
-              '<td><span class="' + BO.pillClass(p.status) + '">' + esc(p.status) + '</span></td>' +
-              '<td style="text-align:end"><a class="bo-btn bo-btn--ghost bo-btn--sm" href="project-editor.html?slug=' + encodeURIComponent(p.slug) + '">Edit</a></td>' +
+              '<td><span class="' + BO.pillClass(statusKey) + '">' + esc(statusLabel) + '</span></td>' +
+              '<td style="text-align:end"><a class="bo-btn bo-btn--ghost bo-btn--sm" href="project-editor.html?slug=' + encodeURIComponent(p.slug) + '">Edit</a> ' +
+                '<button type="button" class="bo-btn bo-btn--ghost bo-btn--sm" data-toggle-pub="' + esc(p.slug) + '">' + esc(toggleLabel) + '</button></td>' +
             '</tr>';
           }).join("");
           body = '<div class="bo-tablewrap"><table class="bo-table">' +
@@ -96,6 +100,16 @@
         main.innerHTML = head + actions + tabs + body;
         Array.prototype.forEach.call(main.querySelectorAll("[data-cat]"), function (b) {
           b.addEventListener("click", function () { filter = b.getAttribute("data-cat"); render(); });
+        });
+        Array.prototype.forEach.call(main.querySelectorAll("[data-toggle-pub]"), function (b) {
+          b.addEventListener("click", function () {
+            var slug = b.getAttribute("data-toggle-pub");
+            var proj = PROJECTS.filter(function (p) { return p.slug === slug; })[0];
+            if (!proj) return;
+            proj.published = !proj.published;
+            BO.toast("<b>" + esc(proj.en) + "</b> " + (proj.published ? "published" : "unpublished"));
+            render();
+          });
         });
       }
 

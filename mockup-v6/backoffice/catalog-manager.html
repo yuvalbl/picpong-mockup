@@ -72,6 +72,11 @@
           material: "X-Board · 100% recycled corrugated", thickness: "4 cm (ships flat)", assembly: "Tool-free · ~5 minutes",
           badges: ["Ships flat"], opts: ["3-tier", "4-tier"] }
       ];
+      // Seed each item with a placeholder cover (real product photos are commissioned
+      // in the build phase; the editor lets you manage them now).
+      ITEMS.forEach(function (it) {
+        if (!it.images) it.images = [{ src: "../assets/brand/puffer.png", label: "Placeholder" }];
+      });
       function itemById(id) { return ITEMS.filter(function (x) { return x.id === id; })[0]; }
 
       var openId = null;
@@ -87,7 +92,7 @@
         '</div>';
 
         var note = '<div style="margin-bottom:1.2rem;padding:0.7rem 0.95rem;border-radius:var(--bo-radius-sm);background:var(--bo-orange-tint);border:1px dashed var(--bo-orange);font-size:0.83rem;color:#6b3a13">' +
-          '<b style="color:var(--bo-orange)">Photography.</b> Every item currently shows an illustrated placeholder. Real studio photos are commissioned in the build phase.</div>';
+          '<b style="color:var(--bo-orange)">Images.</b> Manage each product\'s photos in its editor - first image is the cover. Uploads here are preview-only in this mock; real files are wired in the build phase.</div>';
 
         var rows = ITEMS.map(function (it) {
           var badges = it.badges.map(function (b) { return '<span class="cm-badge">' + esc(b) + '</span>'; }).join("");
@@ -98,7 +103,9 @@
             '<td><span class="cm-catchip">' + esc(it.cat) + '</span></td>' +
             '<td class="cm-price">₪ ' + esc(it.price) + '</td>' +
             '<td><div class="cm-badges">' + (badges || '<span style="color:var(--muted);font-size:0.8rem">-</span>') + '</div></td>' +
-            '<td><span class="cm-photo">Illustrated placeholder</span></td>' +
+            '<td>' + (it.images && it.images[0]
+              ? '<img class="cm-coverimg" src="' + esc(it.images[0].src) + '" alt="" /><span class="cm-photo" style="margin-inline-start:0.4rem">' + it.images.length + ' image' + (it.images.length === 1 ? "" : "s") + '</span>'
+              : '<span class="cm-photo">No image</span>') + '</td>' +
             '<td style="text-align:end"><button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" data-edit="' + esc(it.id) + '">' +
               (openId === it.id ? "Close" : "Edit") + '</button></td>' +
           '</tr>';
@@ -152,6 +159,10 @@
             '<div class="cm-addopt"><input class="bo-input" id="cm-newopt" placeholder="Add an option" aria-label="New option label" />' +
               '<button class="bo-btn bo-btn--ghost bo-btn--sm" type="button" id="cm-addopt">Add</button></div>' +
           '</div>' +
+          '<div class="bo-field" id="cm-images-field"><label>Product images</label>' +
+            BO.imageStrip.html(it.images, { addLabel: "Add image" }) +
+            '<span class="bo-field__hint">First image is the cover. Set-cover, reorder and remove on hover. Add opens a file picker - preview only in this mock.</span>' +
+          '</div>' +
           '<div style="display:flex;gap:0.6rem;flex-wrap:wrap"><button class="bo-btn bo-btn--brand" type="button" id="cm-save">Save item</button>' +
             '<button class="bo-btn bo-btn--ghost" type="button" data-edit="' + esc(it.id) + '">Cancel</button></div>' +
         '</div></td></tr>';
@@ -173,6 +184,9 @@
         if (!openId) return;
         var it = itemById(openId);
         if (!it) return;
+
+        var imgField = document.getElementById("cm-images-field");
+        if (imgField) BO.imageStrip.wire(imgField, it.images, render);
 
         Array.prototype.forEach.call(main.querySelectorAll("[data-badge]"), function (b) {
           b.addEventListener("click", function () {
