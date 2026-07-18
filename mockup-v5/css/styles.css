@@ -994,18 +994,10 @@ body.motion-paused .sticker svg,
 body.motion-paused .fish,
 body.motion-paused .bubble { animation-play-state: paused !important; }
 
-/* the toggle itself - lives on the dark hero panel, so white on translucent (AA) */
-.motion-toggle {
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  margin-top: 1.1rem; padding: 0.42rem 0.85rem;
-  font: inherit; font-size: var(--t-ui); font-weight: 600; line-height: 1;
-  color: #fff; background: rgba(255,255,255,0.14);
-  border: 1.5px solid rgba(255,255,255,0.55); border-radius: 999px;
-  cursor: pointer; transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease);
-}
-.motion-toggle:hover,
-.motion-toggle:focus-visible { background: rgba(255,255,255,0.26); border-color: #fff; }
-.motion-toggle svg { width: 0.95rem; height: 0.95rem; flex-shrink: 0; }
+/* motion toggle - an icon button in the sticky header, grouped with the language
+   switch. Layout, colour (inherits nav ink/cream) and hover come from .iconbtn;
+   this only sizes the glyphs and swaps pause<->play by pressed state. */
+.motion-toggle svg { width: 20px; height: 20px; }
 .motion-toggle .i-play { display: none; }
 .motion-toggle[aria-pressed="true"] .i-pause { display: none; }
 .motion-toggle[aria-pressed="true"] .i-play { display: inline; }

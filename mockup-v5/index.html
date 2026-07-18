@@ -49,11 +49,12 @@
       <a href="index.html#contact" data-en="Contact" data-he="צור קשר">Contact</a>
     </nav>
     <div class="nav__actions">
-      <!-- social slot: real links arrive in PRD 3 -->
+      <!-- social slot -->
       <div class="nav__social" aria-label="Social links" data-en-aria="Social links" data-he-aria="קישורים חברתיים">
         <!-- BUILD NOTE: real profile URL is content (§5/D-6) -->
-        <a href="#" aria-label="PicPong on Facebook" data-en-aria="PicPong on Facebook" data-he-aria="PicPong בפייסבוק"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l.5-3H13V5.5c0-.9.3-1.5 1.6-1.5H17V1.4C16.6 1.3 15.5 1.2 14.3 1.2 11.7 1.2 10 2.7 10 5.2V7H7v3h3v9h3z"/></svg></a>
-        <a href="#" aria-label="PicPong on Instagram" data-en-aria="PicPong on Instagram" data-he-aria="PicPong באינסטגרם"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/picpongb2b" target="_blank" rel="noopener" aria-label="PicPong on Facebook" data-en-aria="PicPong on Facebook" data-he-aria="PicPong בפייסבוק"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l.5-3H13V5.5c0-.9.3-1.5 1.6-1.5H17V1.4C16.6 1.3 15.5 1.2 14.3 1.2 11.7 1.2 10 2.7 10 5.2V7H7v3h3v9h3z"/></svg></a>
+        <a href="https://www.instagram.com/picpongbiz/" target="_blank" rel="noopener" aria-label="PicPong on Instagram" data-en-aria="PicPong on Instagram" data-he-aria="PicPong באינסטגרם"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.linkedin.com/company/picpong-ltd/" target="_blank" rel="noopener" aria-label="PicPong on LinkedIn" data-en-aria="PicPong on LinkedIn" data-he-aria="PicPong בלינקדאין"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z"/></svg></a>
         <a href="#" aria-label="PicPong on LinkedIn" data-en-aria="PicPong on LinkedIn" data-he-aria="PicPong בלינקדאין"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9.5h4V21H3zM9 9.5h3.8v1.6h.05c.53-.95 1.83-1.95 3.77-1.95 4 0 4.75 2.5 4.75 5.8V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.78 0-2.05 1.38-2.05 2.8V21H9z"/></svg></a>
       </div>
       <!-- language switch (HE/EN) -->
@@ -61,6 +62,11 @@
         <button type="button" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang="he" aria-pressed="false">HE</button>
       </div>
+      <!-- motion preference: pauses every auto-moving element sitewide (WCAG 2.2.2) -->
+      <button class="iconbtn motion-toggle" type="button" data-motion-toggle aria-pressed="false" aria-label="Pause motion" title="Pause motion" data-en-aria="Pause motion" data-he-aria="השהיית תנועה">
+        <svg class="i-pause" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        <svg class="i-play" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5l12 7-12 7z"/></svg>
+      </button>
       <button class="iconbtn nav__menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu" data-en-aria="Open menu" data-he-aria="פתח תפריט">
         <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
@@ -104,12 +110,6 @@
           <a class="btn btn--onDark" href="catalog.html" data-i18n-html data-en="Browse the catalog <span class=&quot;arrow&quot;>&rarr;</span>" data-he="עיון בקטלוג <span class=&quot;arrow&quot;>&rarr;</span>">Browse the catalog <span class="arrow">&rarr;</span></a>
           <a class="btn btn--ghostDark" href="#contact" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">Request a quote <span class="arrow">&rarr;</span></a>
         </div>
-        <!-- pause every auto-moving element on the page (WCAG 2.2.2) -->
-        <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false" aria-label="Pause motion" data-en-aria="Pause motion" data-he-aria="השהיית תנועה">
-          <svg class="i-pause" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-          <svg class="i-play" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5l12 7-12 7z"/></svg>
-          <span class="motion-toggle__label" data-en="Pause motion" data-he="השהיית תנועה">Pause motion</span>
-        </button>
         <div class="bubbles" aria-hidden="true">
           <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
           <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
@@ -239,9 +239,6 @@
         <h2 class="h3 lane__title" data-en="Tell us about your project" data-he="ספרו לנו על הפרויקט שלכם">Tell us about your project</h2>
         <p class="lane__desc" data-en="Events, exhibitions, conferences and launches, from sketch to show floor. Send the brief and we'll come back with a concept and a quote." data-he="אירועים, תערוכות, כנסים והשקות, מסקיצה ועד רצפת התצוגה. שלחו את הבריף ונחזור עם קונספט והצעת מחיר.">Events, exhibitions, conferences and launches, from sketch to show floor. Send the brief and we'll come back with a concept and a quote.</p>
         <span class="link-arrow" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">Request a quote <span class="arrow">&rarr;</span></span>
-        <span class="bubbles bubbles--lane" aria-hidden="true">
-          <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
-        </span>
       </a>
     </div>
   </div>
@@ -489,53 +486,7 @@
   </div>
 </div>
 
-<!-- PROJECTS TEASER: media component tiles -->
-<section class="band band--dark on-dark">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="eyebrow eyebrow--dark" data-en="Selected work" data-he="עבודות נבחרות">Selected work</p>
-      <h2 class="h2" style="max-width:18ch" data-en="Trusted on the world's biggest show floors." data-he="סומכים עלינו על רצפות התצוגה הגדולות בעולם.">Trusted on the world's biggest show floors.</h2>
-    </div>
-    <div class="grid-projects grid-projects--feature">
-      <a class="project reveal reveal--slide" href="project-detail.html?p=microsoft" style="--i:0;--dir:0">
-        <div class="media" data-media>
-          <img class="project__img" src="assets/projects/microsoft.jpg" alt="Microsoft new-office launch environment built from X-Board" loading="lazy" />
-          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה"
-                  data-media-id="proj-microsoft" data-media-title="Microsoft · New-office launch" data-media-thumb="assets/projects/microsoft.jpg">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-          </button>
-        </div>
-        <div class="project__scrim"></div><span class="project__tag">Event</span>
-        <div class="project__body"><span class="project__client">Microsoft · New-office launch</span><h3 class="h3 project__title" data-en="A welcome built to be struck and re-staged" data-he="קבלת פנים שנבנתה לפירוק והרכבה מחדש">A welcome built to be struck and re-staged</h3></div>
-      </a>
-      <a class="project reveal reveal--slide" href="project-detail.html?p=google-cloud" style="--i:1;--dir:1">
-        <div class="media" data-media>
-          <img class="project__img" src="assets/projects/google-cloud.jpg" alt="Google Cloud spring party build" loading="lazy" />
-          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה"
-                  data-media-id="proj-google" data-media-title="Google Cloud · Spring party" data-media-thumb="assets/projects/google-cloud.jpg">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-          </button>
-        </div>
-        <div class="project__scrim"></div><span class="project__tag">Event</span>
-        <div class="project__body"><span class="project__client">Google Cloud · Spring party</span><h3 class="h4 project__title" data-en="Free-standing welcome build" data-he="מבנה קבלת פנים עצמאי">Free-standing welcome build</h3></div>
-      </a>
-      <a class="project reveal reveal--slide" href="project-detail.html?p=landa" style="--i:2;--dir:1">
-        <div class="media" data-media>
-          <img class="project__img" src="assets/projects/landa.jpg" alt="Landa Digital Printing branded environment" loading="lazy" />
-          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה"
-                  data-media-id="proj-landa" data-media-title="Landa · Digital Printing" data-media-thumb="assets/projects/landa.jpg">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-          </button>
-        </div>
-        <div class="project__scrim"></div><span class="project__tag">Convention</span>
-        <div class="project__body"><span class="project__client">Landa · Digital Printing</span><h3 class="h4 project__title" data-en="Illuminated letters &amp; wall graphics" data-he="אותיות מוארות וגרפיקת קיר">Illuminated letters &amp; wall graphics</h3></div>
-      </a>
-    </div>
-    <div class="reveal" style="margin-top:2.2rem"><a class="link-arrow" href="projects.html" style="color:var(--cream);border-color:var(--orange)" data-i18n-html data-en="View all projects <span class=&quot;arrow&quot;>&rarr;</span>" data-he="לכל הפרויקטים <span class=&quot;arrow&quot;>&rarr;</span>">View all projects <span class="arrow">&rarr;</span></a></div>
-  </div>
-</section>
-
-<div class="edge edge--cream" aria-hidden="true"></div>
+<div class="edge edge--kraft" aria-hidden="true"></div>
 
 <!-- SUSTAINABILITY: full-bleed editorial statement (client: this is the site's primary reason to
      exist, aimed at CSR/sustainability managers - must "scream", not whisper via a quiet split+checklist). -->
@@ -636,8 +587,9 @@
         <a class="btn btn--onDark" href="#contact" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">Request a quote <span class="arrow">&rarr;</span></a>
         <!-- BUILD NOTE: real profile URL is content (§5/D-6) -->
         <div class="footer__social" aria-label="Social links" data-en-aria="Social links" data-he-aria="קישורים חברתיים">
-          <a href="#" aria-label="PicPong on Facebook" data-en-aria="PicPong on Facebook" data-he-aria="PicPong בפייסבוק"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l.5-3H13V5.5c0-.9.3-1.5 1.6-1.5H17V1.4C16.6 1.3 15.5 1.2 14.3 1.2 11.7 1.2 10 2.7 10 5.2V7H7v3h3v9h3z"/></svg></a>
-          <a href="#" aria-label="PicPong on Instagram" data-en-aria="PicPong on Instagram" data-he-aria="PicPong באינסטגרם"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/picpongb2b" target="_blank" rel="noopener" aria-label="PicPong on Facebook" data-en-aria="PicPong on Facebook" data-he-aria="PicPong בפייסבוק"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l.5-3H13V5.5c0-.9.3-1.5 1.6-1.5H17V1.4C16.6 1.3 15.5 1.2 14.3 1.2 11.7 1.2 10 2.7 10 5.2V7H7v3h3v9h3z"/></svg></a>
+          <a href="https://www.instagram.com/picpongbiz/" target="_blank" rel="noopener" aria-label="PicPong on Instagram" data-en-aria="PicPong on Instagram" data-he-aria="PicPong באינסטגרם"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.linkedin.com/company/picpong-ltd/" target="_blank" rel="noopener" aria-label="PicPong on LinkedIn" data-en-aria="PicPong on LinkedIn" data-he-aria="PicPong בלינקדאין"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z"/></svg></a>
           <a href="#" aria-label="PicPong on LinkedIn" data-en-aria="PicPong on LinkedIn" data-he-aria="PicPong בלינקדאין"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9.5h4V21H3zM9 9.5h3.8v1.6h.05c.53-.95 1.83-1.95 3.77-1.95 4 0 4.75 2.5 4.75 5.8V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.78 0-2.05 1.38-2.05 2.8V21H9z"/></svg></a>
         </div>
       </div>

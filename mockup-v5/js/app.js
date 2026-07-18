@@ -937,11 +937,17 @@
      One toggle halts everything that moves on its own: the CSS marquees + Ken-
      Burns + decorative loops (via body.motion-paused), the hero <video>, and the
      JS-driven slideshow + slogan intervals (which listen for picpong:motion).
-     State persists for the session so it survives the language re-render. Runs
-     before the slideshow/slogan initialisers so they can read the class on init. */
+     State persists across visits (localStorage) so it survives page loads and the
+     language re-render. Runs before the slideshow/slogan initialisers so they can
+     read the class on init. */
   var MOTION_KEY = "picpong_motion_v5";
-  var motionPaused = false;
-  try { motionPaused = sessionStorage.getItem(MOTION_KEY) === "paused"; } catch (e) {}
+  // default follows the OS "reduce motion" preference; an explicit choice overrides it
+  var motionPaused = reduceMotion;
+  try {
+    var storedMotion = localStorage.getItem(MOTION_KEY);
+    if (storedMotion === "paused") motionPaused = true;
+    else if (storedMotion === "playing") motionPaused = false;
+  } catch (e) {}
   function applyMotionState() {
     document.body.classList.toggle("motion-paused", motionPaused);
     document.querySelectorAll("video.hero-video").forEach(function (v) {
@@ -956,18 +962,20 @@
       var he = motionPaused ? "הפעלת תנועה" : "השהיית תנועה";
       // keep the i18n source attrs current so a later language flip stays correct
       btn.setAttribute("data-en-aria", en); btn.setAttribute("data-he-aria", he);
-      btn.setAttribute("aria-label", currentLang() === "he" ? he : en);
+      var label = currentLang() === "he" ? he : en;
+      btn.setAttribute("aria-label", label);
+      btn.setAttribute("title", label); // tooltip for sighted mouse users
       var lbl = btn.querySelector(".motion-toggle__label");
       if (lbl) {
         lbl.setAttribute("data-en", en); lbl.setAttribute("data-he", he);
-        lbl.textContent = currentLang() === "he" ? he : en;
+        lbl.textContent = label;
       }
     });
     document.dispatchEvent(new CustomEvent("picpong:motion", { detail: { paused: motionPaused } }));
   }
   function setMotionPaused(p) {
     motionPaused = !!p;
-    try { sessionStorage.setItem(MOTION_KEY, motionPaused ? "paused" : "playing"); } catch (e) {}
+    try { localStorage.setItem(MOTION_KEY, motionPaused ? "paused" : "playing"); } catch (e) {}
     applyMotionState();
   }
   document.querySelectorAll("[data-motion-toggle]").forEach(function (btn) {
