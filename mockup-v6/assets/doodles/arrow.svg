@@ -1,0 +1,7 @@
+<svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--arrow" aria-hidden="true">
+  <g stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- hand-drawn swooping arrow -->
+    <path pathLength="1" d="M14 36 C 70 14 150 22 178 78"/>
+    <path pathLength="1" d="M150 64 L180 80 L168 48"/>
+  </g>
+</svg>

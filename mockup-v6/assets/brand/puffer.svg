@@ -1,0 +1,35 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Picpong pufferfish">
+  <!-- Clean vector redraw of the Picpong pufferfish mascot (brief flags original as raster-only) -->
+  <g>
+    <!-- spikes -->
+    <g fill="#E45C01">
+      <g transform="rotate(0 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(30 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(60 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(90 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(120 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(150 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(180 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(210 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(240 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(270 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(300 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+      <g transform="rotate(330 50 50)"><polygon points="44,24 56,24 50,8"/></g>
+    </g>
+    <!-- tail -->
+    <path d="M78 50 q14 -11 17 -2 q-7 2 -7 2 q7 0 7 2 q-3 9 -17 -2 z" fill="#E45C01"/>
+    <!-- body -->
+    <circle cx="50" cy="52" r="29" fill="#E67A2F"/>
+    <!-- belly highlight -->
+    <path d="M30 60 a23 23 0 0 0 40 0 a26 26 0 0 1 -40 0 z" fill="#F58729" opacity="0.6"/>
+    <!-- side fin -->
+    <path d="M66 56 q12 4 11 12 q-9 -1 -14 -7 z" fill="#E45C01"/>
+    <!-- eye -->
+    <circle cx="42" cy="46" r="9" fill="#ffffff"/>
+    <circle cx="43.5" cy="47" r="5" fill="#2A9BD0"/>
+    <circle cx="45" cy="45.5" r="1.8" fill="#0e2a33"/>
+    <circle cx="40.5" cy="44" r="1.6" fill="#ffffff"/>
+    <!-- mouth -->
+    <path d="M52 62 q6 6 12 1" fill="none" stroke="#7a3209" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+</svg>

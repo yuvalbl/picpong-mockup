@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Projects - Picpong Backoffice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/backoffice.css" />
+  <style>
+    /* projects manager */
+    .pj-head-actions { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .pj-head-actions .sp { margin-inline-start: auto; }
+    .pj-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+    .pj-tab { font: inherit; font-weight: 600; font-size: 0.88rem; cursor: pointer; padding: 0.45rem 0.9rem; border-radius: 999px; border: 1.5px solid var(--bo-line); background: var(--bo-surface); color: var(--ink); }
+    .pj-tab:hover { border-color: var(--ink); }
+    .pj-tab[aria-pressed="true"] { background: var(--bo-orange-tint); border-color: var(--bo-orange); color: var(--bo-orange); }
+    .pj-thumb { width: 56px; height: 44px; border-radius: 7px; object-fit: cover; flex: none; background: var(--kraft); }
+    .pj-titles { display: flex; flex-direction: column; gap: 0.1rem; }
+    .pj-title-en { font-weight: 600; }
+    .pj-title-he { font-size: 0.85rem; color: var(--muted); }
+    .pj-catchip { display: inline-block; font-size: 0.74rem; font-weight: 600; padding: 0.16rem 0.5rem; border-radius: 999px; background: var(--bo-bg); color: var(--muted); border: 1px solid var(--bo-line-soft); }
+    .pj-imgcount { color: var(--muted); font-weight: 600; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <script src="js/bo.js"></script>
+  <script>
+    (function () {
+      var session = BO.requireRole(["Admin", "Content"]);
+      if (!session) return;
+      var main = BO.mountShell({ active: "projects.html", title: "Projects" });
+      var esc = BO.esc;
+      var filter = "all";
+
+      // seeded from the real site (projects.html tiles + app.js PROJECTS data)
+      var PROJECTS = [
+        { slug: "king-solomon",    en: "Colourful booths, struck and re-staged", he: "ביתנים צבעוניים, מפורקים ומורכבים מחדש", client: "King Solomon",  cat: "Convention", year: 2022, imgs: 10, image: "../assets/projects/king-solomon.jpg", status: "published" },
+        { slug: "microsoft",       en: "New-office launch environment",          he: "סביבת השקה למשרד חדש",               client: "Microsoft",     cat: "Event",      year: 2022, imgs: 3,  image: "../assets/projects/microsoft.jpg", status: "published" },
+        { slug: "google-cloud",    en: "Spring-party welcome build",             he: "מבנה קבלת פנים למסיבת אביב",         client: "Google Cloud",  cat: "Event",      year: 2022, imgs: 3,  image: "../assets/projects/google-cloud.jpg", status: "published" },
+        { slug: "landa",           en: "Illuminated letters & graphics",         he: "אותיות מוארות וגרפיקה",              client: "Landa",         cat: "Convention", year: 2021, imgs: 2,  image: "../assets/projects/landa.jpg", status: "published" },
+        { slug: "synamedia",       en: "Conference booth & lounge",              he: "ביתן כנס וטרקלין",                   client: "Synamedia",     cat: "Booth",      year: 2021, imgs: 2,  image: "../assets/projects/synamedia.jpg", status: "published" },
+        { slug: "deep-instinct",   en: "Office inauguration",                    he: "חנוכת משרד",                        client: "Deep Instinct", cat: "Event",      year: 2021, imgs: 2,  image: "../assets/projects/deep-instinct.jpg", status: "published" },
+        { slug: "redefine-meat",   en: "Rebranding showcase",                    he: "תצוגת מיתוג מחדש",                   client: "Redefine Meat", cat: "Booth",      year: 2021, imgs: 2,  image: "../assets/projects/redefine-meat.jpg", status: "published" },
+        { slug: "bluevine",        en: "Branding event environment",             he: "סביבת אירוע מיתוג",                  client: "BlueVine",      cat: "Event",      year: 2020, imgs: 2,  image: "../assets/projects/bluevine.jpg", status: "published" },
+        { slug: "priority-maccabi",en: "VIP room build-out",                     he: "בניית חדר VIP",                     client: "Priority",      cat: "Event",      year: 2020, imgs: 2,  image: "../assets/projects/priority-maccabi.jpg", status: "published" },
+        { slug: "meetmind",        en: "Convention presence",                    he: "נוכחות בכנס",                       client: "Meet&Mind",     cat: "Convention", year: 2019, imgs: 2,  image: "../assets/projects/meetmind.jpg", status: "draft" }
+      ];
+
+      var CATS = ["all", "Convention", "Event", "Booth"];
+
+      function render() {
+        var list = PROJECTS.filter(function (p) { return filter === "all" ? true : p.cat === filter; });
+
+        var head = '<div class="bo-pagehead"><h1>Projects</h1>' +
+          '<p>The portfolio behind the site. Each project is a case study with its own gallery; every image in it is independently quotable by visitors.</p></div>';
+
+        var actions = '<div class="pj-head-actions">' +
+          '<span style="color:var(--muted);font-weight:600;font-size:0.9rem">' + PROJECTS.length + ' projects</span>' +
+          '<span class="sp"></span>' +
+          '<a class="bo-btn bo-btn--brand" href="project-editor.html">' + BO.ICON.projects + ' New project</a>' +
+        '</div>';
+
+        var tabs = '<div class="pj-tabs" role="group" aria-label="Filter by category">' +
+          CATS.map(function (c) {
+            var n = c === "all" ? PROJECTS.length : PROJECTS.filter(function (p) { return p.cat === c; }).length;
+            return '<button class="pj-tab" type="button" data-cat="' + esc(c) + '" aria-pressed="' + (filter === c) + '">' +
+              (c === "all" ? "All" : esc(c)) + ' <span style="opacity:0.7;font-weight:700">' + n + '</span></button>';
+          }).join("") + '</div>';
+
+        var body;
+        if (!list.length) {
+          body = '<div class="bo-card"><div class="bo-empty">No projects in this category.</div></div>';
+        } else {
+          var rows = list.map(function (p) {
+            return '<tr>' +
+              '<td><img class="pj-thumb" src="' + esc(p.image) + '" alt="" /></td>' +
+              '<td><div class="pj-titles"><span class="pj-title-en">' + esc(p.en) + '</span>' +
+                '<span class="pj-title-he" dir="rtl">' + esc(p.he) + '</span></div></td>' +
+              '<td>' + esc(p.client) + '</td>' +
+              '<td><span class="pj-catchip">' + esc(p.cat) + '</span></td>' +
+              '<td>' + esc(p.year) + '</td>' +
+              '<td class="pj-imgcount">' + p.imgs + ' image' + (p.imgs === 1 ? "" : "s") + '</td>' +
+              '<td><span class="' + BO.pillClass(p.status) + '">' + esc(p.status) + '</span></td>' +
+              '<td style="text-align:end"><a class="bo-btn bo-btn--ghost bo-btn--sm" href="project-editor.html?slug=' + encodeURIComponent(p.slug) + '">Edit</a></td>' +
+            '</tr>';
+          }).join("");
+          body = '<div class="bo-tablewrap"><table class="bo-table">' +
+            '<thead><tr><th></th><th>Title (EN / HE)</th><th>Client</th><th>Category</th><th>Year</th><th>Images</th><th>Status</th><th></th></tr></thead>' +
+            '<tbody>' + rows + '</tbody></table></div>';
+        }
+
+        main.innerHTML = head + actions + tabs + body;
+        Array.prototype.forEach.call(main.querySelectorAll("[data-cat]"), function (b) {
+          b.addEventListener("click", function () { filter = b.getAttribute("data-cat"); render(); });
+        });
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>

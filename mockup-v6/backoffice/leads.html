@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Leads - Picpong Backoffice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..700;1,300..600&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/backoffice.css" />
+  <style>
+    /* Scoped to this page only - filter bar + assigned "unassigned" hint. */
+    .ld-filters {
+      display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: flex-end;
+      margin-bottom: 1rem;
+    }
+    .ld-filters .bo-field { min-width: 170px; flex: 1; }
+    .ld-filters .bo-field--search { min-width: 220px; flex: 2; }
+    .ld-count { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.7rem; }
+    .ld-unassigned { color: var(--muted); font-style: italic; font-size: 0.86rem; }
+    .ld-name-link { color: var(--ink); font-weight: 600; text-decoration: none; }
+    .ld-name-link:hover { color: var(--bo-orange); }
+    .ld-row-link { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <script src="js/bo.js"></script>
+  <script>
+    (function () {
+      var session = BO.requireRole(["Admin", "Sales"]);
+      if (!session) return;
+      var main = BO.mountShell({ active: "leads.html", title: "Leads" });
+      var esc = BO.esc;
+
+      var ALL_LEADS = BO.getLeads();
+      var REPS = BO.getReps();
+
+      var state = { status: "", rep: "", channel: "", q: "" };
+
+      function repOptions(selected) {
+        var html = '<option value=""' + (selected === "" ? " selected" : "") + '>All reps</option>';
+        REPS.forEach(function (r) {
+          html += '<option value="' + esc(r) + '"' + (selected === r ? " selected" : "") + '>' + esc(r) + '</option>';
+        });
+        html += '<option value="__unassigned"' + (selected === "__unassigned" ? " selected" : "") + '>Unassigned</option>';
+        return html;
+      }
+
+      function filterBar() {
+        return '<div class="ld-filters">' +
+          '<div class="bo-field">' +
+            '<label for="lf-status">Status</label>' +
+            '<select class="bo-select" id="lf-status">' +
+              '<option value="">All statuses</option>' +
+              '<option value="new">New</option>' +
+              '<option value="contacted">Contacted</option>' +
+              '<option value="quoted">Quoted</option>' +
+              '<option value="won">Won</option>' +
+              '<option value="lost">Lost</option>' +
+            '</select>' +
+          '</div>' +
+          '<div class="bo-field">' +
+            '<label for="lf-rep">Rep</label>' +
+            '<select class="bo-select" id="lf-rep">' + repOptions("") + '</select>' +
+          '</div>' +
+          '<div class="bo-field">' +
+            '<label for="lf-channel">Channel</label>' +
+            '<select class="bo-select" id="lf-channel">' +
+              '<option value="">All channels</option>' +
+              '<option value="whatsapp">WhatsApp</option>' +
+              '<option value="email">Email</option>' +
+            '</select>' +
+          '</div>' +
+          '<div class="bo-field bo-field--search">' +
+            '<label for="lf-search">Search</label>' +
+            '<input class="bo-input" id="lf-search" type="text" placeholder="Name, company, email, message, item..." />' +
+          '</div>' +
+        '</div>';
+      }
+
+      function thumbsHtml(items) {
+        items = items || [];
+        var shown = items.slice(0, 3);
+        var thumbs = shown.map(function (it) {
+          return '<img src="' + esc(it.thumb) + '" alt="" title="' + esc(it.title) + '" />';
+        }).join("");
+        var more = items.length > 3 ? '<span class="bo-thumbs__more">+' + (items.length - 3) + '</span>' : "";
+        return '<span class="bo-thumbs">' + thumbs + more + '</span>';
+      }
+
+      function channelChip(channel) {
+        var icon = channel === "whatsapp" ? BO.ICON.whatsapp : BO.ICON.email;
+        var label = channel === "whatsapp" ? "WhatsApp" : "Email";
+        return '<span class="bo-chip">' + icon + '<span>' + esc(label) + '</span></span>';
+      }
+
+      function assignedCell(l) {
+        if (l.assigned) return esc(l.assigned);
+        return '<span class="ld-unassigned">Unassigned</span>';
+      }
+
+      function leadRowHtml(l) {
+        var href = "lead-detail.html?id=" + encodeURIComponent(l.id);
+        return '<tr class="ld-row-link" data-href="' + esc(href) + '">' +
+          '<td><div class="bo-cellname"><a class="ld-name-link" href="' + esc(href) + '">' + esc(l.name) + '</a>' +
+            '<small>' + esc(l.company) + '</small></div></td>' +
+          '<td>' + thumbsHtml(l.items) + '</td>' +
+          '<td>' + channelChip(l.channel) + '</td>' +
+          '<td>' + esc((l.language || "").toUpperCase()) + '</td>' +
+          '<td title="' + esc(BO.fmtDateTime(l.createdAt)) + '">' + esc(BO.timeAgo(l.createdAt)) + '</td>' +
+          '<td><span class="' + BO.pillClass(l.status) + '">' + esc(l.status) + '</span></td>' +
+          '<td>' + assignedCell(l) + '</td>' +
+        '</tr>';
+      }
+
+      function matchesFilters(l) {
+        if (state.status && l.status !== state.status) return false;
+        if (state.rep === "__unassigned" && l.assigned) return false;
+        if (state.rep && state.rep !== "__unassigned" && l.assigned !== state.rep) return false;
+        if (state.channel && l.channel !== state.channel) return false;
+        if (state.q) {
+          var q = state.q.toLowerCase();
+          var itemTitles = (l.items || []).map(function (it) { return it.title || ""; }).join(" ");
+          var hay = [l.name, l.company, l.email, l.message, itemTitles].join(" ").toLowerCase();
+          if (hay.indexOf(q) === -1) return false;
+        }
+        return true;
+      }
+
+      function render() {
+        var filtered = ALL_LEADS.filter(matchesFilters);
+        var countLine = '<div class="ld-count">' + filtered.length + ' of ' + ALL_LEADS.length + ' leads</div>';
+        var body;
+        if (!filtered.length) {
+          body = '<div class="bo-empty">No leads match these filters.</div>';
+        } else {
+          body = '<div class="bo-tablewrap"><table class="bo-table">' +
+            '<thead><tr>' +
+              '<th>Contact</th><th>Items</th><th>Channel</th><th>Language</th><th>Created</th><th>Status</th><th>Assigned</th>' +
+            '</tr></thead>' +
+            '<tbody>' + filtered.map(leadRowHtml).join("") + '</tbody>' +
+          '</table></div>';
+        }
+        var listWrap = document.getElementById("lf-count");
+        listWrap.innerHTML = countLine;
+        var tableWrap = document.getElementById("lf-tablewrap");
+        tableWrap.innerHTML = body;
+        tableWrap.querySelectorAll(".ld-row-link").forEach(function (row) {
+          row.addEventListener("click", function (e) {
+            if (e.target.closest("a")) return; // let the name link navigate itself
+            location.href = row.getAttribute("data-href");
+          });
+        });
+      }
+
+      main.innerHTML =
+        '<div class="bo-pagehead"><h1>Leads</h1>' +
+          '<p>Every enquiry that came in through the site, newest first. Filter, assign and follow up here.</p>' +
+        '</div>' +
+        filterBar() +
+        '<div id="lf-count"></div>' +
+        '<div id="lf-tablewrap"></div>';
+
+      document.getElementById("lf-status").addEventListener("change", function (e) { state.status = e.target.value; render(); });
+      document.getElementById("lf-rep").addEventListener("change", function (e) { state.rep = e.target.value; render(); });
+      document.getElementById("lf-channel").addEventListener("change", function (e) { state.channel = e.target.value; render(); });
+      document.getElementById("lf-search").addEventListener("input", function (e) { state.q = e.target.value; render(); });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

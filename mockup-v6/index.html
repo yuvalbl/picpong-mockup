@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PicPong.biz - דוכנים ותצוגות מקרטון ממוחזר לאירועים ותערוכות</title>
+<meta name="description" content="דוכני תצוגה, סטנדים ודלפקים מ-X-Board קרטון ממוחזר 100% - עמיד, ניתן לשימוש חוזר, נשלח שטוח. בקשו הצעת מחיר." />
+<link rel="icon" type="image/png" sizes="256x256" href="assets/brand/favicon.png" />
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+<!-- BUILD NOTE (PRD 3 §6.4/D-8): real site generates per-item OG title/description/image DYNAMICALLY from CMS content, per language. Static here. -->
+<!-- BUILD NOTE (PRD 3 §4.2): real site uses /he/ and /en/ path prefixes with hreflang+canonical per §4.2; mockup serves both languages from one URL via JS toggle. -->
+<link rel="canonical" href="https://picpong-mockup.web.app/index.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="PicPong" />
+<meta property="og:title" content="PicPong.biz - דוכנים ותצוגות מקרטון ממוחזר לאירועים ותערוכות" />
+<meta property="og:description" content="דוכני תצוגה, סטנדים ודלפקים מ-X-Board קרטון ממוחזר 100% - עמיד, ניתן לשימוש חוזר, נשלח שטוח. בקשו הצעת מחיר." />
+<meta property="og:url" content="https://picpong-mockup.web.app/index.html" />
+<meta property="og:image" content="https://picpong-mockup.web.app/assets/brand/og-cover.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PicPong.biz - דוכנים ותצוגות מקרטון ממוחזר לאירועים ותערוכות" />
+<meta name="twitter:description" content="דוכני תצוגה, סטנדים ודלפקים מ-X-Board קרטון ממוחזר 100% - עמיד, ניתן לשימוש חוזר, נשלח שטוח." />
+<meta name="twitter:image" content="https://picpong-mockup.web.app/assets/brand/og-cover.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css?v=14" />
+</head>
+<body>
+<a class="skip-link" href="#main" data-en="Skip to content" data-he="דלגו לתוכן">Skip to content</a>
+
+
+<div class="ribbon">Design mockup <b>v6</b> · concept for client review, not the live site</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="index.html" aria-label="PicPong home" data-en-aria="PicPong home" data-he-aria="PicPong בית">
+      <img class="brand__mark" src="assets/brand/puffer.png" alt="PicPong" />
+      <span class="brand__word">PicPong<b>.biz</b></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary" data-en-aria="Primary" data-he-aria="ניווט ראשי">
+      <a href="catalog.html" data-en="Catalog" data-he="קטלוג">Catalog</a>
+      <a href="projects.html" data-en="Projects" data-he="פרויקטים">Projects</a>
+      <a href="latest.html" data-en="Latest" data-he="יומן">Latest</a>
+      <a href="index.html#sustainability" data-en="Sustainability" data-he="קיימות">Sustainability</a>
+      <a href="index.html#about" data-en="About" data-he="אודות">About</a>
+      <a href="index.html#contact" data-en="Contact" data-he="צור קשר">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <!-- social slot -->
+      <div class="nav__social" aria-label="Social links" data-en-aria="Social links" data-he-aria="קישורים חברתיים">
+        <!-- BUILD NOTE: real profile URL is content (§5/D-6) -->
+        <a href="https://www.facebook.com/picpongb2b" target="_blank" rel="noopener" aria-label="PicPong on Facebook" data-en-aria="PicPong on Facebook" data-he-aria="PicPong בפייסבוק"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l.5-3H13V5.5c0-.9.3-1.5 1.6-1.5H17V1.4C16.6 1.3 15.5 1.2 14.3 1.2 11.7 1.2 10 2.7 10 5.2V7H7v3h3v9h3z"/></svg></a>
+        <a href="https://www.instagram.com/picpongbiz/" target="_blank" rel="noopener" aria-label="PicPong on Instagram" data-en-aria="PicPong on Instagram" data-he-aria="PicPong באינסטגרם"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.linkedin.com/company/picpong-ltd/" target="_blank" rel="noopener" aria-label="PicPong on LinkedIn" data-en-aria="PicPong on LinkedIn" data-he-aria="PicPong בלינקדאין"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9.5h4V21H3zM9 9.5h3.8v1.6h.05c.53-.95 1.83-1.95 3.77-1.95 4 0 4.75 2.5 4.75 5.8V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.78 0-2.05 1.38-2.05 2.8V21H9z"/></svg></a>
+      </div>
+      <!-- language switch (HE/EN) -->
+      <div class="lang-switch" data-lang-switch role="group" aria-label="Language" data-en-aria="Language" data-he-aria="שפה">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="he" aria-pressed="false">HE</button>
+      </div>
+      <!-- motion preference: pauses every auto-moving element sitewide (WCAG 2.2.2) -->
+      <button class="iconbtn motion-toggle" type="button" data-motion-toggle aria-pressed="false" aria-label="Pause motion" title="Pause motion" data-en-aria="Pause motion" data-he-aria="השהיית תנועה">
+        <svg class="i-pause" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        <svg class="i-play" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5l12 7-12 7z"/></svg>
+      </button>
+      <button class="iconbtn nav__menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu" data-en-aria="Open menu" data-he-aria="פתח תפריט">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__top">
+    <span class="brand__word">PicPong<b>.biz</b></span>
+    <button class="iconbtn" id="menuClose" aria-label="Close menu" data-en-aria="Close menu" data-he-aria="סגור תפריט">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav>
+    <a href="catalog.html" data-en="Catalog" data-he="קטלוג">Catalog</a>
+    <a href="projects.html" data-en="Projects" data-he="פרויקטים">Projects</a>
+    <a href="latest.html" data-en="Latest" data-he="יומן">Latest</a>
+    <a href="index.html#sustainability" data-en="Sustainability" data-he="קיימות">Sustainability</a>
+    <a href="index.html#about" data-en="About" data-he="אודות">About</a>
+    <a href="index.html#contact" data-en="Contact" data-he="צור קשר">Contact</a>
+  </nav>
+  <div class="mobile-menu__foot">
+    <a class="btn btn--brand btn--block" href="#contact" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">Request a quote <span class="arrow">&rarr;</span></a>
+  </div>
+</div>
+<main id="main" tabindex="-1">
+
+<!-- HERO: collage (video-first) -->
+<section class="band hero3">
+  <div class="wrap">
+    <div class="collage">
+
+      <!-- A · headline text panel -->
+      <div class="ctile ctile--headline panel--pond reveal" style="--i:0;--dir:-1">
+        <p class="eyebrow" data-en="Exclusive X-Board importer · since 2004" data-he="יבואן בלעדי של X-Board · משנת 2004">Exclusive X-Board importer · since 2004</p>
+        <h1 class="display" data-i18n-html data-en="Displays that show up, <em>stand out</em>, and leave <span class=&quot;accent&quot;>no&nbsp;trace.</span>" data-he="תצוגות שמופיעות, <em>בולטות</em>, ולא משאירות <span class=&quot;accent&quot;>שום&nbsp;עקבות.</span>">Displays that show up, <em>stand out</em>, and leave <span class="accent">no&nbsp;trace.</span></h1>
+        <p class="lead" data-en="100% recycled corrugated board, pressed at 60&nbsp;tons and built to be reused, then folded flat and recycled again." data-he="קרטון גלי ממוחזר 100%, מכובש ב-60&nbsp;טון ובנוי לשימוש חוזר, ואז מתקפל שטוח וממוחזר שוב.">100% recycled corrugated board, pressed at 60&nbsp;tons and built to be reused, then folded flat and recycled again.</p>
+        <div class="ctile__cta">
+          <a class="btn btn--onDark" href="catalog.html" data-i18n-html data-en="Browse the catalog <span class=&quot;arrow&quot;>&rarr;</span>" data-he="עיון בקטלוג <span class=&quot;arrow&quot;>&rarr;</span>">Browse the catalog <span class="arrow">&rarr;</span></a>
+          <a class="btn btn--ghostDark" href="#contact" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">Request a quote <span class="arrow">&rarr;</span></a>
+        </div>
+        <div class="bubbles" aria-hidden="true">
+          <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+          <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+        </div>
+        <img class="fish" src="assets/brand/puffer.png" alt="" aria-hidden="true" />
+      </div>
+
+      <!-- B-top · auto-changing slideshow (kept alongside the video) -->
+      <!-- NOTE: this tile IS the media wrapper (carries data-media). Its "+" is a
+           direct child rather than nested in a separate .media div, the multi-slide
+           __stage makes an inner wrapper awkward, so the .ctile--media element itself
+           plays the wrapper role here. Intentional exception to the nesting pattern. -->
+      <div class="ctile ctile--media slideshow reveal" data-media data-slideshow data-parallax="0.05" style="--i:1;--dir:-1">
+        <div class="slideshow__bars" aria-hidden="true">
+          <span class="bar"><i></i></span><span class="bar"><i></i></span><span class="bar"><i></i></span><span class="bar"><i></i></span><span class="bar"><i></i></span>
+        </div>
+        <div class="slideshow__stage">
+          <div class="slide is-active" data-k="King Solomon Expo" data-m="X-Board booths · from the archive" data-k-he="קינג סולומון · אקספו" data-m-he="ביתני X-Board · מהארכיון">
+            <img src="assets/projects/king-solomon.jpg" alt="Colourful X-Board exhibition booths built for the King Solomon expo" loading="eager" />
+          </div>
+          <div class="slide" data-k="Microsoft · Launch" data-m="Welcome build · re-stageable" data-k-he="Microsoft · השקה" data-m-he="מבנה קבלת פנים · להרכבה חוזרת">
+            <img src="assets/projects/microsoft.jpg" alt="Microsoft new-office launch environment built from X-Board" loading="lazy" />
+          </div>
+          <div class="slide" data-k="Google Cloud · Spring" data-m="Free-standing welcome build" data-k-he="Google Cloud · אביב" data-m-he="מבנה קבלת פנים עצמאי">
+            <img src="assets/projects/google-cloud.jpg" alt="Google Cloud spring party build" loading="lazy" />
+          </div>
+          <div class="slide" data-k="Redefine Meat" data-m="Brand launch stand · X-Board" data-k-he="Redefine Meat" data-m-he="ביתן השקת מותג · X-Board">
+            <img src="assets/projects/redefine-meat.jpg" alt="Redefine Meat brand launch stand built from X-Board" loading="lazy" />
+          </div>
+          <div class="slide" data-k="Synamedia" data-m="Conference booth · re-stageable" data-k-he="Synamedia" data-m-he="ביתן כנס · להרכבה חוזרת">
+            <img src="assets/projects/synamedia.jpg" alt="Synamedia conference booth built from X-Board" loading="lazy" />
+          </div>
+        </div>
+        <!-- media "+" opens the quote drawer with this build attached (live) -->
+        <button class="media__more" type="button" aria-label="Request a quote on this build" data-en-aria="Request a quote on this build" data-he-aria="בקשת הצעת מחיר על הפרויקט הזה"
+                data-media-id="slideshow-feature" data-media-title="Featured X-Board build" data-media-thumb="assets/projects/king-solomon.jpg">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="ctile__card">
+          <span class="ctile__card-k" data-card-k>King Solomon Expo</span>
+          <span class="ctile__card-m" data-card-m>X-Board booths · from the archive</span>
+        </div>
+      </div>
+
+      <!-- C-top · REAL VIDEO tile (portrait show-floor loop, muted/autoplay/loop).
+           Vertical clip (9:16) so this tile is the TALL one in the far column (see the
+           collage grid). Autoplay is muted+playsinline (required for mobile autoplay);
+           the hero-video class hooks the WCAG-2.2.2 pause toggle + the reduce-motion
+           default, which pause the clip via JS (see app.js applyMotionState). -->
+      <div class="ctile ctile--video reveal" data-parallax="0.09" style="--i:2;--dir:1">
+        <div class="media" data-media>
+          <video class="hero-video" muted autoplay loop playsinline preload="metadata"
+                 poster="assets/video/hero-poster.jpg"
+                 aria-label="Picpong X-Board builds on an event show floor" data-en-aria="Picpong X-Board builds on an event show floor" data-he-aria="מבני X-Board של Picpong על רצפת התצוגה">
+            <source src="assets/video/hero.mp4" type="video/mp4" />
+            <img src="assets/video/hero-poster.jpg" alt="Picpong X-Board builds on an event show floor" />
+          </video>
+          <button class="media__more" type="button" aria-label="Request a quote on this build" data-en-aria="Request a quote on this build" data-he-aria="בקשת הצעת מחיר על הפרויקט הזה"
+                  data-media-id="hero-video" data-media-title="On the show floor" data-media-thumb="assets/video/hero-poster.jpg">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+        <div class="ctile__card">
+          <span class="ctile__card-k" data-en="On the show floor" data-he="מרצפת התצוגה">On the show floor</span>
+          <span class="ctile__card-m" data-en="Events, expos &amp; conferences" data-he="אירועים, תערוכות וכנסים">Events, expos &amp; conferences</span>
+        </div>
+      </div>
+
+      <!-- B-bottom · dynamic Rubik slogan panel -->
+      <div class="ctile ctile--slogan panel--kraft reveal" data-parallax="0.04" style="--i:3;--dir:-1">
+        <span class="sr-only">Remarkable events, made to impact, gone without a trace. Picpong builds bold displays that leave nothing behind.</span>
+        <p class="slogan" data-slogan-cycle aria-hidden="true">
+          <span class="line" style="--l:0"><span class="mark mark--orange">Remarkable</span></span>
+          <span class="line" style="--l:1">events, made</span>
+          <span class="line" style="--l:2">to impact.</span>
+          <span class="line" style="--l:3"><span class="mark mark--deep">no trace.</span></span>
+        </p>
+      </div>
+
+      <!-- C-bottom · sticker photo + printer doodle -->
+      <div class="ctile ctile--sticker reveal draw" data-parallax="0.07" style="--i:4;--dir:1">
+        <div class="media" data-media>
+          <img src="assets/projects/landa.jpg" alt="Landa Digital Printing branded environment" loading="lazy" />
+          <button class="media__more" type="button" aria-label="Request a quote on this build" data-en-aria="Request a quote on this build" data-he-aria="בקשת הצעת מחיר על הפרויקט הזה"
+                  data-media-id="landa-env" data-media-title="Landa · Digital Printing environment" data-media-thumb="assets/projects/landa.jpg">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+        <span class="sticker" aria-hidden="true">
+          <svg aria-hidden="true" viewBox="0 0 120 120">
+            <defs><path id="stickPath" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/></defs>
+            <circle class="sticker__dot" cx="60" cy="60" r="9"/>
+            <text><textPath href="#stickPath" startOffset="0">events&#160;·&#160;stands&#160;·&#160;exhibitions&#160;·&#160;conferences&#160;·&#160;</textPath></text>
+          </svg>
+        </span>
+        <svg viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="doodle doodle--pin-bl" style="color:#fff;width:clamp(80px,11vw,130px)" aria-hidden="true">
+          <g stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+            <path pathLength="1" d="M30 92 q 0 -10 10 -10 H200 q 10 0 10 10 V138 q 0 10 -10 10 H40 q -10 0 -10 -10 Z"/>
+            <path pathLength="1" d="M52 148 L44 184"/><path pathLength="1" d="M188 148 L196 184"/>
+            <path pathLength="1" d="M70 92 V44 q 0 -8 8 -8 H162 q 8 0 8 8 V92"/>
+            <path pathLength="1" d="M86 56 H154" stroke-width="2.6" opacity="0.7"/><path pathLength="1" d="M86 70 H140" stroke-width="2.6" opacity="0.7"/>
+            <path pathLength="1" d="M62 116 H178" stroke-width="2.6"/><circle pathLength="1" cx="196" cy="116" r="6"/>
+          </g>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DUAL-PATH CHOOSER: catalog (no commerce) + project enquiry -->
+<section class="band band--tight" id="start">
+  <div class="wrap">
+    <p class="eyebrow reveal" style="justify-content:center;display:flex;margin:0" data-en="You choose how to start" data-he="אתם בוחרים איך להתחיל">You choose how to start</p>
+    <div class="funnels">
+      <a class="lane lane--panel panel--ink reveal reveal--slide" href="catalog.html" style="--i:0;--dir:-1">
+        <span class="lane__num">01</span>
+        <h2 class="h3 lane__title" data-en="Browse the catalog" data-he="עיון בקטלוג">Browse the catalog</h2>
+        <p class="lane__desc" data-en="Ready-made X-Board displays, stands and counters. See what we make, and ask us to quote your run." data-he="תצוגות, ביתנים ודלפקים מ-X-Board, מוכנים מראש. ראו מה אנחנו מייצרים ובקשו הצעת מחיר.">Ready-made X-Board displays, stands and counters. See what we make, and ask us to quote your run.</p>
+        <span class="link-arrow" data-i18n-html data-en="Browse the catalog <span class=&quot;arrow&quot;>&rarr;</span>" data-he="לקטלוג <span class=&quot;arrow&quot;>&rarr;</span>">Browse the catalog <span class="arrow">&rarr;</span></span>
+      </a>
+      <a class="lane lane--panel panel--orange reveal reveal--slide" href="#contact" style="--i:1;--dir:1">
+        <span class="lane__num">02</span>
+        <h2 class="h3 lane__title" data-en="Tell us about your project" data-he="ספרו לנו על הפרויקט שלכם">Tell us about your project</h2>
+        <p class="lane__desc" data-en="Events, exhibitions, conferences and launches, from sketch to show floor. Send the brief and we'll come back with a concept and a quote." data-he="אירועים, תערוכות, כנסים והשקות, מסקיצה ועד רצפת התצוגה. שלחו את הבריף ונחזור עם קונספט והצעת מחיר.">Events, exhibitions, conferences and launches, from sketch to show floor. Send the brief and we'll come back with a concept and a quote.</p>
+        <span class="link-arrow" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">Request a quote <span class="arrow">&rarr;</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="band band--dark band--tight on-dark">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--plain trust__label reveal" data-en="Our clients include" data-he="מבין לקוחותינו">Our clients include</p>
+  </div>
+  <div class="logo-marquee reveal" aria-label="A few of the brands we have built for" data-en-aria="A few of the brands we have built for" data-he-aria="כמה מהמותגים שבנינו עבורם">
+    <div class="logo-marquee__track">
+      <!-- set 1 -->
+      <div class="logo-marquee__item"><img src="assets/brand/clients/microsoft.png" alt="Microsoft" /></div>
+      <div class="logo-marquee__item"><img src="assets/brand/clients/mifold.png" alt="Mifold" /></div>
+      <div class="logo-marquee__item"><img src="assets/brand/clients/electra.png" alt="Electra" /></div>
+      <div class="logo-marquee__item"><img src="assets/brand/clients/clalit.png" alt="Clalit" /></div>
+      <div class="logo-marquee__item"><img src="assets/brand/clients/hot.png" alt="HOT" /></div>
+      <div class="logo-marquee__item"><img src="assets/brand/clients/brinks.png" alt="Brink's" /></div>
+      <div class="logo-marquee__item"><img src="assets/brand/clients/siteNewLogo.png" alt="Azrieli Malls" /></div>
+      <div class="logo-marquee__item"><img src="assets/brand/clients/download.png" alt="Pashut Tari" /></div>
+      <!-- set 2 · duplicate for a seamless loop -->
+      <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/microsoft.png" alt="" /></div>
+      <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/mifold.png" alt="" /></div>
+      <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/electra.png" alt="" /></div>
+      <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/clalit.png" alt="" /></div>
+      <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/hot.png" alt="" /></div>
+      <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/brinks.png" alt="" /></div>
+      <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/siteNewLogo.png" alt="" /></div>
+      <div class="logo-marquee__item" aria-hidden="true"><img src="assets/brand/clients/download.png" alt="" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST PROJECTS STRIP: horizontally-scannable row of the most recent builds.
+     Each tile is the shared .project overlay card (whole tile clickable) and links
+     to project-detail.html?p=<slug> - same pattern as projects.html. Full portfolio
+     lives on projects.html. -->
+<section class="band band--tight latest-strip" aria-label="Latest projects" data-en-aria="Latest projects" data-he-aria="הפרויקטים האחרונים">
+  <div class="wrap">
+    <div class="latest-strip__head reveal">
+      <div>
+        <p class="eyebrow" data-en="Recent work" data-he="עבודות אחרונות">Recent work</p>
+        <h2 class="h3" style="margin:0.2rem 0 0" data-en="Latest projects" data-he="הפרויקטים האחרונים">Latest projects</h2>
+      </div>
+      <a class="link-arrow" href="projects.html" data-i18n-html data-en="All projects <span class=&quot;arrow&quot;>&rarr;</span>" data-he="לכל הפרויקטים <span class=&quot;arrow&quot;>&rarr;</span>">All projects <span class="arrow">&rarr;</span></a>
+    </div>
+
+    <div class="latest-strip__row reveal" role="list">
+
+      <!-- 1 · Microsoft -->
+      <a class="project" role="listitem" href="project-detail.html?p=microsoft" data-en-aria="Microsoft - New-office launch environment" data-he-aria="Microsoft - סביבת השקה למשרד חדש" aria-label="Microsoft - New-office launch environment">
+        <div class="media" data-media>
+          <img class="project__img" src="assets/projects/microsoft.jpg" alt="דוכן מקרטון ממוחזר נארז שטוח אחרי כנס Microsoft" loading="lazy" />
+          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה" data-media-id="proj-microsoft" data-media-title="Microsoft" data-media-thumb="assets/projects/microsoft.jpg"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div class="project__scrim"></div><span class="project__tag" data-en="Event" data-he="אירוע">Event</span>
+        <div class="project__body"><span class="project__client">Microsoft</span><h3 class="h4 project__title" data-en="New-office launch environment" data-he="סביבת השקה למשרד חדש">New-office launch environment</h3></div>
+      </a>
+
+      <!-- 2 · Landa -->
+      <a class="project" role="listitem" href="project-detail.html?p=landa" data-en-aria="Landa - Illuminated letters & graphics" data-he-aria="Landa - אותיות מוארות וגרפיקה" aria-label="Landa - Illuminated letters & graphics">
+        <div class="media" data-media>
+          <img class="project__img" src="assets/projects/landa.jpg" alt="אותיות תלת-ממד מוארות מקרטון ממוחזר עבור Landa" loading="lazy" />
+          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה" data-media-id="proj-landa" data-media-title="Landa · Digital Printing" data-media-thumb="assets/projects/landa.jpg"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div class="project__scrim"></div><span class="project__tag" data-en="Convention" data-he="כנס">Convention</span>
+        <div class="project__body"><span class="project__client">Landa · Digital Printing</span><h3 class="h4 project__title" data-en="Illuminated letters &amp; graphics" data-he="אותיות מוארות וגרפיקה">Illuminated letters &amp; graphics</h3></div>
+      </a>
+
+      <!-- 3 · King Solomon -->
+      <a class="project" role="listitem" href="project-detail.html?p=king-solomon" data-en-aria="King Solomon Expo - Colourful booths, struck and re-staged" data-he-aria="King Solomon - ביתנים צבעוניים, מפורקים ומורכבים מחדש" aria-label="King Solomon Expo - Colourful booths, struck and re-staged">
+        <div class="media" data-media>
+          <img class="project__img" src="assets/projects/king-solomon.jpg" alt="ביתני קרטון צבעוניים ל-King Solomon" loading="lazy" />
+          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה" data-media-id="proj-kingsolomon" data-media-title="King Solomon · Expo" data-media-thumb="assets/projects/king-solomon.jpg"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div class="project__scrim"></div><span class="project__tag" data-en="Convention" data-he="כנס">Convention</span>
+        <div class="project__body"><span class="project__client">King Solomon · Expo</span><h3 class="h4 project__title" data-en="Colourful booths, struck and re-staged" data-he="ביתנים צבעוניים, מפורקים ומורכבים מחדש">Colourful booths, struck and re-staged</h3></div>
+      </a>
+
+      <!-- 4 · Google Cloud -->
+      <a class="project" role="listitem" href="project-detail.html?p=google-cloud" data-en-aria="Google Cloud - Spring-party welcome build" data-he-aria="Google Cloud - מבנה קבלת פנים למסיבת אביב" aria-label="Google Cloud - Spring-party welcome build">
+        <div class="media" data-media>
+          <img class="project__img" src="assets/projects/google-cloud.jpg" alt="מבנה קבלת פנים מקרטון ממוחזר למסיבת אביב של Google Cloud" loading="lazy" />
+          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה" data-media-id="proj-google" data-media-title="Google Cloud" data-media-thumb="assets/projects/google-cloud.jpg"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div class="project__scrim"></div><span class="project__tag" data-en="Event" data-he="אירוע">Event</span>
+        <div class="project__body"><span class="project__client">Google Cloud</span><h3 class="h4 project__title" data-en="Spring-party welcome build" data-he="מבנה קבלת פנים למסיבת אביב">Spring-party welcome build</h3></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG PREVIEW: browse-only (no price/add) -->
+<section class="band band--cream2" id="catalog">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-en="Browse the catalog" data-he="עיון בקטלוג">Browse the catalog</p>
+      <h2 class="h2" data-en="Ready-made, room-ready." data-he="מוכן מראש, מוכן לחלל.">Ready-made, room-ready.</h2>
+      <p class="lead" data-en="A starter range of X-Board pieces, every one recyclable, reusable and printed to your artwork. Quote the ones you want." data-he="מבחר התחלתי של פריטי X-Board, כולם מתכלים, לשימוש חוזר ומודפסים לפי המקור שלכם. בקשו הצעת מחיר.">A starter range of X-Board pieces, every one recyclable, reusable and printed to your artwork. Quote the ones you want.</p>
+    </div>
+
+    <div class="grid-products">
+      <!-- card 1 -->
+      <article class="tile tile--browse reveal reveal--slide" style="--i:0;--dir:-1">
+        <a href="product.html" class="tile__media tile__media-link" aria-label="X-Board Demo Counter">
+          <span class="tile__badge tile__badge--eco">100% recycled</span>
+          <div class="media" data-media>
+            <div class="tile__media-art" aria-hidden="true">
+              <svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="X-Board demo counter illustration">
+                <defs><pattern id="cor1" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5h10" stroke="#b98c52" stroke-width="1" opacity="0.4"/></pattern></defs>
+                <ellipse cx="200" cy="320" rx="120" ry="16" fill="#000" opacity="0.06"/>
+                <path d="M120 150h160l24 170H96z" fill="#cfa46a"/><path d="M120 150h160l24 170H96z" fill="url(#cor1)"/>
+                <path d="M96 320h208v10H96z" fill="#bb8c4f"/>
+                <rect x="110" y="120" width="180" height="34" rx="4" fill="#dcb87f"/>
+                <rect x="110" y="120" width="180" height="34" rx="4" fill="url(#cor1)"/>
+                <text x="200" y="245" text-anchor="middle" font-family="Rubik, system-ui, sans-serif" font-size="28" fill="#8a6334" opacity="0.55">X·BOARD</text>
+              </svg>
+            </div>
+            <button class="media__more" type="button" aria-label="Request a quote on this piece" data-en-aria="Request a quote on this piece" data-he-aria="בקשת הצעת מחיר על הפריט הזה"
+                    data-media-id="prod-demo-counter" data-media-title="X-Board Demo Counter" data-media-thumb="assets/brand/puffer.png">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </a>
+        <div class="tile__body">
+          <p class="eyebrow eyebrow--plain tile__cat" data-en="Counters" data-he="דלפקים">Counters</p>
+          <h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Demo Counter</a></h3>
+          <div class="tile__foot">
+            <a class="tile__browse-cue" href="product.html" data-i18n-html data-en="View &amp; quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="צפייה והצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">View &amp; quote <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+      <!-- card 2 -->
+      <article class="tile tile--browse reveal reveal--slide" style="--i:1;--dir:0">
+        <a href="product.html" class="tile__media tile__media-link" aria-label="Free-Standing Totem">
+          <span class="tile__badge">Ships flat</span>
+          <div class="media" data-media>
+            <div class="tile__media-art" aria-hidden="true">
+              <svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Free-standing display totem illustration">
+                <defs><pattern id="cor2" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 4.5h9" stroke="#b98c52" stroke-width="1" opacity="0.4"/></pattern></defs>
+                <ellipse cx="200" cy="330" rx="90" ry="14" fill="#000" opacity="0.06"/>
+                <rect x="150" y="70" width="100" height="250" rx="6" fill="#d4ad72"/>
+                <rect x="150" y="70" width="100" height="250" rx="6" fill="url(#cor2)"/>
+                <path d="M150 320l-26 12h152l-26-12z" fill="#bb8c4f"/>
+                <rect x="166" y="96" width="68" height="120" rx="4" fill="#eadcc2"/>
+                <circle cx="200" cy="250" r="20" fill="#E67A2F" opacity="0.85"/>
+              </svg>
+            </div>
+            <button class="media__more" type="button" aria-label="Request a quote on this piece" data-en-aria="Request a quote on this piece" data-he-aria="בקשת הצעת מחיר על הפריט הזה"
+                    data-media-id="prod-totem" data-media-title="Free-Standing Totem" data-media-thumb="assets/brand/puffer.png">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </a>
+        <div class="tile__body">
+          <p class="eyebrow eyebrow--plain tile__cat" data-en="Stands" data-he="סטנדים">Stands</p>
+          <h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Free-Standing Totem</a></h3>
+          <div class="tile__foot">
+            <a class="tile__browse-cue" href="product.html" data-i18n-html data-en="View &amp; quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="צפייה והצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">View &amp; quote <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+      <!-- card 3 -->
+      <article class="tile tile--browse reveal reveal--slide" style="--i:2;--dir:1">
+        <a href="product.html" class="tile__media tile__media-link" aria-label="Modular Shelf Unit">
+          <span class="tile__badge tile__badge--eco">Reusable</span>
+          <div class="media" data-media>
+            <div class="tile__media-art" aria-hidden="true">
+              <svg class="board-illu" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Modular shelf unit illustration">
+                <defs><pattern id="cor3" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5h10" stroke="#b98c52" stroke-width="1" opacity="0.4"/></pattern></defs>
+                <ellipse cx="200" cy="330" rx="110" ry="14" fill="#000" opacity="0.06"/>
+                <rect x="110" y="90" width="180" height="230" rx="6" fill="#cfa46a"/>
+                <rect x="110" y="90" width="180" height="230" rx="6" fill="url(#cor3)"/>
+                <g fill="#eadcc2"><rect x="124" y="106" width="152" height="40"/><rect x="124" y="166" width="152" height="40"/><rect x="124" y="226" width="152" height="40"/></g>
+                <rect x="110" y="90" width="180" height="230" rx="6" fill="none" stroke="#bb8c4f" stroke-width="3"/>
+              </svg>
+            </div>
+            <button class="media__more" type="button" aria-label="Request a quote on this piece" data-en-aria="Request a quote on this piece" data-he-aria="בקשת הצעת מחיר על הפריט הזה"
+                    data-media-id="prod-shelf" data-media-title="Modular Shelf Unit" data-media-thumb="assets/brand/puffer.png">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </a>
+        <div class="tile__body">
+          <p class="eyebrow eyebrow--plain tile__cat" data-en="Shelving" data-he="מדפים">Shelving</p>
+          <h3 class="h4 tile__title"><a href="product.html" style="text-decoration:none;color:inherit">Modular Shelf Unit</a></h3>
+          <div class="tile__foot">
+            <a class="tile__browse-cue" href="product.html" data-i18n-html data-en="View &amp; quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="צפייה והצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">View &amp; quote <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="meta reveal" style="margin-top:1.4rem" data-en="Illustrated placeholders. Studio product photography to be shot for launch (see asset inventory)." data-he="איורים זמניים. צילומי מוצר בסטודיו יבוצעו לקראת ההשקה (ראו מצאי נכסים).">Illustrated placeholders. Studio product photography to be shot for launch (see asset inventory).</p>
+    <div class="reveal" style="margin-top:2rem">
+      <a class="link-arrow" href="catalog.html" data-i18n-html data-en="See the full catalog <span class=&quot;arrow&quot;>&rarr;</span>" data-he="לקטלוג המלא <span class=&quot;arrow&quot;>&rarr;</span>">See the full catalog <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="edge edge--dark" aria-hidden="true"></div>
+
+<!-- SPEC STRIP -->
+<section class="band band--dark on-dark" id="material">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow eyebrow--dark" data-en="X-Board, by the numbers" data-he="X-Board, במספרים">X-Board, by the numbers</p>
+      <h2 class="h2" data-en="The material does the talking." data-he="החומר מדבר בעד עצמו.">The material does the talking.</h2>
+    </div>
+    <div class="specs reveal">
+      <div class="spec"><div class="spec__num"><span data-countup="60">0</span><span class="unit">t</span></div><div class="spec__label" data-en="Press force: rigid, board-true edges" data-he="כוח כבישה: קצוות נוקשים ומדויקים">Press force: rigid, board-true edges</div></div>
+      <div class="spec"><div class="spec__num"><span data-countup="100">0</span><span class="unit">%</span></div><div class="spec__label" data-en="Recycled corrugated content" data-he="תכולת קרטון גלי ממוחזר">Recycled corrugated content</div></div>
+      <div class="spec"><div class="spec__num">FR</div><div class="spec__label" data-en="Flame-retardant treated" data-he="מטופל לעמידות באש">Flame-retardant treated</div></div>
+      <div class="spec"><div class="spec__num">H<span class="unit">₂O</span></div><div class="spec__label" data-en="Water-resistant: won't disintegrate" data-he="עמיד למים: לא מתפורר">Water-resistant: won't disintegrate</div></div>
+      <div class="spec"><div class="spec__num">∞</div><div class="spec__label" data-en="Reusable, then fully recyclable" data-he="לשימוש חוזר, ואז ממוחזר לחלוטין">Reusable, then fully recyclable</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee marquee--kraft kraft-grain" aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item">In short, we print on everything</span>
+    <span class="marquee__item">Temporary, made extraordinary</span>
+    <span class="marquee__item">Built to amaze, built to disappear</span>
+    <span class="marquee__item">100% recycled X-Board</span>
+    <span class="marquee__item">In short, we print on everything</span>
+    <span class="marquee__item">Temporary, made extraordinary</span>
+    <span class="marquee__item">Built to amaze, built to disappear</span>
+    <span class="marquee__item">100% recycled X-Board</span>
+  </div>
+</div>
+
+<div class="edge edge--kraft" aria-hidden="true"></div>
+
+<!-- SUSTAINABILITY: full-bleed editorial statement (client: this is the site's primary reason to
+     exist, aimed at CSR/sustainability managers - must "scream", not whisper via a quiet split+checklist). -->
+<section class="band sustain on-dark" id="sustainability">
+  <div class="sustain__bg" aria-hidden="true">
+    <div class="sustain__canopy"></div>
+    <svg aria-hidden="true" class="sustain__wave" viewBox="0 0 1600 400" preserveAspectRatio="none" focusable="false">
+      <path d="M0,150 C 220,230 380,60 620,135 S 1080,255 1330,140 S 1600,90 1600,90 L1600,400 L0,400 Z" fill="rgba(42,155,208,0.16)"/>
+      <path d="M0,230 C 260,150 460,290 760,215 S 1180,110 1600,215 L1600,400 L0,400 Z" fill="rgba(5,18,15,0.65)"/>
+    </svg>
+  </div>
+  <div class="wrap sustain__wrap">
+    <p class="eyebrow eyebrow--dark reveal" data-en="Sustainability" data-he="קיימות">Sustainability</p>
+    <h2 class="sustain__headline reveal" data-en="Your stage can be green. Actually green." data-he="הבמה שלכם יכולה להיות ירוקה. באמת ירוקה.">Your stage can be green. Actually green.</h2>
+    <p class="sustain__punch reveal d1" data-en="No PVC. No vinyl banners. No single-use plastic." data-he="בלי PVC. בלי שמשוניות. בלי פלסטיק חד-פעמי.">No PVC. No vinyl banners. No single-use plastic.</p>
+
+    <div class="sustain__row">
+      <p class="lead sustain__body reveal reveal--slide" style="--dir:-1" data-en="Every booth, counter and display we build is X-Board: 100% recycled cardboard, reusable, shipped flat, and recycled again when the event ends. If sustainability is your mandate, this is how you hit your green targets without compromising how the event looks." data-he="כל ביתן, דוכן ותצוגה שאנחנו בונים עשויים מ-X-Board: קרטון ממוחזר במאה אחוז, לשימוש חוזר, שנשלח שטוח וחוזר להתמחזר בסוף האירוע. אם אתם אחראים על קיימות בארגון, ככה מגיעים ליעדים הירוקים בלי להתפשר על איך שהאירוע נראה.">Every booth, counter and display we build is X-Board: 100% recycled cardboard, reusable, shipped flat, and recycled again when the event ends. If sustainability is your mandate, this is how you hit your green targets without compromising how the event looks.</p>
+
+      <ul class="sustain__pillars reveal reveal--slide" style="--dir:1;--i:1">
+        <li><span class="sustain__num" aria-hidden="true">01</span><span data-en="100% recycled" data-he="100% ממוחזר">100% recycled</span></li>
+        <li><span class="sustain__num" aria-hidden="true">02</span><span data-en="Reusable" data-he="לשימוש חוזר">Reusable</span></li>
+        <li><span class="sustain__num" aria-hidden="true">03</span><span data-en="No PVC or plastic" data-he="בלי PVC ופלסטיק">No PVC or plastic</span></li>
+        <li><span class="sustain__num" aria-hidden="true">04</span><span data-en="Ships flat, fewer shipping emissions" data-he="נשלח שטוח, פחות פליטות שינוע">Ships flat, fewer shipping emissions</span></li>
+      </ul>
+    </div>
+
+    <div class="sustain__cta reveal">
+      <a class="btn btn--brand" href="#contact" data-i18n-html data-en="Plan a zero-waste event <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בואו נתכנן אירוע ירוק <span class=&quot;arrow&quot;>&rarr;</span>">Plan a zero-waste event <span class="arrow">&rarr;</span></a>
+      <span class="placeholder-cap placeholder-cap--onDark" data-en="Nature photography (ocean / rainforest) to be sourced." data-he="צילומי טבע (אוקיינוס / יער גשם) יתווספו בהמשך.">Nature photography (ocean / rainforest) to be sourced.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT teaser -->
+<section class="band band--kraft kraft-grain" id="about">
+  <div class="wrap wrap--narrow">
+    <div class="reveal" style="max-width:60ch">
+      <p class="eyebrow" style="color:#6b4f2e" data-en="Our story" data-he="הסיפור שלנו">Our story</p>
+      <h2 class="h2" style="max-width:24ch" data-en="It starts with a redhead and a man with a ponytail." data-he="הכל מתחיל מג'ינג'ית וגבר עם קוקו.">It starts with a redhead and a man with a ponytail.</h2>
+      <p class="lead" style="color:#3a2e1f;margin-top:1.1rem" data-en="Kuki and David founded Picpong in 2004; Yoram joined soon after. Two decades on we're still a family workshop: designers, engineers and printers under one roof, turning recycled board into builds worth keeping." data-he="קוקי ודיוויד הקימו את Picpong ב-2004; יורם הצטרף זמן קצר אחר כך. שני עשורים אחר כך אנחנו עדיין סדנה משפחתית: מעצבים, מהנדסים ומדפיסים תחת קורת גג אחת, שהופכים קרטון ממוחזר למבנים ששווה לשמור.">Kuki and David founded Picpong in 2004; Yoram joined soon after. Two decades on we're still a family workshop: designers, engineers and printers under one roof, turning recycled board into builds worth keeping.</p>
+      <div style="margin-top:1.6rem"><a class="link-arrow" href="#" style="color:#1a1a1a" data-i18n-html data-en="Meet the studio <span class=&quot;arrow&quot;>&rarr;</span>" data-he="הכירו את הסטודיו <span class=&quot;arrow&quot;>&rarr;</span>">Meet the studio <span class="arrow">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT: quote funnel -->
+<section class="band" id="contact">
+  <div class="wrap">
+    <div class="split" style="align-items:start">
+      <div class="reveal reveal--slide" style="--dir:-1">
+        <p class="eyebrow" data-en="Request a quote" data-he="בקשת הצעת מחיר">Request a quote</p>
+        <h2 class="h2" style="max-width:16ch" data-en="Tell us about your project." data-he="ספרו לנו על הפרויקט שלכם.">Tell us about your project.</h2>
+        <p class="lead" data-en="Event, exhibition or launch: give us the brief and we'll come back within a working day with ideas, a timeline and a quote. Same recycled board, same in-house workshop." data-he="אירוע, תערוכה או השקה: תנו לנו את הבריף ונחזור תוך יום עסקים עם רעיונות, לוח זמנים והצעת מחיר. אותו קרטון ממוחזר, אותה סדנה ביתית.">Event, exhibition or launch: give us the brief and we'll come back within a working day with ideas, a timeline and a quote. Same recycled board, same in-house workshop.</p>
+        <ul class="checklist" style="margin-top:1.4rem">
+          <li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> <span data-en="Concept &amp; quote within 1 working day" data-he="קונספט והצעת מחיר תוך יום עסקים אחד">Concept &amp; quote within 1 working day</span></li>
+          <li><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> <span data-en="Design, print and install under one roof" data-he="עיצוב, הדפסה והתקנה תחת קורת גג אחת">Design, print and install under one roof</span></li>
+        </ul>
+        <p class="meta" style="margin-top:1.4rem">40 Ha&nbsp;Hagana St, Rishon&nbsp;LeZion · <a href="tel:1700501508" style="color:var(--ink)">1-700-501-508</a> · <a href="mailto:info@picpong.biz" style="color:var(--ink)">info@picpong.biz</a></p>
+      </div>
+
+      <form class="quote-form reveal reveal--slide" data-quote aria-label="Project enquiry" data-en-aria="Project enquiry" data-he-aria="פניית פרויקט" aria-describedby="contactRule" style="--i:1;--dir:1">
+        <p class="form-rule" id="contactRule" data-en="Name and email are required." data-he="יש להזין שם ואימייל.">Name and email are required.</p>
+        <div class="quote-grid">
+          <div class="qf qf--full"><label for="qn"><span data-en="Name" data-he="שם">Name</span> <span class="req" aria-hidden="true">*</span><span class="sr-only" data-en=" (required)" data-he=" (חובה)"> (required)</span></label><input id="qn" name="name" autocomplete="name" required aria-required="true" placeholder="Your name" data-en-ph="Your name" data-he-ph="השם שלך" /></div>
+          <div class="qf"><label for="qe"><span data-en="Email" data-he="אימייל">Email</span> <span class="req" aria-hidden="true">*</span><span class="sr-only" data-en=" (required)" data-he=" (חובה)"> (required)</span></label><input id="qe" type="email" name="email" autocomplete="email" required aria-required="true" placeholder="you@company.com" data-en-ph="you@company.com" data-he-ph="you@company.com" /></div>
+          <div class="qf"><label for="qp" data-en="Phone" data-he="טלפון">Phone</label><input id="qp" type="tel" name="phone" autocomplete="tel" placeholder="Phone number" data-en-ph="Phone number" data-he-ph="מספר טלפון" /></div>
+          <div class="qf qf--full"><label for="qm" data-en="Message" data-he="הודעה">Message</label><textarea id="qm" name="message" placeholder="Tell us what you need…" data-en-ph="Tell us what you need…" data-he-ph="ספרו לנו מה אתם צריכים…"></textarea></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+          <button class="btn btn--brand" type="submit" data-i18n-html data-en="Send message <span class=&quot;arrow&quot;>&rarr;</span>" data-he="שליחת הודעה <span class=&quot;arrow&quot;>&rarr;</span>">Send message <span class="arrow">&rarr;</span></button>
+          <span class="placeholder-cap" data-en="Mockup form: validates &amp; confirms, sends nothing" data-he="טופס הדגמה: מאמת ומאשר, לא שולח דבר">Mockup form: validates &amp; confirms, sends nothing</span>
+        </div>
+      </form>
+    </div>
+
+    <div class="reveal" style="margin-top:2.5rem;padding-top:1.6rem;border-top:1px solid var(--line);display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <p class="lead" style="margin:0;max-width:34ch" data-en="Not ready yet? Get the occasional note on new pieces." data-he="עוד לא מוכנים? קבלו עדכון מדי פעם על פריטים חדשים.">Not ready yet? Get the occasional note on new pieces.</p>
+      <form class="field" data-newsletter style="max-width:420px;flex:1">
+        <input type="email" autocomplete="email" required placeholder="you@company.com" aria-label="Email address for newsletter" data-en-aria="Email address for newsletter" data-he-aria="כתובת אימייל לניוזלטר" data-en-ph="you@company.com" data-he-ph="you@company.com" />
+        <button class="btn btn--ghost" type="submit" data-en="Keep me posted" data-he="עדכנו אותי">Keep me posted</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="edge edge--ink" aria-hidden="true"></div>
+
+<!-- FOOTER -->
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand reveal reveal--slide" style="--i:0;--dir:-1">
+        <h2 class="display">PicPong<b>.biz</b></h2>
+        <p class="footer__story" data-en="A family workshop turning recycled corrugated board into displays worth keeping, since 2004." data-he="סדנה משפחתית שהופכת קרטון גלי ממוחזר לתצוגות ששווה לשמור, משנת 2004.">A family workshop turning recycled corrugated board into displays worth keeping, since 2004.</p>
+        <a class="btn btn--onDark" href="#contact" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">Request a quote <span class="arrow">&rarr;</span></a>
+        <!-- BUILD NOTE: real profile URL is content (§5/D-6) -->
+        <div class="footer__social" aria-label="Social links" data-en-aria="Social links" data-he-aria="קישורים חברתיים">
+          <a href="https://www.facebook.com/picpongb2b" target="_blank" rel="noopener" aria-label="PicPong on Facebook" data-en-aria="PicPong on Facebook" data-he-aria="PicPong בפייסבוק"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l.5-3H13V5.5c0-.9.3-1.5 1.6-1.5H17V1.4C16.6 1.3 15.5 1.2 14.3 1.2 11.7 1.2 10 2.7 10 5.2V7H7v3h3v9h3z"/></svg></a>
+          <a href="https://www.instagram.com/picpongbiz/" target="_blank" rel="noopener" aria-label="PicPong on Instagram" data-en-aria="PicPong on Instagram" data-he-aria="PicPong באינסטגרם"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.linkedin.com/company/picpong-ltd/" target="_blank" rel="noopener" aria-label="PicPong on LinkedIn" data-en-aria="PicPong on LinkedIn" data-he-aria="PicPong בלינקדאין"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9.5h4V21H3zM9 9.5h3.8v1.6h.05c.53-.95 1.83-1.95 3.77-1.95 4 0 4.75 2.5 4.75 5.8V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.78 0-2.05 1.38-2.05 2.8V21H9z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col reveal reveal--slide" style="--i:1"><p class="footer__col-h" data-en="Catalog" data-he="קטלוג">Catalog</p><ul><li><a href="catalog.html" data-en="Counters" data-he="דלפקים">Counters</a></li><li><a href="catalog.html" data-en="Stands &amp; totems" data-he="סטנדים וטוטמים">Stands &amp; totems</a></li><li><a href="catalog.html" data-en="Shelving" data-he="מדפים">Shelving</a></li><li><a href="catalog.html" data-en="Photocall walls" data-he="קירות פוטוקול">Photocall walls</a></li><li><a href="catalog.html" data-en="Custom builds" data-he="בנייה מותאמת">Custom builds</a></li></ul></div>
+      <div class="footer__col reveal reveal--slide" style="--i:2"><p class="footer__col-h" data-en="Studio" data-he="סטודיו">Studio</p><ul><li><a href="#about" data-en="Our story" data-he="הסיפור שלנו">Our story</a></li><li><a href="projects.html" data-en="Projects" data-he="פרויקטים">Projects</a></li><li><a href="latest.html" data-en="Latest" data-he="יומן">Latest</a></li><li><a href="#sustainability" data-en="Sustainability" data-he="קיימות">Sustainability</a></li><li><a href="#contact" data-en="Contact" data-he="צור קשר">Contact</a></li></ul></div>
+      <div class="footer__col reveal reveal--slide" style="--i:3"><p class="footer__col-h" data-en="Trusted by" data-he="סומכים עלינו">Trusted by</p><ul><li><a href="projects.html">Microsoft · Intel</a></li><li><a href="projects.html">Google · IBM</a></li><li><a href="projects.html">Landa · Amdocs</a></li><li><a href="projects.html">Wix · Maccabi</a></li></ul></div>
+      <div class="footer__col reveal reveal--slide" style="--i:4"><p class="footer__col-h" data-en="Legal" data-he="מידע ומשפט">Legal</p><ul><li><a href="accessibility.html" data-en="Accessibility statement" data-he="הצהרת נגישות">Accessibility statement</a></li><li><a href="privacy.html" data-en="Privacy policy" data-he="מדיניות פרטיות">Privacy policy</a></li><li><a href="#contact" data-en="Contact" data-he="צור קשר">Contact</a></li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <span data-en="© 2026 PicPong · Sustainable display systems" data-he="© 2026 PicPong · מערכות תצוגה בנות קיימא">© 2026 PicPong · Sustainable display systems</span>
+      <span data-en="Mockup v6: concept, not final" data-he="מוקאפ v6: קונספט, לא סופי">Mockup v6: concept, not final</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- floating contact trigger; every page - opens the quote drawer (live) -->
+<button class="contact-fab" type="button" aria-label="Request a quote" data-en-aria="Request a quote" data-he-aria="בקשת הצעת מחיר">
+  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <span class="contact-fab__label" data-en="Request a quote" data-he="בקשת הצעת מחיר">Request a quote</span>
+</button>
+
+<script src="js/app.js?v=14"></script>
+</body>
+</html>
