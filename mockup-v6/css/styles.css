@@ -731,6 +731,12 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .panel--pond .lead { color: rgba(26,26,26,0.88); }
 .panel--ink  { background: var(--ink); color: var(--cream); }
 .panel--ink .eyebrow { color: var(--orange-bright); }
+/* forest panel - carries the site's #1 message (sustainability) into the hero.
+   Cream on --forest ≈11.5:1 (AAA). Mirrors the .sustain band so the hero
+   previews the eco statement you scroll into, rather than being a bright repaint. */
+.panel--forest { background: var(--forest); color: var(--cream); }
+.panel--forest .eyebrow { color: var(--orange-bright); }
+.panel--forest .lead { color: rgba(247,247,241,0.82); }
 /* kraft / corrugated-board panel - warm tan, ink text (≈5:1). Breaks the blue
    stack and ties the slogan to the actual X-Board product. */
 .panel--kraft { background: var(--kraft); color: var(--ink); }
@@ -771,6 +777,25 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .ctile--headline .btn--onDark:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 .ctile--headline .btn--ghostDark { background: transparent; color: var(--ink); border-color: var(--ink); }
 .ctile--headline .btn--ghostDark:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+/* forest headline tile: ocean-to-canopy field with a --pond glow in the corner
+   where the fish swims + bubbles rise, so the water motif survives the recolor.
+   Fewer words (lead dropped) let the display type run larger = punchier. */
+.ctile--headline.panel--forest {
+  /* clean deep-ocean water: a teal-blue base (not olive-green, which muddied
+     against the blue glow) deepening to ocean blue near the fish, with a
+     slightly brighter pond glow for clear-water light. Reads as "deep ocean"
+     while the .sustain band stays green - hero=ocean, band=canopy. */
+  background:
+    radial-gradient(ellipse 82% 62% at 84% 90%, rgba(42,155,208,0.42), transparent 62%),
+    linear-gradient(158deg, #0E3A40 0%, #06232E 100%);
+}
+.ctile--headline.panel--forest .display { font-size: clamp(2.5rem, 5.8vw, 4.5rem); }
+/* ink underline would vanish on forest - flip the accent to the eco orange-bright */
+.ctile--headline.panel--forest .display .accent { background-image: none; color: var(--orange-bright); }
+/* ghost CTA: ink outline is invisible on dark - cream outline, invert on hover */
+.ctile--headline.panel--forest .btn--ghostDark { color: var(--cream); border-color: rgba(247,247,241,0.5); }
+.ctile--headline.panel--forest .btn--ghostDark:hover { background: var(--cream); color: var(--ink); border-color: var(--cream); }
 
 /* info card overlapping a media tile (cartonlab signature) */
 .ctile__card {

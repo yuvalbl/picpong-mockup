@@ -15,7 +15,7 @@
   <script src="js/bo.js"></script>
   <script>
     (function () {
-      var session = BO.requireRole(["Admin", "Sales", "Content"]);
+      var session = BO.requireRole(["Admin", "Operator"]);
       if (!session) return;
       var main = BO.mountShell({ active: "dashboard.html", title: "Dashboard" });
       var role = session.role;
@@ -84,19 +84,17 @@
         return esc(g) + ', ' + esc((name || "").split(" ")[0]) + '.';
       }
       function subLine(r) {
-        if (r === "Sales") return "Here is what has come in and what needs a reply.";
-        if (r === "Content") return "Your content workspace.";
+        if (r === "Operator") return "Here is what has come in and what needs a reply.";
         return "A full view across leads and content.";
       }
 
       var html = greeting;
-      if (role === "Sales") {
+      if (role === "Operator") {
         html += salesBlock();
       } else if (role === "Admin") {
         html += salesBlock() + '<div style="height:1.4rem"></div>' + adminLinks();
       }
-      // Content role: no content-specific summary to show here (see nav for
-      // Featured / Projects / Catalog / Media).
+      // Operator sees both leads (above) and content (via nav: Projects / Catalog).
 
       main.innerHTML = html;
     })();

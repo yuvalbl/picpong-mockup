@@ -134,11 +134,11 @@
 
   function seedUsers() {
     return [
-      { id: "U-1", name: "Noa Bar-Levi",  email: "noa@picpong.biz",    role: "Sales",   active: true },
-      { id: "U-2", name: "Daniel Amrani", email: "daniel@picpong.biz", role: "Sales",   active: true },
-      { id: "U-3", name: "Maya Cohen",    email: "maya@picpong.biz",   role: "Content", active: true },
-      { id: "U-4", name: "Eitan Golan",   email: "eitan@picpong.biz",  role: "Admin",   active: true },
-      { id: "U-5", name: "Liat Mizrahi",  email: "liat@picpong.biz",   role: "Sales",   active: false }
+      { id: "U-1", name: "Noa Bar-Levi",  email: "noa@picpong.biz",    role: "Operator", active: true },
+      { id: "U-2", name: "Daniel Amrani", email: "daniel@picpong.biz", role: "Operator", active: true },
+      { id: "U-3", name: "Maya Cohen",    email: "maya@picpong.biz",   role: "Operator", active: true },
+      { id: "U-4", name: "Eitan Golan",   email: "eitan@picpong.biz",  role: "Admin",    active: true },
+      { id: "U-5", name: "Liat Mizrahi",  email: "liat@picpong.biz",   role: "Operator", active: false }
     ];
   }
 
@@ -276,10 +276,8 @@
   var ICON = {
     dashboard: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>',
     leads: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-    featured: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 16.5 13.5 18.5 21 12 16.5 5.5 21 7.5 13.5 2 9 9 9"/></svg>',
     projects: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>',
     catalog: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
-    media: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
     users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
     settings: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
     bell: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>',
@@ -294,16 +292,15 @@
   // group: which sidebar section; roles: who sees the item
   var NAV = [
     { group: "Overview", items: [
-      { href: "dashboard.html", label: "Dashboard", icon: "dashboard", roles: ["Admin", "Sales", "Content"] }
+      { href: "dashboard.html", label: "Dashboard", icon: "dashboard", roles: ["Admin", "Operator"] }
     ]},
-    { group: "Sales", items: [
-      { href: "leads.html", label: "Leads", icon: "leads", roles: ["Admin", "Sales"], badge: "unreadLeads" }
+    { group: "Leads", items: [
+      { href: "leads.html", label: "Leads", icon: "leads", roles: ["Admin", "Operator"], badge: "unreadLeads" }
     ]},
     { group: "Content", items: [
-      { href: "featured.html", label: "Featured", icon: "featured", roles: ["Admin", "Content"] },
-      { href: "projects.html", label: "Projects", icon: "projects", roles: ["Admin", "Content"] },
-      { href: "catalog-manager.html", label: "Catalog", icon: "catalog", roles: ["Admin", "Content"] },
-      { href: "media.html", label: "Media library", icon: "media", roles: ["Admin", "Content"] }
+      { href: "projects.html", label: "Projects", icon: "projects", roles: ["Admin", "Operator"] },
+      { href: "catalog-manager.html", label: "Catalog", icon: "catalog", roles: ["Admin", "Operator"] }
+      /* Media library destination removed - becomes an in-editor asset-picker in Phase-2 */
     ]},
     { group: "Admin", items: [
       { href: "users.html", label: "Users", icon: "users", roles: ["Admin"] },

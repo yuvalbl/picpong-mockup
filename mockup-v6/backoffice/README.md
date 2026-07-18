@@ -1,7 +1,7 @@
 # Picpong Backoffice - mockup foundation
 
 A static, no-build staff workspace mockup living under `mockup-v6/backoffice/`.
-Three roles: **Admin / Content Manager / Sales Manager**. No real auth, no
+Two roles: **Admin / Operator** (Operator sees both leads and content). No real auth, no
 backend, no security - all demo data lives in `localStorage` under the `bo:`
 namespace and is seeded on first load by `js/bo.js`. It deploys as static files
 and must work opened directly under `/backoffice/`.
@@ -36,7 +36,7 @@ carries `he` and `en` objects; render both in the editors.
   <script src="js/bo.js"></script>
   <script>
     // 1. gate by role (redirects to login/dashboard if not allowed)
-    var session = BO.requireRole(["Admin", "Sales"]);
+    var session = BO.requireRole(["Admin", "Operator"]);
     if (session) {
       // 2. render the shell + get the <main> to fill
       var main = BO.mountShell({ active: "leads.html", title: "Leads" });
@@ -64,25 +64,27 @@ Build your screens at exactly these paths (the sidebar + deep links expect them)
 | File | Role visibility | Purpose |
 |---|---|---|
 | `dashboard.html` | all | role home (built) |
-| `leads.html` | Admin, Sales | leads table/list |
-| `lead-detail.html?id=L-xxxx` | Admin, Sales | single lead + notes + status |
-| `featured.html` | Admin, Content | pick homepage-featured items |
-| `projects.html` | Admin, Content | projects manager |
-| `project-editor.html?id=...` | Admin, Content | edit a project |
-| `catalog-manager.html` | Admin, Content | catalog/products manager |
-| `media.html` | Admin, Content | media library |
+| `leads.html` | Admin, Operator | leads table/list |
+| `lead-detail.html?id=L-xxxx` | Admin, Operator | single lead + notes + status |
+| `projects.html` | Admin, Operator | projects manager |
+| `project-editor.html?id=...` | Admin, Operator | edit a project |
+| `catalog-manager.html` | Admin, Operator | catalog/products manager |
 | `users.html` | Admin | staff accounts |
 | `settings.html` | Admin | WhatsApp / routing / social / language |
 
 Deep links from the dashboard already point at `leads.html` and
 `lead-detail.html?id=` - keep those query params.
 
+`featured.html` (homepage-featured picker) and `media.html` (media library) are
+removed. The homepage now auto-shows the latest 5 projects (no curation). Media
+library becomes an in-editor asset-picker in Phase-2.
+
 ---
 
 ## `BO` JavaScript API (global, from `js/bo.js`)
 
 ### Session + roles
-- `BO.getSession()` -> `{ name, role, email }` or `null`. `role` is `"Admin" | "Content" | "Sales"`.
+- `BO.getSession()` -> `{ name, role, email }` or `null`. `role` is `"Admin" | "Operator"`.
 - `BO.setSession(obj)` - used by login only.
 - `BO.requireRole([roles])` -> session, or redirects (to `login.html` if signed
   out, to `dashboard.html` if signed in but not permitted). Returns `null` on redirect - guard on it.
@@ -111,7 +113,7 @@ Deep links from the dashboard already point at `leads.html` and
 - `BO.pillClass(status)` -> e.g. `"bo-pill bo-pill--new"` (works for lead statuses).
 - `BO.esc(str)` - HTML-escape before injecting into innerHTML. **Always escape user/demo strings.**
 - `BO.toast(html)` - bottom toast; pass a short message, `<b>` allowed.
-- `BO.ICON` - map of inline SVG strings: `dashboard, leads, featured, projects, catalog, media, users, settings, bell, menu, whatsapp, email`.
+- `BO.ICON` - map of inline SVG strings: `dashboard, leads, projects, catalog, users, settings, bell, menu, whatsapp, email`.
 
 ---
 
@@ -140,8 +142,8 @@ Deep links from the dashboard already point at `leads.html` and
 
 ### User
 ```js
-{ id: "U-1", name: "Noa Bar-Levi", email: "noa@picpong.biz", role: "Sales", active: true }
-// role: "Admin" | "Content" | "Sales"
+{ id: "U-1", name: "Noa Bar-Levi", email: "noa@picpong.biz", role: "Operator", active: true }
+// role: "Admin" | "Operator"
 ```
 
 ### Settings

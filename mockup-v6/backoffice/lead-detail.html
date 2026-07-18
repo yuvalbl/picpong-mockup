@@ -40,7 +40,7 @@
   <script src="js/bo.js"></script>
   <script>
     (function () {
-      var session = BO.requireRole(["Admin", "Sales"]);
+      var session = BO.requireRole(["Admin", "Operator"]);
       if (!session) return;
       var main = BO.mountShell({ active: "leads.html", title: "Lead detail" });
       var esc = BO.esc;

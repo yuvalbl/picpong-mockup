@@ -32,41 +32,27 @@
           <input class="bo-input" type="email" id="email" name="email" autocomplete="username" placeholder="you@picpong.biz" required />
         </div>
         <div class="bo-field">
-          <label for="password">Password</label>
-          <input class="bo-input" type="password" id="password" name="password" autocomplete="current-password" placeholder="Your password" required />
-        </div>
-
-        <div class="bo-field">
-          <label id="role-label">Sign in as</label>
+          <label id="role-label">View as</label>
           <div class="bo-segment" role="radiogroup" aria-labelledby="role-label">
             <input type="radio" name="role" id="role-admin" value="Admin" />
             <label for="role-admin">
               <span class="bo-segment__title">Admin</span>
               <span class="bo-segment__desc">Everything - leads, content, users, settings</span>
             </label>
-            <input type="radio" name="role" id="role-content" value="Content" />
-            <label for="role-content">
-              <span class="bo-segment__title">Content Manager</span>
-              <span class="bo-segment__desc">Featured, projects, catalog, media</span>
-            </label>
-            <input type="radio" name="role" id="role-sales" value="Sales" checked />
-            <label for="role-sales">
-              <span class="bo-segment__title">Sales Manager</span>
-              <span class="bo-segment__desc">Incoming leads and follow-up</span>
+            <input type="radio" name="role" id="role-operator" value="Operator" checked />
+            <label for="role-operator">
+              <span class="bo-segment__title">Operator</span>
+              <span class="bo-segment__desc">Leads and site content</span>
             </label>
           </div>
-          <span class="bo-field__hint">Role picker is a mockup convenience - it decides which screens you see.</span>
+          <span class="bo-field__hint">Role is a mockup convenience - it decides which screens you see.</span>
         </div>
 
-        <button class="bo-btn bo-btn--brand bo-btn--block" type="submit">Sign in</button>
-
-        <div class="bo-auth__foot">
-          <a href="forgot-password.html">Forgot password?</a>
-        </div>
+        <button class="bo-btn bo-btn--brand bo-btn--block" type="submit">Send magic link</button>
       </form>
 
       <div class="bo-mocknote">
-        <b>UI mockup.</b> This is a design prototype with demo data in your browser. Any email and password are accepted - no real account, no server.
+        <b>UI mockup.</b> Design prototype with demo data in your browser. Magic-link sign-in is mocked - any email works and no real email is sent.
       </div>
     </main>
   </div>
@@ -75,18 +61,39 @@
   <script>
     (function () {
       var form = document.getElementById("login-form");
+      var card = document.getElementById("bo-main");
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         var email = document.getElementById("email").value.trim();
-        var role = (form.querySelector('input[name="role"]:checked') || {}).value || "Sales";
-        // Mock: any credentials accepted. Derive a display name from the email.
+        var role = (form.querySelector('input[name="role"]:checked') || {}).value || "Operator";
+        // Mock: any email accepted. Derive a display name from the email.
         var namePart = email.split("@")[0].replace(/[._-]+/g, " ").trim();
         var name = namePart
           ? namePart.replace(/\b\w/g, function (c) { return c.toUpperCase(); })
-          : (role === "Admin" ? "Eitan Golan" : role === "Content" ? "Maya Cohen" : "Noa Bar-Levi");
-        BO.setSession({ name: name, role: role, email: email || "demo@picpong.biz" });
-        location.href = "dashboard.html";
+          : (role === "Admin" ? "Eitan Golan" : "Noa Bar-Levi");
+        var shownEmail = email || "you@picpong.biz";
+
+        var brand = card.querySelector(".bo-auth__brand").outerHTML;
+        card.innerHTML =
+          brand +
+          '<h1 id="bo-confirm-heading" tabindex="-1">Check your inbox</h1>' +
+          '<p class="bo-auth__sub">We sent a sign-in link to ' + escapeHtml(shownEmail) + '.</p>' +
+          '<button class="bo-btn bo-btn--brand bo-btn--block" id="open-link-btn" type="button">Open the link &rarr;</button>';
+
+        var heading = document.getElementById("bo-confirm-heading");
+        if (heading) heading.focus();
+
+        document.getElementById("open-link-btn").addEventListener("click", function () {
+          BO.setSession({ name: name, role: role, email: shownEmail });
+          location.href = "dashboard.html";
+        });
       });
+
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
     })();
   </script>
 </body>

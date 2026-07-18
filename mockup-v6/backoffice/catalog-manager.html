@@ -43,7 +43,7 @@
   <script src="js/bo.js"></script>
   <script>
     (function () {
-      var session = BO.requireRole(["Admin", "Content"]);
+      var session = BO.requireRole(["Admin", "Operator"]);
       if (!session) return;
       var main = BO.mountShell({ active: "catalog-manager.html", title: "Catalog" });
       var esc = BO.esc;

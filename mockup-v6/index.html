@@ -101,10 +101,9 @@
     <div class="collage">
 
       <!-- A · headline text panel -->
-      <div class="ctile ctile--headline panel--pond reveal" style="--i:0;--dir:-1">
-        <p class="eyebrow" data-en="Exclusive X-Board importer · since 2004" data-he="יבואן בלעדי של X-Board · משנת 2004">Exclusive X-Board importer · since 2004</p>
-        <h1 class="display" data-i18n-html data-en="Displays that show up, <em>stand out</em>, and leave <span class=&quot;accent&quot;>no&nbsp;trace.</span>" data-he="תצוגות שמופיעות, <em>בולטות</em>, ולא משאירות <span class=&quot;accent&quot;>שום&nbsp;עקבות.</span>">Displays that show up, <em>stand out</em>, and leave <span class="accent">no&nbsp;trace.</span></h1>
-        <p class="lead" data-en="100% recycled corrugated board, pressed at 60&nbsp;tons and built to be reused, then folded flat and recycled again." data-he="קרטון גלי ממוחזר 100%, מכובש ב-60&nbsp;טון ובנוי לשימוש חוזר, ואז מתקפל שטוח וממוחזר שוב.">100% recycled corrugated board, pressed at 60&nbsp;tons and built to be reused, then folded flat and recycled again.</p>
+      <div class="ctile ctile--headline panel--forest reveal" style="--i:0;--dir:-1">
+        <p class="eyebrow" data-en="100% recycled X-Board" data-he="קרטון ממוחזר 100% · X-Board">100% recycled X-Board</p>
+        <h1 class="display" data-i18n-html data-en="Leave an <em>impression</em>. <span class=&quot;accent&quot;>Not&nbsp;waste.</span>" data-he="משאירים <em>רושם</em>. <span class=&quot;accent&quot;>לא&nbsp;פסולת.</span>">Leave an <em>impression</em>. <span class="accent">Not&nbsp;waste.</span></h1>
         <div class="ctile__cta">
           <a class="btn btn--onDark" href="catalog.html" data-i18n-html data-en="Browse the catalog <span class=&quot;arrow&quot;>&rarr;</span>" data-he="עיון בקטלוג <span class=&quot;arrow&quot;>&rarr;</span>">Browse the catalog <span class="arrow">&rarr;</span></a>
           <a class="btn btn--ghostDark" href="#contact" data-i18n-html data-en="Request a quote <span class=&quot;arrow&quot;>&rarr;</span>" data-he="בקשת הצעת מחיר <span class=&quot;arrow&quot;>&rarr;</span>">Request a quote <span class="arrow">&rarr;</span></a>
@@ -272,7 +271,8 @@
 <!-- LATEST PROJECTS STRIP: horizontally-scannable row of the most recent builds.
      Each tile is the shared .project overlay card (whole tile clickable) and links
      to project-detail.html?p=<slug> - same pattern as projects.html. Full portfolio
-     lives on projects.html. -->
+     lives on projects.html. Auto-shows the latest 5 projects, zero curation - this
+     replaces the dropped manual "Featured" picker (backoffice featured.html, removed). -->
 <section class="band band--tight latest-strip" aria-label="Latest projects" data-en-aria="Latest projects" data-he-aria="הפרויקטים האחרונים">
   <div class="wrap">
     <div class="latest-strip__head reveal">
@@ -323,6 +323,16 @@
         </div>
         <div class="project__scrim"></div><span class="project__tag" data-en="Event" data-he="אירוע">Event</span>
         <div class="project__body"><span class="project__client">Google Cloud</span><h3 class="h4 project__title" data-en="Spring-party welcome build" data-he="מבנה קבלת פנים למסיבת אביב">Spring-party welcome build</h3></div>
+      </a>
+
+      <!-- 5 · Synamedia -->
+      <a class="project" role="listitem" href="project-detail.html?p=synamedia" data-en-aria="Synamedia - Conference booth & lounge" data-he-aria="Synamedia - ביתן כנס וטרקלין" aria-label="Synamedia - Conference booth & lounge">
+        <div class="media" data-media>
+          <img class="project__img" src="assets/projects/synamedia.jpg" alt="ביתן כנס וטרקלין מקרטון ממוחזר עבור Synamedia" loading="lazy" />
+          <button class="media__more" type="button" aria-label="Request a quote on a build like this" data-en-aria="Request a quote on a build like this" data-he-aria="בקשת הצעת מחיר על מבנה דומה" data-media-id="proj-synamedia" data-media-title="Synamedia" data-media-thumb="assets/projects/synamedia.jpg"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div class="project__scrim"></div><span class="project__tag" data-en="Booth" data-he="ביתן">Booth</span>
+        <div class="project__body"><span class="project__client">Synamedia</span><h3 class="h4 project__title" data-en="Conference booth &amp; lounge" data-he="ביתן כנס וטרקלין">Conference booth &amp; lounge</h3></div>
       </a>
 
     </div>
@@ -468,8 +478,6 @@
     <span class="marquee__item">100% recycled X-Board</span>
   </div>
 </div>
-
-<div class="edge edge--kraft" aria-hidden="true"></div>
 
 <!-- SUSTAINABILITY: full-bleed editorial statement (client: this is the site's primary reason to
      exist, aimed at CSR/sustainability managers - must "scream", not whisper via a quiet split+checklist). -->
