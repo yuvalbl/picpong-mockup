@@ -1032,8 +1032,58 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
+  /* ---------- hero headline tile: pause decorative CSS loops when offstage ----------
+     Toggles .is-offstage on .ctile--headline when it drops below ~25% visible;
+     the CSS side (halting the bubble/fish keyframes under .is-offstage) is added
+     separately. No IntersectionObserver -> do nothing, loops keep running. */
+  (function () {
+    var head = document.querySelector(".ctile--headline");
+    if (!head || !("IntersectionObserver" in window)) return;
+    var hio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        head.classList.toggle("is-offstage", en.intersectionRatio < 0.25);
+      });
+    }, { threshold: [0, 0.25] });
+    hio.observe(head);
+  })();
+
+  /* ---------- hero video: only play while its tile is on screen ----------
+     applyMotionState() already pauses/resumes the muted hero <video> with the
+     global motion toggle. This adds the second condition: play IFF the tile is
+     in view AND motion is not paused. We re-check on picpong:motion (fires after
+     applyMotionState) so a "resume" landing while the tile is offstage stays
+     paused. On mobile, skipping is unnecessary - the gate handles it. */
+  (function () {
+    var video = document.querySelector("video.hero-video");
+    if (!video) return;
+    var tile = video.closest(".ctile--video") || video.parentElement || video;
+    var vidInView = true; // assume visible until the observer reports otherwise
+    function updateVideo() {
+      var paused = document.body.classList.contains("motion-paused");
+      try {
+        if (vidInView && !paused) {
+          var pr = video.play();
+          if (pr && pr.catch) pr.catch(function () {}); // swallow autoplay-policy rejection
+        } else {
+          video.pause();
+        }
+      } catch (e) {}
+    }
+    // re-evaluate after the global toggle has run applyMotionState
+    document.addEventListener("picpong:motion", updateVideo);
+    if (!("IntersectionObserver" in window)) return; // no gating; motion system still governs it
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { vidInView = en.intersectionRatio >= 0.25; });
+      updateVideo();
+    }, { threshold: [0, 0.25] });
+    vio.observe(tile);
+  })();
+
   /* ---------- collage parallax (gentle, scroll-linked) ---------- */
-  var pxEls = reduceMotion ? [] : Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+  // skip parallax entirely on mobile: never bind, never set a transform (nothing left stale).
+  // init-time check only - a desktop<->mobile matchMedia flip mid-session is not handled.
+  var pxMobile = window.matchMedia && window.matchMedia("(max-width: 759px)").matches;
+  var pxEls = (reduceMotion || pxMobile) ? [] : Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
   if (pxEls.length) {
     var ticking = false;
     var applyParallax = function () {
@@ -1057,6 +1107,8 @@
   /* ---------- collage slideshow: reel player (zoom-cut + story bars) ---------- */
   document.querySelectorAll("[data-slideshow]").forEach(function (box) {
     var SLIDE_MS = 8400;
+    // mobile gets a calmer cadence: lengthen the dwell ~2.5s so fewer cuts happen while scrolling
+    if (window.matchMedia && window.matchMedia("(max-width: 759px)").matches) SLIDE_MS += 2500;
     var slides = box.querySelectorAll(".slide");
     if (slides.length < 2) return;
     var cardK = box.querySelector("[data-card-k]");
@@ -1131,18 +1183,30 @@
       }
     }
 
-    // pause-aware player: the pause toggle (picpong:motion) stops/restarts it
+    // pause-aware player: runs IFF the tile is in view AND motion isn't paused.
+    // The pause toggle (picpong:motion) and the in-view observer both funnel
+    // through startSS/stopSS, so they compose instead of fighting.
     var ssTimer = null;
+    var ssInView = false; // gate: only run the reel while the tile is on screen
     function startSS() {
-      if (ssTimer || document.body.classList.contains("motion-paused")) return;
+      if (ssTimer || !ssInView || document.body.classList.contains("motion-paused")) return;
       runBar(i);
       ssTimer = setInterval(step, SLIDE_MS);
     }
     function stopSS() { if (ssTimer) { clearInterval(ssTimer); ssTimer = null; } }
-    startSS();
     document.addEventListener("picpong:motion", function (e) {
       if (e.detail && e.detail.paused) stopSS(); else startSS();
     });
+    if (!("IntersectionObserver" in window)) { ssInView = true; startSS(); }
+    else {
+      var ssio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          ssInView = en.isIntersecting;
+          if (ssInView) startSS(); else stopSS();
+        });
+      }, { threshold: 0.2 });
+      ssio.observe(box);
+    }
   });
 
   /* ---------- dynamic slogan: rotating phrases + highlighter sweep ---------- */
@@ -1185,6 +1249,13 @@
     });
 
     if (reduceMotion) { slogan.classList.add("is-in"); return; }
+
+    // the slogan tile is display:none on mobile - if it never renders, wire up no
+    // timers or observers at all (in addition to the in-view gating below)
+    if (slogan.getClientRects().length === 0 || slogan.offsetParent === null) {
+      slogan.classList.add("is-in");
+      return;
+    }
 
     function settle() {
       slogan.classList.remove("is-out");
