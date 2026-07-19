@@ -881,11 +881,15 @@ em.serif-italic, .display em, .h1 em, .h2 em { font-style: italic; font-weight: 
 .proof__item { flex: 1 1 0; display: flex; align-items: center; gap: 0.55rem; min-width: 0; }
 /* hairline divider between claims; inline-start keeps it RTL-safe */
 .proof__item + .proof__item { border-inline-start: 1px solid rgba(26,26,26,0.14); padding-inline-start: clamp(0.6rem, 1.4vw, 1.15rem); }
-.proof__icon { flex: 0 0 auto; width: clamp(22px, 2.3vw, 28px); height: auto; color: var(--orange); }
+/* burnt rust, not brand orange: the light --orange (#E67A2F) is lighter than the
+   kraft field, so it can never clear ~1.5:1 there. This deep rust reads ≈3.6:1 on
+   tan (clears WCAG 1.4.11's 3:1 for graphics) while keeping the warm/orange cue. */
+.proof__icon { flex: 0 0 auto; width: clamp(24px, 2.8vw, 36px); height: auto; color: #7a3300; }
 .proof__icon svg { width: 100%; height: auto; display: block; }
-.proof__txt { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
-.proof__k { font-family: "Rubik", system-ui, sans-serif; font-weight: 500; font-size: clamp(0.9rem, 1vw, 1rem); line-height: 1.1; letter-spacing: -0.01em; }
-.proof__m { font-size: 0.72rem; line-height: 1.15; color: #4a3f2e; }
+.proof__txt { display: flex; flex-direction: column; gap: 0.12rem; min-width: 0; }
+.proof__k { font-family: "Rubik", system-ui, sans-serif; font-weight: 500; font-size: clamp(0.95rem, 1.25vw, 1.35rem); line-height: 1.12; letter-spacing: -0.01em; }
+/* darker than the old #4a3f2e (4.0:1, failed AA) - #3a3122 ≈ 5:1 on kraft */
+.proof__m { font-size: clamp(0.82rem, 0.95vw, 1rem); line-height: 1.2; color: #3a3122; }
 
 /* info card overlapping a media tile (cartonlab signature) */
 .ctile__card {

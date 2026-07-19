@@ -25,7 +25,9 @@ npm run deploy:preview   # firebase hosting:channel:deploy preview
 
 There are no tests, linters, or bundlers. To view a mockup without Firebase, open any `mockup-v*/index.html` in a browser.
 
-**Verifying mobile/responsive + RTL:** use Playwright MCP (`browser_resize` genuinely emulates the viewport); claude-in-chrome `resize_window` resizes the OS window but not the page viewport, so `@media` breakpoints never engage. Note the site is Hebrew-first RTL, where horizontal scroll containers rest at a non-zero `scrollLeft` and fire a load-time scroll event.
+**Verifying mobile/responsive + RTL:** use Playwright MCP (`browser_resize` genuinely emulates the viewport); claude-in-chrome `resize_window` resizes the OS window but not the page viewport, so `@media` breakpoints never engage. Note the site is Hebrew-first RTL, where horizontal scroll containers rest at a non-zero `scrollLeft` and fire a load-time scroll event. Collage tiles animate in with a ~0.97 reveal scale - let transitions settle before trusting `getBoundingClientRect()`.
+
+**v6 stylesheet cascade:** `mockup-v6/css/styles.css` places component and `[dir="rtl"]` override sections late in the file; at equal specificity they beat rules in the earlier layout media queries (media queries add no specificity). Place new overrides after those sections and verify with in-browser computed styles, not cascade reasoning.
 
 **RTL bidi (Hebrew):** LTR runs joined by neutral separators (`×`, `·`, `/`) or led by a number get their segments mirrored inside an RTL block (e.g. `120 × 50 cm` → `cm 50 × 120`). Wrap such values (dimensions, addresses, phone/email) in `dir="ltr"`, or translate so numbers sit in natural Hebrew flow. Plain hyphen ranges (`5-7`) are safe.
 
